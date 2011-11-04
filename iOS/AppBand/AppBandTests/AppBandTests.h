@@ -8,6 +8,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface AppBandTests : SenTestCase
+#import <OCMock/OCMock.h>
+
+@class AppBand;
+@interface AppBandTests : SenTestCase {
+    AppBand *appBand;
+}
 
 @end
