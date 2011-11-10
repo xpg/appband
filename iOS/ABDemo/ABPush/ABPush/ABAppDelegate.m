@@ -9,12 +9,22 @@
 #import "ABAppDelegate.h"
 
 #import "AppBand.h"
-#import "ABPush.h"
-#import "ABConstant.h"
+
+@interface ABAppDelegate()
+
+- (void)registerDeviceTokenFinish:(NSDictionary *)response;
+
+@end
 
 @implementation ABAppDelegate
 
 @synthesize window = _window;
+
+#pragma mark - Private
+
+- (void)registerDeviceTokenFinish:(NSDictionary *)response {
+    
+}
 
 #pragma mark - Register For Remote Notification
 
@@ -23,16 +33,15 @@
     if ([application respondsToSelector:@selector(applicationState)]) {
         appState = application.applicationState;
     }
-    [[ABPush shared] handleNotification:userInfo applicationState:appState];
+    [[AppBand shared] handleNotification:userInfo applicationState:appState target:nil pushSelector:nil richSelector:nil];
 }
 
 // one of these will be called after calling -registerForRemoteNotifications
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [[AppBand shared] registerDeviceToken:deviceToken];
+    [[AppBand shared] registerDeviceToken:deviceToken target:self finishSelector:@selector(registerDeviceTokenFinish:) failSelector:@selector(registerDeviceTokenFinish:)];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    [[AppBand shared] registerDeviceToken:[@"< 6288a74a 338309a3 3b34e604 a3468db3 537b4006 b5820083 e7a87df6 8aa64623 >" dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 #pragma mark - UIApplication lifecycle
@@ -47,14 +56,18 @@
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
-    [configOptions setValue:@"" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:@"" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    [configOptions setValue:@"123124563636" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+    [configOptions setValue:@"klksdfn3ugymazkid3isd" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     
     NSMutableDictionary *kickOffOptions = [NSMutableDictionary dictionary];
     [kickOffOptions setValue:launchOptions forKey:AppBandKickOfOptionsLaunchOptionsKey];
     [kickOffOptions setValue:configOptions forKey:AppBandKickOfOptionsAppBandConfigKey];
     
     [AppBand kickoff:kickOffOptions];
+    
+    [[AppBand shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
+    
+    [[AppBand shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:nil pushSelector:nil richSelector:nil];
     
     [self.window makeKeyAndVisible];
     return YES;

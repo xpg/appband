@@ -6,17 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-typedef enum {
-    ABHTTPResponseSuccess,
-    ABHTTPResponseInvalidURL,
-    ABHTTPResponseNoConnection,
-    ABHTTPResponseError,
-} ABHTTPResponseCode;
+#define AppBandPushNotificationType @"_abpt"
+#define AppBandRichNotificationId @"_abri"
 
-#define ABHTTPResponseKeyURL @"ABHTTPResponseKeyURL"
-#define ABHTTPResponseKeyCode @"ABHTTPResponseKeyCode"
-#define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"
-#define ABHTTPResponseKeyError @"ABHTTPResponseKeyError"
+#define kAppBandRequestTimeout 30.
 
 #define SINGLETON_INTERFACE(CLASSNAME)  \
 + (CLASSNAME*)shared;\

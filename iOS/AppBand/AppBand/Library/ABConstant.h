@@ -6,6 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+
+/*
+ *  AppBand -kickoff Configuration Key
+ */
 #define AppBandKickOfOptionsLaunchOptionsKey @"AppBandKickOfOptionsLaunchOptionsKey"
 #define AppBandKickOfOptionsAppBandConfigKey @"AppBandKickOfOptionsAppBandConfigKey"
 
@@ -18,4 +22,18 @@
 
 #define AppBandKickOfOptionsAppBandConfigServer @"APPBAND_SERVER"
 
-#define kAppBandRequestTimeout 30.
+/*
+ *  AppBand -registerDeviceToken callback Dictionary Key
+ */
+typedef enum {
+    ABHTTPResponseSuccess,
+    ABHTTPResponseInvalidURL,
+    ABHTTPResponseNoConnection,
+    ABHTTPResponseTimeout,
+    ABHTTPResponseError,
+} ABHTTPResponseCode;
+
+#define ABHTTPResponseKeyURL @"ABHTTPResponseKeyURL"
+#define ABHTTPResponseKeyCode @"ABHTTPResponseKeyCode"
+#define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"
+#define ABHTTPResponseKeyError @"ABHTTPResponseKeyError"

@@ -7,27 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9684C3D41463B7AF005EB2D2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684C3D31463B7AF005EB2D2 /* SystemConfiguration.framework */; };
 		9694EB45145FEA9800E91025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EB44145FEA9800E91025 /* UIKit.framework */; };
 		9694EB47145FEA9800E91025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EB46145FEA9800E91025 /* Foundation.framework */; };
 		9694EB49145FEA9800E91025 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EB48145FEA9800E91025 /* CoreGraphics.framework */; };
 		9694EB4F145FEA9800E91025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9694EB4D145FEA9800E91025 /* InfoPlist.strings */; };
 		9694EB51145FEA9800E91025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB50145FEA9800E91025 /* main.m */; };
 		9694EB55145FEA9800E91025 /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB54145FEA9800E91025 /* ABAppDelegate.m */; };
-		9694EB6C145FEADE00E91025 /* AppBand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EB68145FEACD00E91025 /* AppBand.framework */; };
+		96EED2B0146A195300F9B9B4 /* AppBand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EED29F146A193700F9B9B4 /* AppBand.framework */; };
+		96EED2B2146A1A6600F9B9B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9694EB67145FEACD00E91025 /* PBXContainerItemProxy */ = {
+		96EED29E146A193700F9B9B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9694EB5F145FEACD00E91025 /* AppBand.xcodeproj */;
+			containerPortal = 96EED299146A193700F9B9B4 /* AppBand.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9694EAE7145FE13A00E91025;
 			remoteInfo = AppBand;
 		};
-		9694EB69145FEACD00E91025 /* PBXContainerItemProxy */ = {
+		96EED2A0146A193700F9B9B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9694EB5F145FEACD00E91025 /* AppBand.xcodeproj */;
+			containerPortal = 96EED299146A193700F9B9B4 /* AppBand.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9694EAF8145FE13A00E91025;
 			remoteInfo = AppBandTests;
@@ -35,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9684C3D31463B7AF005EB2D2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9694EB40145FEA9800E91025 /* ABPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9694EB44145FEA9800E91025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9694EB46145FEA9800E91025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,7 +45,8 @@
 		9694EB52145FEA9800E91025 /* ABPush-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ABPush-Prefix.pch"; sourceTree = "<group>"; };
 		9694EB53145FEA9800E91025 /* ABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABAppDelegate.h; sourceTree = "<group>"; };
 		9694EB54145FEA9800E91025 /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
-		9694EB5F145FEACD00E91025 /* AppBand.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppBand.xcodeproj; path = ../../AppBand/AppBand.xcodeproj; sourceTree = "<group>"; };
+		96EED299146A193700F9B9B4 /* AppBand.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppBand.xcodeproj; path = ../../AppBand/AppBand.xcodeproj; sourceTree = "<group>"; };
+		96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9684C3D41463B7AF005EB2D2 /* SystemConfiguration.framework in Frameworks */,
-				9694EB6C145FEADE00E91025 /* AppBand.framework in Frameworks */,
+				96EED2B2146A1A6600F9B9B4 /* SystemConfiguration.framework in Frameworks */,
+				96EED2B0146A195300F9B9B4 /* AppBand.framework in Frameworks */,
 				9694EB45145FEA9800E91025 /* UIKit.framework in Frameworks */,
 				9694EB47145FEA9800E91025 /* Foundation.framework in Frameworks */,
 				9694EB49145FEA9800E91025 /* CoreGraphics.framework in Frameworks */,
@@ -68,7 +68,7 @@
 		9694EB35145FEA9800E91025 = {
 			isa = PBXGroup;
 			children = (
-				9694EB5F145FEACD00E91025 /* AppBand.xcodeproj */,
+				96EED299146A193700F9B9B4 /* AppBand.xcodeproj */,
 				9694EB4A145FEA9800E91025 /* ABPush */,
 				9694EB43145FEA9800E91025 /* Frameworks */,
 				9694EB41145FEA9800E91025 /* Products */,
@@ -86,7 +86,7 @@
 		9694EB43145FEA9800E91025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9684C3D31463B7AF005EB2D2 /* SystemConfiguration.framework */,
+				96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */,
 				9694EB44145FEA9800E91025 /* UIKit.framework */,
 				9694EB46145FEA9800E91025 /* Foundation.framework */,
 				9694EB48145FEA9800E91025 /* CoreGraphics.framework */,
@@ -115,11 +115,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9694EB60145FEACD00E91025 /* Products */ = {
+		96EED29A146A193700F9B9B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9694EB68145FEACD00E91025 /* AppBand.framework */,
-				9694EB6A145FEACD00E91025 /* AppBandTests.octest */,
+				96EED29F146A193700F9B9B4 /* AppBand.framework */,
+				96EED2A1146A193700F9B9B4 /* AppBandTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,8 +164,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9694EB60145FEACD00E91025 /* Products */;
-					ProjectRef = 9694EB5F145FEACD00E91025 /* AppBand.xcodeproj */;
+					ProductGroup = 96EED29A146A193700F9B9B4 /* Products */;
+					ProjectRef = 96EED299146A193700F9B9B4 /* AppBand.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -176,18 +176,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9694EB68145FEACD00E91025 /* AppBand.framework */ = {
+		96EED29F146A193700F9B9B4 /* AppBand.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework.static;
 			path = AppBand.framework;
-			remoteRef = 9694EB67145FEACD00E91025 /* PBXContainerItemProxy */;
+			remoteRef = 96EED29E146A193700F9B9B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9694EB6A145FEACD00E91025 /* AppBandTests.octest */ = {
+		96EED2A1146A193700F9B9B4 /* AppBandTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AppBandTests.octest;
-			remoteRef = 9694EB69145FEACD00E91025 /* PBXContainerItemProxy */;
+			remoteRef = 96EED2A0146A193700F9B9B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -232,7 +232,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason Wang (8PM299Q2W7)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -246,12 +246,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../AppBand/AppBand/Library/AppBandLib,
-					../../AppBand/AppBand/Library/Common,
-					../../AppBand/AppBand/Library/PushLib,
-				);
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27318BD8-C0A3-4214-8427-587D6318E515";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -261,7 +258,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason Wang (8PM299Q2W7)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -269,13 +266,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../AppBand/AppBand/Library/AppBandLib,
-					../../AppBand/AppBand/Library/Common,
-					../../AppBand/AppBand/Library/PushLib,
-				);
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27318BD8-C0A3-4214-8427-587D6318E515";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -284,9 +278,15 @@
 		9694EB59145FEA9800E91025 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/..\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABPush/ABPush-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library;
 				INFOPLIST_FILE = "ABPush/ABPush-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -295,9 +295,15 @@
 		9694EB5A145FEA9800E91025 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/..\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABPush/ABPush-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library;
 				INFOPLIST_FILE = "ABPush/ABPush-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

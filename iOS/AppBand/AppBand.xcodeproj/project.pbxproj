@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9684C39F14637C2C005EB2D2 /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 9684C39D14637C2C005EB2D2 /* ABReachability.h */; };
 		9684C3A014637C2C005EB2D2 /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684C39E14637C2C005EB2D2 /* ABReachability.m */; };
 		9684C3A314637E6E005EB2D2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684C3A214637E6E005EB2D2 /* SystemConfiguration.framework */; };
 		9684C3CE1463B622005EB2D2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684C3A214637E6E005EB2D2 /* SystemConfiguration.framework */; };
@@ -20,16 +19,14 @@
 		9694EB0C145FE13A00E91025 /* AppBandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB0B145FE13A00E91025 /* AppBandTests.m */; };
 		96D73A1F14623A3600F3A81A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FE35DC1460FB1500A6ED79 /* UIKit.framework */; };
 		96D73A3F14624DA900F3A81A /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D73A3E14624DA900F3A81A /* OCMock.framework */; };
-		96D73A5C14627B4200F3A81A /* AppBand.h in Headers */ = {isa = PBXBuildFile; fileRef = 96D73A5014627B4200F3A81A /* AppBand.h */; };
-		96D73A5D14627B4200F3A81A /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5114627B4200F3A81A /* AppBand.m */; };
-		96D73A5E14627B4200F3A81A /* ABConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 96D73A5314627B4200F3A81A /* ABConstant.h */; };
-		96D73A5F14627B4200F3A81A /* ABGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = 96D73A5414627B4200F3A81A /* ABGlobal.h */; };
-		96D73A6014627B4200F3A81A /* ABHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96D73A5514627B4200F3A81A /* ABHTTPRequest.h */; };
 		96D73A6114627B4200F3A81A /* ABHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5614627B4200F3A81A /* ABHTTPRequest.m */; };
-		96D73A6214627B4200F3A81A /* ABRest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96D73A5714627B4200F3A81A /* ABRest.h */; };
 		96D73A6314627B4200F3A81A /* ABRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5814627B4200F3A81A /* ABRest.m */; };
-		96D73A6414627B4200F3A81A /* ABPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 96D73A5A14627B4200F3A81A /* ABPush.h */; };
 		96D73A6514627B4200F3A81A /* ABPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5B14627B4200F3A81A /* ABPush.m */; };
+		96E5FC6F146B892A0027D16C /* ABConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC6B146B892A0027D16C /* ABConstant.h */; };
+		96E5FC70146B892A0027D16C /* AppBand.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC6C146B892A0027D16C /* AppBand.h */; };
+		96E5FC71146B892A0027D16C /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FC6D146B892A0027D16C /* AppBand.m */; };
+		96E5FC72146B892A0027D16C /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC6E146B892A0027D16C /* AppBand+Private.h */; };
+		96F150471467BA05008BB770 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */; };
 		96FE35DD1460FB1500A6ED79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FE35DC1460FB1500A6ED79 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,9 +63,6 @@
 		9694EB0A145FE13A00E91025 /* AppBandTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBandTests.h; sourceTree = "<group>"; };
 		9694EB0B145FE13A00E91025 /* AppBandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBandTests.m; sourceTree = "<group>"; };
 		96D73A3E14624DA900F3A81A /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../../../../../../../library/OCMock/Release/OCMock.framework; sourceTree = "<group>"; };
-		96D73A5014627B4200F3A81A /* AppBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBand.h; sourceTree = "<group>"; };
-		96D73A5114627B4200F3A81A /* AppBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBand.m; sourceTree = "<group>"; };
-		96D73A5314627B4200F3A81A /* ABConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConstant.h; sourceTree = "<group>"; };
 		96D73A5414627B4200F3A81A /* ABGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABGlobal.h; sourceTree = "<group>"; };
 		96D73A5514627B4200F3A81A /* ABHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHTTPRequest.h; sourceTree = "<group>"; };
 		96D73A5614627B4200F3A81A /* ABHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHTTPRequest.m; sourceTree = "<group>"; };
@@ -76,6 +70,13 @@
 		96D73A5814627B4200F3A81A /* ABRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRest.m; sourceTree = "<group>"; };
 		96D73A5A14627B4200F3A81A /* ABPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPush.h; sourceTree = "<group>"; };
 		96D73A5B14627B4200F3A81A /* ABPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPush.m; sourceTree = "<group>"; };
+		96E5FC67146B7EFC0027D16C /* ABPush+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPush+Private.h"; sourceTree = "<group>"; };
+		96E5FC6B146B892A0027D16C /* ABConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConstant.h; sourceTree = "<group>"; };
+		96E5FC6C146B892A0027D16C /* AppBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBand.h; sourceTree = "<group>"; };
+		96E5FC6D146B892A0027D16C /* AppBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBand.m; sourceTree = "<group>"; };
+		96E5FC6E146B892A0027D16C /* AppBand+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBand+Private.h"; sourceTree = "<group>"; };
+		96F150421467BA05008BB770 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		96FE35DC1460FB1500A6ED79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -178,20 +179,15 @@
 		96D73A4E14627B4200F3A81A /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				96D73A4F14627B4200F3A81A /* AppBandLib */,
+				96E5FC6B146B892A0027D16C /* ABConstant.h */,
+				96E5FC6C146B892A0027D16C /* AppBand.h */,
+				96E5FC6D146B892A0027D16C /* AppBand.m */,
+				96E5FC6E146B892A0027D16C /* AppBand+Private.h */,
+				96F1503614677BCC008BB770 /* Utils */,
 				96D73A5214627B4200F3A81A /* Common */,
 				96D73A5914627B4200F3A81A /* PushLib */,
 			);
 			path = Library;
-			sourceTree = "<group>";
-		};
-		96D73A4F14627B4200F3A81A /* AppBandLib */ = {
-			isa = PBXGroup;
-			children = (
-				96D73A5014627B4200F3A81A /* AppBand.h */,
-				96D73A5114627B4200F3A81A /* AppBand.m */,
-			);
-			path = AppBandLib;
 			sourceTree = "<group>";
 		};
 		96D73A5214627B4200F3A81A /* Common */ = {
@@ -199,7 +195,6 @@
 			children = (
 				9684C39D14637C2C005EB2D2 /* ABReachability.h */,
 				9684C39E14637C2C005EB2D2 /* ABReachability.m */,
-				96D73A5314627B4200F3A81A /* ABConstant.h */,
 				96D73A5414627B4200F3A81A /* ABGlobal.h */,
 				96D73A5514627B4200F3A81A /* ABHTTPRequest.h */,
 				96D73A5614627B4200F3A81A /* ABHTTPRequest.m */,
@@ -212,10 +207,20 @@
 		96D73A5914627B4200F3A81A /* PushLib */ = {
 			isa = PBXGroup;
 			children = (
+				96E5FC67146B7EFC0027D16C /* ABPush+Private.h */,
 				96D73A5A14627B4200F3A81A /* ABPush.h */,
 				96D73A5B14627B4200F3A81A /* ABPush.m */,
 			);
 			path = PushLib;
+			sourceTree = "<group>";
+		};
+		96F1503614677BCC008BB770 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				96F150421467BA05008BB770 /* UIDevice+IdentifierAddition.h */,
+				96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,13 +230,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96D73A5C14627B4200F3A81A /* AppBand.h in Headers */,
-				96D73A5E14627B4200F3A81A /* ABConstant.h in Headers */,
-				96D73A5F14627B4200F3A81A /* ABGlobal.h in Headers */,
-				96D73A6014627B4200F3A81A /* ABHTTPRequest.h in Headers */,
-				96D73A6214627B4200F3A81A /* ABRest.h in Headers */,
-				96D73A6414627B4200F3A81A /* ABPush.h in Headers */,
-				9684C39F14637C2C005EB2D2 /* ABReachability.h in Headers */,
+				96E5FC6F146B892A0027D16C /* ABConstant.h in Headers */,
+				96E5FC70146B892A0027D16C /* AppBand.h in Headers */,
+				96E5FC72146B892A0027D16C /* AppBand+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,11 +371,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96D73A5D14627B4200F3A81A /* AppBand.m in Sources */,
 				96D73A6114627B4200F3A81A /* ABHTTPRequest.m in Sources */,
 				96D73A6314627B4200F3A81A /* ABRest.m in Sources */,
 				96D73A6514627B4200F3A81A /* ABPush.m in Sources */,
 				9684C3A014637C2C005EB2D2 /* ABReachability.m in Sources */,
+				96F150471467BA05008BB770 /* UIDevice+IdentifierAddition.m in Sources */,
+				96E5FC71146B892A0027D16C /* AppBand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

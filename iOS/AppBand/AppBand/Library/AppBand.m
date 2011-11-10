@@ -6,42 +6,28 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#define kAppBandProductionServer @"http://stagingapi.apphub.com"
+//#define kAppBandProductionServer @"https://apphub.gizwits.com"
+#define kAppBandProductionServer @"https://192.168.1.60"
 
 #define kLastDeviceTokenKey @"ABDeviceTokenChanged"
 
-#define AB_APP_KEY @"appKey"
-#define AB_APP_SECRET @"appSecret"
-#define AB_APP_BUNDLE_VERSION @"bundleVersion"
-#define AB_APP_BUNDLE_IDENTIFIER @"bundleIdentifier"
-#define AB_DEVICE_UDID @"deviceUDID"
-#define AB_DEVICE_TOKEN @"deviceToken"
+#define AB_APP_KEY @"k"
+#define AB_APP_SECRET @"s"
+#define AB_APP_BUNDLE_VERSION @"version"
+#define AB_APP_BUNDLE_IDENTIFIER @"bundleid"
+#define AB_DEVICE_UDID @"udid"
+#define AB_DEVICE_TOKEN @"token"
 
 #import "AppBand.h"
-#import "ABPush.h"
+#import "AppBand+Private.h"
 
+#import "ABPush.h"
 #import "ABRest.h"
 
-#import "ABConstant.h"
+#import "UIDevice+IdentifierAddition.h"
+
 
 static AppBand *_appBand;
-
-@interface AppBand()
-
-@property(nonatomic,copy) NSString *server;
-@property(nonatomic,copy) NSString *appKey;
-@property(nonatomic,copy) NSString *appSecret;
-@property(nonatomic,copy) NSString *deviceToken;
-
-- (id)initWithKey:(NSString *)key secret:(NSString *)secret;
-
-- (NSString*)parseDeviceToken:(NSString*)tokenStr;
-
-- (void)registerDeviceTokenSucceeded:(NSDictionary *)info;
-
-- (void)registerDeviceTokenFailed:(NSDictionary *)info;
-
-@end
 
 @implementation AppBand
 
@@ -53,6 +39,10 @@ static AppBand *_appBand;
 @synthesize abRest = _abRest;
 
 #pragma mark - Private
+
+- (void)updateDeviceToken:(NSData*)tokenData {
+    self.deviceToken = [self parseDeviceToken:[tokenData description]];
+}
 
 - (NSString*)parseDeviceToken:(NSString*)tokenStr {
     return [[[tokenStr stringByReplacingOccurrencesOfString:@"<" withString:@""]
@@ -71,53 +61,14 @@ static AppBand *_appBand;
     }
 }
 
-- (void)registerDeviceTokenSucceeded:(NSDictionary *)info {
-
-}
-
-- (void)registerDeviceTokenFailed:(NSDictionary *)info {
-
-}
-
-#pragma mark - Public
-
-- (void)updateDeviceToken:(NSData*)tokenData {
-    self.deviceToken = [self parseDeviceToken:[tokenData description]];
-}
-
-- (void)registerDeviceToken:(NSData *)token {
-    NSMutableDictionary *info = [NSMutableDictionary dictionary];
-    [info setValue:self.appKey forKey:AB_APP_KEY];
-    [info setValue:self.appSecret forKey:AB_APP_SECRET];
-    
-    NSString *bundleVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-    NSString *udid = [UIDevice currentDevice].uniqueIdentifier;
-    
-    if (bundleVersion) {
-        [info setObject:bundleVersion forKey:AB_APP_BUNDLE_VERSION];
-    }
-    
-    if (bundleId) {
-        [info setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
-    }
-    
-    if (udid) {
-        [info setObject:udid forKey:AB_DEVICE_UDID];
-    }
-    
-    if (token) {
-        [[AppBand shared] registerDeviceToken:token withExtraInfo:info];
-    } else {
-        [[AppBand shared] registerDeviceTokenWithExtraInfo:info];
-    }
-}
-
-- (void)registerDeviceTokenWithExtraInfo:(NSDictionary *)info {
+- (void)registerDeviceTokenWithExtraInfo:(NSDictionary *)info
+                                  target:(id)target
+                          finishSelector:(SEL)finishSeletor
+                            failSelector:(SEL)failSelector {
     if (!self.deviceToken) return;
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",
-                           self.server, @"/app_registration"];
+                           self.server, @"/app_registrations"];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:info];
     [parameters setObject:self.deviceToken forKey:AB_DEVICE_TOKEN];
@@ -125,18 +76,22 @@ static AppBand *_appBand;
     ABHTTPRequest *request = [ABHTTPRequest requestWithURL:urlString 
                                                  parameter:parameters
                                                    timeout:kAppBandRequestTimeout
-                                                  delegate:self
-                                                    finish:@selector(registerDeviceTokenSucceeded:)
-                                                      fail:@selector(registerDeviceTokenFailed:)];
+                                                  delegate:target
+                                                    finish:finishSeletor
+                                                      fail:failSelector];
     [_abRest addRequest:request];
 }
 
-- (void)registerDeviceToken:(NSData *)token withExtraInfo:(NSDictionary *)info {
+- (void)registerDeviceToken:(NSData *)token
+              withExtraInfo:(NSDictionary *)info
+                     target:(id)target 
+             finishSelector:(SEL)finishSeletor 
+               failSelector:(SEL)failSelector {
     [[AppBand shared] updateDeviceToken:token];
-    [[AppBand shared] registerDeviceTokenWithExtraInfo:info];
+    [[AppBand shared] registerDeviceTokenWithExtraInfo:info target:target finishSelector:finishSeletor failSelector:failSelector];
 }
 
-#pragma mark - lifecycle
+#pragma mark - AppBand Mehods
 
 + (void)kickoff:(NSDictionary *)options {
     if (_appBand) {
@@ -144,7 +99,7 @@ static AppBand *_appBand;
     }
     
     //Application launch options
-    NSDictionary *launchOptions = [options objectForKey:AppBandKickOfOptionsLaunchOptionsKey];
+    //    NSDictionary *launchOptions = [options objectForKey:AppBandKickOfOptionsLaunchOptionsKey];
     
     // Load configuration
     // Primary configuration comes from the UAirshipTakeOffOptionsAirshipConfig dictionary and will
@@ -192,9 +147,6 @@ static AppBand *_appBand;
     if (!_appBand) {
         DLog(@"AppBand initialize fail, check AppBandConfig.plist configuration!");
     }
-    
-    [[ABPush shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
-    [[ABPush shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive];
 }
 
 + (id)shared {
@@ -206,12 +158,68 @@ static AppBand *_appBand;
     _appBand = nil;
 }
 
+- (void)registerDeviceToken:(NSData *)token
+                     target:(id)target
+             finishSelector:(SEL)finishSeletor
+               failSelector:(SEL)failSelector {
+    NSMutableDictionary *info = [NSMutableDictionary dictionary];
+    [info setValue:self.appKey forKey:AB_APP_KEY];
+    [info setValue:self.appSecret forKey:AB_APP_SECRET];
+    
+    NSString *bundleVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
+    NSString *udid = [deviceUDID uniqueDeviceIdentifier];
+    
+    if (bundleVersion) {
+        [info setObject:bundleVersion forKey:AB_APP_BUNDLE_VERSION];
+    }
+    
+    if (bundleId) {
+        [info setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
+    }
+    
+    if (udid) {
+        [info setObject:udid forKey:AB_DEVICE_UDID];
+    }
+    
+    if (token) {
+        [[AppBand shared] registerDeviceToken:token withExtraInfo:info target:target finishSelector:finishSeletor failSelector:failSelector];
+    } else {
+        [[AppBand shared] registerDeviceTokenWithExtraInfo:info target:target finishSelector:finishSeletor failSelector:failSelector];
+    }
+    
+    [deviceUDID release];
+}
+
+#pragma mark - Push Mehods
+
+- (void)registerRemoteNotificationWithTypes:(UIRemoteNotificationType)types {
+    [[ABPush shared] registerRemoteNotificationWithTypes:types];
+}
+
+- (void)setBadgeNumber:(NSInteger)badgeNumber {
+    [[ABPush shared] setBadgeNumber:badgeNumber];
+}
+
+- (void)resetBadge {
+    [[ABPush shared] resetBadge];
+}
+
+- (void)handleNotification:(NSDictionary *)notification
+          applicationState:(UIApplicationState)state 
+                    target:(id)target 
+              pushSelector:(SEL)pushSelector
+              richSelector:(SEL)richSelector {
+    [[ABPush shared] handleNotification:notification applicationState:state target:target pushSelector:pushSelector richSelector:richSelector];
+}
+
 #pragma mark - singleton
 
 - (id)initWithKey:(NSString *)key secret:(NSString *)secret {
     self = [super init];
     if (self) {
-        self.appSecret = key;
+        self.appKey = key;
         self.appSecret = secret;
         
         _abRest = [[ABRest alloc] init];
@@ -221,7 +229,7 @@ static AppBand *_appBand;
 }
 
 - (void)dealloc {
-    [_abRest release];
+    [self setAbRest:nil];
     [self setServer:nil];
     [self setAppKey:nil];
     [self setAppSecret:nil];

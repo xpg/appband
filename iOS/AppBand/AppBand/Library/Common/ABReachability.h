@@ -66,7 +66,7 @@ typedef enum {
 + (ABReachability*) reachabilityWithHostName: (NSString*) hostName;
 
 //reachabilityWithAddress- Use to check the reachability of a particular IP address. 
-+ (ABReachability*) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
+//+ (ABReachability*) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
 
 //reachabilityForInternetConnection- checks whether the default route is available.  
 //  Should be used by applications that do not connect to a particular host

@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-NSString * const ABHTTPRequestErrorDomain;
+NSString * const ABHTTPRequestErrorDomain = @"ABHTTPRequestErrorDomain";
 
 #import "ABHTTPRequest.h"
 
@@ -50,6 +50,23 @@ CG_INLINE BOOL hasConnection() {
 
 @synthesize finishSelector = _finishSelector;
 @synthesize failSelector = _failSelector;
+
+#pragma mark - Private
+
+- (void)requestTimeOut {
+    NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseTimeout userInfo:nil];
+    if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+        [self.delegate finishedRequest:self.url code:ABHTTPResponseTimeout content:nil error:error];
+    }
+    
+    if ([self.delegate respondsToSelector:self.failSelector]) {
+        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseTimeout], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+    }
+    self.urlConnection = nil;
+	self.isCompleted = YES;
+}
+
+#pragma mark - lifecycle
 
 + (id)requestWithURL:(NSString *)url 
            parameter:(NSDictionary *)parameter 
@@ -136,6 +153,18 @@ CG_INLINE BOOL hasConnection() {
 
 #pragma mark - NSURLConnectionDelegate
 
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+        [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+            
+    
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(requestTimeOut) object:nil];
     
@@ -178,6 +207,9 @@ CG_INLINE BOOL hasConnection() {
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    if (self.isCompleted) 
+        return;
+    
     NSString *tempStr = [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
     if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
         [self.delegate finishedRequest:self.url code:ABHTTPResponseSuccess content:tempStr error:nil];

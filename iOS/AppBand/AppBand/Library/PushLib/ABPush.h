@@ -23,10 +23,10 @@ SINGLETON_INTERFACE(ABPush)
 - (void)resetBadge;
 
 //handle Push Notification
-- (void)handleNotification:(NSDictionary *)notification applicationState:(UIApplicationState)state;
-
-- (void)handlePushWhenActive:(NSDictionary *)notification;
-
-- (void)handlePushWhenNonActive:(NSDictionary *)notification;
+- (void)handleNotification:(NSDictionary *)notification
+          applicationState:(UIApplicationState)state 
+                    target:(id)target 
+              pushSelector:(SEL)pushSelector
+              richSelector:(SEL)richSelector;
 
 @end
