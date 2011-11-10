@@ -3,7 +3,7 @@
 //  AHPush
 //
 //  Created by Jason Wang on 11/1/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 
@@ -22,18 +22,8 @@
 
 #define AppBandKickOfOptionsAppBandConfigServer @"APPBAND_SERVER"
 
-/*
- *  AppBand -registerDeviceToken callback Dictionary Key
- */
-typedef enum {
-    ABHTTPResponseSuccess,
-    ABHTTPResponseInvalidURL,
-    ABHTTPResponseNoConnection,
-    ABHTTPResponseTimeout,
-    ABHTTPResponseError,
-} ABHTTPResponseCode;
+#define AppBandKickOfOptionsAppBandConfigHandlePushAuto @"APPBAND_HANDLE_PUSH_AUTO"
+#define AppBandKickOfOptionsAppBandConfigHandleRichAuto @"APPBAND_HANDLE_RICH_AUTO"
 
-#define ABHTTPResponseKeyURL @"ABHTTPResponseKeyURL"
-#define ABHTTPResponseKeyCode @"ABHTTPResponseKeyCode"
-#define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"
-#define ABHTTPResponseKeyError @"ABHTTPResponseKeyError"
+
+

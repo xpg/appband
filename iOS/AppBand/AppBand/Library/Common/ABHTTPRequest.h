@@ -3,12 +3,12 @@
 //  AppBand
 //
 //  Created by Jason Wang on 11/2/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "ABConstant.h"
+#import "ABGlobal.h"
 
 @protocol ABHTTPRequestDelegate;
 

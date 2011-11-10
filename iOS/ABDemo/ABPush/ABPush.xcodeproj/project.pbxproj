@@ -284,7 +284,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABPush/ABPush-Prefix.pch";
-				HEADER_SEARCH_PATHS = /Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library;
+				HEADER_SEARCH_PATHS = (
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library,
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/Common,
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/PushLib,
+				);
 				INFOPLIST_FILE = "ABPush/ABPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,7 +305,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ABPush/ABPush-Prefix.pch";
-				HEADER_SEARCH_PATHS = /Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library;
+				HEADER_SEARCH_PATHS = (
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library,
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/Common,
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/PushLib,
+				);
 				INFOPLIST_FILE = "ABPush/ABPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

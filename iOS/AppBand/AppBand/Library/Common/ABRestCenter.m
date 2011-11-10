@@ -3,20 +3,18 @@
 //  AppBand
 //
 //  Created by Jason Wang on 11/2/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-#import "ABRest.h"
+#import "ABRestCenter.h"
 
 #import "ABHTTPRequest.h"
 
-@interface ABRest()
-
-@end
-
-@implementation ABRest
+@implementation ABRestCenter
 
 @synthesize queue = _queue;
+
+SINGLETON_IMPLEMENTATION(ABRestCenter)
 
 #pragma mark - Public
 

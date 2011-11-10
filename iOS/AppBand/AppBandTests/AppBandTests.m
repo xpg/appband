@@ -3,7 +3,7 @@
 //  AppBandTests
 //
 //  Created by Jason Wang on 11/1/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 #import "AppBandTests.h"
@@ -16,7 +16,7 @@
 
 #import "ABConstant.h"
 #import "ABGlobal.h"
-#import "ABRest.h"
+#import "ABRestCenter.h"
 #import "ABHTTPRequest.h"
 
 @implementation AppBandTests
@@ -39,12 +39,15 @@
     [configOptions setValue:@"42dfsa9fs0923" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
     [configOptions setValue:@"klksdfn3ugymazkid3isd" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     
+    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
+    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];
+    
     NSMutableDictionary *kickOffOptions = [NSMutableDictionary dictionary];
     [kickOffOptions setValue:configOptions forKey:AppBandKickOfOptionsAppBandConfigKey];
     
     [AppBand kickoff:kickOffOptions];
     
-    STAssertNotNil([AppBand shared],@"should initialize AppBand successful!");
+    STAssertTrue(![[AppBand shared] handleRichAuto],@"should initialize AppBand successful!");
 }
 
 - (void)testKickOffWithoutKeyAndSecret {
@@ -69,28 +72,28 @@
 }
 
 - (void)testRegisterUserToken {
-    NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
-    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
-    [configOptions setValue:@"42dfsa9fs0923" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:@"klksdfn3ugymazkid3isd" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
-    
-    NSMutableDictionary *kickOffOptions = [NSMutableDictionary dictionary];
-    [kickOffOptions setValue:configOptions forKey:AppBandKickOfOptionsAppBandConfigKey];
-    
-    [AppBand kickoff:kickOffOptions];
-    
-    NSData *token = [@"< 6288a74a 338309a3 3b34e604 a3468db3 537b4006 b5820083 e7a87df6 8aa64623 >" dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [[AppBand shared] registerDeviceToken:token target:nil finishSelector:nil failSelector:nil];
-    NSArray *operations = [[[[AppBand shared] abRest] queue] operations];
-    ABHTTPRequest *request = [operations objectAtIndex:0];
-    STAssertNotNil(request, @"should creat ABHTTPRequest successful!");
+//    NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
+//    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
+//    [configOptions setValue:@"42dfsa9fs0923" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+//    [configOptions setValue:@"klksdfn3ugymazkid3isd" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+//    
+//    NSMutableDictionary *kickOffOptions = [NSMutableDictionary dictionary];
+//    [kickOffOptions setValue:configOptions forKey:AppBandKickOfOptionsAppBandConfigKey];
+//    
+//    [AppBand kickoff:kickOffOptions];
+//    
+//    NSData *token = [@"< 6288a74a 338309a3 3b34e604 a3468db3 537b4006 b5820083 e7a87df6 8aa64623 >" dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    [[AppBand shared] registerDeviceToken:token target:nil finishSelector:nil];
+//    NSArray *operations = [[[ABRestCenter shared] queue] operations];
+//    ABHTTPRequest *request = [operations objectAtIndex:0];
+//    STAssertNotNil(request, @"should creat ABHTTPRequest successful!");
 }
 
 - (void)testHandlePushWhenActive {
     NSDictionary *notification = [NSDictionary dictionary];
     id abPushMock = [OCMockObject partialMockForObject:[ABPush shared]];
-    [[abPushMock expect] handlePushWhenActive:notification applicationState:UIApplicationStateActive target:nil pushSelector:nil];
+    [[abPushMock expect] callbackPushSelector:notification applicationState:UIApplicationStateActive target:nil pushSelector:nil];
     [abPushMock handleNotification:notification applicationState:UIApplicationStateActive target:nil pushSelector:nil richSelector:nil];
     [abPushMock verify];
 }
@@ -98,7 +101,7 @@
 - (void)testHandlePushWhenInactive {
     NSDictionary *notification = [NSDictionary dictionary];
     id abPushMock = [OCMockObject partialMockForObject:[ABPush shared]];
-    [[abPushMock expect] handlePushWhenNonActive:notification applicationState:UIApplicationStateInactive target:nil pushSelector:nil];
+    [[abPushMock expect] callbackPushSelector:notification applicationState:UIApplicationStateInactive target:nil pushSelector:nil];
     [abPushMock handleNotification:notification applicationState:UIApplicationStateInactive target:nil pushSelector:nil richSelector:nil];
     [abPushMock verify];
 }
@@ -108,7 +111,7 @@
     NSDictionary *notification = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], AppBandPushNotificationType, rid, AppBandRichNotificationId, nil];
     
     id abPushMock = [OCMockObject partialMockForObject:[ABPush shared]];
-    [[abPushMock expect] handleRichWhenActive:notification applicationState:UIApplicationStateActive target:nil richSelector:nil richId:rid];
+    [[abPushMock expect] callbackRichSelector:notification applicationState:UIApplicationStateActive target:nil richSelector:nil richId:rid];
     [abPushMock handleNotification:notification applicationState:UIApplicationStateActive target:nil pushSelector:nil richSelector:nil];
     [abPushMock verify];
 }
@@ -118,7 +121,7 @@
     NSDictionary *notification = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1], AppBandPushNotificationType, rid, AppBandRichNotificationId, nil];
     
     id abPushMock = [OCMockObject partialMockForObject:[ABPush shared]];
-    [[abPushMock expect] handleRichWhenNonActive:notification applicationState:UIApplicationStateInactive target:nil richSelector:nil richId:rid];
+    [[abPushMock expect] callbackRichSelector:notification applicationState:UIApplicationStateInactive target:nil richSelector:nil richId:rid];
     [abPushMock handleNotification:notification applicationState:UIApplicationStateInactive target:nil pushSelector:nil richSelector:nil];
     [abPushMock verify];
 }

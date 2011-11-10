@@ -3,14 +3,42 @@
 //  AppBand
 //
 //  Created by Jason Wang on 11/2/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-#define AppBandPushNotificationType @"_abpt"
-#define AppBandRichNotificationId @"_abri"
+#define AB_APP_KEY @"k"
+#define AB_APP_SECRET @"s"
+#define AB_APP_BUNDLE_VERSION @"version"
+#define AB_APP_BUNDLE_IDENTIFIER @"bundleid"
+#define AB_DEVICE_UDID @"udid"
+#define AB_DEVICE_TOKEN @"token"
 
+//Push Notification Payload Key
+#define AppBandNotificationAPS @"aps"
+#define AppBandNotificationAlert @"alert"
+#define AppBandNotificationBadge @"badge"
+#define AppBandNotificationSound @"sound"
+#define AppBandPushNotificationType @"abpt"
+#define AppBandRichNotificationId @"abri"
+
+//Webservice 
 #define kAppBandRequestTimeout 30.
 
+typedef enum {
+    ABHTTPResponseSuccess,
+    ABHTTPResponseInvalidURL,
+    ABHTTPResponseNoConnection,
+    ABHTTPResponseTimeout,
+    ABHTTPResponseError,
+} ABHTTPResponseCode;
+
+#define ABHTTPResponseKeyURL @"ABHTTPResponseKeyURL"
+#define ABHTTPResponseKeyCode @"ABHTTPResponseKeyCode"
+#define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"
+#define ABHTTPResponseKeyError @"ABHTTPResponseKeyError"
+
+
+//Singleton Template
 #define SINGLETON_INTERFACE(CLASSNAME)  \
 + (CLASSNAME*)shared;\
 - (void)forceRelease;

@@ -3,17 +3,18 @@
 //  ABPush
 //
 //  Created by Jason Wang on 11/1/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 #import "ABAppDelegate.h"
 
-#import "AppBand.h"
+#import "AppBandKit.h"
 
 @interface ABAppDelegate()
 
-- (void)registerDeviceTokenFinish:(NSDictionary *)response;
+- (void)registerDeviceTokenFinish:(ABRegisterTokenResponse *)response;
 
+- (void)handleRich:(ABNotification *)notification;
 @end
 
 @implementation ABAppDelegate
@@ -22,8 +23,12 @@
 
 #pragma mark - Private
 
-- (void)registerDeviceTokenFinish:(NSDictionary *)response {
-    
+- (void)registerDeviceTokenFinish:(ABRegisterTokenResponse *)response {
+    NSLog(@"code : %i",response.code);
+}
+
+- (void)handleRich:(ABNotification *)notification {
+
 }
 
 #pragma mark - Register For Remote Notification
@@ -38,7 +43,7 @@
 
 // one of these will be called after calling -registerForRemoteNotifications
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [[AppBand shared] registerDeviceToken:deviceToken target:self finishSelector:@selector(registerDeviceTokenFinish:) failSelector:@selector(registerDeviceTokenFinish:)];
+    [[AppBand shared] registerDeviceToken:deviceToken target:self finishSelector:@selector(registerDeviceTokenFinish:)];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -56,8 +61,11 @@
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
-    [configOptions setValue:@"123124563636" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:@"klksdfn3ugymazkid3isd" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    [configOptions setValue:@"2" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+    [configOptions setValue:@"1a801864-0a7e-11e1-9843-001ec9af8d09" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    
+//    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
+//    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];
     
     NSMutableDictionary *kickOffOptions = [NSMutableDictionary dictionary];
     [kickOffOptions setValue:launchOptions forKey:AppBandKickOfOptionsLaunchOptionsKey];
@@ -68,6 +76,7 @@
     [[AppBand shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     
     [[AppBand shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:nil pushSelector:nil richSelector:nil];
+    
     
     [self.window makeKeyAndVisible];
     return YES;
