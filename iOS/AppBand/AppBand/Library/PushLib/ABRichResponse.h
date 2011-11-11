@@ -11,9 +11,11 @@
 #import "ABResponse.h"
 
 @interface ABRichResponse : ABResponse {
+    NSString *richTitle;
     NSString *richContent;
 }
 
+@property(nonatomic,copy) NSString *richTitle;
 @property(nonatomic,copy) NSString *richContent;
 
 @end

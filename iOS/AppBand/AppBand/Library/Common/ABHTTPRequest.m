@@ -24,8 +24,9 @@ CG_INLINE BOOL hasConnection() {
 
 @property(assign) BOOL isCompleted;
 
+@property(nonatomic,readwrite,copy) NSString *key;
 @property(nonatomic,readwrite,copy) NSString *url;
-@property(nonatomic,readwrite,copy) NSDictionary *parameters;
+@property(nonatomic,copy) NSDictionary *parameters;
 @property(nonatomic,assign) NSTimeInterval timeout;
 
 @property(nonatomic,retain) NSURLConnection *urlConnection;
@@ -34,6 +35,10 @@ CG_INLINE BOOL hasConnection() {
 @property (assign) SEL finishSelector;
 @property (assign) SEL failSelector;
 
+- (void)requestTimeOut;
+
+- (void)requestCancelled;
+
 @end
 
 @implementation ABHTTPRequest
@@ -41,6 +46,7 @@ CG_INLINE BOOL hasConnection() {
 @synthesize delegate = _delegate;
 @synthesize isCompleted = _isCompleted;
 
+@synthesize key = _key;
 @synthesize url = _url;
 @synthesize parameters = _parameters;
 @synthesize timeout = _timeout;
@@ -62,19 +68,40 @@ CG_INLINE BOOL hasConnection() {
     if ([self.delegate respondsToSelector:self.failSelector]) {
         [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseTimeout], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
     }
+    
+    self.delegate = nil;
+    self.urlConnection = nil;
+	self.isCompleted = YES;
+}
+
+- (void)requestCancelled {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(requestTimeOut) object:nil];
+    
+    NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseCancel userInfo:nil];
+    if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+        [self.delegate finishedRequest:self.url code:ABHTTPResponseCancel content:nil error:error];
+    }
+    
+    if ([self.delegate respondsToSelector:self.failSelector]) {
+        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseCancel], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+    }
+    
+    self.delegate = nil;
     self.urlConnection = nil;
 	self.isCompleted = YES;
 }
 
 #pragma mark - lifecycle
 
-+ (id)requestWithURL:(NSString *)url 
++ (id)requestWithKey:(NSString *)key 
+                 url:(NSString *)url 
            parameter:(NSDictionary *)parameter 
              timeout:(NSTimeInterval)timeout 
             delegate:(id<ABHTTPRequestDelegate>)delegate 
               finish:(SEL)finishSelector
                 fail:(SEL)failSelector {
     ABHTTPRequest *request = [[[ABHTTPRequest alloc] init] autorelease];
+    [request setKey:key];
     [request setUrl:url];
     [request setParameters:parameter];
     [request setTimeout:timeout];
@@ -126,6 +153,11 @@ CG_INLINE BOOL hasConnection() {
             while(!self.isCompleted && ![self isCancelled]) {
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
             }
+            
+            if ([self isCancelled] && !self.isCompleted) {
+                [self requestCancelled];
+            }
+            
         } else {
             NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseNoConnection userInfo:nil];
             if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
@@ -176,6 +208,7 @@ CG_INLINE BOOL hasConnection() {
         [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
     }
     
+    self.delegate = nil;
 	self.responseData = nil;    //set the data to nil.
 	self.isCompleted = YES;  //set isCompleted to YES.
 }
@@ -196,6 +229,7 @@ CG_INLINE BOOL hasConnection() {
             [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
         }
         
+        self.delegate = nil;
         self.responseData = nil;    //set the data to nil.
         self.isCompleted = YES;  //set isCompleted to YES.
     }
@@ -219,6 +253,7 @@ CG_INLINE BOOL hasConnection() {
         [self.delegate performSelector:self.finishSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseSuccess], ABHTTPResponseKeyCode, tempStr, ABHTTPResponseKeyContent, nil]];
     }
     
+    self.delegate = nil;
 	self.isCompleted = YES;
 }
 
@@ -234,6 +269,8 @@ CG_INLINE BOOL hasConnection() {
 }
 
 - (void)dealloc {
+    DLog(@"ABHTTPRequest dealloc - url: %@",self.url);
+    self.key = nil;
     self.url = nil;
     self.parameters = nil;
     self.urlConnection = nil;

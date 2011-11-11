@@ -35,6 +35,8 @@
 		96E5FCAC146BCE880027D16C /* ABRichHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FCAA146BCE880027D16C /* ABRichHandler.m */; };
 		96E5FCAF146BD67F0027D16C /* ABRichResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FCAD146BD67E0027D16C /* ABRichResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96E5FCB0146BD67F0027D16C /* ABRichResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FCAE146BD67E0027D16C /* ABRichResponse.m */; };
+		96F07BBA146CC10D00158974 /* ABRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F07BB8146CC10D00158974 /* ABRichView.h */; };
+		96F07BBB146CC10D00158974 /* ABRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F07BB9146CC10D00158974 /* ABRichView.m */; };
 		96F150471467BA05008BB770 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */; };
 		96FE35DD1460FB1500A6ED79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FE35DC1460FB1500A6ED79 /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +97,8 @@
 		96E5FCAA146BCE880027D16C /* ABRichHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichHandler.m; sourceTree = "<group>"; };
 		96E5FCAD146BD67E0027D16C /* ABRichResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichResponse.h; sourceTree = "<group>"; };
 		96E5FCAE146BD67E0027D16C /* ABRichResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichResponse.m; sourceTree = "<group>"; };
+		96F07BB8146CC10D00158974 /* ABRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichView.h; sourceTree = "<group>"; };
+		96F07BB9146CC10D00158974 /* ABRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichView.m; sourceTree = "<group>"; };
 		96F150421467BA05008BB770 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
 		96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		96FE35DC1460FB1500A6ED79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -206,6 +210,7 @@
 				96E5FC6C146B892A0027D16C /* AppBand.h */,
 				96E5FC6D146B892A0027D16C /* AppBand.m */,
 				96E5FC6E146B892A0027D16C /* AppBand+Private.h */,
+				96F07BB6146CC0F300158974 /* UI */,
 				96F1503614677BCC008BB770 /* Utils */,
 				96D73A5214627B4200F3A81A /* Common */,
 				96D73A5914627B4200F3A81A /* PushLib */,
@@ -245,6 +250,15 @@
 			path = PushLib;
 			sourceTree = "<group>";
 		};
+		96F07BB6146CC0F300158974 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				96F07BB8146CC10D00158974 /* ABRichView.h */,
+				96F07BB9146CC10D00158974 /* ABRichView.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		96F1503614677BCC008BB770 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +282,7 @@
 				96E5FC99146BB0F10027D16C /* AppBandKit.h in Headers */,
 				96E5FCAF146BD67F0027D16C /* ABRichResponse.h in Headers */,
 				96E5FC9C146BB8200027D16C /* ABNotification.h in Headers */,
+				96F07BBA146CC10D00158974 /* ABRichView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +432,7 @@
 				96E5FC9D146BB8200027D16C /* ABNotification.m in Sources */,
 				96E5FCAC146BCE880027D16C /* ABRichHandler.m in Sources */,
 				96E5FCB0146BD67F0027D16C /* ABRichResponse.m in Sources */,
+				96F07BBB146CC10D00158974 /* ABRichView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

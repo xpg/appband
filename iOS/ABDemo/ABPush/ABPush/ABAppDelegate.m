@@ -8,6 +8,7 @@
 
 #import "ABAppDelegate.h"
 
+#import "ABPushController.h"
 #import "AppBandKit.h"
 
 @interface ABAppDelegate()
@@ -52,12 +53,16 @@
 #pragma mark - UIApplication lifecycle
 
 - (void)dealloc {
+    [pushController release];
     [_window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
+    pushController = [[ABPushController alloc] init];
+    [self.window addSubview:pushController.view];
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];

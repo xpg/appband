@@ -10,9 +10,11 @@
 
 @implementation ABRichResponse
 
+@synthesize richTitle;
 @synthesize richContent;
 
 - (void)dealloc {
+    [self setRichTitle:nil];
     [self setRichContent:nil];
     [super dealloc];
 }

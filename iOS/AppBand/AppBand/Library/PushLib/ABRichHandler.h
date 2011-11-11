@@ -18,6 +18,9 @@
 @property(nonatomic,assign) id fetchTarget;
 @property(nonatomic,assign) SEL fetchSelector;
 
+@property(nonatomic,readonly,copy) NSString *fetchKey;
+@property(nonatomic,readonly,copy) NSString *impressionKey;
+
 + (ABRichHandler *)handlerWithRichID:(NSString *)richID 
                          fetchTarget:(id)fetchTarget 
                        fetchSelector:(SEL)fetchSelector 
@@ -25,5 +28,7 @@
                   impressionSelector:(SEL)impressionSelector;
 
 - (void)begin;
+
+- (void)cancel;
 
 @end

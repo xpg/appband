@@ -15,6 +15,7 @@
 		9694EB55145FEA9800E91025 /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB54145FEA9800E91025 /* ABAppDelegate.m */; };
 		96EED2B0146A195300F9B9B4 /* AppBand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EED29F146A193700F9B9B4 /* AppBand.framework */; };
 		96EED2B2146A1A6600F9B9B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */; };
+		96F07BBE146CFD4A00158974 /* ABPushController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F07BBD146CFD4A00158974 /* ABPushController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		9694EB54145FEA9800E91025 /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
 		96EED299146A193700F9B9B4 /* AppBand.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppBand.xcodeproj; path = ../../AppBand/AppBand.xcodeproj; sourceTree = "<group>"; };
 		96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		96F07BBC146CFD4A00158974 /* ABPushController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPushController.h; sourceTree = "<group>"; };
+		96F07BBD146CFD4A00158974 /* ABPushController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPushController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				9694EB53145FEA9800E91025 /* ABAppDelegate.h */,
 				9694EB54145FEA9800E91025 /* ABAppDelegate.m */,
 				9694EB4B145FEA9800E91025 /* Supporting Files */,
+				96F07BBC146CFD4A00158974 /* ABPushController.h */,
+				96F07BBD146CFD4A00158974 /* ABPushController.m */,
 			);
 			path = ABPush;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			files = (
 				9694EB51145FEA9800E91025 /* main.m in Sources */,
 				9694EB55145FEA9800E91025 /* ABAppDelegate.m in Sources */,
+				96F07BBE146CFD4A00158974 /* ABPushController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

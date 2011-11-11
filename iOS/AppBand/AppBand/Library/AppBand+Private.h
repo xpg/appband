@@ -21,10 +21,10 @@
 
 @interface AppBand() <ABHTTPRequestDelegate>
 
-@property(nonatomic,readwrite) NSString *server;
-@property(nonatomic,readwrite) NSString *appKey;
-@property(nonatomic,readwrite) NSString *appSecret;
-@property(nonatomic,copy) NSString *deviceToken;
+@property(nonatomic,readwrite,copy) NSString *server;
+@property(nonatomic,readwrite,copy) NSString *appKey;
+@property(nonatomic,readwrite,copy) NSString *appSecret;
+@property(nonatomic,readwrite,copy) NSString *deviceToken;
 
 @property(assign) id registerTarget;
 @property(assign) SEL registerFinishSelector;

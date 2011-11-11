@@ -13,11 +13,13 @@
     
 }
 
-@property(nonatomic,readonly) NSString *server;
+@property(nonatomic,readonly,copy) NSString *server;
 
-@property(nonatomic,readonly) NSString *appKey;
+@property(nonatomic,readonly,copy) NSString *appKey;
 
-@property(nonatomic,readonly) NSString *appSecret;
+@property(nonatomic,readonly,copy) NSString *appSecret;
+
+@property(nonatomic,readonly,copy) NSString *deviceToken;
 
 @property(readonly) BOOL handlePushAuto;
 
@@ -66,8 +68,8 @@
  *  notification: The Dictionary comes from APNs.
  *         state: Application State.
  *        target: callback invocator.
- *  pushSelector: the SEL will call when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotification object
- *  richSelector: the SEL will call when the notification is Rich Type. Notice That: The selector must only has one paramter, which is ABNotification object
+ *  pushSelector: the SEL will be called when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotification object
+ *  richSelector: the SEL will be called when the notification is Rich Type. Notice That: The selector must only has one paramter, which is ABNotification object
  */
 - (void)handleNotification:(NSDictionary *)notification
           applicationState:(UIApplicationState)state 
@@ -84,6 +86,14 @@
  *finishSelector: the SEL will call when done. Notice That: The selector must only has one paramter, which is ABRichResponse object
  */
 - (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector;
+
+/*
+ * Cancel Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ */
+- (void)cancelGetRichContent:(NSString *)rid;
 
 /*
  * Register Remote Notification

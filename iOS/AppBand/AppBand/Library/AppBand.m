@@ -61,7 +61,8 @@ static AppBand *_appBand;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:info];
     [parameters setObject:self.deviceToken forKey:AB_DEVICE_TOKEN];
     
-    ABHTTPRequest *request = [ABHTTPRequest requestWithURL:urlString 
+    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+                                                       url:urlString 
                                                  parameter:parameters
                                                    timeout:kAppBandRequestTimeout
                                                   delegate:self
@@ -137,7 +138,7 @@ static AppBand *_appBand;
             _appBand = [[AppBand alloc] initWithKey:configAppKey secret:configAppSecret];
             _appBand.server = airshipServer;
             _appBand.handlePushAuto = [config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] boolValue] : YES;
-            _appBand.handlePushAuto = [config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES;
+            _appBand.handleRichAuto = [config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES;
         }
     } 
     
@@ -203,6 +204,10 @@ static AppBand *_appBand;
 
 - (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector {
     [[ABPush shared] getRichContent:rid target:target finishSelector:finishSelector];
+}
+
+- (void)cancelGetRichContent:(NSString *)rid {
+    [[ABPush shared] cancelGetRichContent:rid];
 }
 
 - (void)registerRemoteNotificationWithTypes:(UIRemoteNotificationType)types {

@@ -6,8 +6,6 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-#define Rich_ID_Prefix @"AppBand_Rich_"
-
 #import "ABPush.h"
 #import "ABPush+Private.h"
 
@@ -27,7 +25,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
     if (aps) {
         if ([[AppBand shared] handlePushAuto]) {
             if (state == UIApplicationStateActive) {
-                UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:nil message:[aps objectForKey:AppBandNotificationAlert] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+                UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] message:[aps objectForKey:AppBandNotificationAlert] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
                 [alertView show];
             }
         } else {
@@ -71,12 +69,31 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 - (void)impressionRichEnd:(ABRichHandler *)handler {
-    NSString *key = [NSString stringWithFormat:@"%@%@",Rich_ID_Prefix,handler.rid];
-    [self.richHandleDictionay removeObjectForKey:key];
+    [self.richHandleDictionay removeObjectForKey:handler.impressionKey];
 }
 
 - (void)showRich:(NSString *)rid {
     
+    ABRichView *richView = [[[ABRichView alloc] initWithFrame:CGRectMake(0, 0, 280, 380)] autorelease];
+    [richView setRid:rid];
+    [richView setCenter:[UIApplication sharedApplication].keyWindow.center];
+    [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+    
+    [[ABPush shared] getRichContent:rid target:richView finishSelector:@selector(setRichContent:)];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:richView];
+
+    [UIView animateWithDuration:.3 animations:^{
+        [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.2 animations:^{
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.2 animations:^{
+                [richView setTransform:CGAffineTransformIdentity];
+             }];
+        }];
+    }];
 }
 
 #pragma mark - Public
@@ -106,16 +123,22 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 - (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector {
-    NSString *key = [NSString stringWithFormat:@"%@%@",Rich_ID_Prefix,rid];
-    ABRichHandler *handle = [self.richHandleDictionay objectForKey:key];
-    if (handle) {
-        [handle setFetchTarget:target];
-        [handle setFetchSelector:finishSelector];
+    ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,rid]];
+    if (handler) {
+        [handler setFetchTarget:target];
+        [handler setFetchSelector:finishSelector];
     } else {
-        handle = [ABRichHandler handlerWithRichID:rid fetchTarget:target fetchSelector:finishSelector impressionTarget:self impressionSelector:@selector(impressionRichEnd:)];
-        [self.richHandleDictionay setObject:handle forKey:key];
+        handler = [ABRichHandler handlerWithRichID:rid fetchTarget:target fetchSelector:finishSelector impressionTarget:self impressionSelector:@selector(impressionRichEnd:)];
+        [self.richHandleDictionay setObject:handler forKey:handler.impressionKey];
         
-        [handle begin];
+        [handler begin];
+    }
+}
+
+- (void)cancelGetRichContent:(NSString *)rid {
+    ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,rid]];
+    if (handler) {
+        [handler cancel];
     }
 }
 

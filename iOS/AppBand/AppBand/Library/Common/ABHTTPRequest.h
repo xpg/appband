@@ -18,6 +18,7 @@
         
         BOOL _isCompleted;
         
+        NSString *_key;
         NSString *_url;
         NSDictionary *_parameters;
         NSTimeInterval _timeout;
@@ -30,12 +31,13 @@
         SEL _failSelector;
 }
 
+@property(nonatomic,readonly,copy) NSString *key;
 @property(nonatomic,readonly,copy) NSString *url;
-@property(nonatomic,readonly,copy) NSDictionary *parameters;
 
 #pragma mark - Class Method
 
-+ (id)requestWithURL:(NSString *)url 
++ (id)requestWithKey:(NSString *)key 
+                 url:(NSString *)url 
            parameter:(NSDictionary *)parameter 
              timeout:(NSTimeInterval)timeout 
             delegate:(id<ABHTTPRequestDelegate>)delegate 

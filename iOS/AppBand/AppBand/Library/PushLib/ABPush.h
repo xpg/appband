@@ -43,6 +43,14 @@ SINGLETON_INTERFACE(ABPush)
 - (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector;
 
 /*
+ * Cancel Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ */
+- (void)cancelGetRichContent:(NSString *)rid;
+
+/*
  * Register Remote Notification
  *
  * Paramters:

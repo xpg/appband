@@ -13,6 +13,9 @@
 #define AB_DEVICE_UDID @"udid"
 #define AB_DEVICE_TOKEN @"token"
 
+#define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
+#define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"
+
 //Push Notification Payload Key
 #define AppBandNotificationAPS @"aps"
 #define AppBandNotificationAlert @"alert"
@@ -29,6 +32,7 @@ typedef enum {
     ABHTTPResponseInvalidURL,
     ABHTTPResponseNoConnection,
     ABHTTPResponseTimeout,
+    ABHTTPResponseCancel,
     ABHTTPResponseError,
 } ABHTTPResponseCode;
 
