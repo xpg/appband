@@ -51,7 +51,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
     NSString *rid = [notification objectForKey:AppBandRichNotificationId];
     if (aps && rid) {
         if ([[AppBand shared] handleRichAuto]) {
-            [[ABPush shared] showRich:rid];
+            [[ABPush shared] performSelector:@selector(showRich:) withObject:rid afterDelay:.2];
         } else {
             if ([target respondsToSelector:richSelector]) {
                 ABNotification *abNotification = [[[ABNotification alloc] init] autorelease];
@@ -105,8 +105,8 @@ SINGLETON_IMPLEMENTATION(ABPush)
               richSelector:(SEL)richSelector {
     if (!notification) 
         return;
-    
-    int type = [[notification objectForKey:AppBandPushNotificationType] intValue];
+
+    int type = [notification objectForKey:AppBandPushNotificationType] ? [[notification objectForKey:AppBandPushNotificationType] intValue] : 0;
     switch (type) {
         case 1: {
             NSString *rid = [notification objectForKey:AppBandRichNotificationId];
