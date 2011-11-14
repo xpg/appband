@@ -201,11 +201,11 @@ CG_INLINE BOOL hasConnection() {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(requestTimeOut) object:nil];
     
     if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-        [self.delegate finishedRequest:self.url code:ABHTTPResponseError content:nil error:error];
+        [self.delegate finishedRequest:self.url code:ABHTTPResponseServerError content:nil error:error];
     }
     
     if ([self.delegate respondsToSelector:self.failSelector]) {
-        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseServerError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
     }
     
     self.delegate = nil;
@@ -219,14 +219,14 @@ CG_INLINE BOOL hasConnection() {
 	NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)response;
     if ((httpResponse.statusCode / 100) != 2) { // is the statuCode is not 2**, then there is error.
         
-        NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseError userInfo:nil];
+        NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:httpResponse.statusCode userInfo:nil];
         
         if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-            [self.delegate finishedRequest:self.url code:ABHTTPResponseError content:nil error:error];
+            [self.delegate finishedRequest:self.url code:httpResponse.statusCode content:nil error:error];
         }
         
         if ([self.delegate respondsToSelector:self.failSelector]) {
-            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:httpResponse.statusCode], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
         }
         
         self.delegate = nil;

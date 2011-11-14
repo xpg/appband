@@ -33,10 +33,10 @@
     [indicatorView release];
     indicatorView = nil;
     
-    if (response.code == ABResponseCodeSuccess) {
+    if (response.code == ABResponseCodeSuccess && response.richContent) {
         [titleLabel setText:response.richTitle];
         
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, self.frame.size.width, self.frame.size.height - 44)];
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 280, 336)];
         [webView setBackgroundColor:[UIColor clearColor]];
         [webView setDelegate:self];
         [webView loadHTMLString:response.richContent baseURL:nil];
@@ -81,6 +81,7 @@
         
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, toolbar.frame.size.width, toolbar.frame.size.height)];
         titleLabel.font =[UIFont fontWithName:@"Helvetica-Bold" size:18];
+        titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
         titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;

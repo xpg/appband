@@ -51,6 +51,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
     NSString *rid = [notification objectForKey:AppBandRichNotificationId];
     if (aps && rid) {
         if ([[AppBand shared] handleRichAuto]) {
+            //call showRich: afterDelay 0.2 seconds,because calling it immediatly will crash when launching.
             [[ABPush shared] performSelector:@selector(showRich:) withObject:rid afterDelay:.2];
         } else {
             if ([target respondsToSelector:richSelector]) {

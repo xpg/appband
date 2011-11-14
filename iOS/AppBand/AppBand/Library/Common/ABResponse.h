@@ -11,7 +11,10 @@ typedef enum {
     ABResponseCodeInvalidURL,
     ABResponseCodeNoConnection,
     ABResponseCodeTimeout,
-    ABResponseError,
+    ABResponseCodeCancel,
+    ABResponseCodeAuthorError = 403,
+    ABResponseCodeResourceNotFound = 404,
+    ABResponseCodeServerError = 500,
 } ABResponseCode;
 
 #import <Foundation/Foundation.h>

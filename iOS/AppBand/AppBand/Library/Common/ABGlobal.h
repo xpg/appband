@@ -13,6 +13,9 @@
 #define AB_DEVICE_UDID @"udid"
 #define AB_DEVICE_TOKEN @"token"
 
+#define AB_Rich_Title @"rich_title"
+#define AB_Rich_Content @"rich_content"
+
 #define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
 #define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"
 
@@ -33,7 +36,9 @@ typedef enum {
     ABHTTPResponseNoConnection,
     ABHTTPResponseTimeout,
     ABHTTPResponseCancel,
-    ABHTTPResponseError,
+    ABHTTPResponseAuthorError = 403,
+    ABHTTPResponseResourceNotFound = 404,
+    ABHTTPResponseServerError = 500,
 } ABHTTPResponseCode;
 
 #define ABHTTPResponseKeyURL @"ABHTTPResponseKeyURL"

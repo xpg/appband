@@ -8,6 +8,7 @@
 
 //#define kAppBandProductionServer @"https://apphub.gizwits.com"
 #define kAppBandProductionServer @"https://192.168.1.60"
+//#define kAppBandProductionServer @"http://192.168.1.51:3000"
 
 #define kLastDeviceTokenKey @"ABDeviceTokenChanged"
 
@@ -89,6 +90,12 @@ static AppBand *_appBand;
 
 #pragma mark - AppBand Mehods
 
+/*
+ * initialize AppBand and Set Configuration. 
+ * 
+ * Paramters:
+ *          options: App Launch Options and AppBand Configuration.
+ */
 + (void)kickoff:(NSDictionary *)options {
     if (_appBand) {
         return;
@@ -98,8 +105,8 @@ static AppBand *_appBand;
     //    NSDictionary *launchOptions = [options objectForKey:AppBandKickOfOptionsLaunchOptionsKey];
     
     // Load configuration
-    // Primary configuration comes from the UAirshipTakeOffOptionsAirshipConfig dictionary and will
-    // override any options defined in AirshipConfig.plist
+    // Primary configuration comes from the AppBandKickOfOptionsAppBandConfigKey dictionary and will
+    // override any options defined in AppBandConfig.plist
     NSMutableDictionary *config;
     NSString *configPath = [[NSBundle mainBundle] pathForResource:@"AppBandConfig" ofType:@"plist"];
     
@@ -128,7 +135,7 @@ static AppBand *_appBand;
         configAppKey = [configAppKey stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         configAppSecret = [configAppSecret stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
-        //Check for a custom UA server value
+        //Check for a custom AppBand server value
         NSString *airshipServer = [config objectForKey:AppBandKickOfOptionsAppBandConfigServer];
         if (airshipServer == nil) {
             airshipServer = kAppBandProductionServer;
@@ -147,15 +154,31 @@ static AppBand *_appBand;
     }
 }
 
+/*
+ * Get AppBand Singleton Object
+ * 
+ */
 + (id)shared {
     return _appBand;
 }
 
+/*
+ * Release
+ * 
+ */
 + (void)end {
     [_appBand release];
     _appBand = nil;
 }
 
+/*
+ * Register Device Token
+ * 
+ * Paramters:
+ *          token: The token receive from APNs.
+ *         target: the object takes charge of perform finish selector.
+ *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABRegisterTokenResponse object. e.g. - (void)registerDeviceTokenFinished:(ABRegisterTokenResponse *)response
+ */
 - (void)registerDeviceToken:(NSData *)token
                      target:(id)target
              finishSelector:(SEL)finishSeletor {
@@ -194,6 +217,16 @@ static AppBand *_appBand;
 
 #pragma mark - Push Mehods
 
+/*
+ * Handle Push/Rich Notification
+ * 
+ * Paramters:
+ *  notification: The Dictionary comes from APNs.
+ *         state: Application State.
+ *        target: callback invocator.
+ *  pushSelector: the SEL will be called when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotification object
+ *  richSelector: the SEL will be called when the notification is Rich Type. Notice That: The selector must only has one paramter, which is ABNotification object
+ */
 - (void)handleNotification:(NSDictionary *)notification
           applicationState:(UIApplicationState)state 
                     target:(id)target 
@@ -202,22 +235,54 @@ static AppBand *_appBand;
     [[ABPush shared] handleNotification:notification applicationState:state target:target pushSelector:pushSelector richSelector:richSelector];
 }
 
+/*
+ * Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ *        target: callback invocator.
+ *finishSelector: the SEL will call when done. Notice That: The selector must only has one paramter, which is ABRichResponse object
+ */
 - (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector {
     [[ABPush shared] getRichContent:rid target:target finishSelector:finishSelector];
 }
 
+/*
+ * Cancel Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ */
 - (void)cancelGetRichContent:(NSString *)rid {
     [[ABPush shared] cancelGetRichContent:rid];
 }
 
+/*
+ * Register Remote Notification
+ *
+ * Paramters:
+ *        types:
+ *
+ */
 - (void)registerRemoteNotificationWithTypes:(UIRemoteNotificationType)types {
     [[ABPush shared] registerRemoteNotificationWithTypes:types];
 }
 
+/*
+ * Set Application Badge Number
+ *
+ * Paramters:
+ *  badgeNumber: the number you want to show on icon.
+ *
+ */
 - (void)setBadgeNumber:(NSInteger)badgeNumber {
     [[ABPush shared] setBadgeNumber:badgeNumber];
 }
 
+/*
+ * set Application Badge Number to 0
+ * 
+ */
 - (void)resetBadge {
     [[ABPush shared] resetBadge];
 }
@@ -236,6 +301,7 @@ static AppBand *_appBand;
 
 - (void)dealloc {
     [self setServer:nil];
+    [self setDeviceToken:nil];
     [self setAppKey:nil];
     [self setAppSecret:nil];
 	[super dealloc];

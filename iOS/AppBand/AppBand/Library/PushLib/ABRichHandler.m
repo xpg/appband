@@ -17,6 +17,8 @@
 #import "ABRestCenter.h"
 #import "ABHTTPRequest.h"
 
+#import "AB_SBJSON.h"
+
 @interface ABRichHandler()
 
 @property(nonatomic,assign) id impressionTarget;
@@ -51,14 +53,25 @@
         ABRichResponse *r = [[[ABRichResponse alloc] init] autorelease];
         [r setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
         [r setError:[response objectForKey:ABHTTPResponseKeyError]];
-        [r setRichContent:[response objectForKey:ABHTTPResponseKeyContent]];
+        
+        //parser rich json
+        NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
+        
+        NSError *error = nil;
+        AB_SBJSON *json = [[AB_SBJSON alloc] init];
+        NSDictionary *richDic = [json objectWithString:resp error:&error];
+        if (richDic && !error) {
+            [r setRichTitle:[richDic objectForKey:AB_Rich_Title]];
+            [r setRichContent:[richDic objectForKey:AB_Rich_Content]];
+        }
+        [json release];
         
         [self.fetchTarget performSelector:self.fetchSelector withObject:r];
     }
     
     if (code == ABHTTPResponseSuccess) {
         NSString *urlString = [NSString stringWithFormat:@"%@%@%@",
-                               [[AppBand shared] server], @"/impression/",self.rid];
+                               [[AppBand shared] server], @"/impressions/",self.rid];
         
         NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[AppBand shared] appKey], AB_APP_KEY, [[AppBand shared] appSecret], AB_APP_SECRET, nil];
         
@@ -71,6 +84,7 @@
                                                           fail:@selector(impressionEnd:)];
         [[ABRestCenter shared] addRequest:request];
     } else {
+        DLog(@"get rich content fail, error code :%i",code);
         if ([self.impressionTarget respondsToSelector:self.impressionSelector]) {
             [self.impressionTarget performSelector:self.impressionSelector withObject:self];
         }
@@ -88,7 +102,7 @@
 
 - (void)begin {
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@?token=%@&k=%@&s=%@",
-                           [[AppBand shared] server], @"/rich_content/",self.rid,[[AppBand shared] deviceToken],[[AppBand shared] appKey],[[AppBand shared] appSecret]];
+                           [[AppBand shared] server], @"/rich_contents/",self.rid,[[AppBand shared] deviceToken],[[AppBand shared] appKey],[[AppBand shared] appSecret]];
     
     ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.fetchKey 
                                                        url:urlString 
