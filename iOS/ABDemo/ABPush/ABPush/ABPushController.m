@@ -3,7 +3,7 @@
 //  ABPush
 //
 //  Created by Jason Wang on 11/11/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 #import "ABPushController.h"
