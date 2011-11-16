@@ -70,10 +70,10 @@
     }
     
     if (code == ABHTTPResponseSuccess) {
-        NSString *urlString = [NSString stringWithFormat:@"%@%@%@",
-                               [[AppBand shared] server], @"/impressions/",self.rid];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",
+                               [[AppBand shared] server], @"/impressions"];
         
-        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[AppBand shared] appKey], AB_APP_KEY, [[AppBand shared] appSecret], AB_APP_SECRET, nil];
+        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[AppBand shared] appKey], AB_APP_KEY, [[AppBand shared] appSecret], AB_APP_SECRET, self.rid, AppBandRichNotificationId, nil];
         
         ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.impressionKey 
                                                            url:urlString 
