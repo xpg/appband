@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor colorWithWhite:.95 alpha:1]];
+    [self.view setBackgroundColor:[UIColor blackColor]];
 }
 
 - (void)viewDidUnload {

@@ -12,8 +12,29 @@
 @implementation ABPush
 
 @synthesize richHandleDictionay = _richHandleDictionay;
+@synthesize richView = _richView;
 
 SINGLETON_IMPLEMENTATION(ABPush)
+
+#pragma mark - ABRichViewDelegate
+
+- (void)cancelRichView:(ABRichView *)richView {
+    [UIView animateWithDuration:.2 animations:^{
+        [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.15 animations:^{
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.15 animations:^{
+                [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+            } completion:^(BOOL finished) {
+                [richView removeFromSuperview];
+            }];
+        }];
+    }];
+    
+    self.richView = nil;
+}
 
 #pragma mark - Private
 
@@ -74,27 +95,31 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 - (void)showRich:(NSString *)rid {
-    
-    ABRichView *richView = [[[ABRichView alloc] initWithFrame:CGRectMake(0, 0, 280, 380)] autorelease];
-    [richView setRid:rid];
-    [richView setCenter:[UIApplication sharedApplication].keyWindow.center];
-    [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
-    
-    [[ABPush shared] getRichContent:rid target:richView finishSelector:@selector(setRichContent:)];
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:richView];
-
-    [UIView animateWithDuration:.3 animations:^{
-        [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
-    } completion:^(BOOL finished) {
+    if (!self.richView) {
+        ABRichView *richView = [[[ABRichView alloc] initWithFrame:CGRectMake(0, 0, 281, 380)] autorelease];
+        [richView setDelegate:self];
+        [richView setCenter:[UIApplication sharedApplication].keyWindow.center];
+        [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:richView];
+        
         [UIView animateWithDuration:.2 animations:^{
-            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.2 animations:^{
-                [richView setTransform:CGAffineTransformIdentity];
-             }];
+            [UIView animateWithDuration:.15 animations:^{
+                [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.15 animations:^{
+                    [richView setTransform:CGAffineTransformIdentity];
+                }];
+            }];
         }];
-    }];
+        
+        self.richView = richView;
+    }
+    
+    [self.richView setRid:rid];
+    [[ABPush shared] getRichContent:rid target:self.richView finishSelector:@selector(setRichContent:)];
 }
 
 #pragma mark - Public
@@ -171,6 +196,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
 
 - (void)dealloc {
     [self setRichHandleDictionay:nil];
+    [self setRichView:nil];
     [super dealloc];
 }
 

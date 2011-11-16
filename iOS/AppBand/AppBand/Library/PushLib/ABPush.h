@@ -11,7 +11,6 @@
 #import "ABGlobal.h"
 
 @interface ABPush : NSObject {
-
 }
 
 SINGLETON_INTERFACE(ABPush)

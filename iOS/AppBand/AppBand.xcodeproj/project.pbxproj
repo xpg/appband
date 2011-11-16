@@ -7,334 +7,327 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9684C3A014637C2C005EB2D2 /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9684C39E14637C2C005EB2D2 /* ABReachability.m */; };
-		9684C3A314637E6E005EB2D2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684C3A214637E6E005EB2D2 /* SystemConfiguration.framework */; };
-		9684C3CE1463B622005EB2D2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9684C3A214637E6E005EB2D2 /* SystemConfiguration.framework */; };
-		9694EAEB145FE13A00E91025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EAEA145FE13A00E91025 /* Foundation.framework */; };
-		9694EAF1145FE13A00E91025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9694EAEF145FE13A00E91025 /* InfoPlist.strings */; };
-		9694EAFA145FE13A00E91025 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EAF9145FE13A00E91025 /* SenTestingKit.framework */; };
-		9694EAFD145FE13A00E91025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EAEA145FE13A00E91025 /* Foundation.framework */; };
-		9694EB02145FE13A00E91025 /* AppBand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9694EAE7145FE13A00E91025 /* AppBand.framework */; };
-		9694EB09145FE13A00E91025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9694EB07145FE13A00E91025 /* InfoPlist.strings */; };
-		9694EB0C145FE13A00E91025 /* AppBandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB0B145FE13A00E91025 /* AppBandTests.m */; };
-		96D73A1F14623A3600F3A81A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FE35DC1460FB1500A6ED79 /* UIKit.framework */; };
-		96D73A3F14624DA900F3A81A /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D73A3E14624DA900F3A81A /* OCMock.framework */; };
-		96D73A6114627B4200F3A81A /* ABHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5614627B4200F3A81A /* ABHTTPRequest.m */; };
-		96D73A6314627B4200F3A81A /* ABRestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5814627B4200F3A81A /* ABRestCenter.m */; };
-		96D73A6514627B4200F3A81A /* ABPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D73A5B14627B4200F3A81A /* ABPush.m */; };
-		96E0B6FB1470B62B003F4135 /* AB_SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E0B6F31470B62B003F4135 /* AB_SBJSON.h */; };
-		96E0B6FC1470B62B003F4135 /* AB_SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E0B6F41470B62B003F4135 /* AB_SBJSON.m */; };
-		96E0B6FD1470B62B003F4135 /* AB_SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E0B6F51470B62B003F4135 /* AB_SBJsonBase.h */; };
-		96E0B6FE1470B62B003F4135 /* AB_SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E0B6F61470B62B003F4135 /* AB_SBJsonBase.m */; };
-		96E0B6FF1470B62B003F4135 /* AB_SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E0B6F71470B62B003F4135 /* AB_SBJsonParser.h */; };
-		96E0B7001470B62B003F4135 /* AB_SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E0B6F81470B62B003F4135 /* AB_SBJsonParser.m */; };
-		96E0B7011470B62B003F4135 /* AB_SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E0B6F91470B62B003F4135 /* AB_SBJsonWriter.h */; };
-		96E0B7021470B62B003F4135 /* AB_SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E0B6FA1470B62B003F4135 /* AB_SBJsonWriter.m */; };
-		96E5FC6F146B892A0027D16C /* ABConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC6B146B892A0027D16C /* ABConstant.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FC70146B892A0027D16C /* AppBand.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC6C146B892A0027D16C /* AppBand.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FC71146B892A0027D16C /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FC6D146B892A0027D16C /* AppBand.m */; };
-		96E5FC92146BAD840027D16C /* ABResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC90146BAD830027D16C /* ABResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FC93146BAD840027D16C /* ABResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FC91146BAD840027D16C /* ABResponse.m */; };
-		96E5FC96146BAF960027D16C /* ABRegisterTokenResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC94146BAF950027D16C /* ABRegisterTokenResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FC97146BAF960027D16C /* ABRegisterTokenResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FC95146BAF960027D16C /* ABRegisterTokenResponse.m */; };
-		96E5FC99146BB0F10027D16C /* AppBandKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC98146BB0F10027D16C /* AppBandKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FC9C146BB8200027D16C /* ABNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FC9A146BB8200027D16C /* ABNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FC9D146BB8200027D16C /* ABNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FC9B146BB8200027D16C /* ABNotification.m */; };
-		96E5FCAC146BCE880027D16C /* ABRichHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FCAA146BCE880027D16C /* ABRichHandler.m */; };
-		96E5FCAF146BD67F0027D16C /* ABRichResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5FCAD146BD67E0027D16C /* ABRichResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96E5FCB0146BD67F0027D16C /* ABRichResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5FCAE146BD67E0027D16C /* ABRichResponse.m */; };
-		96F07BBA146CC10D00158974 /* ABRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F07BB8146CC10D00158974 /* ABRichView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96F07BBB146CC10D00158974 /* ABRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F07BB9146CC10D00158974 /* ABRichView.m */; };
-		96F150471467BA05008BB770 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */; };
-		96FE35DD1460FB1500A6ED79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FE35DC1460FB1500A6ED79 /* UIKit.framework */; };
+		96DAB7001472542F0059345C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB6FF1472542F0059345C /* Foundation.framework */; };
+		96DAB70E1472542F0059345C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB70D1472542F0059345C /* SenTestingKit.framework */; };
+		96DAB7111472542F0059345C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB6FF1472542F0059345C /* Foundation.framework */; };
+		96DAB7141472542F0059345C /* libAppBand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB6FC1472542F0059345C /* libAppBand.a */; };
+		96DAB71A1472542F0059345C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7181472542F0059345C /* InfoPlist.strings */; };
+		96DAB71D1472542F0059345C /* AppBandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB71C1472542F0059345C /* AppBandTests.m */; };
+		96DAB75E147254F20059345C /* ABConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB734147254F20059345C /* ABConstant.h */; };
+		96DAB75F147254F20059345C /* ABRegisterTokenResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB735147254F20059345C /* ABRegisterTokenResponse.h */; };
+		96DAB760147254F20059345C /* ABRegisterTokenResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB736147254F20059345C /* ABRegisterTokenResponse.m */; };
+		96DAB761147254F20059345C /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB737147254F20059345C /* AppBand+Private.h */; };
+		96DAB762147254F20059345C /* AppBand.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB738147254F20059345C /* AppBand.h */; };
+		96DAB763147254F20059345C /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB739147254F20059345C /* AppBand.m */; };
+		96DAB764147254F20059345C /* AppBandKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB73A147254F20059345C /* AppBandKit.h */; };
+		96DAB765147254F20059345C /* ABGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB73C147254F20059345C /* ABGlobal.h */; };
+		96DAB766147254F20059345C /* ABHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB73D147254F20059345C /* ABHTTPRequest.h */; };
+		96DAB767147254F20059345C /* ABHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB73E147254F20059345C /* ABHTTPRequest.m */; };
+		96DAB768147254F20059345C /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB73F147254F20059345C /* ABReachability.h */; };
+		96DAB769147254F20059345C /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB740147254F20059345C /* ABReachability.m */; };
+		96DAB76A147254F20059345C /* ABResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB741147254F20059345C /* ABResponse.h */; };
+		96DAB76B147254F20059345C /* ABResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB742147254F20059345C /* ABResponse.m */; };
+		96DAB76C147254F20059345C /* ABRestCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB743147254F20059345C /* ABRestCenter.h */; };
+		96DAB76D147254F20059345C /* ABRestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB744147254F20059345C /* ABRestCenter.m */; };
+		96DAB76E147254F20059345C /* ABNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB746147254F20059345C /* ABNotification.h */; };
+		96DAB76F147254F20059345C /* ABNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB747147254F20059345C /* ABNotification.m */; };
+		96DAB770147254F20059345C /* ABPush+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB748147254F20059345C /* ABPush+Private.h */; };
+		96DAB771147254F20059345C /* ABPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB749147254F20059345C /* ABPush.h */; };
+		96DAB772147254F20059345C /* ABPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB74A147254F20059345C /* ABPush.m */; };
+		96DAB773147254F20059345C /* ABRichHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB74B147254F20059345C /* ABRichHandler.h */; };
+		96DAB774147254F20059345C /* ABRichHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB74C147254F20059345C /* ABRichHandler.m */; };
+		96DAB775147254F20059345C /* ABRichResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB74D147254F20059345C /* ABRichResponse.h */; };
+		96DAB776147254F20059345C /* ABRichResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB74E147254F20059345C /* ABRichResponse.m */; };
+		96DAB777147254F20059345C /* ABRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB750147254F20059345C /* ABRichView.h */; };
+		96DAB778147254F20059345C /* ABRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB751147254F20059345C /* ABRichView.m */; };
+		96DAB779147254F20059345C /* AB_SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB754147254F20059345C /* AB_SBJSON.h */; };
+		96DAB77A147254F20059345C /* AB_SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB755147254F20059345C /* AB_SBJSON.m */; };
+		96DAB77B147254F20059345C /* AB_SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB756147254F20059345C /* AB_SBJsonBase.h */; };
+		96DAB77C147254F20059345C /* AB_SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB757147254F20059345C /* AB_SBJsonBase.m */; };
+		96DAB77D147254F20059345C /* AB_SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB758147254F20059345C /* AB_SBJsonParser.h */; };
+		96DAB77E147254F20059345C /* AB_SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB759147254F20059345C /* AB_SBJsonParser.m */; };
+		96DAB77F147254F20059345C /* AB_SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB75A147254F20059345C /* AB_SBJsonWriter.h */; };
+		96DAB780147254F20059345C /* AB_SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB75B147254F20059345C /* AB_SBJsonWriter.m */; };
+		96DAB781147254F20059345C /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DAB75C147254F20059345C /* UIDevice+IdentifierAddition.h */; };
+		96DAB782147254F20059345C /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB75D147254F20059345C /* UIDevice+IdentifierAddition.m */; };
+		96DAB785147255140059345C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB784147255140059345C /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9694EAFE145FE13A00E91025 /* PBXContainerItemProxy */ = {
+		96DAB7121472542F0059345C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9694EADB145FE13900E91025 /* Project object */;
+			containerPortal = 96DAB6F31472542F0059345C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9694EAE6145FE13900E91025;
-			remoteInfo = AppBand;
-		};
-		9694EB00145FE13A00E91025 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9694EADB145FE13900E91025 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9694EAE6145FE13900E91025;
+			remoteGlobalIDString = 96DAB6FB1472542F0059345C;
 			remoteInfo = AppBand;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9684C39D14637C2C005EB2D2 /* ABReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABReachability.h; sourceTree = "<group>"; };
-		9684C39E14637C2C005EB2D2 /* ABReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABReachability.m; sourceTree = "<group>"; };
-		9684C3A214637E6E005EB2D2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9694EAE7145FE13A00E91025 /* AppBand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = AppBand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9694EAEA145FE13A00E91025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9694EAEE145FE13A00E91025 /* AppBand-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppBand-Info.plist"; sourceTree = "<group>"; };
-		9694EAF0145FE13A00E91025 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9694EAF2145FE13A00E91025 /* AppBand-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppBand-Prefix.pch"; sourceTree = "<group>"; };
-		9694EAF8145FE13A00E91025 /* AppBandTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppBandTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9694EAF9145FE13A00E91025 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		9694EB06145FE13A00E91025 /* AppBandTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppBandTests-Info.plist"; sourceTree = "<group>"; };
-		9694EB08145FE13A00E91025 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9694EB0A145FE13A00E91025 /* AppBandTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBandTests.h; sourceTree = "<group>"; };
-		9694EB0B145FE13A00E91025 /* AppBandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBandTests.m; sourceTree = "<group>"; };
-		96D73A3E14624DA900F3A81A /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../../../../../../../library/OCMock/Release/OCMock.framework; sourceTree = "<group>"; };
-		96D73A5414627B4200F3A81A /* ABGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABGlobal.h; sourceTree = "<group>"; };
-		96D73A5514627B4200F3A81A /* ABHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHTTPRequest.h; sourceTree = "<group>"; };
-		96D73A5614627B4200F3A81A /* ABHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHTTPRequest.m; sourceTree = "<group>"; };
-		96D73A5714627B4200F3A81A /* ABRestCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRestCenter.h; sourceTree = "<group>"; };
-		96D73A5814627B4200F3A81A /* ABRestCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRestCenter.m; sourceTree = "<group>"; };
-		96D73A5A14627B4200F3A81A /* ABPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPush.h; sourceTree = "<group>"; };
-		96D73A5B14627B4200F3A81A /* ABPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPush.m; sourceTree = "<group>"; };
-		96E0B6F31470B62B003F4135 /* AB_SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJSON.h; sourceTree = "<group>"; };
-		96E0B6F41470B62B003F4135 /* AB_SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJSON.m; sourceTree = "<group>"; };
-		96E0B6F51470B62B003F4135 /* AB_SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJsonBase.h; sourceTree = "<group>"; };
-		96E0B6F61470B62B003F4135 /* AB_SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJsonBase.m; sourceTree = "<group>"; };
-		96E0B6F71470B62B003F4135 /* AB_SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJsonParser.h; sourceTree = "<group>"; };
-		96E0B6F81470B62B003F4135 /* AB_SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJsonParser.m; sourceTree = "<group>"; };
-		96E0B6F91470B62B003F4135 /* AB_SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJsonWriter.h; sourceTree = "<group>"; };
-		96E0B6FA1470B62B003F4135 /* AB_SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJsonWriter.m; sourceTree = "<group>"; };
-		96E5FC67146B7EFC0027D16C /* ABPush+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPush+Private.h"; sourceTree = "<group>"; };
-		96E5FC6B146B892A0027D16C /* ABConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConstant.h; sourceTree = "<group>"; };
-		96E5FC6C146B892A0027D16C /* AppBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBand.h; sourceTree = "<group>"; };
-		96E5FC6D146B892A0027D16C /* AppBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBand.m; sourceTree = "<group>"; };
-		96E5FC6E146B892A0027D16C /* AppBand+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBand+Private.h"; sourceTree = "<group>"; };
-		96E5FC90146BAD830027D16C /* ABResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABResponse.h; sourceTree = "<group>"; };
-		96E5FC91146BAD840027D16C /* ABResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABResponse.m; sourceTree = "<group>"; };
-		96E5FC94146BAF950027D16C /* ABRegisterTokenResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRegisterTokenResponse.h; sourceTree = "<group>"; };
-		96E5FC95146BAF960027D16C /* ABRegisterTokenResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRegisterTokenResponse.m; sourceTree = "<group>"; };
-		96E5FC98146BB0F10027D16C /* AppBandKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBandKit.h; sourceTree = "<group>"; };
-		96E5FC9A146BB8200027D16C /* ABNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotification.h; sourceTree = "<group>"; };
-		96E5FC9B146BB8200027D16C /* ABNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotification.m; sourceTree = "<group>"; };
-		96E5FCA9146BCE880027D16C /* ABRichHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichHandler.h; sourceTree = "<group>"; };
-		96E5FCAA146BCE880027D16C /* ABRichHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichHandler.m; sourceTree = "<group>"; };
-		96E5FCAD146BD67E0027D16C /* ABRichResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichResponse.h; sourceTree = "<group>"; };
-		96E5FCAE146BD67E0027D16C /* ABRichResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichResponse.m; sourceTree = "<group>"; };
-		96F07BB8146CC10D00158974 /* ABRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichView.h; sourceTree = "<group>"; };
-		96F07BB9146CC10D00158974 /* ABRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichView.m; sourceTree = "<group>"; };
-		96F150421467BA05008BB770 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
-		96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
-		96FE35DC1460FB1500A6ED79 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		96DAB6FC1472542F0059345C /* libAppBand.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBand.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		96DAB6FF1472542F0059345C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		96DAB7031472542F0059345C /* AppBand-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppBand-Prefix.pch"; sourceTree = "<group>"; };
+		96DAB70C1472542F0059345C /* AppBandTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppBandTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96DAB70D1472542F0059345C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		96DAB7171472542F0059345C /* AppBandTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppBandTests-Info.plist"; sourceTree = "<group>"; };
+		96DAB7191472542F0059345C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		96DAB71B1472542F0059345C /* AppBandTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBandTests.h; sourceTree = "<group>"; };
+		96DAB71C1472542F0059345C /* AppBandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBandTests.m; sourceTree = "<group>"; };
+		96DAB734147254F20059345C /* ABConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConstant.h; sourceTree = "<group>"; };
+		96DAB735147254F20059345C /* ABRegisterTokenResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRegisterTokenResponse.h; sourceTree = "<group>"; };
+		96DAB736147254F20059345C /* ABRegisterTokenResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRegisterTokenResponse.m; sourceTree = "<group>"; };
+		96DAB737147254F20059345C /* AppBand+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBand+Private.h"; sourceTree = "<group>"; };
+		96DAB738147254F20059345C /* AppBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBand.h; sourceTree = "<group>"; };
+		96DAB739147254F20059345C /* AppBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBand.m; sourceTree = "<group>"; };
+		96DAB73A147254F20059345C /* AppBandKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBandKit.h; sourceTree = "<group>"; };
+		96DAB73C147254F20059345C /* ABGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABGlobal.h; sourceTree = "<group>"; };
+		96DAB73D147254F20059345C /* ABHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHTTPRequest.h; sourceTree = "<group>"; };
+		96DAB73E147254F20059345C /* ABHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHTTPRequest.m; sourceTree = "<group>"; };
+		96DAB73F147254F20059345C /* ABReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABReachability.h; sourceTree = "<group>"; };
+		96DAB740147254F20059345C /* ABReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABReachability.m; sourceTree = "<group>"; };
+		96DAB741147254F20059345C /* ABResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABResponse.h; sourceTree = "<group>"; };
+		96DAB742147254F20059345C /* ABResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABResponse.m; sourceTree = "<group>"; };
+		96DAB743147254F20059345C /* ABRestCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRestCenter.h; sourceTree = "<group>"; };
+		96DAB744147254F20059345C /* ABRestCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRestCenter.m; sourceTree = "<group>"; };
+		96DAB746147254F20059345C /* ABNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotification.h; sourceTree = "<group>"; };
+		96DAB747147254F20059345C /* ABNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotification.m; sourceTree = "<group>"; };
+		96DAB748147254F20059345C /* ABPush+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPush+Private.h"; sourceTree = "<group>"; };
+		96DAB749147254F20059345C /* ABPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPush.h; sourceTree = "<group>"; };
+		96DAB74A147254F20059345C /* ABPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPush.m; sourceTree = "<group>"; };
+		96DAB74B147254F20059345C /* ABRichHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichHandler.h; sourceTree = "<group>"; };
+		96DAB74C147254F20059345C /* ABRichHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichHandler.m; sourceTree = "<group>"; };
+		96DAB74D147254F20059345C /* ABRichResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichResponse.h; sourceTree = "<group>"; };
+		96DAB74E147254F20059345C /* ABRichResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichResponse.m; sourceTree = "<group>"; };
+		96DAB750147254F20059345C /* ABRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichView.h; sourceTree = "<group>"; };
+		96DAB751147254F20059345C /* ABRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichView.m; sourceTree = "<group>"; };
+		96DAB754147254F20059345C /* AB_SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJSON.h; sourceTree = "<group>"; };
+		96DAB755147254F20059345C /* AB_SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJSON.m; sourceTree = "<group>"; };
+		96DAB756147254F20059345C /* AB_SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJsonBase.h; sourceTree = "<group>"; };
+		96DAB757147254F20059345C /* AB_SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJsonBase.m; sourceTree = "<group>"; };
+		96DAB758147254F20059345C /* AB_SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJsonParser.h; sourceTree = "<group>"; };
+		96DAB759147254F20059345C /* AB_SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJsonParser.m; sourceTree = "<group>"; };
+		96DAB75A147254F20059345C /* AB_SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJsonWriter.h; sourceTree = "<group>"; };
+		96DAB75B147254F20059345C /* AB_SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AB_SBJsonWriter.m; sourceTree = "<group>"; };
+		96DAB75C147254F20059345C /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		96DAB75D147254F20059345C /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		96DAB783147254FE0059345C /* AppBand-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppBand-Info.plist"; sourceTree = "<group>"; };
+		96DAB784147255140059345C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9694EAE2145FE13900E91025 /* Frameworks */ = {
+		96DAB6F91472542F0059345C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9684C3A314637E6E005EB2D2 /* SystemConfiguration.framework in Frameworks */,
-				96FE35DD1460FB1500A6ED79 /* UIKit.framework in Frameworks */,
-				9694EAEB145FE13A00E91025 /* Foundation.framework in Frameworks */,
+				96DAB785147255140059345C /* UIKit.framework in Frameworks */,
+				96DAB7001472542F0059345C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9694EAF4145FE13A00E91025 /* Frameworks */ = {
+		96DAB7081472542F0059345C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9684C3CE1463B622005EB2D2 /* SystemConfiguration.framework in Frameworks */,
-				96D73A3F14624DA900F3A81A /* OCMock.framework in Frameworks */,
-				96D73A1F14623A3600F3A81A /* UIKit.framework in Frameworks */,
-				9694EAFA145FE13A00E91025 /* SenTestingKit.framework in Frameworks */,
-				9694EAFD145FE13A00E91025 /* Foundation.framework in Frameworks */,
-				9694EB02145FE13A00E91025 /* AppBand.framework in Frameworks */,
+				96DAB70E1472542F0059345C /* SenTestingKit.framework in Frameworks */,
+				96DAB7111472542F0059345C /* Foundation.framework in Frameworks */,
+				96DAB7141472542F0059345C /* libAppBand.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9694EAD9145FE13900E91025 = {
+		96DAB6F11472542F0059345C = {
 			isa = PBXGroup;
 			children = (
-				9694EAEC145FE13A00E91025 /* AppBand */,
-				9694EB04145FE13A00E91025 /* AppBandTests */,
-				9694EAE9145FE13A00E91025 /* Frameworks */,
-				9694EAE8145FE13A00E91025 /* Products */,
+				96DAB7011472542F0059345C /* AppBand */,
+				96DAB7151472542F0059345C /* AppBandTests */,
+				96DAB6FE1472542F0059345C /* Frameworks */,
+				96DAB6FD1472542F0059345C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9694EAE8145FE13A00E91025 /* Products */ = {
+		96DAB6FD1472542F0059345C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9694EAE7145FE13A00E91025 /* AppBand.framework */,
-				9694EAF8145FE13A00E91025 /* AppBandTests.octest */,
+				96DAB6FC1472542F0059345C /* libAppBand.a */,
+				96DAB70C1472542F0059345C /* AppBandTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9694EAE9145FE13A00E91025 /* Frameworks */ = {
+		96DAB6FE1472542F0059345C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9684C3A214637E6E005EB2D2 /* SystemConfiguration.framework */,
-				96D73A3E14624DA900F3A81A /* OCMock.framework */,
-				96FE35DC1460FB1500A6ED79 /* UIKit.framework */,
-				9694EAEA145FE13A00E91025 /* Foundation.framework */,
-				9694EAF9145FE13A00E91025 /* SenTestingKit.framework */,
+				96DAB784147255140059345C /* UIKit.framework */,
+				96DAB6FF1472542F0059345C /* Foundation.framework */,
+				96DAB70D1472542F0059345C /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9694EAEC145FE13A00E91025 /* AppBand */ = {
+		96DAB7011472542F0059345C /* AppBand */ = {
 			isa = PBXGroup;
 			children = (
-				96D73A4E14627B4200F3A81A /* Library */,
-				9694EAED145FE13A00E91025 /* Supporting Files */,
+				96DAB733147254F20059345C /* Library */,
+				96DAB7021472542F0059345C /* Supporting Files */,
 			);
 			path = AppBand;
 			sourceTree = "<group>";
 		};
-		9694EAED145FE13A00E91025 /* Supporting Files */ = {
+		96DAB7021472542F0059345C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9694EAEE145FE13A00E91025 /* AppBand-Info.plist */,
-				9694EAEF145FE13A00E91025 /* InfoPlist.strings */,
-				9694EAF2145FE13A00E91025 /* AppBand-Prefix.pch */,
+				96DAB783147254FE0059345C /* AppBand-Info.plist */,
+				96DAB7031472542F0059345C /* AppBand-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9694EB04145FE13A00E91025 /* AppBandTests */ = {
+		96DAB7151472542F0059345C /* AppBandTests */ = {
 			isa = PBXGroup;
 			children = (
-				9694EB0A145FE13A00E91025 /* AppBandTests.h */,
-				9694EB0B145FE13A00E91025 /* AppBandTests.m */,
-				9694EB05145FE13A00E91025 /* Supporting Files */,
+				96DAB71B1472542F0059345C /* AppBandTests.h */,
+				96DAB71C1472542F0059345C /* AppBandTests.m */,
+				96DAB7161472542F0059345C /* Supporting Files */,
 			);
 			path = AppBandTests;
 			sourceTree = "<group>";
 		};
-		9694EB05145FE13A00E91025 /* Supporting Files */ = {
+		96DAB7161472542F0059345C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9694EB06145FE13A00E91025 /* AppBandTests-Info.plist */,
-				9694EB07145FE13A00E91025 /* InfoPlist.strings */,
+				96DAB7171472542F0059345C /* AppBandTests-Info.plist */,
+				96DAB7181472542F0059345C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		96D73A4E14627B4200F3A81A /* Library */ = {
+		96DAB733147254F20059345C /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				96E5FC98146BB0F10027D16C /* AppBandKit.h */,
-				96E5FC94146BAF950027D16C /* ABRegisterTokenResponse.h */,
-				96E5FC95146BAF960027D16C /* ABRegisterTokenResponse.m */,
-				96E5FC6B146B892A0027D16C /* ABConstant.h */,
-				96E5FC6C146B892A0027D16C /* AppBand.h */,
-				96E5FC6D146B892A0027D16C /* AppBand.m */,
-				96E5FC6E146B892A0027D16C /* AppBand+Private.h */,
-				96F07BB6146CC0F300158974 /* UI */,
-				96F1503614677BCC008BB770 /* Utils */,
-				96D73A5214627B4200F3A81A /* Common */,
-				96D73A5914627B4200F3A81A /* PushLib */,
+				96DAB734147254F20059345C /* ABConstant.h */,
+				96DAB735147254F20059345C /* ABRegisterTokenResponse.h */,
+				96DAB736147254F20059345C /* ABRegisterTokenResponse.m */,
+				96DAB737147254F20059345C /* AppBand+Private.h */,
+				96DAB738147254F20059345C /* AppBand.h */,
+				96DAB739147254F20059345C /* AppBand.m */,
+				96DAB73A147254F20059345C /* AppBandKit.h */,
+				96DAB73B147254F20059345C /* Common */,
+				96DAB745147254F20059345C /* PushLib */,
+				96DAB74F147254F20059345C /* UI */,
+				96DAB752147254F20059345C /* Utils */,
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		96D73A5214627B4200F3A81A /* Common */ = {
+		96DAB73B147254F20059345C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				9684C39D14637C2C005EB2D2 /* ABReachability.h */,
-				9684C39E14637C2C005EB2D2 /* ABReachability.m */,
-				96D73A5414627B4200F3A81A /* ABGlobal.h */,
-				96D73A5514627B4200F3A81A /* ABHTTPRequest.h */,
-				96D73A5614627B4200F3A81A /* ABHTTPRequest.m */,
-				96D73A5714627B4200F3A81A /* ABRestCenter.h */,
-				96D73A5814627B4200F3A81A /* ABRestCenter.m */,
-				96E5FC90146BAD830027D16C /* ABResponse.h */,
-				96E5FC91146BAD840027D16C /* ABResponse.m */,
+				96DAB73C147254F20059345C /* ABGlobal.h */,
+				96DAB73D147254F20059345C /* ABHTTPRequest.h */,
+				96DAB73E147254F20059345C /* ABHTTPRequest.m */,
+				96DAB73F147254F20059345C /* ABReachability.h */,
+				96DAB740147254F20059345C /* ABReachability.m */,
+				96DAB741147254F20059345C /* ABResponse.h */,
+				96DAB742147254F20059345C /* ABResponse.m */,
+				96DAB743147254F20059345C /* ABRestCenter.h */,
+				96DAB744147254F20059345C /* ABRestCenter.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		96D73A5914627B4200F3A81A /* PushLib */ = {
+		96DAB745147254F20059345C /* PushLib */ = {
 			isa = PBXGroup;
 			children = (
-				96E5FC67146B7EFC0027D16C /* ABPush+Private.h */,
-				96D73A5A14627B4200F3A81A /* ABPush.h */,
-				96D73A5B14627B4200F3A81A /* ABPush.m */,
-				96E5FC9A146BB8200027D16C /* ABNotification.h */,
-				96E5FC9B146BB8200027D16C /* ABNotification.m */,
-				96E5FCA9146BCE880027D16C /* ABRichHandler.h */,
-				96E5FCAA146BCE880027D16C /* ABRichHandler.m */,
-				96E5FCAD146BD67E0027D16C /* ABRichResponse.h */,
-				96E5FCAE146BD67E0027D16C /* ABRichResponse.m */,
+				96DAB746147254F20059345C /* ABNotification.h */,
+				96DAB747147254F20059345C /* ABNotification.m */,
+				96DAB748147254F20059345C /* ABPush+Private.h */,
+				96DAB749147254F20059345C /* ABPush.h */,
+				96DAB74A147254F20059345C /* ABPush.m */,
+				96DAB74B147254F20059345C /* ABRichHandler.h */,
+				96DAB74C147254F20059345C /* ABRichHandler.m */,
+				96DAB74D147254F20059345C /* ABRichResponse.h */,
+				96DAB74E147254F20059345C /* ABRichResponse.m */,
 			);
 			path = PushLib;
 			sourceTree = "<group>";
 		};
-		96E0B6E91470B547003F4135 /* Json */ = {
+		96DAB74F147254F20059345C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				96E0B6F31470B62B003F4135 /* AB_SBJSON.h */,
-				96E0B6F41470B62B003F4135 /* AB_SBJSON.m */,
-				96E0B6F51470B62B003F4135 /* AB_SBJsonBase.h */,
-				96E0B6F61470B62B003F4135 /* AB_SBJsonBase.m */,
-				96E0B6F71470B62B003F4135 /* AB_SBJsonParser.h */,
-				96E0B6F81470B62B003F4135 /* AB_SBJsonParser.m */,
-				96E0B6F91470B62B003F4135 /* AB_SBJsonWriter.h */,
-				96E0B6FA1470B62B003F4135 /* AB_SBJsonWriter.m */,
-			);
-			path = Json;
-			sourceTree = "<group>";
-		};
-		96F07BB6146CC0F300158974 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				96F07BB8146CC10D00158974 /* ABRichView.h */,
-				96F07BB9146CC10D00158974 /* ABRichView.m */,
+				96DAB750147254F20059345C /* ABRichView.h */,
+				96DAB751147254F20059345C /* ABRichView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		96F1503614677BCC008BB770 /* Utils */ = {
+		96DAB752147254F20059345C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				96E0B6E91470B547003F4135 /* Json */,
-				96F150421467BA05008BB770 /* UIDevice+IdentifierAddition.h */,
-				96F150431467BA05008BB770 /* UIDevice+IdentifierAddition.m */,
+				96DAB753147254F20059345C /* Json */,
+				96DAB75C147254F20059345C /* UIDevice+IdentifierAddition.h */,
+				96DAB75D147254F20059345C /* UIDevice+IdentifierAddition.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		96DAB753147254F20059345C /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				96DAB754147254F20059345C /* AB_SBJSON.h */,
+				96DAB755147254F20059345C /* AB_SBJSON.m */,
+				96DAB756147254F20059345C /* AB_SBJsonBase.h */,
+				96DAB757147254F20059345C /* AB_SBJsonBase.m */,
+				96DAB758147254F20059345C /* AB_SBJsonParser.h */,
+				96DAB759147254F20059345C /* AB_SBJsonParser.m */,
+				96DAB75A147254F20059345C /* AB_SBJsonWriter.h */,
+				96DAB75B147254F20059345C /* AB_SBJsonWriter.m */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9694EAE3145FE13900E91025 /* Headers */ = {
+		96DAB6FA1472542F0059345C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96E5FC99146BB0F10027D16C /* AppBandKit.h in Headers */,
-				96E5FC70146B892A0027D16C /* AppBand.h in Headers */,
-				96E5FC6F146B892A0027D16C /* ABConstant.h in Headers */,
-				96E5FC92146BAD840027D16C /* ABResponse.h in Headers */,
-				96E5FCAF146BD67F0027D16C /* ABRichResponse.h in Headers */,
-				96E5FC96146BAF960027D16C /* ABRegisterTokenResponse.h in Headers */,
-				96E5FC9C146BB8200027D16C /* ABNotification.h in Headers */,
-				96F07BBA146CC10D00158974 /* ABRichView.h in Headers */,
-				96E0B6FB1470B62B003F4135 /* AB_SBJSON.h in Headers */,
-				96E0B6FD1470B62B003F4135 /* AB_SBJsonBase.h in Headers */,
-				96E0B6FF1470B62B003F4135 /* AB_SBJsonParser.h in Headers */,
-				96E0B7011470B62B003F4135 /* AB_SBJsonWriter.h in Headers */,
+				96DAB75E147254F20059345C /* ABConstant.h in Headers */,
+				96DAB75F147254F20059345C /* ABRegisterTokenResponse.h in Headers */,
+				96DAB761147254F20059345C /* AppBand+Private.h in Headers */,
+				96DAB762147254F20059345C /* AppBand.h in Headers */,
+				96DAB764147254F20059345C /* AppBandKit.h in Headers */,
+				96DAB765147254F20059345C /* ABGlobal.h in Headers */,
+				96DAB766147254F20059345C /* ABHTTPRequest.h in Headers */,
+				96DAB768147254F20059345C /* ABReachability.h in Headers */,
+				96DAB76A147254F20059345C /* ABResponse.h in Headers */,
+				96DAB76C147254F20059345C /* ABRestCenter.h in Headers */,
+				96DAB76E147254F20059345C /* ABNotification.h in Headers */,
+				96DAB770147254F20059345C /* ABPush+Private.h in Headers */,
+				96DAB771147254F20059345C /* ABPush.h in Headers */,
+				96DAB773147254F20059345C /* ABRichHandler.h in Headers */,
+				96DAB775147254F20059345C /* ABRichResponse.h in Headers */,
+				96DAB777147254F20059345C /* ABRichView.h in Headers */,
+				96DAB779147254F20059345C /* AB_SBJSON.h in Headers */,
+				96DAB77B147254F20059345C /* AB_SBJsonBase.h in Headers */,
+				96DAB77D147254F20059345C /* AB_SBJsonParser.h in Headers */,
+				96DAB77F147254F20059345C /* AB_SBJsonWriter.h in Headers */,
+				96DAB781147254F20059345C /* UIDevice+IdentifierAddition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9694EAE6145FE13900E91025 /* AppBand */ = {
+		96DAB6FB1472542F0059345C /* AppBand */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9694EB0F145FE13A00E91025 /* Build configuration list for PBXNativeTarget "AppBand" */;
+			buildConfigurationList = 96DAB7201472542F0059345C /* Build configuration list for PBXNativeTarget "AppBand" */;
 			buildPhases = (
-				9694EAE0145FE13900E91025 /* ShellScript */,
-				9694EAE1145FE13900E91025 /* Sources */,
-				9694EAE2145FE13900E91025 /* Frameworks */,
-				9694EAE3145FE13900E91025 /* Headers */,
-				9694EAE4145FE13900E91025 /* Resources */,
-				9694EAE5145FE13900E91025 /* ShellScript */,
+				96DAB6F81472542F0059345C /* Sources */,
+				96DAB6F91472542F0059345C /* Frameworks */,
+				96DAB6FA1472542F0059345C /* Headers */,
 			);
 			buildRules = (
 			);
@@ -342,102 +335,67 @@
 			);
 			name = AppBand;
 			productName = AppBand;
-			productReference = 9694EAE7145FE13A00E91025 /* AppBand.framework */;
-			productType = "com.apple.product-type.framework.static";
+			productReference = 96DAB6FC1472542F0059345C /* libAppBand.a */;
+			productType = "com.apple.product-type.library.static";
 		};
-		9694EAF7145FE13A00E91025 /* AppBandTests */ = {
+		96DAB70B1472542F0059345C /* AppBandTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9694EB12145FE13A00E91025 /* Build configuration list for PBXNativeTarget "AppBandTests" */;
+			buildConfigurationList = 96DAB7231472542F0059345C /* Build configuration list for PBXNativeTarget "AppBandTests" */;
 			buildPhases = (
-				9694EAF3145FE13A00E91025 /* Sources */,
-				9694EAF4145FE13A00E91025 /* Frameworks */,
-				9694EAF5145FE13A00E91025 /* Resources */,
-				9694EAF6145FE13A00E91025 /* ShellScript */,
+				96DAB7071472542F0059345C /* Sources */,
+				96DAB7081472542F0059345C /* Frameworks */,
+				96DAB7091472542F0059345C /* Resources */,
+				96DAB70A1472542F0059345C /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9694EAFF145FE13A00E91025 /* PBXTargetDependency */,
-				9694EB01145FE13A00E91025 /* PBXTargetDependency */,
+				96DAB7131472542F0059345C /* PBXTargetDependency */,
 			);
 			name = AppBandTests;
 			productName = AppBandTests;
-			productReference = 9694EAF8145FE13A00E91025 /* AppBandTests.octest */;
+			productReference = 96DAB70C1472542F0059345C /* AppBandTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9694EADB145FE13900E91025 /* Project object */ = {
+		96DAB6F31472542F0059345C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = 9694EADE145FE13900E91025 /* Build configuration list for PBXProject "AppBand" */;
+			buildConfigurationList = 96DAB6F61472542F0059345C /* Build configuration list for PBXProject "AppBand" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 9694EAD9145FE13900E91025;
-			productRefGroup = 9694EAE8145FE13A00E91025 /* Products */;
+			mainGroup = 96DAB6F11472542F0059345C;
+			productRefGroup = 96DAB6FD1472542F0059345C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9694EAE6145FE13900E91025 /* AppBand */,
-				9694EAF7145FE13A00E91025 /* AppBandTests */,
+				96DAB6FB1472542F0059345C /* AppBand */,
+				96DAB70B1472542F0059345C /* AppBandTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9694EAE4145FE13900E91025 /* Resources */ = {
+		96DAB7091472542F0059345C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9694EAF1145FE13A00E91025 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9694EAF5145FE13A00E91025 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9694EB09145FE13A00E91025 /* InfoPlist.strings in Resources */,
+				96DAB71A1472542F0059345C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9694EAE0145FE13900E91025 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n";
-		};
-		9694EAE5145FE13900E91025 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n\necho \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
-		};
-		9694EAF6145FE13A00E91025 /* ShellScript */ = {
+		96DAB70A1472542F0059345C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,65 +411,52 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9694EAE1145FE13900E91025 /* Sources */ = {
+		96DAB6F81472542F0059345C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96D73A6114627B4200F3A81A /* ABHTTPRequest.m in Sources */,
-				96D73A6314627B4200F3A81A /* ABRestCenter.m in Sources */,
-				96D73A6514627B4200F3A81A /* ABPush.m in Sources */,
-				9684C3A014637C2C005EB2D2 /* ABReachability.m in Sources */,
-				96F150471467BA05008BB770 /* UIDevice+IdentifierAddition.m in Sources */,
-				96E5FC71146B892A0027D16C /* AppBand.m in Sources */,
-				96E5FC93146BAD840027D16C /* ABResponse.m in Sources */,
-				96E5FC97146BAF960027D16C /* ABRegisterTokenResponse.m in Sources */,
-				96E5FC9D146BB8200027D16C /* ABNotification.m in Sources */,
-				96E5FCAC146BCE880027D16C /* ABRichHandler.m in Sources */,
-				96E5FCB0146BD67F0027D16C /* ABRichResponse.m in Sources */,
-				96F07BBB146CC10D00158974 /* ABRichView.m in Sources */,
-				96E0B6FC1470B62B003F4135 /* AB_SBJSON.m in Sources */,
-				96E0B6FE1470B62B003F4135 /* AB_SBJsonBase.m in Sources */,
-				96E0B7001470B62B003F4135 /* AB_SBJsonParser.m in Sources */,
-				96E0B7021470B62B003F4135 /* AB_SBJsonWriter.m in Sources */,
+				96DAB760147254F20059345C /* ABRegisterTokenResponse.m in Sources */,
+				96DAB763147254F20059345C /* AppBand.m in Sources */,
+				96DAB767147254F20059345C /* ABHTTPRequest.m in Sources */,
+				96DAB769147254F20059345C /* ABReachability.m in Sources */,
+				96DAB76B147254F20059345C /* ABResponse.m in Sources */,
+				96DAB76D147254F20059345C /* ABRestCenter.m in Sources */,
+				96DAB76F147254F20059345C /* ABNotification.m in Sources */,
+				96DAB772147254F20059345C /* ABPush.m in Sources */,
+				96DAB774147254F20059345C /* ABRichHandler.m in Sources */,
+				96DAB776147254F20059345C /* ABRichResponse.m in Sources */,
+				96DAB778147254F20059345C /* ABRichView.m in Sources */,
+				96DAB77A147254F20059345C /* AB_SBJSON.m in Sources */,
+				96DAB77C147254F20059345C /* AB_SBJsonBase.m in Sources */,
+				96DAB77E147254F20059345C /* AB_SBJsonParser.m in Sources */,
+				96DAB780147254F20059345C /* AB_SBJsonWriter.m in Sources */,
+				96DAB782147254F20059345C /* UIDevice+IdentifierAddition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9694EAF3145FE13A00E91025 /* Sources */ = {
+		96DAB7071472542F0059345C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9694EB0C145FE13A00E91025 /* AppBandTests.m in Sources */,
+				96DAB71D1472542F0059345C /* AppBandTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9694EAFF145FE13A00E91025 /* PBXTargetDependency */ = {
+		96DAB7131472542F0059345C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9694EAE6145FE13900E91025 /* AppBand */;
-			targetProxy = 9694EAFE145FE13A00E91025 /* PBXContainerItemProxy */;
-		};
-		9694EB01145FE13A00E91025 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9694EAE6145FE13900E91025 /* AppBand */;
-			targetProxy = 9694EB00145FE13A00E91025 /* PBXContainerItemProxy */;
+			target = 96DAB6FB1472542F0059345C /* AppBand */;
+			targetProxy = 96DAB7121472542F0059345C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9694EAEF145FE13A00E91025 /* InfoPlist.strings */ = {
+		96DAB7181472542F0059345C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9694EAF0145FE13A00E91025 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9694EB07145FE13A00E91025 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9694EB08145FE13A00E91025 /* en */,
+				96DAB7191472542F0059345C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -519,7 +464,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9694EB0D145FE13A00E91025 /* Debug */ = {
+		96DAB71E1472542F0059345C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -542,14 +487,13 @@
 			};
 			name = Debug;
 		};
-		9694EB0E145FE13A00E91025 /* Release */ = {
+		96DAB71F1472542F0059345C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -560,77 +504,55 @@
 			};
 			name = Release;
 		};
-		9694EB10145FE13A00E91025 /* Debug */ = {
+		96DAB7211472542F0059345C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
+				DSTROOT = /tmp/AppBand.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBand/AppBand-Prefix.pch";
-				INFOPLIST_FILE = "AppBand/AppBand-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
 		};
-		9694EB11145FE13A00E91025 /* Release */ = {
+		96DAB7221472542F0059345C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
+				DSTROOT = /tmp/AppBand.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBand/AppBand-Prefix.pch";
-				INFOPLIST_FILE = "AppBand/AppBand-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
-		9694EB13145FE13A00E91025 /* Debug */ = {
+		96DAB7241472542F0059345C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)/../../../../../../../library/OCMock/Release\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBand/AppBand-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AppBandTests/AppBandTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-force-load",
-					"\"$(SRCROOT)/../../../../../../../library/OCMock/Release/Library/libOCMock.a\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
-		9694EB14145FE13A00E91025 /* Release */ = {
+		96DAB7251472542F0059345C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"\"$(SRCROOT)/../../../../../../../library/OCMock/Release\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBand/AppBand-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "AppBandTests/AppBandTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-force-load",
-					"\"$(SRCROOT)/../../../../../../../library/OCMock/Release/Library/libOCMock.a\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -639,34 +561,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9694EADE145FE13900E91025 /* Build configuration list for PBXProject "AppBand" */ = {
+		96DAB6F61472542F0059345C /* Build configuration list for PBXProject "AppBand" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9694EB0D145FE13A00E91025 /* Debug */,
-				9694EB0E145FE13A00E91025 /* Release */,
+				96DAB71E1472542F0059345C /* Debug */,
+				96DAB71F1472542F0059345C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		9694EB0F145FE13A00E91025 /* Build configuration list for PBXNativeTarget "AppBand" */ = {
+		96DAB7201472542F0059345C /* Build configuration list for PBXNativeTarget "AppBand" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9694EB10145FE13A00E91025 /* Debug */,
-				9694EB11145FE13A00E91025 /* Release */,
+				96DAB7211472542F0059345C /* Debug */,
+				96DAB7221472542F0059345C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
-		9694EB12145FE13A00E91025 /* Build configuration list for PBXNativeTarget "AppBandTests" */ = {
+		96DAB7231472542F0059345C /* Build configuration list for PBXNativeTarget "AppBandTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9694EB13145FE13A00E91025 /* Debug */,
-				9694EB14145FE13A00E91025 /* Release */,
+				96DAB7241472542F0059345C /* Debug */,
+				96DAB7251472542F0059345C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9694EADB145FE13900E91025 /* Project object */;
+	rootObject = 96DAB6F31472542F0059345C /* Project object */;
 }

@@ -13,9 +13,10 @@
 #import "ABRichHandler.h"
 #import "ABRichView.h"
 
-@interface ABPush()
+@interface ABPush() <ABRichViewDelegate>
 
 @property(nonatomic,retain) NSMutableDictionary *richHandleDictionay;
+@property(nonatomic,retain) ABRichView *richView;
 
 - (void)callbackPushSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 

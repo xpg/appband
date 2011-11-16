@@ -20,6 +20,7 @@
 
 @implementation ABRichView
 
+@synthesize delegate;
 @synthesize rid = _rid;
 
 #pragma mark - Public
@@ -29,19 +30,24 @@
 }
 
 - (void)showRich:(ABRichResponse *)response {
-    [indicatorView removeFromSuperview];
-    [indicatorView release];
-    indicatorView = nil;
+    if (indicatorView) {
+        [indicatorView removeFromSuperview];
+        [indicatorView release];
+        indicatorView = nil;
+    }
     
     if (response.code == ABResponseCodeSuccess && response.richContent) {
         [titleLabel setText:response.richTitle];
         
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 280, 336)];
-        [webView setBackgroundColor:[UIColor clearColor]];
-        [webView setDelegate:self];
-        [webView loadHTMLString:response.richContent baseURL:nil];
+        if (!webView) {
+            webView = [[UIWebView alloc] initWithFrame:CGRectMake(7.5, 51.5, 265, 321)];
+            [webView setBackgroundColor:[UIColor clearColor]];
+            [webView setDelegate:self];
+            
+            [self addSubview:webView];
+        }
         
-        [self addSubview:webView];
+        [webView loadHTMLString:response.richContent baseURL:nil];
     }
 }
 
@@ -49,20 +55,9 @@
 
 - (void)cancel {
     [[AppBand shared] cancelGetRichContent:self.rid];
-    
-    [UIView animateWithDuration:.3 animations:^{
-        [self setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.2 animations:^{
-            [self setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.2 animations:^{
-                [self setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
-            } completion:^(BOOL finished) {
-                [self removeFromSuperview];
-            }];
-        }];
-    }];
+    if (self.delegate) {
+        [self.delegate cancelRichView:self];
+    }
 }
 
 #pragma mark - lifecycle
@@ -70,31 +65,32 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor colorWithWhite:0. alpha:.6]];
+        [self setBackgroundColor:[UIColor clearColor]];
         
-        toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 44)];
-        [toolbar setBarStyle:UIBarStyleBlack];
-        [toolbar setTranslucent:YES];
+        UIImage *icon = [UIImage imageNamed:@"AppBandIcon"];
+        UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 17, 25, 25)];
+        [iconView setImage:icon];
         
-        UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self   action:@selector(cancel)];
-        UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        
-        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, toolbar.frame.size.width, toolbar.frame.size.height)];
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(7.5, 7.5, 265, 44)];
         titleLabel.font =[UIFont fontWithName:@"Helvetica-Bold" size:18];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
         titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        // Just add UILabel like UIToolBar's subview 
-        [toolbar addSubview:titleLabel];
-        [toolbar setItems:[NSArray arrayWithObjects:spaceItem, cancelItem, nil]];
         
-        [cancelItem release];
-        [spaceItem release];
+        UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [closeButton setFrame:CGRectMake(227.5, 7.5, 35, 44)];
+        [closeButton setBackgroundImage:[UIImage imageNamed:@"AppBandRichClose"] forState:UIControlStateNormal];
+        [closeButton setShowsTouchWhenHighlighted:YES];
+        [closeButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchDown];
         
-        [self addSubview:toolbar];
+        [self addSubview:iconView];
+        [self addSubview:titleLabel];
+        [self addSubview:closeButton];
         
-        indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [iconView release];
+        
+        indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [indicatorView setCenter:CGPointMake(frame.size.width / 2, frame.size.height / 2)];
         [indicatorView startAnimating];
         
@@ -103,13 +99,11 @@
     return self;
 }
 
-/*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    [[UIImage imageNamed:@"AppBandRichBackground"] drawInRect:(CGRect){CGPointZero,rect.size}];
 }
-*/
 
 - (void)dealloc {
     [toolbar release];

@@ -144,6 +144,7 @@
 }
 
 - (void)dealloc {
+    DLog(@"ABRichHandler dealloc - rich id: %@",self.rid);
     [self setRid:nil];
     [self setFetchKey:nil];
     [self setImpressionKey:nil];

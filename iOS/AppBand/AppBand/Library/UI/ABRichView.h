@@ -10,7 +10,10 @@
 
 #import "ABRichResponse.h"
 
+@protocol ABRichViewDelegate;
+
 @interface ABRichView : UIView <UIWebViewDelegate> {
+    id<ABRichViewDelegate> delegate;
     UIToolbar *toolbar;
     UILabel *titleLabel;
     UIWebView *webView;
@@ -20,8 +23,15 @@
         NSString *_rid;
 }
 
+@property(nonatomic,assign) id<ABRichViewDelegate> delegate;
 @property(nonatomic,copy) NSString *rid;
 
 - (void)setRichContent:(ABRichResponse *)response;
+
+@end
+
+@protocol ABRichViewDelegate <NSObject>
+
+- (void)cancelRichView:(ABRichView *)richView;
 
 @end

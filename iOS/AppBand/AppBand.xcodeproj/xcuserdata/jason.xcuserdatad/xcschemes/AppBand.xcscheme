@@ -13,8 +13,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9694EAE6145FE13900E91025"
-               BuildableName = "AppBand.framework"
+               BlueprintIdentifier = "96DAB6FB1472542F0059345C"
+               BuildableName = "libAppBand.a"
                BlueprintName = "AppBand"
                ReferencedContainer = "container:AppBand.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9694EAF7145FE13A00E91025"
+               BlueprintIdentifier = "96DAB70B1472542F0059345C"
                BuildableName = "AppBandTests.octest"
                BlueprintName = "AppBandTests"
                ReferencedContainer = "container:AppBand.xcodeproj">
