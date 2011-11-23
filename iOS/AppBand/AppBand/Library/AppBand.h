@@ -21,6 +21,8 @@
 
 @property(nonatomic,readonly,copy) NSString *deviceToken;
 
+@property(nonatomic,readonly,copy) NSString *udid;
+
 @property(readonly) BOOL handlePushAuto;
 
 @property(readonly) BOOL handleRichAuto;

@@ -25,6 +25,7 @@
 @property(nonatomic,readwrite,copy) NSString *appKey;
 @property(nonatomic,readwrite,copy) NSString *appSecret;
 @property(nonatomic,readwrite,copy) NSString *deviceToken;
+@property(nonatomic,readwrite,copy) NSString *udid;
 
 @property(assign) id registerTarget;
 @property(assign) SEL registerFinishSelector;

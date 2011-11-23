@@ -73,7 +73,7 @@
         NSString *urlString = [NSString stringWithFormat:@"%@%@",
                                [[AppBand shared] server], @"/impressions"];
         
-        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[AppBand shared] appKey], AB_APP_KEY, [[AppBand shared] appSecret], AB_APP_SECRET, self.rid, AppBandRichNotificationId, nil];
+        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[AppBand shared] appKey], AB_APP_KEY, [[AppBand shared] appSecret], AB_APP_SECRET, [[AppBand shared] deviceToken], AB_DEVICE_TOKEN, self.rid, AppBandRichNotificationId, nil];
         
         ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.impressionKey 
                                                            url:urlString 

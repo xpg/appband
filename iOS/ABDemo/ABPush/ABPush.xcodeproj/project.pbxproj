@@ -211,6 +211,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 9694EB35145FEA9800E91025;
 			productRefGroup = 9694EB41145FEA9800E91025 /* Products */;

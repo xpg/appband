@@ -60,14 +60,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    
+
     pushController = [[ABPushController alloc] init];
     [self.window addSubview:pushController.view];
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
-    [configOptions setValue:@"2" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:@"1a801864-0a7e-11e1-9843-001ec9af8d09" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    [configOptions setValue:@"14" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+    [configOptions setValue:@"06d9debc-11a9-11e1-bcb8-0019d181644b" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     
 //    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
 //    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];
@@ -78,10 +78,10 @@
     
     [AppBand kickoff:kickOffOptions];
     
+    [[AppBand shared] resetBadge];
     [[AppBand shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     
     [[AppBand shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:nil pushSelector:nil richSelector:nil];
-    
     
     [self.window makeKeyAndVisible];
     return YES;

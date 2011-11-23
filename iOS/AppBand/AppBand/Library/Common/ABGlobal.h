@@ -13,8 +13,19 @@
 #define AB_DEVICE_UDID @"udid"
 #define AB_DEVICE_TOKEN @"token"
 
+#define AB_Error @"error"
+
 #define AB_Rich_Title @"rich_title"
 #define AB_Rich_Content @"rich_content"
+
+#define AB_Products @"products"
+
+#define AB_Product_ID @"product_id"
+#define AB_Product_Name @"name"
+#define AB_Product_Description @"description"
+#define AB_Product_IsFree @"is_free"
+#define AB_Product_Icon @"icon_url"
+#define AB_Product_IsPurchased @"is_purchased"
 
 #define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
 #define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"

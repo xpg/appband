@@ -10,6 +10,7 @@
 #define kAppBandProductionServer @"https://192.168.1.60"
 //#define kAppBandProductionServer @"http://192.168.1.51:3000"
 
+#define kAppBandDeviceUDID @"ABDeviceUDID"
 #define kLastDeviceTokenKey @"ABDeviceTokenChanged"
 
 #import "AppBand.h"
@@ -23,6 +24,7 @@ static AppBand *_appBand;
 @synthesize appKey = _appKey;
 @synthesize appSecret = _appSecret;
 @synthesize deviceToken = _deviceToken;
+@synthesize udid = _udid;
 
 @synthesize registerTarget = _registerTarget;
 @synthesize registerFinishSelector = _registerFinishSelector;
@@ -31,6 +33,20 @@ static AppBand *_appBand;
 @synthesize handleRichAuto = _handleRichAuto;
 
 #pragma mark - Private
+
+- (NSString *)udid {
+    if (!_udid) {
+        _udid = [[NSUserDefaults standardUserDefaults] objectForKey:kAppBandDeviceUDID];
+        if (!_udid) {
+            UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
+            _udid = [deviceUDID uniqueDeviceIdentifier];
+            [[NSUserDefaults standardUserDefaults] setObject:_udid forKey:kAppBandDeviceUDID];
+            [deviceUDID release];
+        }
+    }
+    
+    return _udid;
+}
 
 - (void)updateDeviceToken:(NSData*)tokenData {
     self.deviceToken = [self parseDeviceToken:[tokenData description]];
@@ -100,7 +116,7 @@ static AppBand *_appBand;
     if (_appBand) {
         return;
     }
-    
+
     //Application launch options
     //    NSDictionary *launchOptions = [options objectForKey:AppBandKickOfOptionsLaunchOptionsKey];
     
@@ -188,11 +204,11 @@ static AppBand *_appBand;
     NSMutableDictionary *info = [NSMutableDictionary dictionary];
     [info setValue:self.appKey forKey:AB_APP_KEY];
     [info setValue:self.appSecret forKey:AB_APP_SECRET];
+    [info setObject:self.udid forKey:AB_DEVICE_UDID];
     
     NSString *bundleVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-    UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
-    NSString *udid = [deviceUDID uniqueDeviceIdentifier];
+    
     
     if (bundleVersion) {
         [info setObject:bundleVersion forKey:AB_APP_BUNDLE_VERSION];
@@ -202,17 +218,11 @@ static AppBand *_appBand;
         [info setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
     }
     
-    if (udid) {
-        [info setObject:udid forKey:AB_DEVICE_UDID];
-    }
-    
     if (token) {
         [[AppBand shared] registerDeviceToken:token withExtraInfo:info];
     } else {
         [[AppBand shared] registerDeviceTokenWithExtraInfo:info];
     }
-    
-    [deviceUDID release];
 }
 
 #pragma mark - Push Mehods
