@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "ABGlobal.h"
+#import "ABProduct.h"
 
 @interface ABPurchase : NSObject
 
@@ -33,15 +34,10 @@ SINGLETON_INTERFACE(ABPurchase)
  *       product: product.
  *       
  */
-- (void)purchaseProduct:(id)product;
-
-/*
- * Download Product
- * 
- * Paramters:
- *       product: product.
- *       
- */
-- (void)downloadProduct:(id)product;
+- (void)purchaseProduct:(ABProduct *)product 
+           statusTarget:(id)statusTarget 
+         statusSelector:(SEL)statusSelector 
+         proccessTarget:(id)proccessTarget 
+       proccessSelector:(SEL)proccessSeletor;
 
 @end

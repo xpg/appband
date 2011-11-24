@@ -13,6 +13,7 @@
 		9694EB4F145FEA9800E91025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9694EB4D145FEA9800E91025 /* InfoPlist.strings */; };
 		9694EB51145FEA9800E91025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB50145FEA9800E91025 /* main.m */; };
 		9694EB55145FEA9800E91025 /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB54145FEA9800E91025 /* ABAppDelegate.m */; };
+		96DA1F99147DF60D00DE7DC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DA1F98147DF60D00DE7DC4 /* StoreKit.framework */; };
 		96DAB7861472552D0059345C /* libAppBand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB72F147254C80059345C /* libAppBand.a */; };
 		96DAB7981472566F0059345C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7951472566F0059345C /* Icon.png */; };
 		96DAB7991472566F0059345C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7961472566F0059345C /* Icon@2x.png */; };
@@ -59,6 +60,7 @@
 		9694EB52145FEA9800E91025 /* ABPush-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ABPush-Prefix.pch"; sourceTree = "<group>"; };
 		9694EB53145FEA9800E91025 /* ABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABAppDelegate.h; sourceTree = "<group>"; };
 		9694EB54145FEA9800E91025 /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
+		96DA1F98147DF60D00DE7DC4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		96DAB726147254C70059345C /* AppBand.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppBand.xcodeproj; path = ../../AppBand/AppBand.xcodeproj; sourceTree = "<group>"; };
 		96DAB7951472566F0059345C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		96DAB7961472566F0059345C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DA1F99147DF60D00DE7DC4 /* StoreKit.framework in Frameworks */,
 				96DAB7861472552D0059345C /* libAppBand.a in Frameworks */,
 				96EED2B2146A1A6600F9B9B4 /* SystemConfiguration.framework in Frameworks */,
 				9694EB45145FEA9800E91025 /* UIKit.framework in Frameworks */,
@@ -115,6 +118,7 @@
 		9694EB43145FEA9800E91025 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96DA1F98147DF60D00DE7DC4 /* StoreKit.framework */,
 				96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */,
 				9694EB44145FEA9800E91025 /* UIKit.framework */,
 				9694EB46145FEA9800E91025 /* Foundation.framework */,

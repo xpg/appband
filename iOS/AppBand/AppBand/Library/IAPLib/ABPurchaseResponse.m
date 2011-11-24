@@ -2,7 +2,7 @@
 //  ABPurchaseResponse.m
 //  AppBand
 //
-//  Created by Jason Wang on 11/23/11.
+//  Created by Jason Wang on 11/24/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,10 +10,13 @@
 
 @implementation ABPurchaseResponse
 
-@synthesize products;
+@synthesize filePath;
+@synthesize productId;
+@synthesize proccess;
 
 - (void)dealloc {
-    [self setProducts:nil];
+    [self setFilePath:nil];
+    [self setProductId:nil];
     [super dealloc];
 }
 

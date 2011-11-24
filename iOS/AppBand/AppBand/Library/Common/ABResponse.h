@@ -7,15 +7,28 @@
 //
 
 typedef enum {
-    ABResponseCodeSuccess,
-    ABResponseCodeInvalidURL,
-    ABResponseCodeNoConnection,
-    ABResponseCodeTimeout,
-    ABResponseCodeCancel,
-    ABResponseCodeAuthorError = 403,
-    ABResponseCodeResourceNotFound = 404,
-    ABResponseCodeServerError = 500,
+    ABResponseCodeHTTPSuccess,
+    ABResponseCodeHTTPInvalidURL,
+    ABResponseCodeHTTPNoConnection,
+    ABResponseCodeHTTPTimeout,
+    ABResponseCodeHTTPCancel,
+    ABResponseCodePaymentBegan,
+    ABResponseCodePaymentUnknown,
+    ABResponseCodePaymentClientInvalid,
+    ABResponseCodePaymentInvalid,
+    ABResponseCodePaymentNotAllowed,
+    ABResponseCodePaymentCancelled,
+    ABResponseCodePaymentSuccess,
+    ABResponseCodePaymentUnablePurchase,
+    ABResponseCodeProductUnavailable,
+    ABResponseCodeProductDeliverBegan,
+    ABResponseCodeProductDelivering,
+    ABResponseCodeHTTPAuthorError = 403,
+    ABResponseCodeHTTPResourceNotFound = 404,
+    ABResponseCodeHTTPServerError = 500,
 } ABResponseCode;
+
+#define AppBandSDKErrorDomain @"AppBandSDKErrorDomain"
 
 #import <Foundation/Foundation.h>
 

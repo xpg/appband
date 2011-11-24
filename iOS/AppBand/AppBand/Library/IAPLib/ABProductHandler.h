@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ABHTTPRequest.h"
-
-@interface ABProductHandler : NSObject <ABHTTPRequestDelegate>
+@interface ABProductHandler : NSObject 
 
 @property(nonatomic,readonly,copy) NSString *group;
 @property(nonatomic,readonly,copy) NSString *url;

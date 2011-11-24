@@ -7,81 +7,102 @@
 //
 
 #import "ABProductHandler.h"
-
-#import "ABPurchaseResponse.h"
-#import "ABProduct.h"
-
-#import "ABRestCenter.h"
-#import "AB_SBJSON.h"
-
-@interface ABProductHandler()
-
-@property(nonatomic,readwrite,copy) NSString *group;
-@property(nonatomic,readwrite,copy) NSString *url;
-
-- (void)getProductsEnd:(NSDictionary *)response;
-
-@end
+#import "ABProductHandler+Private.h"
 
 @implementation ABProductHandler
 
+@synthesize productsDictionary = _productsDictionary;
+@synthesize response = _response;
+
 @synthesize group = _group;
 @synthesize url = _url;
+
+@synthesize productsRequest = _productsRequest;
+
 @synthesize fetchTarget = _fetchTarget;
 @synthesize fetchSelector = _fetchSelector;
 @synthesize destroyTarget = _destroyTarget;
 @synthesize destroySeletor = _destroySeletor;
 
-#pragma mark - Private
+#pragma mark - SKProductsRequestDelegate
 
-- (void)getProductsEnd:(NSDictionary *)response {
-    ABHTTPResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
-    
-    if ([self.fetchTarget respondsToSelector:self.fetchSelector]) {
-        ABPurchaseResponse *r = [[[ABPurchaseResponse alloc] init] autorelease];
-        [r setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
-        [r setError:[response objectForKey:ABHTTPResponseKeyError]];
-        
-        if (code == ABHTTPResponseSuccess) {
-            NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
-            
-            NSError *error = nil;
-            AB_SBJSON *json = [[AB_SBJSON alloc] init];
-            NSDictionary *richDic = [json objectWithString:resp error:&error];
-            if (richDic && !error) {
-                NSArray *products = [richDic objectForKey:AB_Products];
-                if ([products count] > 0) {
-                    NSMutableArray *tmp = [NSMutableArray array];
-                    for (NSDictionary *productDic in products) {
-                        NSString *productId = [productDic objectForKey:AB_Product_ID];
-                        if (productId && ![productId isEqualToString:@""]) {
-                            ABProduct *product = [[[ABProduct alloc] init] autorelease];
-                            [product setProductId:productId];
-                            [product setName:[productDic objectForKey:AB_Product_Name]];
-                            [product setDescription:[productDic objectForKey:AB_Product_Description]];
-                            [product setIcon:[productDic objectForKey:AB_Product_Icon]];
-                            [product setIsFree:[[productDic objectForKey:AB_Product_IsFree] boolValue]];
-                            [product setIsPurchased:[[productDic objectForKey:AB_Product_IsPurchased] boolValue]];
-                            [tmp addObject:product];
-                        }
-                    }
-                    [r setProducts:[NSArray arrayWithArray:tmp]];
-                }
-            }
-            [json release];
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    NSArray *skProducts = [response products];
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (SKProduct *skProduct in skProducts) {
+        ABProduct *product = [self.productsDictionary objectForKey:skProduct.productIdentifier];
+        if (product) {
+            [product setSkProduct:skProduct];
+            [tmp addObject:product];
         }
-        
-        //parser rich json
-        [self.fetchTarget performSelector:self.fetchSelector withObject:r];
-        
     }
     
+    if ([self.fetchTarget respondsToSelector:self.fetchSelector]) {
+        [self.response setProducts:tmp];
+        [self.fetchTarget performSelector:self.fetchSelector withObject:self.response];
+    }
     
-        
+    [request release];
+    self.productsRequest = nil;
     
     if ([self.destroyTarget respondsToSelector:self.destroySeletor]) {
         [self.destroyTarget performSelector:self.destroySeletor withObject:self];
     }
+}
+
+#pragma mark - Private
+
+- (void)getProductsEnd:(NSDictionary *)response {
+    ABHTTPResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+    NSMutableSet *productIdentifiers = [NSMutableSet set];
+    self.productsDictionary = [NSMutableDictionary dictionary];
+    
+    ABProductsResponse *productsResponse = [[[ABProductsResponse alloc] init] autorelease];
+    
+    if ([self.fetchTarget respondsToSelector:self.fetchSelector]) {
+        [productsResponse setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
+        [productsResponse setError:[response objectForKey:ABHTTPResponseKeyError]];
+        
+        if (code == ABHTTPResponseSuccess) {
+            NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
+            
+            //parser response json
+            NSError *error = nil;
+            AB_SBJSON *json = [[AB_SBJSON alloc] init];
+            NSDictionary *richDic = [json objectWithString:resp error:&error];
+            [json release];
+            
+            //get products list
+            if (richDic && !error) {
+                NSArray *products = [richDic objectForKey:AB_Products];
+                if ([products count] > 0) {
+                    for (NSDictionary *productDic in products) {
+                        ABProduct *product = [ABProduct productWithDictionary:productDic];
+                        if (product) {
+                            [self.productsDictionary setObject:product forKey:product.productId];
+                            [productIdentifiers addObject:product.productId];
+                        }
+                    }
+                }
+            }
+            
+        } 
+    }
+    
+    if ([productIdentifiers count] <= 0) {
+        [self.fetchTarget performSelector:self.fetchSelector withObject:productsResponse];
+        
+        if ([self.destroyTarget respondsToSelector:self.destroySeletor]) {
+            [self.destroyTarget performSelector:self.destroySeletor withObject:self];
+        }
+    } else {
+        self.response = productsResponse;
+        
+        self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers: productIdentifiers];
+        [self.productsRequest setDelegate:self];
+        [self.productsRequest start];
+    }
+    
 }
 
 #pragma mark - Public
@@ -98,11 +119,23 @@
 }
 
 - (void)cancel {
-    NSEnumerator *enumerator = [[[[ABRestCenter shared] queue] operations] objectEnumerator];
-    ABHTTPRequest *request = nil;
-    while (request = [enumerator nextObject]) {
-        if ([request.key isEqualToString:self.url]) {
-            [request cancel];
+    if (self.productsRequest) {
+        [self.productsRequest setDelegate:nil];
+        [self.productsRequest cancel];
+        
+        [_productsRequest release];
+        self.productsRequest = nil;
+        
+        if ([self.destroyTarget respondsToSelector:self.destroySeletor]) {
+            [self.destroyTarget performSelector:self.destroySeletor withObject:self];
+        }
+    } else {
+        NSEnumerator *enumerator = [[[[ABRestCenter shared] queue] operations] objectEnumerator];
+        ABHTTPRequest *request = nil;
+        while (request = [enumerator nextObject]) {
+            if ([request.key isEqualToString:self.url]) {
+                [request cancel];
+            }
         }
     }
 }
@@ -127,6 +160,8 @@
 }
 
 - (void)dealloc {
+    [self setProductsDictionary:nil];
+    [self setResponse:nil];
     [self setGroup:nil];
     [self setUrl:nil];
     [super dealloc];

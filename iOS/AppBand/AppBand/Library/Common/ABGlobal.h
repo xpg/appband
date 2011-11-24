@@ -26,6 +26,7 @@
 #define AB_Product_IsFree @"is_free"
 #define AB_Product_Icon @"icon_url"
 #define AB_Product_IsPurchased @"is_purchased"
+#define AB_Product_Receipt @"receipt"
 
 #define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
 #define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"

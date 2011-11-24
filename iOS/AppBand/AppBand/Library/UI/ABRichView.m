@@ -36,7 +36,7 @@
         indicatorView = nil;
     }
     
-    if (response.code == ABResponseCodeSuccess && response.richContent) {
+    if (response.code == ABResponseCodeHTTPSuccess && response.richContent) {
         [titleLabel setText:response.richTitle];
         
         if (!webView) {
