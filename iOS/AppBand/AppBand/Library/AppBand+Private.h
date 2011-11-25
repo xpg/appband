@@ -16,6 +16,9 @@
 #import "ABPush.h"
 #import "ABRestCenter.h"
 
+#import "ABPurchase.h"
+#import "ABProduct.h"
+
 #import "UIDevice+IdentifierAddition.h"
 
 

@@ -15,6 +15,7 @@
 @property(nonatomic,copy) NSString *productId;
 @property(nonatomic,copy) NSString *icon;
 @property(nonatomic,retain) SKProduct *skProduct;
+@property(nonatomic,retain) SKPaymentTransaction *transaction;
 @property(nonatomic,assign) BOOL isFree;
 @property(nonatomic,assign) BOOL isPurchased;
 

@@ -30,4 +30,6 @@
 
 - (void)getProductsEnd:(NSDictionary *)response;
 
+- (void)finishedRequestProduct:(SKRequest *)request;
+
 @end

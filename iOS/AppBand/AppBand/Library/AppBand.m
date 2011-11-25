@@ -7,8 +7,8 @@
 //
 
 //#define kAppBandProductionServer @"https://apphub.gizwits.com"
-#define kAppBandProductionServer @"https://192.168.1.60"
-//#define kAppBandProductionServer @"http://192.168.1.51:3000"
+//#define kAppBandProductionServer @"https://192.168.1.60"
+#define kAppBandProductionServer @"http://192.168.1.51:3000"
 
 #define kAppBandDeviceUDID @"ABDeviceUDID"
 #define kLastDeviceTokenKey @"ABDeviceTokenChanged"
@@ -295,6 +295,41 @@ static AppBand *_appBand;
  */
 - (void)resetBadge {
     [[ABPush shared] resetBadge];
+}
+
+#pragma mark - Purchase Mehods
+
+/*
+ * Get Products List
+ * 
+ * Paramters:
+ *         group: products group, nil is for all products.
+ *        target: callback invocator.
+ *finishSelector: the SEL will call when done. Notice That: The selector must only has one paramter, which is NSArray object
+ */
+- (void)getAppProductByGroup:(NSString *)group 
+                      target:(id)target 
+             finfishSelector:(SEL)finishSelector {
+    [[ABPurchase shared] getAppProductByGroup:group target:target finfishSelector:finishSelector];
+}
+
+/*
+ * Purchase Product
+ * 
+ * Paramters:
+ *       product: product.
+ *       
+ */
+- (void)purchaseProduct:(ABProduct *)product 
+           statusTarget:(id)statusTarget 
+         statusSelector:(SEL)statusSelector 
+         proccessTarget:(id)proccessTarget 
+       proccessSelector:(SEL)proccessSeletor {
+    [[ABPurchase shared] purchaseProduct:product 
+                            statusTarget:statusTarget 
+                          statusSelector:statusSelector 
+                          proccessTarget:proccessTarget 
+                        proccessSelector:proccessSeletor];
 }
 
 #pragma mark - singleton

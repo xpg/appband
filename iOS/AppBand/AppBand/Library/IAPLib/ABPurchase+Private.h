@@ -9,6 +9,8 @@
 #import "AppBand.h"
 
 #import "ABProductHandler.h"
+#import "ABDeliverHandler.h"
+
 #import "ABPurchaseResponse.h"
 
 #import <StoreKit/StoreKit.h>
@@ -21,7 +23,7 @@
 @property(nonatomic,retain) NSMutableDictionary *deliverHnadlerDictionary;
 @property(nonatomic,retain) NSMutableDictionary *productsHandlerDictionay;
 
-- (void)getProductsEnd:(NSDictionary *)response;
+@property(nonatomic,retain) ABProduct *product;
 
 - (void)destroyProductsHandler:(ABProductHandler *)handler;
 

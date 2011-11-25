@@ -26,6 +26,14 @@
 
 #pragma mark - SKProductsRequestDelegate
 
+- (void)requestDidFinish:(SKRequest *)request {
+    [self finishedRequestProduct:request];
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    [self finishedRequestProduct:request];
+}
+
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     NSArray *skProducts = [response products];
     NSMutableArray *tmp = [NSMutableArray array];
@@ -37,20 +45,24 @@
         }
     }
     
-    if ([self.fetchTarget respondsToSelector:self.fetchSelector]) {
-        [self.response setProducts:tmp];
-        [self.fetchTarget performSelector:self.fetchSelector withObject:self.response];
-    }
-    
+    [self.response setProducts:tmp];
+}
+
+#pragma mark - Private
+
+- (void)finishedRequestProduct:(SKRequest *)request {
+    [request setDelegate:nil];
     [request release];
     self.productsRequest = nil;
+    
+    if ([self.fetchTarget respondsToSelector:self.fetchSelector]) {
+        [self.fetchTarget performSelector:self.fetchSelector withObject:self.response];
+    }
     
     if ([self.destroyTarget respondsToSelector:self.destroySeletor]) {
         [self.destroyTarget performSelector:self.destroySeletor withObject:self];
     }
 }
-
-#pragma mark - Private
 
 - (void)getProductsEnd:(NSDictionary *)response {
     ABHTTPResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
@@ -58,11 +70,10 @@
     self.productsDictionary = [NSMutableDictionary dictionary];
     
     ABProductsResponse *productsResponse = [[[ABProductsResponse alloc] init] autorelease];
+    [productsResponse setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
+    [productsResponse setError:[response objectForKey:ABHTTPResponseKeyError]];
     
     if ([self.fetchTarget respondsToSelector:self.fetchSelector]) {
-        [productsResponse setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
-        [productsResponse setError:[response objectForKey:ABHTTPResponseKeyError]];
-        
         if (code == ABHTTPResponseSuccess) {
             NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
             
@@ -148,6 +159,7 @@
                          fetchSelector:(SEL)fetchSelector 
                          destroyTarget:(id)destroyTarget 
                        destroySelector:(SEL)destroySeletor {
+    
     ABProductHandler *handler = [[[ABProductHandler alloc] init] autorelease];
     [handler setGroup:group];
     [handler setUrl:url];
@@ -165,6 +177,7 @@
     [self setGroup:nil];
     [self setUrl:nil];
     [super dealloc];
+    NSLog(@"ABProductHandler dealloc");
 }
 
 @end

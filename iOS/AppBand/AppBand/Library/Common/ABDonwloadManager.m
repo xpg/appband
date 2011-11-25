@@ -20,7 +20,7 @@ SINGLETON_IMPLEMENTATION(ABDonwloadManager)
     self = [super init];
     if (self) {
         _downloaderQueue = [[NSOperationQueue alloc] init];
-        [_downloaderQueue setMaxConcurrentOperationCount:1];
+        [_downloaderQueue setMaxConcurrentOperationCount:3];
     }
     
     return self;

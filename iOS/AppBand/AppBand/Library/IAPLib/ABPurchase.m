@@ -17,6 +17,8 @@
 @synthesize deliverHnadlerDictionary = _deliverHnadlerDictionary;
 @synthesize productsHandlerDictionay = _productsHandlerDictionay;
 
+@synthesize product = _product;
+
 SINGLETON_IMPLEMENTATION(ABPurchase)
 
 #pragma mark - SKPaymentTransactionObserver
@@ -40,12 +42,9 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
 
 #pragma mark - Private
 
-- (void)getProductsEnd:(NSDictionary *)response {
-
-}
-
 - (void)destroyProductsHandler:(ABProductHandler *)handler {
-    [self.productsHandlerDictionay removeObjectForKey:handler.url];
+    NSString *key = [NSString stringWithString:handler.url];
+    [self.productsHandlerDictionay removeObjectForKey:key];
 }
 
 /*
@@ -55,45 +54,51 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
  *       product: product.
  *       
  */
-- (void)deliverProduct:(id)product {
-    NSString *urlString = [NSString stringWithFormat:@"%@/client_apps/%@/products/transactions.json",[[AppBand shared] server],[[AppBand shared] appKey]];
-    
-    
+- (void)deliverProduct:(ABProduct *)product {
+    if (!product) return;
+    ABDeliverHandler *handler = [self.deliverHnadlerDictionary objectForKey:product.productId];
+    if (handler) {
+    } else {
+        handler = [ABDeliverHandler handlerWithProduct:product];
+        [handler begin];
+    }
 }
 
-- (void) completeTransaction:(SKPaymentTransaction *)transaction {
+- (void)completeTransaction:(SKPaymentTransaction *)transaction {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     [self provideContent:transaction];
 }
 
-- (void) restoreTransaction:(SKPaymentTransaction *)transaction {
+- (void)restoreTransaction:(SKPaymentTransaction *)transaction {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     [self provideContent:transaction];
 }
 
-- (void) failedTransaction: (SKPaymentTransaction *)transaction {
+- (void)failedTransaction: (SKPaymentTransaction *)transaction {
     ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
-    ABResponseCode code;
+    ABPurchaseStatus code;
     switch (transaction.error.code) {
         case SKErrorUnknown:
-            code = ABResponseCodePaymentUnknown;
+            code = ABPurchaseStatusPaymentUnknown;
             break;
         case SKErrorClientInvalid:
-            code = ABResponseCodePaymentClientInvalid;
+            code = ABPurchaseStatusPaymentClientInvalid;
             break;
         case SKErrorPaymentInvalid:
-            code = ABResponseCodePaymentInvalid;
+            code = ABPurchaseStatusPaymentInvalid;
             break;
         case SKErrorPaymentNotAllowed:
-            code = ABResponseCodePaymentNotAllowed;
+            code = ABPurchaseStatusPaymentNotAllowed;
             break;
         default:
-            code = ABResponseCodePaymentCancelled;
+            code = ABPurchaseStatusPaymentCancelled;
             break;
     }
     
-    [productResponse setCode:code];
+    [productResponse setCode:ABResponseCodeHTTPError];
     [productResponse setError:[NSError errorWithDomain:AppBandSDKErrorDomain code:code userInfo:nil]];
+    [productResponse setProductId:transaction.payment.productIdentifier];
+    [productResponse setStatus:code];
     
     if ([self.paymentStatusTarget respondsToSelector:self.paymentStatusSelector]) {
         [self.paymentStatusTarget performSelector:self.paymentStatusSelector withObject:productResponse];
@@ -101,18 +106,27 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
     
     
     
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 - (void)provideContent:(SKPaymentTransaction *)transaction {
     ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
-    [productResponse setCode:ABResponseCodePaymentSuccess];
+    [productResponse setCode:ABResponseCodeHTTPSuccess];
     [productResponse setError:nil];
     [productResponse setProductId:transaction.payment.productIdentifier];
+    [productResponse setStatus:ABPurchaseStatusPaymentSuccess];
     
     if ([self.paymentStatusTarget respondsToSelector:self.paymentStatusSelector]) {
         [self.paymentStatusTarget performSelector:self.paymentStatusSelector withObject:productResponse];
     }
+    
+    self.product.transaction = transaction;
+    
+    if (transaction.originalTransaction) {
+        self.product.transaction = transaction.originalTransaction;
+    }
+    
+    [self deliverProduct:self.product];
 }
 
 #pragma mark - Public
@@ -162,9 +176,10 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
     
     if (!product || [product.productId isEqualToString:@""]) {
         ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
-        [productResponse setCode:ABResponseCodeProductUnavailable];
-        [productResponse setError:[NSError errorWithDomain:AppBandSDKErrorDomain code:ABResponseCodeProductUnavailable userInfo:nil]];
+        [productResponse setCode:ABResponseCodeHTTPError];
+        [productResponse setError:[NSError errorWithDomain:AppBandSDKErrorDomain code:ABResponseCodeHTTPError userInfo:nil]];
         [productResponse setProductId:product.productId];
+        [productResponse setStatus:ABPurchaseStatusProductUnavailable];
         
         if ([self.paymentStatusTarget respondsToSelector:self.paymentStatusSelector]) {
             [self.paymentStatusTarget performSelector:self.paymentStatusSelector withObject:productResponse];
@@ -173,11 +188,12 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
         return;
     }
     
-    if (![SKPaymentQueue canMakePayments] && !product.isFree) {
+    if (![SKPaymentQueue canMakePayments] && !product.isFree && !product.transaction) {
         ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
-        [productResponse setCode:ABResponseCodePaymentUnablePurchase];
-        [productResponse setError:[NSError errorWithDomain:AppBandSDKErrorDomain code:ABResponseCodePaymentUnablePurchase userInfo:nil]];
+        [productResponse setCode:ABResponseCodeHTTPError];
+        [productResponse setError:[NSError errorWithDomain:AppBandSDKErrorDomain code:ABResponseCodeHTTPError userInfo:nil]];
         [productResponse setProductId:product.productId];
+        [productResponse setStatus:ABPurchaseStatusPaymentUnablePurchase];
         
         if ([self.paymentStatusTarget respondsToSelector:self.paymentStatusSelector]) {
             [self.paymentStatusTarget performSelector:self.paymentStatusSelector withObject:productResponse];
@@ -186,13 +202,17 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
         return;
     }
     
-    if (product.isFree) {
+    if (product.isFree || product.transaction) {
         [self deliverProduct:product];
     } else {
+        self.product = nil;
+        self.product = product;
+        
         ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
-        [productResponse setCode:ABResponseCodePaymentBegan];
+        [productResponse setCode:ABResponseCodeHTTPSuccess];
         [productResponse setError:nil];
         [productResponse setProductId:product.productId];
+        [productResponse setStatus:ABPurchaseStatusPaymentBegan];
         
         if ([self.paymentStatusTarget respondsToSelector:self.paymentStatusSelector]) {
             [self.paymentStatusTarget performSelector:self.paymentStatusSelector withObject:productResponse];
@@ -218,6 +238,7 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
 }
 
 - (void)dealloc {
+    [self setProduct:nil];
     [self setProductsHandlerDictionay:nil];
     [self setDeliverHnadlerDictionary:nil];
     [super dealloc];

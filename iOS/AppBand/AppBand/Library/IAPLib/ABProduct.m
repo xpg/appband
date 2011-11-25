@@ -18,6 +18,7 @@
 @synthesize isPurchased;
 
 @synthesize skProduct;
+@synthesize transaction;
 @synthesize receipt;
 
 #pragma mark - Public

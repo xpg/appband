@@ -15,4 +15,6 @@
 
 + (ABDeliverHandler *)handlerWithProduct:(ABProduct *)product;
 
+- (void)begin;
+
 @end

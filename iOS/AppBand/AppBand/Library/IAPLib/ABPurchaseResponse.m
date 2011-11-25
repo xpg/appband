@@ -12,6 +12,7 @@
 
 @synthesize filePath;
 @synthesize productId;
+@synthesize status;
 @synthesize proccess;
 
 - (void)dealloc {

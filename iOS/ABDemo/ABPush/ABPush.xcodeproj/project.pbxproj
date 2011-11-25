@@ -28,6 +28,7 @@
 		96DAB7AD14725EB90059345C /* AppBandRichBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A314725EB90059345C /* AppBandRichBackground@2x.png */; };
 		96DAB7AE14725EB90059345C /* AppBandRichClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A414725EB90059345C /* AppBandRichClose.png */; };
 		96DAB7AF14725EB90059345C /* AppBandRichClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A514725EB90059345C /* AppBandRichClose@2x.png */; };
+		96E796D3147F31510011A52C /* ABPurchaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E796D2147F31510011A52C /* ABPurchaseController.m */; };
 		96EED2B2146A1A6600F9B9B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */; };
 		96F07BBE146CFD4A00158974 /* ABPushController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F07BBD146CFD4A00158974 /* ABPushController.m */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,8 @@
 		96DAB7A314725EB90059345C /* AppBandRichBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandRichBackground@2x.png"; sourceTree = "<group>"; };
 		96DAB7A414725EB90059345C /* AppBandRichClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBandRichClose.png; sourceTree = "<group>"; };
 		96DAB7A514725EB90059345C /* AppBandRichClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandRichClose@2x.png"; sourceTree = "<group>"; };
+		96E796D1147F31510011A52C /* ABPurchaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchaseController.h; sourceTree = "<group>"; };
+		96E796D2147F31510011A52C /* ABPurchaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPurchaseController.m; sourceTree = "<group>"; };
 		96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		96F07BBC146CFD4A00158974 /* ABPushController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPushController.h; sourceTree = "<group>"; };
 		96F07BBD146CFD4A00158974 /* ABPushController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPushController.m; sourceTree = "<group>"; };
@@ -130,12 +133,14 @@
 		9694EB4A145FEA9800E91025 /* ABPush */ = {
 			isa = PBXGroup;
 			children = (
-				96DAB79B14725EB90059345C /* resources */,
 				9694EB53145FEA9800E91025 /* ABAppDelegate.h */,
 				9694EB54145FEA9800E91025 /* ABAppDelegate.m */,
-				9694EB4B145FEA9800E91025 /* Supporting Files */,
 				96F07BBC146CFD4A00158974 /* ABPushController.h */,
 				96F07BBD146CFD4A00158974 /* ABPushController.m */,
+				96E796D1147F31510011A52C /* ABPurchaseController.h */,
+				96E796D2147F31510011A52C /* ABPurchaseController.m */,
+				96DAB79B14725EB90059345C /* resources */,
+				9694EB4B145FEA9800E91025 /* Supporting Files */,
 			);
 			path = ABPush;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				9694EB51145FEA9800E91025 /* main.m in Sources */,
 				9694EB55145FEA9800E91025 /* ABAppDelegate.m in Sources */,
 				96F07BBE146CFD4A00158974 /* ABPushController.m in Sources */,
+				96E796D3147F31510011A52C /* ABPurchaseController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +366,7 @@
 					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library,
 					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/Common,
 					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/PushLib,
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/IAPLib,
 				);
 				INFOPLIST_FILE = "ABPush/ABPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
@@ -381,6 +388,7 @@
 					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library,
 					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/Common,
 					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/PushLib,
+					/Users/jason/Documents/xpg/projects/iphone/Git/appband/iOS/AppBand/AppBand/Library/IAPLib,
 				);
 				INFOPLIST_FILE = "ABPush/ABPush-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";

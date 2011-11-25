@@ -9,6 +9,7 @@
 #import "ABAppDelegate.h"
 
 #import "ABPushController.h"
+#import "ABPurchaseController.h"
 #import "AppBandKit.h"
 
 @interface ABAppDelegate()
@@ -53,21 +54,44 @@
 #pragma mark - UIApplication lifecycle
 
 - (void)dealloc {
-    [pushController release];
+    [controller release];
     [_window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-
-    pushController = [[ABPushController alloc] init];
-    [self.window addSubview:pushController.view];
+    
+    controller = [[UITabBarController alloc] init];
+    
+    ABPushController *pushController = [[ABPushController alloc] init];
+    UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostRecent tag:0];
+    [pushController setTabBarItem:pushBarItem];
+    [pushBarItem release];
+    
+    UINavigationController *pushNavController = [[UINavigationController alloc] initWithRootViewController:pushController];
+    [pushController release];
+    
+    ABPurchaseController *purchaseController = [[ABPurchaseController alloc] init];
+    UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
+    [purchaseController setTabBarItem:purchaseBarItem];
+    [purchaseBarItem release];
+    
+    UINavigationController *purchaseNavController = [[UINavigationController alloc] initWithRootViewController:purchaseController];
+    [purchaseController release];
+    
+    [controller setViewControllers:[NSArray arrayWithObjects:pushNavController, purchaseNavController, nil]];
+    
+    [self.window addSubview:controller.view];
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
     [configOptions setValue:@"14" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
     [configOptions setValue:@"06d9debc-11a9-11e1-bcb8-0019d181644b" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    
+    //for sandbox server
+//    [configOptions setValue:@"3" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+//    [configOptions setValue:@"d50ff01c-1025-11e1-bb6a-001ec9af8d09" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     
 //    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
 //    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];

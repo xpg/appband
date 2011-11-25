@@ -12,3 +12,7 @@
 #import "ABNotification.h"
 #import "ABRegisterTokenResponse.h"
 #import "ABRichResponse.h"
+
+#import "ABProduct.h"
+#import "ABProductsResponse.h"
+#import "ABPurchaseResponse.h"

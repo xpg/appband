@@ -37,7 +37,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setBackgroundColor:[UIColor blackColor]];
+    self.title = @"Notification";
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidUnload {

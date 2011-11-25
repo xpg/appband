@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class ABPushController;
-
 @interface ABAppDelegate : UIResponder <UIApplicationDelegate> {
-    ABPushController *pushController;
+    UITabBarController *controller;
 }
 
 @property (strong, nonatomic) UIWindow *window;
