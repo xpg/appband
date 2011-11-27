@@ -34,10 +34,6 @@ SINGLETON_INTERFACE(ABPurchase)
  *       product: product.
  *       
  */
-- (void)purchaseProduct:(ABProduct *)product 
-           statusTarget:(id)statusTarget 
-         statusSelector:(SEL)statusSelector 
-         proccessTarget:(id)proccessTarget 
-       proccessSelector:(SEL)proccessSeletor;
+- (void)purchaseProduct:(ABProduct *)product notificationKey:(NSString *)key path:(NSString *)path;
 
 @end

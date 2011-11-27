@@ -10,8 +10,8 @@
 //#define kAppBandProductionServer @"https://192.168.1.60"
 #define kAppBandProductionServer @"http://192.168.1.51:3000"
 
-#define kAppBandDeviceUDID @"ABDeviceUDID"
-#define kLastDeviceTokenKey @"ABDeviceTokenChanged"
+#define kAppBandDeviceUDID @"AppBandDeviceUDID"
+#define kLastDeviceTokenKey @"AppBandTokenChanged"
 
 #import "AppBand.h"
 #import "AppBand+Private.h"
@@ -39,7 +39,7 @@ static AppBand *_appBand;
         _udid = [[NSUserDefaults standardUserDefaults] objectForKey:kAppBandDeviceUDID];
         if (!_udid) {
             UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
-            _udid = [deviceUDID uniqueDeviceIdentifier];
+            _udid = [[deviceUDID uniqueDeviceIdentifier] copy];
             [[NSUserDefaults standardUserDefaults] setObject:_udid forKey:kAppBandDeviceUDID];
             [deviceUDID release];
         }
@@ -320,16 +320,8 @@ static AppBand *_appBand;
  *       product: product.
  *       
  */
-- (void)purchaseProduct:(ABProduct *)product 
-           statusTarget:(id)statusTarget 
-         statusSelector:(SEL)statusSelector 
-         proccessTarget:(id)proccessTarget 
-       proccessSelector:(SEL)proccessSeletor {
-    [[ABPurchase shared] purchaseProduct:product 
-                            statusTarget:statusTarget 
-                          statusSelector:statusSelector 
-                          proccessTarget:proccessTarget 
-                        proccessSelector:proccessSeletor];
+- (void)purchaseProduct:(ABProduct *)product notificationKey:(NSString *)key path:(NSString *)path {
+    [[ABPurchase shared] purchaseProduct:product notificationKey:key path:path];
 }
 
 #pragma mark - singleton

@@ -28,6 +28,9 @@
 #define AB_Product_IsPurchased @"is_purchased"
 #define AB_Product_Receipt @"receipt"
 
+#define AB_Transaction_ID @"transaction_id"
+#define AB_Transaction_URL @"content_url"
+
 #define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
 #define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"
 

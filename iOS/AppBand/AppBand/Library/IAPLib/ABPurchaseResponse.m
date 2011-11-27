@@ -12,6 +12,7 @@
 
 @synthesize filePath;
 @synthesize productId;
+@synthesize proccessStatus;
 @synthesize status;
 @synthesize proccess;
 

@@ -50,6 +50,8 @@
 		96DAB780147254F20059345C /* AB_SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB75B147254F20059345C /* AB_SBJsonWriter.m */; };
 		96DAB782147254F20059345C /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAB75D147254F20059345C /* UIDevice+IdentifierAddition.m */; };
 		96DAB785147255140059345C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB784147255140059345C /* UIKit.framework */; };
+		96E035A41481D7690091A91F /* ABDownloadRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E035A21481D7690091A91F /* ABDownloadRequest.h */; };
+		96E035A51481D7690091A91F /* ABDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E035A31481D7690091A91F /* ABDownloadRequest.m */; };
 		96FE3A09147E38820039DD24 /* ABPurchaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FE3A07147E38810039DD24 /* ABPurchaseResponse.h */; };
 		96FE3A0A147E38820039DD24 /* ABPurchaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FE3A08147E38810039DD24 /* ABPurchaseResponse.m */; };
 		96FE3A0E147E47170039DD24 /* ABDeliverHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FE3A0C147E47160039DD24 /* ABDeliverHandler.h */; };
@@ -128,6 +130,8 @@
 		96DAB75D147254F20059345C /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
 		96DAB783147254FE0059345C /* AppBand-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppBand-Info.plist"; sourceTree = "<group>"; };
 		96DAB784147255140059345C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		96E035A21481D7690091A91F /* ABDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDownloadRequest.h; sourceTree = "<group>"; };
+		96E035A31481D7690091A91F /* ABDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDownloadRequest.m; sourceTree = "<group>"; };
 		96FE3A07147E38810039DD24 /* ABPurchaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchaseResponse.h; sourceTree = "<group>"; };
 		96FE3A08147E38810039DD24 /* ABPurchaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPurchaseResponse.m; sourceTree = "<group>"; };
 		96FE3A0C147E47160039DD24 /* ABDeliverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDeliverHandler.h; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				96DAB73C147254F20059345C /* ABGlobal.h */,
 				96DAB73D147254F20059345C /* ABHTTPRequest.h */,
 				96DAB73E147254F20059345C /* ABHTTPRequest.m */,
+				96E035A21481D7690091A91F /* ABDownloadRequest.h */,
+				96E035A31481D7690091A91F /* ABDownloadRequest.m */,
 				96DAB73F147254F20059345C /* ABReachability.h */,
 				96DAB740147254F20059345C /* ABReachability.m */,
 				96DAB741147254F20059345C /* ABResponse.h */,
@@ -358,6 +364,7 @@
 				96FE3A09147E38820039DD24 /* ABPurchaseResponse.h in Headers */,
 				96FE3A0E147E47170039DD24 /* ABDeliverHandler.h in Headers */,
 				96FE3A11147E47970039DD24 /* ABDeliverHandler+Private.h in Headers */,
+				96E035A41481D7690091A91F /* ABDownloadRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +488,7 @@
 				96DA1FB9147E172B00DE7DC4 /* ABDonwloadManager.m in Sources */,
 				96FE3A0A147E38820039DD24 /* ABPurchaseResponse.m in Sources */,
 				96FE3A0F147E47170039DD24 /* ABDeliverHandler.m in Sources */,
+				96E035A51481D7690091A91F /* ABDownloadRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

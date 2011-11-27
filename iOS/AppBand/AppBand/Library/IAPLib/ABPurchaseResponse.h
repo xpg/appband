@@ -7,18 +7,27 @@
 //
 
 typedef enum {
+    ABPurchaseStatusPaymentUnablePurchase,
     ABPurchaseStatusPaymentBegan,
     ABPurchaseStatusPaymentUnknown,
     ABPurchaseStatusPaymentSuccess,
-    ABPurchaseStatusProductDeliverBegan,
-    ABPurchaseStatusProductDelivering,
     ABPurchaseStatusPaymentClientInvalid,
     ABPurchaseStatusPaymentInvalid,
     ABPurchaseStatusPaymentNotAllowed,
     ABPurchaseStatusPaymentCancelled,
-    ABPurchaseStatusPaymentUnablePurchase,
-    ABPurchaseStatusProductUnavailable,
+    ABPurchaseStatusDeliverBegan,
+    ABPurchaseStatusDelivering,
+    ABPurchaseStatusDeliverFail,
+    ABPurchaseStatusDeliverCancelled,
+    ABPurchaseStatusDeliverURLFailure,
+    ABPurchaseStatusParametersUnavailable,
+    ABPurchaseStatusSuccess,
 } ABPurchaseStatus;
+
+typedef enum {
+    ABPurchaseProccessStatusDoing,
+    ABPurchaseProccessStatusEnd,
+} ABPurchaseProccessStatus;
 
 #import <Foundation/Foundation.h>
 
@@ -28,12 +37,14 @@ typedef enum {
     NSString *filePath;
     NSString *productId;
     
+    ABPurchaseProccessStatus proccessStatus;
     ABPurchaseStatus status;
     float proccess;
 }
 
 @property(nonatomic,copy) NSString *filePath;
 @property(nonatomic,copy) NSString *productId;
+@property(nonatomic,assign) ABPurchaseProccessStatus proccessStatus;
 @property(nonatomic,assign) ABPurchaseStatus status;
 @property(nonatomic,assign) float proccess;
 

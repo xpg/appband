@@ -6,7 +6,11 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#define AppBand_Demo_Download_Notification @"AppBand_Demo_Download_Notification_"
+
 #import "ABPurchaseController.h"
+
+#import "ABPurchaseDownloadController.h"
 
 #import "AppBandKit.h"
 
@@ -14,13 +18,32 @@
 
 @property(nonatomic,copy) NSArray *products;
 
+- (void)showMessage:(NSString *)message;
+
+- (NSString *)getDocumentPath;
+
 - (void)getProductsEnd:(ABProductsResponse *)response;
+
+- (void)downloadProccess:(NSNotification *)notification;
 
 @end
 
 @implementation ABPurchaseController
 
 @synthesize products = _products;
+
+- (void)showMessage:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Purchase" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alertView show];
+    
+    [alertView release];
+}
+
+- (NSString *)getDocumentPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	return [paths objectAtIndex:0];
+}
 
 - (void)getProductsEnd:(ABProductsResponse *)response {
     if (response.code == ABResponseCodeHTTPSuccess) {
@@ -30,17 +53,66 @@
     }
 }
 
-
+- (void)downloadProccess:(NSNotification *)notification {
+    ABPurchaseResponse *response = [notification object];
+    switch (response.proccessStatus) {
+        case ABPurchaseProccessStatusEnd: {
+            switch (response.status) {
+                case ABPurchaseStatusParametersUnavailable: {
+                    [self showMessage:@"ABPurchaseStatusParametersUnavailable"];
+                    break;
+                }
+                case ABPurchaseStatusPaymentClientInvalid: {
+                    [self showMessage:@"ABPurchaseStatusPaymentClientInvalid"];
+                    break;
+                }
+                case ABPurchaseStatusPaymentNotAllowed: {
+                    [self showMessage:@"ABPurchaseStatusPaymentNotAllowed"];
+                    break;
+                }
+                case ABPurchaseStatusPaymentCancelled: {
+                    [self showMessage:@"ABPurchaseStatusPaymentCancelled"];
+                    break;
+                }
+                case ABPurchaseStatusDeliverURLFailure: {
+                    [self showMessage:@"ABPurchaseStatusDeliverURLFailure"];
+                    break;
+                }
+                default:
+                    [self showMessage:@"Unknown"];
+                    break;
+            }
+            break;
+        }
+        case ABPurchaseProccessStatusDoing: {
+            switch (response.status) {
+                case ABPurchaseStatusDeliverBegan: {
+                    [[NSNotificationCenter defaultCenter] removeObserver:self];
+                    
+                    ABPurchaseDownloadController *controller = [[ABPurchaseDownloadController alloc] init];
+                    [controller setNKey:[NSString stringWithFormat:@"%@%@",AppBand_Demo_Download_Notification,response.productId]];
+                    [self.navigationController pushViewController:controller animated:YES];
+                    [controller release];
+                    break;
+                }
+                default:
+                    break;
+            }
+            break;
+        }
+    }
+}
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ABProduct *product = [self.products objectAtIndex:indexPath.row];
-    [[AppBand shared] purchaseProduct:product 
-                         statusTarget:nil 
-                       statusSelector:nil 
-                       proccessTarget:nil 
-                     proccessSelector:nil];
+    
+    NSString *nKey = [NSString stringWithFormat:@"%@%@",AppBand_Demo_Download_Notification,product.productId];
+    NSString *path = [self getDocumentPath];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadProccess:) name:nKey object:nil];
+    [[AppBand shared] purchaseProduct:product notificationKey:nKey path:path];
 }
 
 #pragma mark - UITableViewDataSource
@@ -116,8 +188,9 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

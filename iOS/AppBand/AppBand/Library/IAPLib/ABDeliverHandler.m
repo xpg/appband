@@ -11,7 +11,17 @@
 
 @implementation ABDeliverHandler
 
+@synthesize transactionId = _transactionId;
+
+@synthesize notificationKey = _notificationKey;
 @synthesize product = _product;
+
+@synthesize destroyTarget = _destroyTarget;
+@synthesize destroySeletor = _destroySeletor;
+
+@synthesize path = _path;
+
+#pragma mark - Private
 
 - (NSString *)encode:(const uint8_t *)input length:(NSInteger)length {
     static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -39,6 +49,61 @@
     return [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
 }
 
+- (void)getDownloadURLEnd:(NSDictionary *)response {
+    ABHTTPResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+    
+    ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
+    [productResponse setProductId:self.product.productId];
+    [productResponse setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
+    [productResponse setError:[response objectForKey:ABHTTPResponseKeyError]];
+    
+    if (code == ABHTTPResponseSuccess) {
+        NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
+        
+        //parser response json
+        NSError *error = nil;
+        AB_SBJSON *json = [[AB_SBJSON alloc] init];
+        NSDictionary *dic = [json objectWithString:resp error:&error];
+        [json release];
+        
+        if (dic && !error) {
+            [productResponse setError:nil];
+            [productResponse setProccessStatus:ABPurchaseProccessStatusDoing];
+            [productResponse setStatus:ABPurchaseStatusDeliverBegan];
+            
+            if (self.notificationKey && ![self.notificationKey isEqualToString:@""]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse];
+            }
+            
+            self.transactionId = [dic objectForKey:AB_Transaction_ID];
+            NSString *contentURL = [dic objectForKey:AB_Transaction_URL];
+            
+            [[ABDonwloadManager shared] deliverWithProductId:self.product.productId url:contentURL savePath:self.path notificationKey:self.notificationKey];
+        } else {
+            [productResponse setProccessStatus:ABPurchaseProccessStatusEnd];
+            [productResponse setStatus:ABPurchaseStatusDeliverURLFailure];
+            
+            if (self.notificationKey && ![self.notificationKey isEqualToString:@""]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse];
+            }
+        }
+        
+    } else {
+        [productResponse setProccessStatus:ABPurchaseProccessStatusEnd];
+        [productResponse setStatus:ABPurchaseStatusDeliverURLFailure];
+        
+        if (self.notificationKey && ![self.notificationKey isEqualToString:@""]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse];
+        }
+    }
+    
+    if ([self.destroyTarget respondsToSelector:self.destroySeletor]) {
+        [self.destroyTarget performSelector:self.destroySeletor withObject:self];
+    }
+}
+
+#pragma mark - Public
+
 - (void)begin {
     NSString *urlString = [NSString stringWithFormat:@"%@/client_apps/%@/products/transactions.json?",[[AppBand shared] server],[[AppBand shared] appKey]];
     NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
@@ -64,22 +129,34 @@
                                                        url:urlString 
                                                  parameter:parameters
                                                    timeout:kAppBandRequestTimeout
-                                                  delegate:nil
-                                                    finish:nil
-                                                      fail:nil];
+                                                  delegate:self
+                                                    finish:@selector(getDownloadURLEnd:)
+                                                      fail:@selector(getDownloadURLEnd:)];
     [[ABRestCenter shared] addRequest:request];
 }
 
 #pragma mark - lifecycle
 
-+ (ABDeliverHandler *)handlerWithProduct:(ABProduct *)product {
++ (ABDeliverHandler *)handlerWithProduct:(ABProduct *)product 
+                                    path:(NSString *)path 
+                         notificationKey:(NSString *)key 
+                           destroyTarget:(id)destroyTarget 
+                         destroySelector:(SEL)destroySeletor {
+    
     ABDeliverHandler *deliverHandler = [[[ABDeliverHandler alloc] init] autorelease];
+    [deliverHandler setPath:path];
     [deliverHandler setProduct:product];
+    [deliverHandler setNotificationKey:key];
+    [deliverHandler setDestroyTarget:destroyTarget];
+    [deliverHandler setDestroySeletor:destroySeletor];
     
     return deliverHandler;
 }
 
 - (void)dealloc {
+    [self setPath:nil];
+    [self setTransactionId:nil];
+    [self setNotificationKey:nil];
     [self setProduct:nil];
     [super dealloc];
 }

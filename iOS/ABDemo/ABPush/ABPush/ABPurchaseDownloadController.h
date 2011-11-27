@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ABPurchaseDownloadController : UIViewController
+@interface ABPurchaseDownloadController : UIViewController {
+    NSString *nKey;
+    
+    UIImageView *imageView;
+    UIProgressView *progressView;
+}
+
+@property(nonatomic,copy) NSString *nKey;
 
 @end

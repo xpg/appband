@@ -17,8 +17,8 @@
 
 @interface ABPurchase() <SKPaymentTransactionObserver>
 
-@property(nonatomic,assign) id paymentStatusTarget;
-@property(nonatomic,assign) SEL paymentStatusSelector;
+@property(nonatomic,copy) NSString *path;
+@property(nonatomic,copy) NSString *notificationKey;
 
 @property(nonatomic,retain) NSMutableDictionary *deliverHnadlerDictionary;
 @property(nonatomic,retain) NSMutableDictionary *productsHandlerDictionay;
@@ -27,13 +27,6 @@
 
 - (void)destroyProductsHandler:(ABProductHandler *)handler;
 
-/*
- * Deliver Product
- * 
- * Paramters:
- *       product: product.
- *       
- */
 - (void)deliverProduct:(ABProduct *)product;
 
 - (void)completeTransaction:(SKPaymentTransaction *)transaction;
@@ -43,5 +36,13 @@
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction;
 
 - (void)provideContent:(SKPaymentTransaction *)transaction;
+
+- (void)sendABPurchaseWithId:(NSString *)productId 
+                responseCode:(ABResponseCode)code 
+              proccessStatus:(ABPurchaseProccessStatus)proccessStatus 
+                      status:(ABPurchaseStatus)status 
+                    proccess:(float)proccess 
+                       error:(NSError *)error 
+             notificationKey:(NSString *)notificationKey;
 
 @end

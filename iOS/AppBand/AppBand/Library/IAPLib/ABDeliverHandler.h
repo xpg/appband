@@ -11,9 +11,19 @@
 @class ABProduct;
 
 @interface ABDeliverHandler : NSObject {
+    
 }
 
-+ (ABDeliverHandler *)handlerWithProduct:(ABProduct *)product;
+@property(nonatomic,readonly,copy) NSString *notificationKey;
+
+@property(nonatomic,assign) id destroyTarget;
+@property(nonatomic,assign) SEL destroySeletor;
+
++ (ABDeliverHandler *)handlerWithProduct:(ABProduct *)product 
+                                    path:(NSString *)path 
+                         notificationKey:(NSString *)key 
+                           destroyTarget:(id)destroyTarget 
+                         destroySelector:(SEL)destroySeletor;
 
 - (void)begin;
 
