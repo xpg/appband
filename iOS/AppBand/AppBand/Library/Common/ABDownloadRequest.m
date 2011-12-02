@@ -10,7 +10,11 @@
 
 #import "ABPurchaseResponse.h"
 
+#import "ABGlobal.h"
+
 @interface ABDownloadRequest()
+
+- (void)doCancelledJob;
 
 - (BOOL)createFileAtPath:(NSString *)path overwirte:(BOOL)overwirte;
 
@@ -31,8 +35,18 @@
 @synthesize notificationKey = _notificationKey;
 
 @synthesize filePath = _filePath;
+@synthesize transationId = _transationId;
 
 #pragma mark - Private
+
+- (void)doCancelledJob {
+    if (self.filePath) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NO]) {
+            [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:NULL];
+        }
+    }
+    [self sendABPurchaseResponse:ABResponseCodeHTTPSuccess proccessStatus:ABPurchaseProccessStatusEnd status:ABPurchaseStatusDeliverCancelled proccess:0. filePath:nil error:nil];
+}
 
 - (BOOL)createFileAtPath:(NSString *)path overwirte:(BOOL)overwirte {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:NO]) {
@@ -60,7 +74,11 @@
     [productResponse setProccess:proccess];
     [productResponse setFilePath:filePath];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse];
+    NSDictionary *userInfo = nil;
+    if (status == ABPurchaseStatusSuccess) {
+        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:self.transationId, AB_Transaction_ID, nil];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse userInfo:userInfo];
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -129,25 +147,25 @@
 
 - (void)main {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	NSURL *fileURL = [NSURL URLWithString:self.url];
-	if (fileURL) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
-        
-        _done = NO;
-        _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    }
-	
-	while(!_done && ![self isCancelled]) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-    }
     
-    if (!_done && [self isCancelled]) {
-        if (self.filePath) {
-            if ([[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NO]) {
-                [[NSFileManager defaultManager] removeItemAtPath:self.filePath error:NULL];
-            }
+    if ([self isCancelled]) {
+        [self doCancelledJob];
+    } else {
+        NSURL *fileURL = [NSURL URLWithString:self.url];
+        if (fileURL) {
+            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
+            
+            _done = NO;
+            _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         }
-        [self sendABPurchaseResponse:ABResponseCodeHTTPSuccess proccessStatus:ABPurchaseProccessStatusEnd status:ABPurchaseStatusDeliverCancelled proccess:0. filePath:nil error:nil];
+        
+        while(!_done && ![self isCancelled]) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }
+        
+        if (!_done && [self isCancelled]) {
+            [self doCancelledJob];
+        }
     }
     
 	[pool release];
@@ -155,11 +173,13 @@
 
 #pragma mark - lifecycle
 
-+ (id)downloadWithProductId:(NSString *)productId
++ (id)downloadWithProductId:(NSString *)productId 
+               transationId:(NSString *)transationId 
                         url:(NSString *)url
                        path:(NSString *)path 
             notificationKey:(NSString *)notificationKey {
     ABDownloadRequest *downloader = [[[ABDownloadRequest alloc] init] autorelease];
+    [downloader setTransationId:transationId];
     [downloader setProductId:productId];
     [downloader setUrl:url];
     [downloader setPath:path];
@@ -180,6 +200,7 @@
 
 - (void)dealloc {
     DLog(@"ABDownloadRequest dealloc - url: %@",self.url);
+    [self setTransationId:nil];
     [self setFilePath:nil];
     [self setProductId:nil];
     [self setUrl:nil];

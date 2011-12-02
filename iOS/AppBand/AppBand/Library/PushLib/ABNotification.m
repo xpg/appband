@@ -15,13 +15,13 @@
 @synthesize alert;
 @synthesize badge;
 @synthesize sound;
-@synthesize richId;
+@synthesize notificationId;
 
 - (void)dealloc {
     [self setAlert:nil];
     [self setBadge:nil];
     [self setSound:nil];
-    [self setRichId:nil];
+    [self setNotificationId:nil];
     [super dealloc];
 }
 

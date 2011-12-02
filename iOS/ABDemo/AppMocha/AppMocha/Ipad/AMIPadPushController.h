@@ -1,0 +1,21 @@
+//
+//  AMIPadPushController.h
+//  AppMocha
+//
+//  Created by Jason Wang on 12/2/11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+#import "CoreDataManager.h"
+
+@interface AMIPadPushController : UIViewController <UITableViewDelegate,UITableViewDataSource> {
+    CoreDataController *dataController;
+    
+    IBOutlet UITableView *pushTableView;
+}
+
+@property(nonatomic,retain) IBOutlet UITableView *pushTableView;
+
+@end

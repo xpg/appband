@@ -41,7 +41,8 @@ SINGLETON_IMPLEMENTATION(ABPush)
 - (void)callbackPushSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 
                       target:(id)target 
-                pushSelector:(SEL)pushSelector {
+                pushSelector:(SEL)pushSelector
+              notificationId:(NSString *)notificationId {
     NSDictionary *aps = [notification objectForKey:AppBandNotificationAPS];
     if (aps) {
         if ([[AppBand shared] handlePushAuto]) {
@@ -57,6 +58,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
                 [abNotification setAlert:[aps objectForKey:AppBandNotificationAlert]];
                 [abNotification setBadge:[aps objectForKey:AppBandNotificationBadge]];
                 [abNotification setSound:[aps objectForKey:AppBandNotificationSound]];
+                [abNotification setNotificationId:notificationId];
                 [target performSelector:pushSelector withObject:abNotification];
             }
         }
@@ -67,7 +69,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
             applicationState:(UIApplicationState)state 
                       target:(id)target 
                 richSelector:(SEL)richSelector 
-                      richId:(NSString *)richId {
+              notificationId:(NSString *)notificationId {
     NSDictionary *aps = [notification objectForKey:AppBandNotificationAPS];
     NSString *rid = [notification objectForKey:AppBandRichNotificationId];
     if (aps && rid) {
@@ -82,7 +84,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
                 [abNotification setAlert:[aps objectForKey:AppBandNotificationAlert]];
                 [abNotification setBadge:[aps objectForKey:AppBandNotificationBadge]];
                 [abNotification setSound:[aps objectForKey:AppBandNotificationSound]];
-                [abNotification setRichId:rid];
+                [abNotification setNotificationId:rid];
                 
                 [target performSelector:richSelector withObject:abNotification];
             }
@@ -131,18 +133,19 @@ SINGLETON_IMPLEMENTATION(ABPush)
               richSelector:(SEL)richSelector {
     if (!notification) 
         return;
-
+    
     int type = [notification objectForKey:AppBandPushNotificationType] ? [[notification objectForKey:AppBandPushNotificationType] intValue] : 0;
+    NSString *notificationId = [notification objectForKey:AppBandRichNotificationId];
+    
     switch (type) {
         case 1: {
-            NSString *rid = [notification objectForKey:AppBandRichNotificationId];
-            if (!rid || [rid isEqualToString:@""]) return;
+            if (!notificationId || [notificationId isEqualToString:@""]) return;
             
-            [[ABPush shared] callbackRichSelector:notification applicationState:state target:target richSelector:richSelector richId:rid];
+            [[ABPush shared] callbackRichSelector:notification applicationState:state target:target richSelector:richSelector notificationId:notificationId];
             break;
         }
         default: {
-            [[ABPush shared] callbackPushSelector:notification applicationState:state target:target pushSelector:pushSelector];
+            [[ABPush shared] callbackPushSelector:notification applicationState:state target:target pushSelector:pushSelector notificationId:notificationId];
             break;
         }
     }

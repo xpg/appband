@@ -78,7 +78,7 @@
             self.transactionId = [dic objectForKey:AB_Transaction_ID];
             NSString *contentURL = [dic objectForKey:AB_Transaction_URL];
             
-            [[ABDonwloadManager shared] deliverWithProductId:self.product.productId url:contentURL savePath:self.path notificationKey:self.notificationKey];
+            [[ABDonwloadManager shared] deliverWithProductId:self.product.productId transationId:self.transactionId url:contentURL savePath:self.path notificationKey:self.notificationKey];
         } else {
             [productResponse setProccessStatus:ABPurchaseProccessStatusEnd];
             [productResponse setStatus:ABPurchaseStatusDeliverURLFailure];
@@ -95,10 +95,6 @@
         if (self.notificationKey && ![self.notificationKey isEqualToString:@""]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse];
         }
-    }
-    
-    if ([self.destroyTarget respondsToSelector:self.destroySeletor]) {
-        [self.destroyTarget performSelector:self.destroySeletor withObject:self];
     }
 }
 

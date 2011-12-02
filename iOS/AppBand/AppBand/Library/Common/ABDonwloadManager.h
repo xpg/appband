@@ -17,6 +17,10 @@
 
 SINGLETON_INTERFACE(ABDonwloadManager)
 
-- (void)deliverWithProductId:(NSString *)productId url:(NSString*)url savePath:(NSString*)path notificationKey:(NSString*)notificationKey;
+- (void)deliverWithProductId:(NSString *)productId 
+                transationId:(NSString *)transationId 
+                         url:(NSString*)url 
+                    savePath:(NSString*)path 
+             notificationKey:(NSString*)notificationKey;
 
 @end

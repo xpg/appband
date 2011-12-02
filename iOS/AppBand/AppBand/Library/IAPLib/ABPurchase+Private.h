@@ -17,6 +17,8 @@
 
 @interface ABPurchase() <SKPaymentTransactionObserver>
 
+@property(nonatomic,assign) BOOL isPurchasing;
+
 @property(nonatomic,copy) NSString *path;
 @property(nonatomic,copy) NSString *notificationKey;
 

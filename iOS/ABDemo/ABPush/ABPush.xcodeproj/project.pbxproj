@@ -13,21 +13,12 @@
 		9694EB4F145FEA9800E91025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9694EB4D145FEA9800E91025 /* InfoPlist.strings */; };
 		9694EB51145FEA9800E91025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB50145FEA9800E91025 /* main.m */; };
 		9694EB55145FEA9800E91025 /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9694EB54145FEA9800E91025 /* ABAppDelegate.m */; };
+		96A7D94B14834F6B004E25CF /* AppBand.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96A7D94A14834F6B004E25CF /* AppBand.bundle */; };
 		96DA1F99147DF60D00DE7DC4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DA1F98147DF60D00DE7DC4 /* StoreKit.framework */; };
 		96DAB7861472552D0059345C /* libAppBand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB72F147254C80059345C /* libAppBand.a */; };
 		96DAB7981472566F0059345C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7951472566F0059345C /* Icon.png */; };
 		96DAB7991472566F0059345C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7961472566F0059345C /* Icon@2x.png */; };
 		96DAB79A1472566F0059345C /* iTunesArtWork in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7971472566F0059345C /* iTunesArtWork */; };
-		96DAB7A614725EB90059345C /* AppBandIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB79C14725EB90059345C /* AppBandIcon.png */; };
-		96DAB7A714725EB90059345C /* AppBandIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB79D14725EB90059345C /* AppBandIcon@2x.png */; };
-		96DAB7A814725EB90059345C /* AppBandOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB79E14725EB90059345C /* AppBandOk.png */; };
-		96DAB7A914725EB90059345C /* AppBandOk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB79F14725EB90059345C /* AppBandOk@2x.png */; };
-		96DAB7AA14725EB90059345C /* AppBandPushBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A014725EB90059345C /* AppBandPushBackground.png */; };
-		96DAB7AB14725EB90059345C /* AppBandPushBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A114725EB90059345C /* AppBandPushBackground@2x.png */; };
-		96DAB7AC14725EB90059345C /* AppBandRichBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A214725EB90059345C /* AppBandRichBackground.png */; };
-		96DAB7AD14725EB90059345C /* AppBandRichBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A314725EB90059345C /* AppBandRichBackground@2x.png */; };
-		96DAB7AE14725EB90059345C /* AppBandRichClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A414725EB90059345C /* AppBandRichClose.png */; };
-		96DAB7AF14725EB90059345C /* AppBandRichClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DAB7A514725EB90059345C /* AppBandRichClose@2x.png */; };
 		96E035AC1481E83E0091A91F /* ABPurchaseDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E035AB1481E83D0091A91F /* ABPurchaseDownloadController.m */; };
 		96E796D3147F31510011A52C /* ABPurchaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E796D2147F31510011A52C /* ABPurchaseController.m */; };
 		96EED2B2146A1A6600F9B9B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EED2B1146A1A6600F9B9B4 /* SystemConfiguration.framework */; };
@@ -62,21 +53,12 @@
 		9694EB52145FEA9800E91025 /* ABPush-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ABPush-Prefix.pch"; sourceTree = "<group>"; };
 		9694EB53145FEA9800E91025 /* ABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABAppDelegate.h; sourceTree = "<group>"; };
 		9694EB54145FEA9800E91025 /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
+		96A7D94A14834F6B004E25CF /* AppBand.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppBand.bundle; path = ../../../../Resources/AppBand.bundle; sourceTree = "<group>"; };
 		96DA1F98147DF60D00DE7DC4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		96DAB726147254C70059345C /* AppBand.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppBand.xcodeproj; path = ../../AppBand/AppBand.xcodeproj; sourceTree = "<group>"; };
 		96DAB7951472566F0059345C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		96DAB7961472566F0059345C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		96DAB7971472566F0059345C /* iTunesArtWork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtWork; sourceTree = "<group>"; };
-		96DAB79C14725EB90059345C /* AppBandIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBandIcon.png; sourceTree = "<group>"; };
-		96DAB79D14725EB90059345C /* AppBandIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandIcon@2x.png"; sourceTree = "<group>"; };
-		96DAB79E14725EB90059345C /* AppBandOk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBandOk.png; sourceTree = "<group>"; };
-		96DAB79F14725EB90059345C /* AppBandOk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandOk@2x.png"; sourceTree = "<group>"; };
-		96DAB7A014725EB90059345C /* AppBandPushBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBandPushBackground.png; sourceTree = "<group>"; };
-		96DAB7A114725EB90059345C /* AppBandPushBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandPushBackground@2x.png"; sourceTree = "<group>"; };
-		96DAB7A214725EB90059345C /* AppBandRichBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBandRichBackground.png; sourceTree = "<group>"; };
-		96DAB7A314725EB90059345C /* AppBandRichBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandRichBackground@2x.png"; sourceTree = "<group>"; };
-		96DAB7A414725EB90059345C /* AppBandRichClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBandRichClose.png; sourceTree = "<group>"; };
-		96DAB7A514725EB90059345C /* AppBandRichClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppBandRichClose@2x.png"; sourceTree = "<group>"; };
 		96E035AA1481E83D0091A91F /* ABPurchaseDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchaseDownloadController.h; sourceTree = "<group>"; };
 		96E035AB1481E83D0091A91F /* ABPurchaseDownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPurchaseDownloadController.m; sourceTree = "<group>"; };
 		96E796D1147F31510011A52C /* ABPurchaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchaseController.h; sourceTree = "<group>"; };
@@ -176,16 +158,7 @@
 		96DAB79B14725EB90059345C /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				96DAB79C14725EB90059345C /* AppBandIcon.png */,
-				96DAB79D14725EB90059345C /* AppBandIcon@2x.png */,
-				96DAB79E14725EB90059345C /* AppBandOk.png */,
-				96DAB79F14725EB90059345C /* AppBandOk@2x.png */,
-				96DAB7A014725EB90059345C /* AppBandPushBackground.png */,
-				96DAB7A114725EB90059345C /* AppBandPushBackground@2x.png */,
-				96DAB7A214725EB90059345C /* AppBandRichBackground.png */,
-				96DAB7A314725EB90059345C /* AppBandRichBackground@2x.png */,
-				96DAB7A414725EB90059345C /* AppBandRichClose.png */,
-				96DAB7A514725EB90059345C /* AppBandRichClose@2x.png */,
+				96A7D94A14834F6B004E25CF /* AppBand.bundle */,
 			);
 			name = resources;
 			path = ../../../AppBand/resources;
@@ -269,16 +242,7 @@
 				96DAB7981472566F0059345C /* Icon.png in Resources */,
 				96DAB7991472566F0059345C /* Icon@2x.png in Resources */,
 				96DAB79A1472566F0059345C /* iTunesArtWork in Resources */,
-				96DAB7A614725EB90059345C /* AppBandIcon.png in Resources */,
-				96DAB7A714725EB90059345C /* AppBandIcon@2x.png in Resources */,
-				96DAB7A814725EB90059345C /* AppBandOk.png in Resources */,
-				96DAB7A914725EB90059345C /* AppBandOk@2x.png in Resources */,
-				96DAB7AA14725EB90059345C /* AppBandPushBackground.png in Resources */,
-				96DAB7AB14725EB90059345C /* AppBandPushBackground@2x.png in Resources */,
-				96DAB7AC14725EB90059345C /* AppBandRichBackground.png in Resources */,
-				96DAB7AD14725EB90059345C /* AppBandRichBackground@2x.png in Resources */,
-				96DAB7AE14725EB90059345C /* AppBandRichClose.png in Resources */,
-				96DAB7AF14725EB90059345C /* AppBandRichClose@2x.png in Resources */,
+				96A7D94B14834F6B004E25CF /* AppBand.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

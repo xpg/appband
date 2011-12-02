@@ -26,6 +26,7 @@
         BOOL _done;
     
         NSString *_filePath;
+        NSString *_transationId;
 }
 
 @property(nonatomic,copy) NSString *productId;
@@ -34,8 +35,10 @@
 @property(nonatomic,copy) NSString *notificationKey;
 
 @property(nonatomic,copy) NSString *filePath;
+@property(nonatomic,copy) NSString *transationId;
 
-+ (id)downloadWithProductId:(NSString *)productId
++ (id)downloadWithProductId:(NSString *)productId 
+               transationId:(NSString *)transationId 
                         url:(NSString *)url
                        path:(NSString *)path 
             notificationKey:(NSString *)notificationKey;

@@ -20,7 +20,7 @@ typedef enum {
     NSString *alert;
     NSNumber *badge;
     NSString *sound;
-    NSString *richId;
+    NSString *notificationId;
 }
 
 @property(nonatomic,assign) UIApplicationState state;
@@ -28,6 +28,6 @@ typedef enum {
 @property(nonatomic,copy) NSString *alert;
 @property(nonatomic,copy) NSNumber *badge;
 @property(nonatomic,copy) NSString *sound;
-@property(nonatomic,copy) NSString *richId;
+@property(nonatomic,copy) NSString *notificationId;
 
 @end

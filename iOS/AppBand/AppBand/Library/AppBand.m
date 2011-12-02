@@ -7,8 +7,8 @@
 //
 
 //#define kAppBandProductionServer @"https://apphub.gizwits.com"
-//#define kAppBandProductionServer @"https://192.168.1.60"
-#define kAppBandProductionServer @"http://192.168.1.51:3000"
+#define kAppBandProductionServer @"https://192.168.1.60"
+//#define kAppBandProductionServer @"http://192.168.1.51:3000"
 
 #define kAppBandDeviceUDID @"AppBandDeviceUDID"
 #define kLastDeviceTokenKey @"AppBandTokenChanged"
@@ -309,8 +309,8 @@ static AppBand *_appBand;
  */
 - (void)getAppProductByGroup:(NSString *)group 
                       target:(id)target 
-             finfishSelector:(SEL)finishSelector {
-    [[ABPurchase shared] getAppProductByGroup:group target:target finfishSelector:finishSelector];
+             finishSelector:(SEL)finishSelector {
+    [[ABPurchase shared] getAppProductByGroup:group target:target finishSelector:finishSelector];
 }
 
 /*

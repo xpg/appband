@@ -24,6 +24,9 @@
 #pragma mark - Public
 
 - (NSString *)localizedPrice:(SKProduct*)product {
+    if (self.isFree) {
+        return @"Free";
+    }
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];

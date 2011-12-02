@@ -7,6 +7,7 @@
 //
 
 typedef enum {
+    ABPurchaseStatusPaymentBlocking,
     ABPurchaseStatusPaymentUnablePurchase,
     ABPurchaseStatusPaymentBegan,
     ABPurchaseStatusPaymentUnknown,

@@ -135,7 +135,7 @@
  */
 - (void)getAppProductByGroup:(NSString *)group 
                       target:(id)target 
-             finfishSelector:(SEL)finishSelector;
+             finishSelector:(SEL)finishSelector;
 
 /*
  * Purchase Product

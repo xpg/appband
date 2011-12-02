@@ -21,13 +21,14 @@
 - (void)callbackPushSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 
                       target:(id)target 
-                pushSelector:(SEL)pushSelector;
+                pushSelector:(SEL)pushSelector 
+              notificationId:(NSString *)notificationId;
                          
 - (void)callbackRichSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 
                       target:(id)target 
                 richSelector:(SEL)richSelector 
-                      richId:(NSString *)richId;
+              notificationId:(NSString *)notificationId;
 
 - (void)impressionRichEnd:(ABRichHandler *)handler;
 

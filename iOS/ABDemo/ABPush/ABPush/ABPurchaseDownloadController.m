@@ -102,7 +102,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 300)];
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 10, 240, 300)];
     [imageView setContentMode:UIViewContentModeScaleAspectFit];
     
     progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];

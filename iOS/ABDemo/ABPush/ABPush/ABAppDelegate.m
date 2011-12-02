@@ -86,12 +86,12 @@
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
-    [configOptions setValue:@"14" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:@"06d9debc-11a9-11e1-bcb8-0019d181644b" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+//    [configOptions setValue:@"20" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+//    [configOptions setValue:@"061be34e-1983-11e1-80bf-0019d181644b" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     
     //for sandbox server
-//    [configOptions setValue:@"3" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-//    [configOptions setValue:@"d50ff01c-1025-11e1-bb6a-001ec9af8d09" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    [configOptions setValue:@"7" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+    [configOptions setValue:@"3cb50bc8-18df-11e1-b345-001ec9af8d09" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     
 //    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
 //    [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];
@@ -138,11 +138,6 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
     [AppBand end];
 }
 

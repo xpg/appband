@@ -67,7 +67,7 @@
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         
-        UIImage *icon = [UIImage imageNamed:@"AppBandIcon"];
+        UIImage *icon = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"AppBand.bundle/AppBandIcon@2x.png"]];
         UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 17, 25, 25)];
         [iconView setImage:icon];
         
@@ -80,7 +80,7 @@
         
         UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [closeButton setFrame:CGRectMake(227.5, 7.5, 35, 44)];
-        [closeButton setBackgroundImage:[UIImage imageNamed:@"AppBandRichClose"] forState:UIControlStateNormal];
+        [closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"AppBand.bundle/AppBandRichClose@2x.png"]] forState:UIControlStateNormal];
         [closeButton setShowsTouchWhenHighlighted:YES];
         [closeButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchDown];
         
@@ -102,7 +102,7 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    [[UIImage imageNamed:@"AppBandRichBackground"] drawInRect:(CGRect){CGPointZero,rect.size}];
+    [[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"AppBand.bundle/AppBandRichBackground@2x.png"]] drawInRect:(CGRect){CGPointZero,rect.size}];
 }
 
 - (void)dealloc {

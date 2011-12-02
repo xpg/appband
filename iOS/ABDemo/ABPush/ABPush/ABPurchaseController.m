@@ -82,6 +82,7 @@
                     [self showMessage:@"Unknown"];
                     break;
             }
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
             break;
         }
         case ABPurchaseProccessStatusDoing: {
@@ -105,6 +106,10 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ABProduct *product = [self.products objectAtIndex:indexPath.row];
     
@@ -126,12 +131,28 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setFrame:CGRectMake(240, 8, 70, 44)];
+        [button setTag:101];
+        
+        [cell addSubview:button];
     }
     
     ABProduct *product = [self.products objectAtIndex:indexPath.row];
     
     [cell.textLabel setText:product.skProduct.localizedTitle];
-    [cell.detailTextLabel setText:[product localizedPrice:product.skProduct]];
+//    [product localizedPrice:product.skProduct]
+    [cell.detailTextLabel setText:product.skProduct.localizedDescription];
+    
+    UIButton *button = (UIButton *)[cell viewWithTag:101];
+    [button setEnabled:YES];
+    if (product.isFree || product.transaction) {
+        [button setTitle:@"Get" forState:UIControlStateNormal];
+        [button setEnabled:NO];
+    } else {
+        [button setTitle:[product localizedPrice:product.skProduct] forState:UIControlStateNormal];
+    }
     
     return cell;
 }
@@ -167,6 +188,12 @@
 }
 */
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [_tableView reloadData];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -183,7 +210,7 @@
     
     [self.view addSubview:_tableView];
     
-    [[AppBand shared] getAppProductByGroup:nil target:self finfishSelector:@selector(getProductsEnd:)];
+    [[AppBand shared] getAppProductByGroup:nil target:self finishSelector:@selector(getProductsEnd:)];
 }
 
 - (void)viewDidUnload {

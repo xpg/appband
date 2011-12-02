@@ -11,6 +11,8 @@
 
 @implementation ABPurchase
 
+@synthesize isPurchasing = _isPurchasing;
+
 @synthesize path = _path;
 @synthesize notificationKey = _notificationKey;
 
@@ -87,6 +89,9 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
         [handler begin];
     }
     
+    self.isPurchasing = NO;
+    self.path = nil;
+    self.product = nil;
     self.notificationKey = nil;
 }
 
@@ -122,9 +127,12 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
     
     [self sendABPurchaseWithId:transaction.payment.productIdentifier responseCode:ABResponseCodeHTTPError proccessStatus:ABPurchaseProccessStatusEnd status:code proccess:0. error:[NSError errorWithDomain:AppBandSDKErrorDomain code:code userInfo:nil] notificationKey:self.notificationKey];
     
-    self.notificationKey = nil;
-    
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    self.isPurchasing = NO;
+    self.path = nil;
+    self.product = nil;
+    self.notificationKey = nil;
 }
 
 - (void)provideContent:(SKPaymentTransaction *)transaction {
@@ -151,7 +159,7 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
  */
 - (void)getAppProductByGroup:(NSString *)group 
                       target:(id)target 
-             finfishSelector:(SEL)finishSelector {
+             finishSelector:(SEL)finishSelector {
     NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
     NSString *productGroup = group ? group : @"";
     NSString *server = [[AppBand shared] server];
@@ -196,8 +204,16 @@ SINGLETON_IMPLEMENTATION(ABPurchase)
         return;
     }
     
+    if (self.isPurchasing) {
+        [self sendABPurchaseWithId:product.productId responseCode:ABResponseCodeHTTPError proccessStatus:ABPurchaseProccessStatusEnd status:ABPurchaseStatusPaymentBlocking proccess:0. error:[NSError errorWithDomain:AppBandSDKErrorDomain code:ABResponseCodeHTTPError userInfo:nil] notificationKey:key];
+        
+        return;
+    }
+    
     self.notificationKey = key;
     self.path = path;
+    
+    self.isPurchasing = YES;
     
     if (product.isFree || product.transaction) {
         [self deliverProduct:product];

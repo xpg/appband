@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  AppMocha
+
+  Created by Jason Wang on 12/2/11.
+  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+*/
+
+// *************  Localizable  ***********
+
+"AM_Login_View_Email" = "邮箱:";
+"AM_Login_View_Password" = "密码:";
+
+"AM_Registration_View_Email" = "邮箱:";
+"AM_Registration_View_Password" = "密码:";
+"AM_Registration_View_Check" = "确认密码:";
+"AM_Registration_View_Code" = "邀请码:";
+
+// *************  Image  ***********
