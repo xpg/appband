@@ -7,8 +7,10 @@
 //
 
 //#define kAppBandProductionServer @"https://apphub.gizwits.com"
-#define kAppBandProductionServer @"https://192.168.1.60"
+//#define kAppBandProductionServer @"https://192.168.1.60"
 //#define kAppBandProductionServer @"http://192.168.1.51:3000"
+
+#define kAppBandProductionServer @"https://api.appmocha.com"
 
 #define kAppBandDeviceUDID @"AppBandDeviceUDID"
 #define kLastDeviceTokenKey @"AppBandTokenChanged"

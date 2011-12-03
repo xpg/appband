@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 
 #import "CoreDataManager.h"
+#import "AMIPadRichView.h"
 
-@interface AMIPadPushController : UIViewController <UITableViewDelegate,UITableViewDataSource> {
+@class AMPushCell;
+
+@interface AMIPadPushController : UIViewController <UITableViewDelegate,UITableViewDataSource,AMIPadRichViewDelegate> {
     CoreDataController *dataController;
     
     IBOutlet UITableView *pushTableView;
+    
+    IBOutlet AMPushCell *pushCell;
+    
+    IBOutlet AMIPadRichView *richView;
 }
 
 @property(nonatomic,retain) IBOutlet UITableView *pushTableView;

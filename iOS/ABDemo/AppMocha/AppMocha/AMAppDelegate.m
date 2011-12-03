@@ -8,6 +8,8 @@
 
 #define AppMocha_Demo_App @"amd"
 
+#define AM_Demo_Logout @"AM_Demo_Logout"
+
 //#define kKeyChainLoginForAppMochaDemo @"_AppMochaDemo"
 #define kKeyChainEmailForAppMochaDemo @"kKeyChainEmailForAppMochaDemo"
 #define kKeyChainPasswordForAppMochaDemo @"kKeyChainPasswordForAppMochaDemo"
@@ -30,6 +32,8 @@
 #import "CoreDataManager.h"
 #import "AMModelConstant.h"
 
+#import "I18NController.h"
+
 @interface AMAppDelegate()
 
 @property(nonatomic,copy) NSString *userEmail;
@@ -49,6 +53,10 @@
 - (UIViewController *)getUnLoginController;
 
 - (NSDictionary *)getDictionaryFromABNotification:(ABNotification *)notification;
+
+- (void)cleanAll;
+
+- (void)handlePushWhenLauching:(NSDictionary *)launchOptions;
 
 @end
 
@@ -86,6 +94,21 @@
     return YES;
 }
 
+- (void)switchToFunctionController {
+    UIViewController *controller = [self getFunctionController];
+    [UIView transitionFromView:self.rootController.view toView:controller.view duration:.5 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+        self.rootController = controller;
+    }];
+}
+
+- (void)switchToUnLoginController {
+    [self cleanAll];
+    UIViewController *controller = [self getUnLoginController];
+    [UIView transitionFromView:self.rootController.view toView:controller.view duration:.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
+        self.rootController = controller;
+    }];
+}
+
 #pragma mark - Private
 
 - (void)setDeviceToken:(NSData *)tokenData {
@@ -110,7 +133,7 @@
         AMNotification *noti = [dataController saveModelObject:AMNotification_Class content:[self getDictionaryFromABNotification:notification] identification:[NSPredicate predicateWithFormat:@"abri = %@",notification.notificationId]];
         
         if (noti) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:AppMocha_Demo_Notificaion_Receive_Key object:noti];
+            [[NSNotificationCenter defaultCenter] postNotificationName:AppMocha_Demo_Notificaion_Receive_Key object:noti userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:notification.state], AppBand_App_Push_State, nil]];
         }
     }
 }
@@ -146,17 +169,26 @@
         
     } else {
         pushController = [[[AMIPadPushController alloc] initWithNibName:@"AMIPadPushController" bundle:nil] autorelease];
-        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostRecent tag:0];
+        pushController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+        
+//        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostRecent tag:0];
+        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTitle:@"推送通知" image:[UIImage imageNamed:@"iPad_AM_Tab_Notification"] tag:0];
         [pushController setTabBarItem:pushBarItem];
         [pushBarItem release];
         
         purchaseController = [[[AMIPadPurchaseController alloc] initWithNibName:@"AMIPadPurchaseController" bundle:nil] autorelease];
-        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
+        purchaseController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+        
+//        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
+        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTitle:@"应用内购买" image:[UIImage imageNamed:@"iPad_AM_Tab_Purchase"] tag:1];
         [purchaseController setTabBarItem:purchaseBarItem];
         [purchaseBarItem release];
         
         introController = [[[AMIPadIntroController alloc] initWithNibName:@"AMIPadIntroController" bundle:nil] autorelease];
-        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+        introController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+        
+//        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTitle:@"关于我们" image:[UIImage imageNamed:@"iPad_AM_Tab_Intro"] tag:1];
         [introController setTabBarItem:introBarItem];
         [introBarItem release];
     }
@@ -203,6 +235,17 @@
     return [NSDictionary dictionaryWithDictionary:dic];
 }
 
+- (void)cleanAll {
+    self.userEmail = nil;
+    self.userPassword = nil;
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKeyChainEmailForAppMochaDemo];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKeyChainPasswordForAppMochaDemo];
+}
+
+- (void)handlePushWhenLauching:(NSDictionary *)launchOptions {
+    [[AppBand shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:self pushSelector:@selector(didReceiveNotification:) richSelector:@selector(didReceiveNotification:)];
+}
+
 #pragma mark - Register For Remote Notification
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -240,7 +283,7 @@
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
     
-    [configOptions setValue:@"14" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+    [configOptions setValue:@"2" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
     [configOptions setValue:@"e1c70f12-1bf5-11e1-81fe-0019d181644b" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];
@@ -251,10 +294,7 @@
     
     [AppBand kickoff:kickOffOptions];
     
-    [[AppBand shared] resetBadge];
     [[AppBand shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
-    
-    [[AppBand shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:nil pushSelector:nil richSelector:nil];
     
     if ([self availableString:self.userEmail] && [self availableString:self.userPassword]) {
          self.rootController = [self getFunctionController];
@@ -265,6 +305,8 @@
     
     self.window.rootViewController = self.rootController;
     [self.window makeKeyAndVisible];
+    
+    [self performSelector:@selector(handlePushWhenLauching:) withObject:launchOptions afterDelay:.5];
     
     return YES;
 }
@@ -290,9 +332,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
+    [[AppBand shared] resetBadge];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

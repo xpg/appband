@@ -6,15 +6,22 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#define App_Receive_Push @"App_Receive_Push"
+
 #import "AMIPadPushController.h"
 
 #import "AMModelConstant.h"
+#import "I18NController.h"
+
+#import "AMPushCell.h"
 
 @interface AMIPadPushController()
 
 @property(nonatomic,copy) NSArray *pushArray;
 
 - (void)didReceiveNotification:(NSNotification *)notification;
+
+- (void)showRichView:(AMNotification *)notification;
 
 @end
 
@@ -30,6 +37,7 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     AMNotification *amn = notification.object;
+    UIApplicationState state = [[[notification userInfo] objectForKey:AppBand_App_Push_State] intValue];
     NSMutableArray *temp = [NSMutableArray arrayWithObjects:amn, nil];
     [temp addObjectsFromArray:self.pushArray];
     
@@ -37,7 +45,78 @@
     
     [self.pushTableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil] withRowAnimation:UITableViewRowAnimationTop];
     
+    
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[I18NController shareController] getLocalizedString:App_Receive_Push comment:@"" locale:nil] message:amn.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    } else {
+        if ([amn.type intValue] == 1) {
+            [self showRichView:amn];
+        }
+    }
+    
     [pool drain];
+}
+
+- (void)showRichView:(AMNotification *)notification {
+    if (richView) {
+        if (richView.notification) {
+            [richView setTarget:notification];
+        } else {
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+            
+            [self.view addSubview:richView];
+            
+            [UIView animateWithDuration:.2 animations:^{
+                [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.15 animations:^{
+                    [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:.15 animations:^{
+                        [richView setTransform:CGAffineTransformIdentity];
+                    } completion:^(BOOL finished) {
+                        [richView setTarget:notification];
+                    }];
+                }];
+            }];
+        }
+    }
+}
+
+#pragma mark - AMIPadRichViewDelegate
+
+- (void)richViewClosed:(AMIPadRichView *)rView {
+    if (richView) {
+        [UIView animateWithDuration:.2 animations:^{
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.15 animations:^{
+                [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.15 animations:^{
+                    [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+                } completion:^(BOOL finished) {
+                    [richView removeFromSuperview];
+                }];
+            }];
+        }];
+    }
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 104;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AMNotification *notification = [self.pushArray objectAtIndex:indexPath.row];
+    
+    if ([notification.type intValue] == 0) return;
+    
+    [self showRichView:notification];
 }
 
 #pragma mark - UITableViewDataSource
@@ -47,15 +126,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"AMPushCell";
+    AMPushCell *cell = (AMPushCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
+        [[NSBundle mainBundle] loadNibNamed:@"AMPushCell" owner:self options:NULL];
+        cell = pushCell;
     }
     
     AMNotification *notification = [self.pushArray objectAtIndex:indexPath.row];
     
-    [cell.textLabel setText:notification.message];
+    [cell setNotification:notification];
     
     return cell;
 }
@@ -89,7 +169,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
 }
 

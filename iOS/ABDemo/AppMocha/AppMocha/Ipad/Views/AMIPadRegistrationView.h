@@ -13,6 +13,11 @@
 @interface AMIPadRegistrationView : UIView <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate> {
     IBOutlet id<AMIPadRegistrationViewDelegate> delegate;
     IBOutlet UITableView *registerTableView;
+    IBOutlet UIActivityIndicatorView *indicatorView;
+    IBOutlet UILabel *messageLabel;
+    
+    IBOutlet UIButton *cancelButton;
+    IBOutlet UIButton *registerButton;
     
     UITextField *emailField;
     UITextField *passwordField;
@@ -21,7 +26,6 @@
 }
 
 @property(nonatomic,assign) IBOutlet id<AMIPadRegistrationViewDelegate> delegate;
-@property(nonatomic,retain) IBOutlet UITableView *registerTableView;
 
 - (IBAction)cancel:(id)sender;
 

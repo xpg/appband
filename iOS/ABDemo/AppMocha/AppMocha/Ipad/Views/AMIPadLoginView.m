@@ -9,6 +9,10 @@
 #define AM_Login_View_Email @"AM_Login_View_Email"
 #define AM_Login_View_Password @"AM_Login_View_Password"
 
+#define AM_Message_Login_Email_Null @"AM_Message_Login_Email_Null"
+#define AM_Message_Login_Password_Null @"AM_Message_Login_Password_Null"
+#define AM_Message_Login_Error @"AM_Message_Login_Error"
+
 #import "AMIPadLoginView.h"
 
 #import "AppBandKit.h"
@@ -24,6 +28,8 @@
 
 - (void)login;
 
+- (void)hiddenIndicatorAndShowMessage:(NSNumber *)type;
+
 @end
 
 @implementation AMIPadLoginView
@@ -32,7 +38,6 @@
 @synthesize password = _password;
 
 @synthesize delegate;
-@synthesize lgoinTableView;
 
 #pragma mark - IBAction
 
@@ -43,7 +48,18 @@
 }
 
 - (IBAction)login:(id)sender {
-    if (![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.email] || ![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.password]) return;
+    self.email = emailField.text;
+    self.password = passwordField.text;
+    if (![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.email]) {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Login_Email_Null comment:@"" locale:nil]];
+        return;
+    } 
+    
+    if (![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.password] || [self.password length] < 6) {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Login_Password_Null comment:@"" locale:nil]];
+        return;
+    }
+    
     
     [self login];
 }
@@ -90,6 +106,8 @@
             
             UITextField *field = [[[UITextField alloc] initWithFrame:CGRectMake(cell.frame.size.width * .4, cell.frame.size.height * .3, cell.frame.size.width * .58, cell.frame.size.height * .5)] autorelease];
             [field setBorderStyle:UITextBorderStyleNone];
+            [field setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+            [field setKeyboardType:UIKeyboardTypeEmailAddress];
             [field setTextAlignment:UITextAlignmentLeft];
             [field setReturnKeyType:UIReturnKeyDone];
             [field setBackgroundColor:[UIColor clearColor]];
@@ -129,6 +147,12 @@
 #pragma mark - Private
 
 - (void)login {
+    [loginButton setEnabled:NO];
+    [cancelButton setEnabled:NO];
+    [messageLabel setText:@""];
+    [indicatorView setHidden:NO];
+    [indicatorView startAnimating];
+    
     NSString *appKey = [[AppBand shared] appKey];
     NSString *appSecret = [[AppBand shared] appSecret];
     NSString *token = [(AMAppDelegate *)[UIApplication sharedApplication].delegate deviceToken];
@@ -143,6 +167,7 @@
     NSString *url = [[[AppBand shared] server] stringByAppendingPathComponent:@"mobile_users/verify"];
     
     [[xRestManager defaultManager] sendRequestTo:url parameter:parameters timeout:30. completion:^(xRestCompletionType type, NSString *response) {
+        [self performSelectorOnMainThread:@selector(hiddenIndicatorAndShowMessage:) withObject:[NSNumber numberWithInt:type] waitUntilDone:YES];
         if (type == xRestCompletionTypeSuccess) {
             if (self.delegate) {
                 [self.delegate loginSuccess:self email:self.email password:self.password];
@@ -151,17 +176,31 @@
     }];
 }
 
+- (void)hiddenIndicatorAndShowMessage:(NSNumber *)type {
+    [loginButton setEnabled:YES];
+    [cancelButton setEnabled:YES];
+    xRestCompletionType t = [type intValue];
+    [indicatorView setHidden:YES];
+    [indicatorView stopAnimating];
+    if (t == xRestCompletionTypeSuccess) {
+        [messageLabel setText:@""];
+    } else {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Login_Error comment:@"" locale:nil]];
+    }
+    
+}
+
 - (void)awakeFromNib {
-    self.lgoinTableView.backgroundView = nil;
-    self.lgoinTableView.backgroundView = [[[UIView alloc] init] autorelease];
-    self.lgoinTableView.backgroundColor = [UIColor clearColor];
+    lgoinTableView.backgroundView = nil;
+    lgoinTableView.backgroundView = [[[UIView alloc] init] autorelease];
+    lgoinTableView.backgroundColor = [UIColor clearColor];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.email = @"jwang_test1@xtremeprog.com";
-        self.password = @"go4xpg";
+        self.email = @"";
+        self.password = @"";
     }
     return self;
 }
@@ -175,7 +214,6 @@
 }
 
 - (void)dealloc {
-    [self setLgoinTableView:nil];
     [super dealloc];
 }
 

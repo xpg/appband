@@ -36,6 +36,30 @@
 		964BC1E4148622BB00830181 /* AppMocha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 964BC1E2148622BB00830181 /* AppMocha.xcdatamodeld */; };
 		964BC1F21486270100830181 /* AMNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 964BC1F11486270100830181 /* AMNotification.m */; };
 		964BC1F51486270100830181 /* AMProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 964BC1F41486270100830181 /* AMProduct.m */; };
+		9655ED62148A3E49001ACB21 /* iPad_AM_Tab_Intro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9655ED5F148A3E49001ACB21 /* iPad_AM_Tab_Intro.png */; };
+		9655ED63148A3E49001ACB21 /* iPad_AM_Tab_Notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 9655ED60148A3E49001ACB21 /* iPad_AM_Tab_Notification.png */; };
+		9655ED64148A3E49001ACB21 /* iPad_AM_Tab_Purchase.png in Resources */ = {isa = PBXBuildFile; fileRef = 9655ED61148A3E49001ACB21 /* iPad_AM_Tab_Purchase.png */; };
+		96E96DC11489D1790044E1A4 /* iPad_AM_Push_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DBE1489D1790044E1A4 /* iPad_AM_Push_Icon.png */; };
+		96E96DC21489D1790044E1A4 /* iPad_AM_Rich_Read_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DBF1489D1790044E1A4 /* iPad_AM_Rich_Read_Icon.png */; };
+		96E96DC31489D1790044E1A4 /* iPad_AM_Rich_Unread_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DC01489D1790044E1A4 /* iPad_AM_Rich_Unread_Icon.png */; };
+		96E96DC81489D1E90044E1A4 /* AMPushCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E96DC71489D1E90044E1A4 /* AMPushCell.m */; };
+		96E96DCE1489DF330044E1A4 /* AMPushCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DCD1489DF330044E1A4 /* AMPushCell.xib */; };
+		96E96DD71489ED6D0044E1A4 /* AMProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E96DD61489ED6D0044E1A4 /* AMProductCell.m */; };
+		96E96DD91489ED850044E1A4 /* AMProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DD81489ED850044E1A4 /* AMProductCell.xib */; };
+		96E96DDB1489F4760044E1A4 /* iPad_AM_Product_Cell_Price.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DDA1489F4740044E1A4 /* iPad_AM_Product_Cell_Price.png */; };
+		96E96DDD1489F47E0044E1A4 /* iPad_AM_Product_Cell_Installed.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DDC1489F47E0044E1A4 /* iPad_AM_Product_Cell_Installed.png */; };
+		96E96DDF1489F49E0044E1A4 /* iPad_AM_Product_Cell_Installed_zh.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DDE1489F49E0044E1A4 /* iPad_AM_Product_Cell_Installed_zh.png */; };
+		96E96DE21489F5730044E1A4 /* AMIPadRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E96DE11489F5730044E1A4 /* AMIPadRichView.m */; };
+		96E96DE51489FB5D0044E1A4 /* iPad_AM_Rich_Bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DE31489FB580044E1A4 /* iPad_AM_Rich_Bg.png */; };
+		96E96DE61489FB5D0044E1A4 /* iPad_AM_Rich_Close.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DE41489FB590044E1A4 /* iPad_AM_Rich_Close.png */; };
+		96E96DF4148A1C5F0044E1A4 /* AMDemoProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E96DF3148A1C5E0044E1A4 /* AMDemoProduct.m */; };
+		96E96DF8148A233F0044E1A4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DF5148A233A0044E1A4 /* Icon.png */; };
+		96E96DF9148A233F0044E1A4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DF6148A233B0044E1A4 /* Icon@2x.png */; };
+		96E96DFA148A233F0044E1A4 /* iTunesArtWork in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DF7148A233D0044E1A4 /* iTunesArtWork */; };
+		96E96DFC148A23620044E1A4 /* iPad_AM_Introduction.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DFB148A23600044E1A4 /* iPad_AM_Introduction.png */; };
+		96E96DFE148A27670044E1A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E96DFD148A27660044E1A4 /* QuartzCore.framework */; };
+		96E96E00148A29BD0044E1A4 /* Icon_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DFF148A29BC0044E1A4 /* Icon_72x72.png */; };
+		96E96E02148A2A1C0044E1A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96E01148A2A1B0044E1A4 /* Default.png */; };
 		96FA37BC148874D3001AE559 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96FA37BE148874D3001AE559 /* Localizable.strings */; };
 		96FA37C414887501001AE559 /* I18NController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FA37C314887501001AE559 /* I18NController.m */; };
 		96FA37D1148877A1001AE559 /* AMIPadMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FA37D3148877A1001AE559 /* AMIPadMainController.xib */; };
@@ -125,6 +149,34 @@
 		964BC1F11486270100830181 /* AMNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNotification.m; sourceTree = "<group>"; };
 		964BC1F31486270100830181 /* AMProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProduct.h; sourceTree = "<group>"; };
 		964BC1F41486270100830181 /* AMProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProduct.m; sourceTree = "<group>"; };
+		9655ED5F148A3E49001ACB21 /* iPad_AM_Tab_Intro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Tab_Intro.png; sourceTree = "<group>"; };
+		9655ED60148A3E49001ACB21 /* iPad_AM_Tab_Notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Tab_Notification.png; sourceTree = "<group>"; };
+		9655ED61148A3E49001ACB21 /* iPad_AM_Tab_Purchase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Tab_Purchase.png; sourceTree = "<group>"; };
+		96E96DBE1489D1790044E1A4 /* iPad_AM_Push_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Push_Icon.png; sourceTree = "<group>"; };
+		96E96DBF1489D1790044E1A4 /* iPad_AM_Rich_Read_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Rich_Read_Icon.png; sourceTree = "<group>"; };
+		96E96DC01489D1790044E1A4 /* iPad_AM_Rich_Unread_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Rich_Unread_Icon.png; sourceTree = "<group>"; };
+		96E96DC61489D1E90044E1A4 /* AMPushCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPushCell.h; sourceTree = "<group>"; };
+		96E96DC71489D1E90044E1A4 /* AMPushCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPushCell.m; sourceTree = "<group>"; };
+		96E96DCD1489DF330044E1A4 /* AMPushCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMPushCell.xib; sourceTree = "<group>"; };
+		96E96DD51489ED6D0044E1A4 /* AMProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductCell.h; sourceTree = "<group>"; };
+		96E96DD61489ED6D0044E1A4 /* AMProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductCell.m; sourceTree = "<group>"; };
+		96E96DD81489ED850044E1A4 /* AMProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMProductCell.xib; sourceTree = "<group>"; };
+		96E96DDA1489F4740044E1A4 /* iPad_AM_Product_Cell_Price.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Product_Cell_Price.png; sourceTree = "<group>"; };
+		96E96DDC1489F47E0044E1A4 /* iPad_AM_Product_Cell_Installed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Product_Cell_Installed.png; sourceTree = "<group>"; };
+		96E96DDE1489F49E0044E1A4 /* iPad_AM_Product_Cell_Installed_zh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPad_AM_Product_Cell_Installed_zh.png; path = AppMocha/Resources/Image/iPad/zh/iPad_AM_Product_Cell_Installed_zh.png; sourceTree = SOURCE_ROOT; };
+		96E96DE01489F5730044E1A4 /* AMIPadRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPadRichView.h; sourceTree = "<group>"; };
+		96E96DE11489F5730044E1A4 /* AMIPadRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPadRichView.m; sourceTree = "<group>"; };
+		96E96DE31489FB580044E1A4 /* iPad_AM_Rich_Bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Rich_Bg.png; sourceTree = "<group>"; };
+		96E96DE41489FB590044E1A4 /* iPad_AM_Rich_Close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Rich_Close.png; sourceTree = "<group>"; };
+		96E96DF2148A1C5E0044E1A4 /* AMDemoProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDemoProduct.h; sourceTree = "<group>"; };
+		96E96DF3148A1C5E0044E1A4 /* AMDemoProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDemoProduct.m; sourceTree = "<group>"; };
+		96E96DF5148A233A0044E1A4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		96E96DF6148A233B0044E1A4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		96E96DF7148A233D0044E1A4 /* iTunesArtWork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtWork; sourceTree = "<group>"; };
+		96E96DFB148A23600044E1A4 /* iPad_AM_Introduction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_AM_Introduction.png; sourceTree = "<group>"; };
+		96E96DFD148A27660044E1A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		96E96DFF148A29BC0044E1A4 /* Icon_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_72x72.png; sourceTree = "<group>"; };
+		96E96E01148A2A1B0044E1A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		96FA37BD148874D3001AE559 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		96FA37C1148874DE001AE559 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		96FA37C214887501001AE559 /* I18NController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = I18NController.h; sourceTree = "<group>"; };
@@ -164,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E96DFE148A27670044E1A4 /* QuartzCore.framework in Frameworks */,
 				9600E72214872FD0006A04D1 /* Security.framework in Frameworks */,
 				9600E6DC148721B7006A04D1 /* CoreData.framework in Frameworks */,
 				964BC1D9148620E600830181 /* StoreKit.framework in Frameworks */,
@@ -248,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				964BC1DB148620FE00830181 /* libAppBand.a */,
+				96E96DFD148A27660044E1A4 /* QuartzCore.framework */,
 				9600E72114872FD0006A04D1 /* Security.framework */,
 				9600E6DB148721B7006A04D1 /* CoreData.framework */,
 				964BC1D7148620E600830181 /* StoreKit.framework */,
@@ -316,6 +370,8 @@
 				964BC1F01486270100830181 /* AMNotification.h */,
 				964BC1F11486270100830181 /* AMNotification.m */,
 				9635E42A148765F3006CF9DD /* AMModelConstant.h */,
+				96E96DF2148A1C5E0044E1A4 /* AMDemoProduct.h */,
+				96E96DF3148A1C5E0044E1A4 /* AMDemoProduct.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,6 +379,7 @@
 		964BC1CB148620B300830181 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				96E96DC51489D1CF0044E1A4 /* Cells */,
 				96FA37F414888063001AE559 /* Views */,
 				964BC1CC148620B300830181 /* AMIPadMainController.h */,
 				964BC1CD148620B300830181 /* AMIPadMainController.m */,
@@ -340,6 +397,19 @@
 			path = iPad;
 			sourceTree = "<group>";
 		};
+		96E96DC51489D1CF0044E1A4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				96E96DC61489D1E90044E1A4 /* AMPushCell.h */,
+				96E96DC71489D1E90044E1A4 /* AMPushCell.m */,
+				96E96DCD1489DF330044E1A4 /* AMPushCell.xib */,
+				96E96DD51489ED6D0044E1A4 /* AMProductCell.h */,
+				96E96DD61489ED6D0044E1A4 /* AMProductCell.m */,
+				96E96DD81489ED850044E1A4 /* AMProductCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		96FA37A7148872F9001AE559 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +421,11 @@
 		96FA37A8148872F9001AE559 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				96E96E01148A2A1B0044E1A4 /* Default.png */,
+				96E96DFF148A29BC0044E1A4 /* Icon_72x72.png */,
+				96E96DF5148A233A0044E1A4 /* Icon.png */,
+				96E96DF6148A233B0044E1A4 /* Icon@2x.png */,
+				96E96DF7148A233D0044E1A4 /* iTunesArtWork */,
 				96FA37A9148872F9001AE559 /* iPad */,
 			);
 			path = Image;
@@ -359,6 +434,16 @@
 		96FA37A9148872F9001AE559 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				9655ED5F148A3E49001ACB21 /* iPad_AM_Tab_Intro.png */,
+				9655ED60148A3E49001ACB21 /* iPad_AM_Tab_Notification.png */,
+				9655ED61148A3E49001ACB21 /* iPad_AM_Tab_Purchase.png */,
+				96E96DFB148A23600044E1A4 /* iPad_AM_Introduction.png */,
+				96E96DE31489FB580044E1A4 /* iPad_AM_Rich_Bg.png */,
+				96E96DE41489FB590044E1A4 /* iPad_AM_Rich_Close.png */,
+				96E96DDA1489F4740044E1A4 /* iPad_AM_Product_Cell_Price.png */,
+				96E96DBE1489D1790044E1A4 /* iPad_AM_Push_Icon.png */,
+				96E96DBF1489D1790044E1A4 /* iPad_AM_Rich_Read_Icon.png */,
+				96E96DC01489D1790044E1A4 /* iPad_AM_Rich_Unread_Icon.png */,
 				96FA37FE14888CC0001AE559 /* iPad_AM_Registration_Bg.png */,
 				96FA37FB14888516001AE559 /* iPad_AM_Login_Bg.png */,
 				96FA37EF148878A7001AE559 /* AppMocha_Logo.png */,
@@ -371,6 +456,7 @@
 		96FA37D514887884001AE559 /* en */ = {
 			isa = PBXGroup;
 			children = (
+				96E96DDC1489F47E0044E1A4 /* iPad_AM_Product_Cell_Installed.png */,
 				96FA380014888CCA001AE559 /* iPad_AM_Cancel.png */,
 				96FA380114888CCA001AE559 /* iPad_AM_View_Login.png */,
 				96FA380214888CCA001AE559 /* iPad_AM_View_Registration.png */,
@@ -384,6 +470,7 @@
 		96FA37DC14887884001AE559 /* zh */ = {
 			isa = PBXGroup;
 			children = (
+				96E96DDE1489F49E0044E1A4 /* iPad_AM_Product_Cell_Installed_zh.png */,
 				96FA380614888CD5001AE559 /* iPad_AM_Cancel_zh.png */,
 				96FA380714888CD5001AE559 /* iPad_AM_View_Login_zh.png */,
 				96FA380814888CD5001AE559 /* iPad_AM_View_Registration_zh.png */,
@@ -401,6 +488,8 @@
 				96FA37F614888085001AE559 /* AMIPadLoginView.m */,
 				96FA37F81488809A001AE559 /* AMIPadRegistrationView.h */,
 				96FA37F91488809A001AE559 /* AMIPadRegistrationView.m */,
+				96E96DE01489F5730044E1A4 /* AMIPadRichView.h */,
+				96E96DE11489F5730044E1A4 /* AMIPadRichView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,6 +569,25 @@
 				96FA380B14888CD5001AE559 /* iPad_AM_View_Registration_zh.png in Resources */,
 				96FA38271488C645001AE559 /* AMIPadPushController.xib in Resources */,
 				96FA382C1488C660001AE559 /* AMIPadPurchaseController.xib in Resources */,
+				96E96DC11489D1790044E1A4 /* iPad_AM_Push_Icon.png in Resources */,
+				96E96DC21489D1790044E1A4 /* iPad_AM_Rich_Read_Icon.png in Resources */,
+				96E96DC31489D1790044E1A4 /* iPad_AM_Rich_Unread_Icon.png in Resources */,
+				96E96DCE1489DF330044E1A4 /* AMPushCell.xib in Resources */,
+				96E96DD91489ED850044E1A4 /* AMProductCell.xib in Resources */,
+				96E96DDB1489F4760044E1A4 /* iPad_AM_Product_Cell_Price.png in Resources */,
+				96E96DDD1489F47E0044E1A4 /* iPad_AM_Product_Cell_Installed.png in Resources */,
+				96E96DDF1489F49E0044E1A4 /* iPad_AM_Product_Cell_Installed_zh.png in Resources */,
+				96E96DE51489FB5D0044E1A4 /* iPad_AM_Rich_Bg.png in Resources */,
+				96E96DE61489FB5D0044E1A4 /* iPad_AM_Rich_Close.png in Resources */,
+				96E96DF8148A233F0044E1A4 /* Icon.png in Resources */,
+				96E96DF9148A233F0044E1A4 /* Icon@2x.png in Resources */,
+				96E96DFA148A233F0044E1A4 /* iTunesArtWork in Resources */,
+				96E96DFC148A23620044E1A4 /* iPad_AM_Introduction.png in Resources */,
+				96E96E00148A29BD0044E1A4 /* Icon_72x72.png in Resources */,
+				96E96E02148A2A1C0044E1A4 /* Default.png in Resources */,
+				9655ED62148A3E49001ACB21 /* iPad_AM_Tab_Intro.png in Resources */,
+				9655ED63148A3E49001ACB21 /* iPad_AM_Tab_Notification.png in Resources */,
+				9655ED64148A3E49001ACB21 /* iPad_AM_Tab_Purchase.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +619,10 @@
 				96FA37FA1488809A001AE559 /* AMIPadRegistrationView.m in Sources */,
 				96FA38261488C645001AE559 /* AMIPadPushController.m in Sources */,
 				96FA382B1488C660001AE559 /* AMIPadPurchaseController.m in Sources */,
+				96E96DC81489D1E90044E1A4 /* AMPushCell.m in Sources */,
+				96E96DD71489ED6D0044E1A4 /* AMProductCell.m in Sources */,
+				96E96DE21489F5730044E1A4 /* AMIPadRichView.m in Sources */,
+				96E96DF4148A1C5F0044E1A4 /* AMDemoProduct.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

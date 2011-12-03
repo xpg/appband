@@ -7,14 +7,15 @@
 //
 
 #import "AMIPadMainController.h"
+#import "AMIPadIntroController.h"
 
 #import "AMAppDelegate.h"
 
 @interface AMIPadMainController()
 
-- (void)removeLoginView;
+- (void)removeLoginView:(NSNumber *)isLogin;
 
-- (void)removeRegistrationView;
+- (void)removeRegistrationView:(NSNumber *)isRegister;
 
 @end
 
@@ -26,6 +27,10 @@
 #pragma mark - Public
 
 - (IBAction)introductionAction:(id)sender {
+    AMIPadIntroController *introController = [[AMIPadIntroController alloc] initWithNibName:@"AMIPadIntroController" bundle:nil];
+    
+    [self.navigationController pushViewController:introController animated:YES];
+    [introController release];
 }
 
 - (IBAction)loginAction:(id)sender {
@@ -74,7 +79,7 @@
 
 #pragma mark - Private
 
-- (void)removeLoginView {
+- (void)removeLoginView:(NSNumber *)isLogin {
     if (self.loginView) {
         [UIView animateWithDuration:.2 animations:^{
             [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
@@ -86,13 +91,16 @@
                     [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
                 } completion:^(BOOL finished) {
                     [self.loginView removeFromSuperview];
+                    if ([isLogin boolValue]) {
+                        [(AMAppDelegate *)[UIApplication sharedApplication].delegate switchToFunctionController];
+                    }
                 }];
             }];
         }];
     }
 }
 
-- (void)removeRegistrationView {
+- (void)removeRegistrationView:(NSNumber *)isRegister {
     if (self.registrationView) {
         [UIView animateWithDuration:.2 animations:^{
             [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
@@ -104,6 +112,9 @@
                     [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
                 } completion:^(BOOL finished) {
                     [self.registrationView removeFromSuperview];
+                    if ([isRegister boolValue]) {
+                        [(AMAppDelegate *)[UIApplication sharedApplication].delegate switchToFunctionController];
+                    }
                 }];
             }];
         }];
@@ -116,12 +127,12 @@
                email:(NSString *)email 
             password:(NSString *)password {
     [(AMAppDelegate *)[UIApplication sharedApplication].delegate setEmail:email password:password];
-    [self performSelectorOnMainThread:@selector(removeLoginView) withObject:nil waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(removeLoginView:) withObject:[NSNumber numberWithBool:YES] waitUntilDone:YES];
     
 }
 
 - (void)cancelledLoginView:(AMIPadLoginView *)loginView {
-    [self removeLoginView];
+    [self removeLoginView:[NSNumber numberWithBool:NO]];
     
 }
 
@@ -130,11 +141,12 @@
 - (void)registrationSuccess:(AMIPadRegistrationView *)reigsterView 
                       email:(NSString *)email 
                    password:(NSString *)password {
-    [self removeRegistrationView];
+    [(AMAppDelegate *)[UIApplication sharedApplication].delegate setEmail:email password:password];
+    [self performSelectorOnMainThread:@selector(removeRegistrationView:) withObject:[NSNumber numberWithBool:YES] waitUntilDone:YES];
 }
 
 - (void)cancelledRegistrationView:(AMIPadRegistrationView *)reigsterView {
-    [self removeRegistrationView];
+    [self removeRegistrationView:[NSNumber numberWithBool:NO]];
 }
 
 #pragma mark - UIViewController lifecycle

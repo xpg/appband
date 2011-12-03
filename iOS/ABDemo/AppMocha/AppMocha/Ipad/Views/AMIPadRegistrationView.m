@@ -11,6 +11,12 @@
 #define AM_Registration_View_Check @"AM_Registration_View_Check"
 #define AM_Registration_View_Code @"AM_Registration_View_Code"
 
+#define AM_Message_Registration_Email_Null @"AM_Message_Registration_Email_Null"
+#define AM_Message_Registration_Password_Null @"AM_Message_Registration_Password_Null"
+#define AM_Message_Registration_Not_Match @"AM_Message_Registration_Not_Match"
+#define AM_Message_Registration_Code_Null @"AM_Message_Registration_Code_Null"
+#define AM_Message_Registration_Error @"AM_Message_Registration_Error"
+
 #import "AMIPadRegistrationView.h"
 
 #import "AppBandKit.h"
@@ -22,15 +28,25 @@
 
 @interface AMIPadRegistrationView()
 
+@property(nonatomic,copy) NSString *email;
+@property(nonatomic,copy) NSString *password;
+@property(nonatomic,copy) NSString *check;
+@property(nonatomic,copy) NSString *code;
+
 - (void)registration;
+
+- (void)hiddenIndicatorAndShowMessage:(NSNumber *)type;
 
 @end
 
 @implementation AMIPadRegistrationView
 
-@synthesize delegate;
-@synthesize registerTableView;
+@synthesize email = _email;
+@synthesize password = _password;
+@synthesize check = _check;
+@synthesize code = _code;
 
+@synthesize delegate;
 #pragma mark - IBAction
 
 - (IBAction)cancel:(id)sender {
@@ -40,11 +56,58 @@
 }
 
 - (IBAction)registration:(id)sender {
+    self.email = emailField.text;
+    self.password = passwordField.text;
+    self.check = checkField.text;
+    self.code = codeField.text;
+    if (![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.email]) {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Registration_Email_Null comment:@"" locale:nil]];
+        return;
+    } 
+    
+    if (![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.password] || [self.password length] < 6) {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Registration_Password_Null comment:@"" locale:nil]];
+        return;
+    }
+    
+    if (![self.password isEqualToString:self.check]) {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Registration_Not_Match comment:@"" locale:nil]];
+        return;
+    }
+    
+    if (![(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:self.code]) {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Registration_Code_Null comment:@"" locale:nil]];
+        return;
+    }
+    
     [self registration];
 }
 
 - (void)setBecomeFirstResponser {
     [emailField becomeFirstResponder];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField == emailField) {
+        self.email = textField.text;
+    } else if (textField == passwordField) {
+        self.password = textField.text;
+    } else if (textField == checkField) {
+        self.check = textField.text;
+    } else {
+        self.code = textField.text;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - UITableViewDataSource
@@ -69,6 +132,8 @@
             UITextField *field = [[[UITextField alloc] initWithFrame:CGRectMake(cell.frame.size.width * .4, cell.frame.size.height * .3, cell.frame.size.width * .58, cell.frame.size.height * .5)] autorelease];
             [field setBorderStyle:UITextBorderStyleNone];
             [field setTextAlignment:UITextAlignmentLeft];
+            [field setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+            [field setKeyboardType:UIKeyboardTypeEmailAddress];
             [field setReturnKeyType:UIReturnKeyDone];
             [field setBackgroundColor:[UIColor clearColor]];
             [field setTextColor:[UIColor colorWithRed:0.22 green:0.33 blue:0.53 alpha:1]];
@@ -140,32 +205,54 @@
 #pragma mark - Private
 
 - (void)registration {
+    [registerButton setEnabled:NO];
+    [cancelButton setEnabled:NO];
+    [messageLabel setText:@""];
+    [indicatorView setHidden:NO];
+    [indicatorView startAnimating];
+    
     NSString *appKey = [[AppBand shared] appKey];
     NSString *appSecret = [[AppBand shared] appSecret];
     NSString *token = [(AMAppDelegate *)[UIApplication sharedApplication].delegate deviceToken];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-    NSString *email = @"jwang_test1@xtremeprog.com";
-    NSString *password = @"go4xpg";
     NSDictionary *parameters = nil;
     if (!token || [token isEqualToString:@""]) {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, email, AppBand_App_Email, password, AppBand_App_Password, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.email, AppBand_App_Email, self.password, AppBand_App_Password, self.code, AppBand_App_Invite, nil];
     } else {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, token, AppBand_App_token, email, AppBand_App_Email, password, AppBand_App_Password, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, token, AppBand_App_token, self.email, AppBand_App_Email, self.password, AppBand_App_Password,self.code, AppBand_App_Invite, nil];
     }
     
     NSString *url = [[[AppBand shared] server] stringByAppendingPathComponent:@"mobile_users"];
     
     [[xRestManager defaultManager] sendRequestTo:url parameter:parameters timeout:30. completion:^(xRestCompletionType type, NSString *response) {
+        [self performSelectorOnMainThread:@selector(hiddenIndicatorAndShowMessage:) withObject:[NSNumber numberWithInt:type] waitUntilDone:YES];
+        
         if (type == xRestCompletionTypeSuccess) {
-            NSLog(@"Success");
+            if (self.delegate) {
+                [self.delegate registrationSuccess:self email:self.email password:self.password];
+            }
         }
     }];
 }
 
+- (void)hiddenIndicatorAndShowMessage:(NSNumber *)type {
+    [registerButton setEnabled:YES];
+    [cancelButton setEnabled:YES];
+    xRestCompletionType t = [type intValue];
+    [indicatorView setHidden:YES];
+    [indicatorView stopAnimating];
+    if (t == xRestCompletionTypeSuccess) {
+        [messageLabel setText:@""];
+    } else {
+        [messageLabel setText:[[I18NController shareController] getLocalizedString:AM_Message_Registration_Error comment:@"" locale:nil]];
+    }
+    
+}
+
 - (void)awakeFromNib {
-    self.registerTableView.backgroundView = nil;
-    self.registerTableView.backgroundView = [[[UIView alloc] init] autorelease];
-    self.registerTableView.backgroundColor = [UIColor clearColor];
+    registerTableView.backgroundView = nil;
+    registerTableView.backgroundView = [[[UIView alloc] init] autorelease];
+    registerTableView.backgroundColor = [UIColor clearColor];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -184,7 +271,10 @@
 }
 
 - (void)dealloc {
-    [self setRegisterTableView:nil];
+    [self setEmail:nil];
+    [self setPassword:nil];
+    [self setCheck:nil];
+    [self setCode:nil];
     [super dealloc];
 }
 

@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AMProduct.h"
 #import "AMNotification.h"
 
 //----------- Store Name ----------
@@ -14,33 +13,6 @@
 #define DEMO_STORE_NAME @"AppMocha"
 
 //----------- AMNotification ----------
-
-#define AMProduct_Class @"AMNotification"
-
-
-#define AMProduct_Name @"name"
-#define AMProduct_ProductId @"productId"
-#define AMProduct_Price @"price"
-#define AMProduct_IsFree @"isFree"
-#define AMProduct_IsPurchased @"isPurchased"
-#define AMProduct_FilePath @"filePath"
-#define AMProduct_DownloadPath @"downloadPath"
-#define AMProduct_Receipt @"receipt"
-#define AMProduct_Icon @"icon"
-#define AMProduct_LocalizedDescription @"localizedDescription"
-
-#define AMProduct_Set_Name @"setName:"
-#define AMProduct_Set_ProductId @"setProductId:"
-#define AMProduct_Set_Price @"setPrice:"
-#define AMProduct_Set_IsFree @"setIsFree:"
-#define AMProduct_Set_IsPurchased @"setIsPurchased:"
-#define AMProduct_Set_FilePath @"setFilePath:"
-#define AMProduct_Set_DownloadPath @"setDownloadPath:"
-#define AMProduct_Set_Receipt @"setReceipt:"
-#define AMProduct_Set_Icon @"setIcon:"
-#define AMProduct_Set_LocalizedDescription @"setLocalizedDescription:"
-
-//----------- AMProduct ----------
 
 #define AMNotification_Class @"AMNotification"
 

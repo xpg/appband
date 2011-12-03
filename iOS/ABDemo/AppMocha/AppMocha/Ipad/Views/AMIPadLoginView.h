@@ -13,13 +13,17 @@
 @interface AMIPadLoginView : UIView <UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate> {
     IBOutlet id<AMIPadLoginViewDelegate> delegate;
     IBOutlet UITableView *lgoinTableView;
+    IBOutlet UIActivityIndicatorView *indicatorView;
+    IBOutlet UILabel *messageLabel;
+    
+    IBOutlet UIButton *cancelButton;
+    IBOutlet UIButton *loginButton;
     
     UITextField *emailField;
     UITextField *passwordField;
 }
 
 @property(nonatomic,assign) IBOutlet id<AMIPadLoginViewDelegate> delegate;
-@property(nonatomic,retain) IBOutlet UITableView *lgoinTableView;
 
 - (IBAction)cancel:(id)sender;
 

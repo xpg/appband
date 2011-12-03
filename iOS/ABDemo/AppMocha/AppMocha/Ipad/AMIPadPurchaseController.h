@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMIPadPurchaseController : UIViewController
+@class AMProductCell;
+
+@interface AMIPadPurchaseController : UIViewController <UITableViewDelegate,UITableViewDataSource> {
+    IBOutlet AMProductCell *productCell;
+    
+    IBOutlet UITableView *productsTableView;
+}
 
 @end

@@ -20,4 +20,8 @@
 
 - (BOOL)availableString:(NSString *)target;
 
+- (void)switchToFunctionController;
+
+- (void)switchToUnLoginController;
+
 @end
