@@ -47,6 +47,8 @@
 @synthesize code = _code;
 
 @synthesize delegate;
+@synthesize registerView;
+
 #pragma mark - IBAction
 
 - (IBAction)cancel:(id)sender {
@@ -271,6 +273,7 @@
 }
 
 - (void)dealloc {
+    [self setRegisterView:nil];
     [self setEmail:nil];
     [self setPassword:nil];
     [self setCheck:nil];

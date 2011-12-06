@@ -24,6 +24,8 @@
 
 - (void)downloadSuccess:(NSString *)path;
 
+- (void)showStatus:(NSString *)status;
+
 @end
 
 @implementation AMProductCell
@@ -60,6 +62,10 @@
     [progressView setHidden:YES];
 }
 
+- (void)showStatus:(NSString *)status {
+    [stateLabel setText:status];
+}
+
 - (void)downloadProgress:(NSNotification *)notification {
     ABPurchaseResponse *response = [notification object];
     
@@ -81,6 +87,11 @@
                     [self performSelectorOnMainThread:@selector(setProgress:) withObject:[NSNumber numberWithFloat:response.proccess] waitUntilDone:YES];
                     break;
                 }
+                case ABPurchaseStatusPaymentSuccess: {
+                    [self performSelectorOnMainThread:@selector(showStatus:) withObject:@"下载" waitUntilDone:YES];
+                    break;
+                }
+                    
                 default:
                     break;
             }
@@ -102,8 +113,11 @@
         [stateLabel setText:@"查看"];
     } else {
         NSString *nKey = [NSString stringWithFormat:@"%@%@",AppBand_App_Product_Prefix,self.product.product.productId];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadProccess:) name:nKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadProgress:) name:nKey object:nil];
         
+        if (self.product.isDownloading) {
+            [stateLabel setText:@"下载中"];
+        }
         if (p.product.transaction) {
             [stateLabel setText:@"下载"];
         } else {

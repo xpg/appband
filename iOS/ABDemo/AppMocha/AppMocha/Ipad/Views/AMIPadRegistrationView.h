@@ -23,9 +23,12 @@
     UITextField *passwordField;
     UITextField *checkField;
     UITextField *codeField;
+    
+    IBOutlet UIView *registerView;
 }
 
 @property(nonatomic,assign) IBOutlet id<AMIPadRegistrationViewDelegate> delegate;
+@property(nonatomic,retain) IBOutlet UIView *registerView;
 
 - (IBAction)cancel:(id)sender;
 

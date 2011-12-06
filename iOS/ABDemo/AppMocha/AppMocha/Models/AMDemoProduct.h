@@ -15,12 +15,14 @@
     NSString *filePath;
     BOOL isDownload;
     UIImage *icon;
+    BOOL isDownloading;
 }
 
 @property(nonatomic,retain) ABProduct *product;
 @property(nonatomic,copy) NSString *filePath;
 @property(nonatomic,retain) UIImage *icon;
 @property(assign) BOOL isDownload;
+@property(assign) BOOL isDownloading;
 
 + (AMDemoProduct *)productWithABProduct:(ABProduct *)pro;
 

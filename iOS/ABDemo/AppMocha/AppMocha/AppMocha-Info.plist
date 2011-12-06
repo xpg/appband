@@ -15,7 +15,7 @@
 		<string>Icon@2x</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xtremeprog.appmocha</string>
+	<string>com.xtremeprog.mocha</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

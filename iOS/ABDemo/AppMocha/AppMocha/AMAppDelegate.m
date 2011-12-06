@@ -24,6 +24,10 @@
 #import "AMIPadPurchaseController.h"
 #import "AMIPadIntroController.h"
 
+#import "AMIPhonePushController.h"
+#import "AMIPhonePurchaseController.h"
+#import "AMIPhoneIntroController.h"
+
 #import "AppBandKit.h"
 #import "xRestKit.h"
 
@@ -139,8 +143,6 @@
 }
 
 - (void)autoLogin {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     NSString *appKey = [[AppBand shared] appKey];
     NSString *appSecret = [[AppBand shared] appSecret];
     NSString *token = [(AMAppDelegate *)[UIApplication sharedApplication].delegate deviceToken];
@@ -153,21 +155,43 @@
     }
     
     NSString *url = [[[AppBand shared] server] stringByAppendingPathComponent:@"mobile_users/verify"];
-    
     [[xRestManager defaultManager] sendRequestTo:url parameter:parameters timeout:30. completion:^(xRestCompletionType type, NSString *response) {
         
     }];
-    
-    [pool drain];
 }
 
 - (UIViewController *)getFunctionController {
     UIViewController *pushController = nil;
     UIViewController *purchaseController = nil;
     UIViewController *introController = nil;
+    UIImage *logon = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        logon = [UIImage imageNamed:@"AppMocha_Logo"];
+        pushController = [[[AMIPhonePushController alloc] initWithNibName:@"AMIPhonePushController" bundle:nil] autorelease];
+        pushController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
+        //        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostRecent tag:0];
+        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTitle:@"推送通知" image:[UIImage imageNamed:@"iPad_AM_Tab_Notification"] tag:0];
+        [pushController setTabBarItem:pushBarItem];
+        [pushBarItem release];
+        
+        purchaseController = [[[AMIPhonePurchaseController alloc] initWithNibName:@"AMIPhonePurchaseController" bundle:nil] autorelease];
+        purchaseController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+        
+        //        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
+        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTitle:@"应用内购买" image:[UIImage imageNamed:@"iPad_AM_Tab_Purchase"] tag:1];
+        [purchaseController setTabBarItem:purchaseBarItem];
+        [purchaseBarItem release];
+        
+        introController = [[[AMIPhoneIntroController alloc] initWithNibName:@"AMIPhoneIntroController" bundle:nil] autorelease];
+        introController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+        
+        //        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTitle:@"关于我们" image:[UIImage imageNamed:@"iPad_AM_Tab_Intro"] tag:1];
+        [introController setTabBarItem:introBarItem];
+        [introBarItem release];
     } else {
+        logon = [UIImage imageNamed:@"AppMocha_Logo@2x.png"];
         pushController = [[[AMIPadPushController alloc] initWithNibName:@"AMIPadPushController" bundle:nil] autorelease];
         pushController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
@@ -194,13 +218,13 @@
     }
     
     UINavigationController *naviPushController = [[[UINavigationController alloc] initWithRootViewController:pushController] autorelease];
-    [naviPushController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AppMocha_Logo"]]];
+    [naviPushController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
     UINavigationController *naviPurchaseController = [[[UINavigationController alloc] initWithRootViewController:purchaseController] autorelease];
-    [naviPurchaseController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AppMocha_Logo"]]];
+    [naviPurchaseController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
     UINavigationController *naviIntroController = [[[UINavigationController alloc] initWithRootViewController:introController] autorelease];
-    [naviIntroController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AppMocha_Logo"]]];
+    [naviIntroController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
     UITabBarController *barController = [[[UITabBarController alloc] init] autorelease];
     [barController setViewControllers:[NSArray arrayWithObjects:naviPushController, naviPurchaseController, naviIntroController, nil]];
@@ -210,14 +234,17 @@
 
 - (UIViewController *)getUnLoginController {
     UIViewController *viewController = nil;
+    UIImage *logon = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         viewController = [[[AMIPhoneMainController alloc] initWithNibName:@"AMIPhoneMainController" bundle:nil] autorelease];
+        logon = [UIImage imageNamed:@"AppMocha_Logo"];
     } else {
         viewController = [[[AMIPadMainController alloc] initWithNibName:@"AMIPadMainController" bundle:nil] autorelease];
+        logon = [UIImage imageNamed:@"AppMocha_Logo@2x.png"];
     }
     
     UINavigationController *naviController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
-    [naviController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"AppMocha_Logo"]]];
+    [naviController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
     return naviController;
 }
@@ -298,7 +325,7 @@
     
     if ([self availableString:self.userEmail] && [self availableString:self.userPassword]) {
          self.rootController = [self getFunctionController];
-        [self performSelectorInBackground:@selector(autoLogin) withObject:nil];
+        [self performSelector:@selector(autoLogin) withObject:nil afterDelay:.5];
     } else {
         self.rootController = [self getUnLoginController];
     }

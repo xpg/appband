@@ -60,6 +60,7 @@
 								<string key="NSFrame">{{165, 20}, {493, 24}}</string>
 								<reference key="NSSuperview" ref="372918354"/>
 								<reference key="NSWindow"/>
+								<reference key="IBUIBackgroundColor" ref="860009264"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -89,6 +90,7 @@
 								<string key="NSFrame">{{165, 48}, {493, 59}}</string>
 								<reference key="NSSuperview" ref="372918354"/>
 								<reference key="NSWindow"/>
+								<reference key="IBUIBackgroundColor" ref="860009264"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -126,6 +128,7 @@
 								<string key="NSFrame">{{666, 90}, {94, 34}}</string>
 								<reference key="NSSuperview" ref="372918354"/>
 								<reference key="NSWindow"/>
+								<reference key="IBUIBackgroundColor" ref="860009264"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -141,6 +144,7 @@
 								<string key="NSFrame">{{683, 93}, {75, 28}}</string>
 								<reference key="NSSuperview" ref="372918354"/>
 								<reference key="NSWindow"/>
+								<reference key="IBUIBackgroundColor" ref="860009264"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>

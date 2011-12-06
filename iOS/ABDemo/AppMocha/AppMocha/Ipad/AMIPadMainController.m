@@ -21,9 +21,6 @@
 
 @implementation AMIPadMainController
 
-@synthesize loginView;
-@synthesize registrationView;
-
 #pragma mark - Public
 
 - (IBAction)introductionAction:(id)sender {
@@ -34,21 +31,21 @@
 }
 
 - (IBAction)loginAction:(id)sender {
-    if (self.loginView) {
-        [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+    if (loginView) {
+        [loginView.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
         
-        [self.view addSubview:self.loginView];
+        [self.view addSubview:loginView];
         
         [UIView animateWithDuration:.2 animations:^{
-            [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+            [loginView.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:.15 animations:^{
-                [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+                [loginView.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:.15 animations:^{
-                    [self.loginView setTransform:CGAffineTransformIdentity];
+                    [loginView.loginView setTransform:CGAffineTransformIdentity];
                 } completion:^(BOOL finished) {
-                    [self.loginView setBecomeFirstResponser];
+                    [loginView setBecomeFirstResponser];
                 }];
             }];
         }];
@@ -56,21 +53,21 @@
 }
 
 - (IBAction)registrationAction:(id)sender {
-    if (self.registrationView) {
-        [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+    if (registrationView) {
+        [registrationView.registerView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
         
-        [self.view addSubview:self.registrationView];
+        [self.view addSubview:registrationView];
         
         [UIView animateWithDuration:.2 animations:^{
-            [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+            [registrationView.registerView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:.15 animations:^{
-                [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+                [registrationView.registerView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:.15 animations:^{
-                    [self.registrationView setTransform:CGAffineTransformIdentity];
+                    [registrationView.registerView setTransform:CGAffineTransformIdentity];
                 } completion:^(BOOL finished) {
-                    [self.registrationView setBecomeFirstResponser];
+                    [registrationView setBecomeFirstResponser];
                 }];
             }];
         }];
@@ -80,17 +77,17 @@
 #pragma mark - Private
 
 - (void)removeLoginView:(NSNumber *)isLogin {
-    if (self.loginView) {
+    if (loginView) {
         [UIView animateWithDuration:.2 animations:^{
-            [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
+            [loginView.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:.15 animations:^{
-                [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+                [loginView.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:.15 animations:^{
-                    [self.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+                    [loginView.loginView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
                 } completion:^(BOOL finished) {
-                    [self.loginView removeFromSuperview];
+                    [loginView removeFromSuperview];
                     if ([isLogin boolValue]) {
                         [(AMAppDelegate *)[UIApplication sharedApplication].delegate switchToFunctionController];
                     }
@@ -101,17 +98,17 @@
 }
 
 - (void)removeRegistrationView:(NSNumber *)isRegister {
-    if (self.registrationView) {
+    if (registrationView) {
         [UIView animateWithDuration:.2 animations:^{
-            [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
+            [registrationView.registerView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:.15 animations:^{
-                [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+                [registrationView.registerView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:.15 animations:^{
-                    [self.registrationView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+                    [registrationView.registerView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
                 } completion:^(BOOL finished) {
-                    [self.registrationView removeFromSuperview];
+                    [registrationView removeFromSuperview];
                     if ([isRegister boolValue]) {
                         [(AMAppDelegate *)[UIApplication sharedApplication].delegate switchToFunctionController];
                     }
@@ -152,8 +149,6 @@
 #pragma mark - UIViewController lifecycle
 
 - (void)dealloc {
-    [self setLoginView:nil];
-    [self setRegistrationView:nil];
     [super dealloc];
 }
 

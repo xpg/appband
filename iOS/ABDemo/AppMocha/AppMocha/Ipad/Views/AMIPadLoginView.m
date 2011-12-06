@@ -38,6 +38,7 @@
 @synthesize password = _password;
 
 @synthesize delegate;
+@synthesize loginView;
 
 #pragma mark - IBAction
 
@@ -214,6 +215,7 @@
 }
 
 - (void)dealloc {
+    [self setLoginView:nil];
     [super dealloc];
 }
 

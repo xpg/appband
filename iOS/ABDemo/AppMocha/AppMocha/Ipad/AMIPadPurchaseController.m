@@ -8,6 +8,8 @@
 
 #import "AMIPadPurchaseController.h"
 
+#import "AMIPadProductShowController.h"
+
 #import "AMProductCell.h"
 #import "AMDemoProduct.h"
 
@@ -56,8 +58,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     AMDemoProduct *product = [self.productArray objectAtIndex:indexPath.row];
     
+    if (product.isDownloading) return;
+        
     if (product.isDownload && [(AMAppDelegate *)[UIApplication sharedApplication].delegate availableString:product.filePath]) {
-
+        AMIPadProductShowController *showController = [[AMIPadProductShowController alloc] initWithNibName:@"AMIPadProductShowController" bundle:nil];
+        [showController setImagePath:product.filePath];
+        
+        [self.navigationController pushViewController:showController animated:YES];
+        
+        [showController release];
     } else {
         [[AppBand shared] purchaseProduct:product.product notificationKey:[NSString stringWithFormat:@"%@%@",AppBand_App_Product_Prefix,product.product.productId] path:[self getDocumentPath]];
     }
@@ -76,7 +85,7 @@
         [[NSBundle mainBundle] loadNibNamed:@"AMProductCell" owner:self options:NULL];
         cell = productCell;
         
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
     }
     
     AMDemoProduct *product = [self.productArray objectAtIndex:indexPath.row];

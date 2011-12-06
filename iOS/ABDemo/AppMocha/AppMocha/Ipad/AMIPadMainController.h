@@ -16,9 +16,6 @@
     IBOutlet AMIPadRegistrationView *registrationView;
 }
 
-@property(nonatomic,retain) IBOutlet AMIPadLoginView *loginView;
-@property(nonatomic,retain) IBOutlet AMIPadRegistrationView *registrationView;
-
 - (IBAction)introductionAction:(id)sender;
 
 - (IBAction)loginAction:(id)sender;

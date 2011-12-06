@@ -50,6 +50,7 @@
 }
 
 - (void)getDownloadURLEnd:(NSDictionary *)response {
+    NSLog(@"response:%@",[response description]);
     ABHTTPResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
     
     ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];
@@ -59,7 +60,6 @@
     
     if (code == ABHTTPResponseSuccess) {
         NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
-        
         //parser response json
         NSError *error = nil;
         AB_SBJSON *json = [[AB_SBJSON alloc] init];
@@ -96,6 +96,8 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:self.notificationKey object:productResponse];
         }
     }
+    
+    [self.destroyTarget performSelector:self.destroySeletor withObject:self];
 }
 
 #pragma mark - Public

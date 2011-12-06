@@ -21,9 +21,12 @@
     
     UITextField *emailField;
     UITextField *passwordField;
+    
+    IBOutlet UIView *loginView;
 }
 
 @property(nonatomic,assign) IBOutlet id<AMIPadLoginViewDelegate> delegate;
+@property(nonatomic,retain) IBOutlet UIView *loginView;
 
 - (IBAction)cancel:(id)sender;
 
