@@ -165,7 +165,7 @@
         parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, token, AppBand_App_token, self.email, AppBand_App_Email, self.password, AppBand_App_Password, nil];
     }
     
-    NSString *url = [[[AppBand shared] server] stringByAppendingPathComponent:@"mobile_users/verify"];
+    NSString *url = [[[AppBand shared] server] stringByAppendingPathComponent:@"users/sign_in"];
     
     [[xRestManager defaultManager] sendRequestTo:url parameter:parameters timeout:30. completion:^(xRestCompletionType type, NSString *response) {
         [self performSelectorOnMainThread:@selector(hiddenIndicatorAndShowMessage:) withObject:[NSNumber numberWithInt:type] waitUntilDone:YES];

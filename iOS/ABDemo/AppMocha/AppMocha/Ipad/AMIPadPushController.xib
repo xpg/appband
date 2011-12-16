@@ -64,7 +64,7 @@
 					<object class="IBUIButton" id="920016218">
 						<reference key="NSNextResponder" ref="744466839"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{622, 28}, {70, 70}}</string>
+						<string key="NSFrame">{{624, 27}, {70, 70}}</string>
 						<reference key="NSSuperview" ref="744466839"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="723887766"/>
@@ -178,6 +178,7 @@
 						<string key="NSFrameSize">{768, 911}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="495594580"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>

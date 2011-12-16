@@ -154,7 +154,7 @@
         parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.token, AppBand_App_token, self.userEmail, AppBand_App_Email, self.userPassword, AppBand_App_Password, nil];
     }
     
-    NSString *url = [[[AppBand shared] server] stringByAppendingPathComponent:@"mobile_users/verify"];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",[[AppBand shared] server] ,@"users/sign_in"];
     [[xRestManager defaultManager] sendRequestTo:url parameter:parameters timeout:30. completion:^(xRestCompletionType type, NSString *response) {
         
     }];
@@ -310,8 +310,8 @@
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
     
-    [configOptions setValue:@"2" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:@"e1c70f12-1bf5-11e1-81fe-0019d181644b" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    [configOptions setValue:@"3" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
+    [configOptions setValue:@"50b8644c-1e7c-11e1-80e7-001ec9b6dcfc" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto];
     
