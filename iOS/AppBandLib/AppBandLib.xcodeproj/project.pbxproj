@@ -10,7 +10,7 @@
 		96318F0C149AE88D001F27A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F0B149AE88D001F27A7 /* Foundation.framework */; };
 		96318F1A149AE88D001F27A7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F19149AE88D001F27A7 /* SenTestingKit.framework */; };
 		96318F1D149AE88D001F27A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F0B149AE88D001F27A7 /* Foundation.framework */; };
-		96318F20149AE88D001F27A7 /* libAppBand_1.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F08149AE88D001F27A7 /* libAppBand_1.0.0.a */; };
+		96318F20149AE88D001F27A7 /* libAppBand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F08149AE88D001F27A7 /* libAppBand.a */; };
 		96318F26149AE88D001F27A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96318F24149AE88D001F27A7 /* InfoPlist.strings */; };
 		96318F29149AE88D001F27A7 /* AppBandLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318F28149AE88D001F27A7 /* AppBandLibTests.m */; };
 		96318FDF149AED90001F27A7 /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FDC149AED90001F27A7 /* AppBand+Private.h */; };
@@ -60,6 +60,8 @@
 		9631903B149AEDB4001F27A7 /* ABRestCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 96319010149AEDB4001F27A7 /* ABRestCenter.h */; };
 		9631903C149AEDB4001F27A7 /* ABRestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96319011149AEDB4001F27A7 /* ABRestCenter.m */; };
 		96319050149AEDF3001F27A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9631904F149AEDF3001F27A7 /* UIKit.framework */; };
+		9663CD2A149AFA9700D3D94B /* libABIAPLib_1.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96319045149AEDC7001F27A7 /* libABIAPLib_1.0.0.a */; };
+		9663CD2B149AFA9700D3D94B /* libABPushLib_1.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9631904E149AEDCF001F27A7 /* libABPushLib_1.0.0.a */; };
 		96F46E4E149AF4DB0006C09E /* ABNotificationsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F46E4A149AF4DB0006C09E /* ABNotificationsResponse.h */; };
 		96F46E4F149AF4DB0006C09E /* ABNotificationsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F46E4B149AF4DB0006C09E /* ABNotificationsResponse.m */; };
 		96F46E50149AF4DB0006C09E /* ABPushConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F46E4C149AF4DB0006C09E /* ABPushConfiguration.h */; };
@@ -91,7 +93,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		96318F08149AE88D001F27A7 /* libAppBand_1.0.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBand_1.0.0.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		96318F08149AE88D001F27A7 /* libAppBand.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBand.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96318F0B149AE88D001F27A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		96318F0F149AE88D001F27A7 /* AppBandLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppBandLib-Prefix.pch"; sourceTree = "<group>"; };
 		96318F18149AE88D001F27A7 /* AppBandLibTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppBandLibTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9663CD2A149AFA9700D3D94B /* libABIAPLib_1.0.0.a in Frameworks */,
+				9663CD2B149AFA9700D3D94B /* libABPushLib_1.0.0.a in Frameworks */,
 				96319050149AEDF3001F27A7 /* UIKit.framework in Frameworks */,
 				96318F0C149AE88D001F27A7 /* Foundation.framework in Frameworks */,
 			);
@@ -171,7 +175,7 @@
 			files = (
 				96318F1A149AE88D001F27A7 /* SenTestingKit.framework in Frameworks */,
 				96318F1D149AE88D001F27A7 /* Foundation.framework in Frameworks */,
-				96318F20149AE88D001F27A7 /* libAppBand_1.0.0.a in Frameworks */,
+				96318F20149AE88D001F27A7 /* libAppBand.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +197,7 @@
 		96318F09149AE88D001F27A7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96318F08149AE88D001F27A7 /* libAppBand_1.0.0.a */,
+				96318F08149AE88D001F27A7 /* libAppBand.a */,
 				96318F18149AE88D001F27A7 /* AppBandLibTests.octest */,
 			);
 			name = Products;
@@ -418,7 +422,7 @@
 			);
 			name = AppBandLib;
 			productName = AppBandLib;
-			productReference = 96318F08149AE88D001F27A7 /* libAppBand_1.0.0.a */;
+			productReference = 96318F08149AE88D001F27A7 /* libAppBand.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		96318F17149AE88D001F27A7 /* AppBandLibTests */ = {
@@ -624,12 +628,16 @@
 		96318F2D149AE88D001F27A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				DSTROOT = /tmp/AppBandLib.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBandLib/AppBandLib-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../AppBand/**";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = AppBand_1.0.0;
+				PRODUCT_NAME = AppBand;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -637,12 +645,16 @@
 		96318F2E149AE88D001F27A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				DSTROOT = /tmp/AppBandLib.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBandLib/AppBandLib-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../AppBand/**";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = AppBand_1.0.0;
+				PRODUCT_NAME = AppBand;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

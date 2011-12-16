@@ -69,14 +69,14 @@
         [webView setHidden:NO]; 
         [indicatorView startAnimating];
         [indicatorView setHidden:NO];
-        [[AppBand shared] getRichContent:self.notification.abri target:self finishSelector:@selector(finishGetRich:)];
+        [[ABPush shared] getRichContent:self.notification.abri target:self finishSelector:@selector(finishGetRich:)];
     }
 }
 
 - (IBAction)close:(id)sender {
     [titleLabel setText:nil];
     [webView loadHTMLString:nil baseURL:nil];
-    [[AppBand shared] cancelGetRichContent:self.notification.abri];
+    [[ABPush shared] cancelGetRichContent:self.notification.abri];
     [self setTarget:nil];
     [self.delegate richViewClosed:self];
 }

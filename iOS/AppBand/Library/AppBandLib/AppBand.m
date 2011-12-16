@@ -6,7 +6,6 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-//#define kAppBandProductionServer @"https://apphub.gizwits.com"
 //#define kAppBandProductionServer @"https://192.168.1.60/v1"
 //#define kAppBandProductionServer @"http://192.168.1.51:3000"
 

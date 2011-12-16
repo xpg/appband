@@ -68,7 +68,7 @@
         
         [showController release];
     } else {
-        [[AppBand shared] purchaseProduct:product.product notificationKey:[NSString stringWithFormat:@"%@%@",AppBand_App_Product_Prefix,product.product.productId] path:[self getDocumentPath]];
+        [[ABPurchase shared] purchaseProduct:product.product notificationKey:[NSString stringWithFormat:@"%@%@",AppBand_App_Product_Prefix,product.product.productId] path:[self getDocumentPath]];
     }
 }
 
@@ -120,7 +120,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[AppBand shared] getAppProductByGroup:nil target:self finishSelector:@selector(getProductsEnd:)];
+    [[ABPurchase shared] getAppProductByGroup:nil target:self finishSelector:@selector(getProductsEnd:)];
 }
 
 - (void)viewDidUnload {

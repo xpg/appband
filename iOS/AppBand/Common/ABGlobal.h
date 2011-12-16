@@ -15,6 +15,19 @@
 
 #define AB_Error @"error"
 
+#define AB_APP_NOTIFICATION_SUM @"sum"
+#define AB_APP_NOTIFICATION_NOTIFICATIONS @"notifications"
+
+#define AB_APP_NOTIFICATION_ID @"id"
+#define AB_APP_NOTIFICATION_ALERT @"alert"
+#define AB_APP_NOTIFICATION_TYPE @"is_rich"
+#define AB_APP_NOTIFICATION_SEND_TIME @"send_time"
+
+#define AB_APP_NOTIFICATION_SEND_TIME_FORMAT @"yyyy-mm-dd HH:mm:ss ZZZ"
+
+#define AB_APP_PUSH_CONFIGURATION_ENABLED @"enabled"
+#define AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS @"unavailable_intervals"
+
 #define AB_Rich_Title @"rich_title"
 #define AB_Rich_Content @"rich_content"
 

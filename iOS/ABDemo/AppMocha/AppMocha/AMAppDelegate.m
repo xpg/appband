@@ -270,7 +270,7 @@
 }
 
 - (void)handlePushWhenLauching:(NSDictionary *)launchOptions {
-    [[AppBand shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:self pushSelector:@selector(didReceiveNotification:) richSelector:@selector(didReceiveNotification:)];
+    [[ABPush shared] handleNotification:[launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey] applicationState:UIApplicationStateInactive target:self pushSelector:@selector(didReceiveNotification:) richSelector:@selector(didReceiveNotification:)];
 }
 
 #pragma mark - Register For Remote Notification
@@ -280,7 +280,7 @@
     if ([application respondsToSelector:@selector(applicationState)]) {
         appState = application.applicationState;
     }
-    [[AppBand shared] handleNotification:userInfo applicationState:appState target:self pushSelector:@selector(didReceiveNotification:) richSelector:@selector(didReceiveNotification:)];
+    [[ABPush shared] handleNotification:userInfo applicationState:appState target:self pushSelector:@selector(didReceiveNotification:) richSelector:@selector(didReceiveNotification:)];
 }
 
 // one of these will be called after calling -registerForRemoteNotifications
@@ -321,7 +321,7 @@
     
     [AppBand kickoff:kickOffOptions];
     
-    [[AppBand shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
+    [[ABPush shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     
     if ([self availableString:self.userEmail] && [self availableString:self.userPassword]) {
          self.rootController = [self getFunctionController];
@@ -359,7 +359,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[AppBand shared] resetBadge];
+    [[ABPush shared] resetBadge];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

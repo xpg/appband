@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "96318F07149AE88C001F27A7"
-               BuildableName = "libAppBand_1.0.0.a"
+               BuildableName = "libAppBand.a"
                BlueprintName = "AppBandLib"
                ReferencedContainer = "container:AppBandLib.xcodeproj">
             </BuildableReference>
