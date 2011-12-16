@@ -98,7 +98,13 @@ SINGLETON_IMPLEMENTATION(ABPush)
 
 - (void)showRich:(NSString *)rid {
     if (!self.richView) {
-        ABRichView *richView = [[[ABRichView alloc] initWithFrame:CGRectMake(0, 0, 281, 380)] autorelease];
+        ABRichView *richView = nil;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            richView = [[[ABIPhoneRichView alloc] initWithFrame:CGRectMake(0, 0, 281, 380)] autorelease];
+        } else {
+            richView = [[[ABIPadRichView alloc] initWithFrame:CGRectMake(0, 0, 641, 865)] autorelease];
+        }
+        
         [richView setDelegate:self];
         [richView setCenter:[UIApplication sharedApplication].keyWindow.center];
         [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];

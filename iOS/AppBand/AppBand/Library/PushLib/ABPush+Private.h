@@ -12,6 +12,8 @@
 #import "ABNotification.h"
 #import "ABRichHandler.h"
 #import "ABRichView.h"
+#import "ABIPhoneRichView.h"
+#import "ABIPadRichView.h"
 
 @interface ABPush() <ABRichViewDelegate>
 

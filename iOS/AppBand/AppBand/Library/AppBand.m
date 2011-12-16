@@ -7,10 +7,10 @@
 //
 
 //#define kAppBandProductionServer @"https://apphub.gizwits.com"
-//#define kAppBandProductionServer @"https://192.168.1.60"
+//#define kAppBandProductionServer @"https://192.168.1.60/v1"
 //#define kAppBandProductionServer @"http://192.168.1.51:3000"
 
-#define kAppBandProductionServer @"https://api.appmocha.com"
+#define kAppBandProductionServer @"https://api.appmocha.com/v1"
 
 #define kAppBandDeviceUDID @"AppBandDeviceUDID"
 #define kLastDeviceTokenKey @"AppBandTokenChanged"
@@ -33,6 +33,7 @@ static AppBand *_appBand;
 
 @synthesize handlePushAuto = _handlePushAuto;
 @synthesize handleRichAuto = _handleRichAuto;
+@synthesize defaultViewSupportOrientation = _defaultViewSupportOrientation;
 
 #pragma mark - Private
 

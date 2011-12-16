@@ -52,6 +52,10 @@
 		96DAB785147255140059345C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96DAB784147255140059345C /* UIKit.framework */; };
 		96E035A41481D7690091A91F /* ABDownloadRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E035A21481D7690091A91F /* ABDownloadRequest.h */; };
 		96E035A51481D7690091A91F /* ABDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E035A31481D7690091A91F /* ABDownloadRequest.m */; };
+		96F769A3149ADBEB00191B04 /* ABIPadRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F7699F149ADBEB00191B04 /* ABIPadRichView.h */; };
+		96F769A4149ADBEB00191B04 /* ABIPadRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F769A0149ADBEB00191B04 /* ABIPadRichView.m */; };
+		96F769A5149ADBEB00191B04 /* ABIPhoneRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F769A1149ADBEB00191B04 /* ABIPhoneRichView.h */; };
+		96F769A6149ADBEB00191B04 /* ABIPhoneRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F769A2149ADBEB00191B04 /* ABIPhoneRichView.m */; };
 		96FE3A09147E38820039DD24 /* ABPurchaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FE3A07147E38810039DD24 /* ABPurchaseResponse.h */; };
 		96FE3A0A147E38820039DD24 /* ABPurchaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FE3A08147E38810039DD24 /* ABPurchaseResponse.m */; };
 		96FE3A0E147E47170039DD24 /* ABDeliverHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FE3A0C147E47160039DD24 /* ABDeliverHandler.h */; };
@@ -132,6 +136,10 @@
 		96DAB784147255140059345C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96E035A21481D7690091A91F /* ABDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDownloadRequest.h; sourceTree = "<group>"; };
 		96E035A31481D7690091A91F /* ABDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDownloadRequest.m; sourceTree = "<group>"; };
+		96F7699F149ADBEB00191B04 /* ABIPadRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPadRichView.h; sourceTree = "<group>"; };
+		96F769A0149ADBEB00191B04 /* ABIPadRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIPadRichView.m; sourceTree = "<group>"; };
+		96F769A1149ADBEB00191B04 /* ABIPhoneRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPhoneRichView.h; sourceTree = "<group>"; };
+		96F769A2149ADBEB00191B04 /* ABIPhoneRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIPhoneRichView.m; sourceTree = "<group>"; };
 		96FE3A07147E38810039DD24 /* ABPurchaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchaseResponse.h; sourceTree = "<group>"; };
 		96FE3A08147E38810039DD24 /* ABPurchaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPurchaseResponse.m; sourceTree = "<group>"; };
 		96FE3A0C147E47160039DD24 /* ABDeliverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDeliverHandler.h; sourceTree = "<group>"; };
@@ -308,6 +316,10 @@
 		96DAB74F147254F20059345C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				96F7699F149ADBEB00191B04 /* ABIPadRichView.h */,
+				96F769A0149ADBEB00191B04 /* ABIPadRichView.m */,
+				96F769A1149ADBEB00191B04 /* ABIPhoneRichView.h */,
+				96F769A2149ADBEB00191B04 /* ABIPhoneRichView.m */,
 				96DAB750147254F20059345C /* ABRichView.h */,
 				96DAB751147254F20059345C /* ABRichView.m */,
 			);
@@ -365,6 +377,8 @@
 				96FE3A0E147E47170039DD24 /* ABDeliverHandler.h in Headers */,
 				96FE3A11147E47970039DD24 /* ABDeliverHandler+Private.h in Headers */,
 				96E035A41481D7690091A91F /* ABDownloadRequest.h in Headers */,
+				96F769A3149ADBEB00191B04 /* ABIPadRichView.h in Headers */,
+				96F769A5149ADBEB00191B04 /* ABIPhoneRichView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +503,8 @@
 				96FE3A0A147E38820039DD24 /* ABPurchaseResponse.m in Sources */,
 				96FE3A0F147E47170039DD24 /* ABDeliverHandler.m in Sources */,
 				96E035A51481D7690091A91F /* ABDownloadRequest.m in Sources */,
+				96F769A4149ADBEB00191B04 /* ABIPadRichView.m in Sources */,
+				96F769A6149ADBEB00191B04 /* ABIPhoneRichView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

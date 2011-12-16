@@ -50,7 +50,6 @@
 }
 
 - (void)getDownloadURLEnd:(NSDictionary *)response {
-    NSLog(@"response:%@",[response description]);
     ABHTTPResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
     
     ABPurchaseResponse *productResponse = [[[ABPurchaseResponse alloc] init] autorelease];

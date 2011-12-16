@@ -14,11 +14,6 @@
 
 @interface ABRichView : UIView <UIWebViewDelegate> {
     id<ABRichViewDelegate> delegate;
-    UIToolbar *toolbar;
-    UILabel *titleLabel;
-    UIWebView *webView;
-    UIActivityIndicatorView *indicatorView;
-    
     @private
         NSString *_rid;
 }
@@ -27,6 +22,8 @@
 @property(nonatomic,copy) NSString *rid;
 
 - (void)setRichContent:(ABRichResponse *)response;
+
+- (void)cancel;
 
 @end
 

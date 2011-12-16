@@ -35,6 +35,7 @@
 
 @property(assign) BOOL handlePushAuto;
 @property(assign) BOOL handleRichAuto;
+@property(assign) BOOL defaultViewSupportOrientation;
 
 - (id)initWithKey:(NSString *)key secret:(NSString *)secret;
 

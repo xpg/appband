@@ -35,6 +35,9 @@
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    if ([[response invalidProductIdentifiers] count] > 0) {
+        DLog(@"invalid productIdentifiers: %@",[[response invalidProductIdentifiers] description]);
+    }
     NSArray *skProducts = [response products];
     NSMutableArray *tmp = [NSMutableArray array];
     for (SKProduct *skProduct in skProducts) {
