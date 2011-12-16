@@ -19,7 +19,7 @@
 
 @property(nonatomic,copy) NSArray *pushArray;
 
-- (void)didReceiveNotification:(NSNotification *)notification;
+- (void)controllerDidReceiveNotification:(NSNotification *)notification;
 
 - (void)showRichView:(AMNotification *)notification;
 
@@ -33,9 +33,8 @@
 
 #pragma mark - Private
 
-- (void)didReceiveNotification:(NSNotification *)notification {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+- (void)controllerDidReceiveNotification:(NSNotification *)notification {
+    NSLog(@"controllerDidReceiveNotification");
     AMNotification *amn = notification.object;
     UIApplicationState state = [[[notification userInfo] objectForKey:AppBand_App_Push_State] intValue];
     NSMutableArray *temp = [NSMutableArray arrayWithObjects:amn, nil];
@@ -55,8 +54,6 @@
             [self showRichView:amn];
         }
     }
-    
-    [pool drain];
 }
 
 - (void)showRichView:(AMNotification *)notification {
@@ -143,6 +140,7 @@
 #pragma mark - UIViewController lifecycle
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
     [self setPushArray:nil];
     [self setPushTableView:nil];
     [super dealloc];
@@ -152,8 +150,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         dataController = [[CoreDataManager defaultManager] fetchCDController:DEMO_STORE_NAME];
-        
         self.pushArray = [dataController getModel:AMNotification_Class predicate:nil sortBy:@"date" isAscending:NO];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controllerDidReceiveNotification:) name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
     }
     return self;
 }
@@ -169,13 +169,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

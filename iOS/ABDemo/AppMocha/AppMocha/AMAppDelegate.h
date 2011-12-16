@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UIViewController *rootController;
+@property (nonatomic, retain) UIViewController *rootController;
 
 - (NSString *)deviceToken;
 

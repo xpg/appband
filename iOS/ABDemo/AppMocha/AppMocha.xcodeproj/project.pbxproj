@@ -809,6 +809,10 @@
 		964BC1B314861E4100830181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppMocha/AppMocha-Prefix.pch";
 				INFOPLIST_FILE = "AppMocha/AppMocha-Info.plist";
@@ -824,6 +828,10 @@
 		964BC1B414861E4100830181 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppMocha/AppMocha-Prefix.pch";
 				INFOPLIST_FILE = "AppMocha/AppMocha-Info.plist";

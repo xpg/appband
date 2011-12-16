@@ -101,6 +101,8 @@
 - (void)switchToFunctionController {
     UIViewController *controller = [self getFunctionController];
     [UIView transitionFromView:self.rootController.view toView:controller.view duration:.5 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+        [self.rootController.view removeFromSuperview];
+        self.rootController = nil;
         self.rootController = controller;
     }];
 }
@@ -109,6 +111,9 @@
     [self cleanAll];
     UIViewController *controller = [self getUnLoginController];
     [UIView transitionFromView:self.rootController.view toView:controller.view duration:.5 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished) {
+        [self.rootController.view removeFromSuperview];
+        [_rootController release];
+        _rootController = nil;
         self.rootController = controller;
     }];
 }
@@ -167,7 +172,7 @@
     UIImage *logon = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         logon = [UIImage imageNamed:@"AppMocha_Logo"];
-        pushController = [[[AMIPhonePushController alloc] initWithNibName:@"AMIPhonePushController" bundle:nil] autorelease];
+        pushController = [[AMIPhonePushController alloc] initWithNibName:@"AMIPhonePushController" bundle:nil];
         pushController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
         //        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostRecent tag:0];
@@ -175,7 +180,7 @@
         [pushController setTabBarItem:pushBarItem];
         [pushBarItem release];
         
-        purchaseController = [[[AMIPhonePurchaseController alloc] initWithNibName:@"AMIPhonePurchaseController" bundle:nil] autorelease];
+        purchaseController = [[AMIPhonePurchaseController alloc] initWithNibName:@"AMIPhonePurchaseController" bundle:nil];
         purchaseController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
         //        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
@@ -183,7 +188,7 @@
         [purchaseController setTabBarItem:purchaseBarItem];
         [purchaseBarItem release];
         
-        introController = [[[AMIPhoneIntroController alloc] initWithNibName:@"AMIPhoneIntroController" bundle:nil] autorelease];
+        introController = [[AMIPhoneIntroController alloc] initWithNibName:@"AMIPhoneIntroController" bundle:nil];
         introController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
         //        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
@@ -192,7 +197,7 @@
         [introBarItem release];
     } else {
         logon = [UIImage imageNamed:@"AppMocha_Logo@2x.png"];
-        pushController = [[[AMIPadPushController alloc] initWithNibName:@"AMIPadPushController" bundle:nil] autorelease];
+        pushController = [[AMIPadPushController alloc] initWithNibName:@"AMIPadPushController" bundle:nil];
         pushController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
 //        UITabBarItem *pushBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMostRecent tag:0];
@@ -200,7 +205,7 @@
         [pushController setTabBarItem:pushBarItem];
         [pushBarItem release];
         
-        purchaseController = [[[AMIPadPurchaseController alloc] initWithNibName:@"AMIPadPurchaseController" bundle:nil] autorelease];
+        purchaseController = [[AMIPadPurchaseController alloc] initWithNibName:@"AMIPadPurchaseController" bundle:nil];
         purchaseController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
 //        UITabBarItem *purchaseBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
@@ -208,7 +213,7 @@
         [purchaseController setTabBarItem:purchaseBarItem];
         [purchaseBarItem release];
         
-        introController = [[[AMIPadIntroController alloc] initWithNibName:@"AMIPadIntroController" bundle:nil] autorelease];
+        introController = [[AMIPadIntroController alloc] initWithNibName:@"AMIPadIntroController" bundle:nil];
         introController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
 //        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
@@ -217,17 +222,24 @@
         [introBarItem release];
     }
     
-    UINavigationController *naviPushController = [[[UINavigationController alloc] initWithRootViewController:pushController] autorelease];
+    UINavigationController *naviPushController = [[UINavigationController alloc] initWithRootViewController:pushController];
+    [pushController release];
     [naviPushController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
-    UINavigationController *naviPurchaseController = [[[UINavigationController alloc] initWithRootViewController:purchaseController] autorelease];
+    UINavigationController *naviPurchaseController = [[UINavigationController alloc] initWithRootViewController:purchaseController];
+    [purchaseController release];
     [naviPurchaseController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
-    UINavigationController *naviIntroController = [[[UINavigationController alloc] initWithRootViewController:introController] autorelease];
+    UINavigationController *naviIntroController = [[UINavigationController alloc] initWithRootViewController:introController];
+    [introController release];
     [naviIntroController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
     UITabBarController *barController = [[[UITabBarController alloc] init] autorelease];
     [barController setViewControllers:[NSArray arrayWithObjects:naviPushController, naviPurchaseController, naviIntroController, nil]];
+    
+    [naviPushController release];
+    [naviPurchaseController release];
+    [naviIntroController release];
     
     return barController;
 }
@@ -330,7 +342,7 @@
         self.rootController = [self getUnLoginController];
     }
     
-    self.window.rootViewController = self.rootController;
+    [self.window addSubview:self.rootController.view];
     [self.window makeKeyAndVisible];
     
     [self performSelector:@selector(handlePushWhenLauching:) withObject:launchOptions afterDelay:.5];

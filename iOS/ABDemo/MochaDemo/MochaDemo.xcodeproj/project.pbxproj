@@ -15,13 +15,13 @@
 		96108E041499CA3F00D94691 /* MDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96108E031499CA3F00D94691 /* MDAppDelegate.m */; };
 		96108E3A1499D76200D94691 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96108E391499D76200D94691 /* SystemConfiguration.framework */; };
 		96108E3C1499D76D00D94691 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96108E3B1499D76D00D94691 /* StoreKit.framework */; };
+		96227B79149B33C5008EFF47 /* libAppBand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96227B78149B33C5008EFF47 /* libAppBand.a */; };
 		9663CD67149AFE7500D3D94B /* AppBand.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9663CD64149AFE7500D3D94B /* AppBand.bundle */; };
 		9663CD70149AFE8C00D3D94B /* MDPurchaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9663CD69149AFE8C00D3D94B /* MDPurchaseController.m */; };
 		9663CD71149AFE8C00D3D94B /* MDPurchaseDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9663CD6B149AFE8C00D3D94B /* MDPurchaseDownloadController.m */; };
 		9663CD73149AFE8C00D3D94B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9663CD6E149AFE8C00D3D94B /* Icon.png */; };
 		9663CD74149AFE8C00D3D94B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9663CD6F149AFE8C00D3D94B /* Icon@2x.png */; };
 		9663CD76149AFED100D3D94B /* MDPushController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9663CD75149AFED100D3D94B /* MDPushController.m */; };
-		9663CD78149AFFDE00D3D94B /* libAppBand_1.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9663CD77149AFFDE00D3D94B /* libAppBand_1.0.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +37,7 @@
 		96108E031499CA3F00D94691 /* MDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDAppDelegate.m; sourceTree = "<group>"; };
 		96108E391499D76200D94691 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		96108E3B1499D76D00D94691 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		96227B78149B33C5008EFF47 /* libAppBand.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppBand.a; path = ../../../../../release/production/libAppBand.a; sourceTree = "<group>"; };
 		9663CD58149AFE7500D3D94B /* ABConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConstant.h; sourceTree = "<group>"; };
 		9663CD59149AFE7500D3D94B /* ABNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotification.h; sourceTree = "<group>"; };
 		9663CD5A149AFE7500D3D94B /* ABNotificationsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotificationsResponse.h; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		9663CD6E149AFE8C00D3D94B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9663CD6F149AFE8C00D3D94B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9663CD75149AFED100D3D94B /* MDPushController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDPushController.m; sourceTree = "<group>"; };
-		9663CD77149AFFDE00D3D94B /* libAppBand_1.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppBand_1.0.0.a; path = ../../../../../release/production/libAppBand_1.0.0.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 				96108DF41499CA3F00D94691 /* UIKit.framework in Frameworks */,
 				96108DF61499CA3F00D94691 /* Foundation.framework in Frameworks */,
 				96108DF81499CA3F00D94691 /* CoreGraphics.framework in Frameworks */,
-				9663CD78149AFFDE00D3D94B /* libAppBand_1.0.0.a in Frameworks */,
+				96227B79149B33C5008EFF47 /* libAppBand.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +101,7 @@
 		96108DF21499CA3F00D94691 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9663CD77149AFFDE00D3D94B /* libAppBand_1.0.0.a */,
+				96227B78149B33C5008EFF47 /* libAppBand.a */,
 				96108E3B1499D76D00D94691 /* StoreKit.framework */,
 				96108E391499D76200D94691 /* SystemConfiguration.framework */,
 				96108DF31499CA3F00D94691 /* UIKit.framework */,
@@ -298,7 +298,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason Wang (8PM299Q2W7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MochaDemo/MochaDemo-Prefix.pch";
 				INFOPLIST_FILE = "MochaDemo/MochaDemo-Info.plist";
@@ -307,7 +307,6 @@
 					"\"$(SRCROOT)/../../../../../release/production\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35B3BE98-F4E2-4253-95DC-1120EDF43CD0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -316,7 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jason Wang (8PM299Q2W7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MochaDemo/MochaDemo-Prefix.pch";
 				INFOPLIST_FILE = "MochaDemo/MochaDemo-Info.plist";
@@ -325,7 +324,6 @@
 					"\"$(SRCROOT)/../../../../../release/production\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35B3BE98-F4E2-4253-95DC-1120EDF43CD0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
