@@ -175,12 +175,12 @@
 }
 
 - (void)dealloc {
+    DLog(@"ABProductHandler dealloc");
     [self setProductsDictionary:nil];
     [self setResponse:nil];
     [self setGroup:nil];
     [self setUrl:nil];
     [super dealloc];
-    NSLog(@"ABProductHandler dealloc");
 }
 
 @end

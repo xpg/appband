@@ -8,7 +8,8 @@
 
 typedef enum {
     ABNotificationTypePush,
-    ABNotificationTypeRich
+    ABNotificationTypeRich,
+    ABNotificationTypeAll,
 } ABNotificationType;
 
 #import <Foundation/Foundation.h>
@@ -21,6 +22,7 @@ typedef enum {
     NSNumber *badge;
     NSString *sound;
     NSString *notificationId;
+    NSDate *sendTime;
 }
 
 @property(nonatomic,assign) UIApplicationState state;
@@ -29,5 +31,7 @@ typedef enum {
 @property(nonatomic,copy) NSNumber *badge;
 @property(nonatomic,copy) NSString *sound;
 @property(nonatomic,copy) NSString *notificationId;
+@property(nonatomic,copy) NSDate *sendTime;
 
 @end
+

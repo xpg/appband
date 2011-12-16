@@ -60,6 +60,10 @@
 		9631903B149AEDB4001F27A7 /* ABRestCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 96319010149AEDB4001F27A7 /* ABRestCenter.h */; };
 		9631903C149AEDB4001F27A7 /* ABRestCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96319011149AEDB4001F27A7 /* ABRestCenter.m */; };
 		96319050149AEDF3001F27A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9631904F149AEDF3001F27A7 /* UIKit.framework */; };
+		96F46E4E149AF4DB0006C09E /* ABNotificationsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F46E4A149AF4DB0006C09E /* ABNotificationsResponse.h */; };
+		96F46E4F149AF4DB0006C09E /* ABNotificationsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F46E4B149AF4DB0006C09E /* ABNotificationsResponse.m */; };
+		96F46E50149AF4DB0006C09E /* ABPushConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F46E4C149AF4DB0006C09E /* ABPushConfiguration.h */; };
+		96F46E51149AF4DB0006C09E /* ABPushConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F46E4D149AF4DB0006C09E /* ABPushConfiguration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +149,10 @@
 		9631903D149AEDC6001F27A7 /* ABIAPLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ABIAPLib.xcodeproj; path = ../ABIAPLib/ABIAPLib.xcodeproj; sourceTree = "<group>"; };
 		96319046149AEDCF001F27A7 /* ABPushLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ABPushLib.xcodeproj; path = ../ABPushLib/ABPushLib.xcodeproj; sourceTree = "<group>"; };
 		9631904F149AEDF3001F27A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		96F46E4A149AF4DB0006C09E /* ABNotificationsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotificationsResponse.h; sourceTree = "<group>"; };
+		96F46E4B149AF4DB0006C09E /* ABNotificationsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotificationsResponse.m; sourceTree = "<group>"; };
+		96F46E4C149AF4DB0006C09E /* ABPushConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPushConfiguration.h; sourceTree = "<group>"; };
+		96F46E4D149AF4DB0006C09E /* ABPushConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPushConfiguration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +299,10 @@
 		96318FF7149AEDB4001F27A7 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				96F46E4A149AF4DB0006C09E /* ABNotificationsResponse.h */,
+				96F46E4B149AF4DB0006C09E /* ABNotificationsResponse.m */,
+				96F46E4C149AF4DB0006C09E /* ABPushConfiguration.h */,
+				96F46E4D149AF4DB0006C09E /* ABPushConfiguration.m */,
 				96318FF8149AEDB4001F27A7 /* ABProductsResponse.h */,
 				96318FF9149AEDB4001F27A7 /* ABProductsResponse.m */,
 				96318FFA149AEDB4001F27A7 /* ABPurchaseResponse.h */,
@@ -384,6 +396,8 @@
 				96319037149AEDB4001F27A7 /* ABDownloadRequest.h in Headers */,
 				96319039149AEDB4001F27A7 /* ABHTTPRequest.h in Headers */,
 				9631903B149AEDB4001F27A7 /* ABRestCenter.h in Headers */,
+				96F46E4E149AF4DB0006C09E /* ABNotificationsResponse.h in Headers */,
+				96F46E50149AF4DB0006C09E /* ABPushConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +546,8 @@
 				96319038149AEDB4001F27A7 /* ABDownloadRequest.m in Sources */,
 				9631903A149AEDB4001F27A7 /* ABHTTPRequest.m in Sources */,
 				9631903C149AEDB4001F27A7 /* ABRestCenter.m in Sources */,
+				96F46E4F149AF4DB0006C09E /* ABNotificationsResponse.m in Sources */,
+				96F46E51149AF4DB0006C09E /* ABPushConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

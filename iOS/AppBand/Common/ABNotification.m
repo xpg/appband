@@ -16,12 +16,14 @@
 @synthesize badge;
 @synthesize sound;
 @synthesize notificationId;
+@synthesize sendTime;
 
 - (void)dealloc {
     [self setAlert:nil];
     [self setBadge:nil];
     [self setSound:nil];
     [self setNotificationId:nil];
+    [self setSendTime:nil];
     [super dealloc];
 }
 

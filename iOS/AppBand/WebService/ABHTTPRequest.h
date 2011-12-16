@@ -13,26 +13,37 @@
 @protocol ABHTTPRequestDelegate;
 
 @interface ABHTTPRequest : NSOperation {
-    @private
-        id<ABHTTPRequestDelegate> _delegate;
-        
-        BOOL _isCompleted;
-        
-        NSString *_key;
-        NSString *_url;
-        NSDictionary *_parameters;
-        NSTimeInterval _timeout;
-        
-        NSURLConnection *_urlConnection;
-        
-        NSMutableData *_responseData;
+@private
+    id<ABHTTPRequestDelegate> _delegate;
+    id _agent;
     
-        SEL _finishSelector;
-        SEL _failSelector;
+    BOOL _isCompleted;
+    
+    NSString *_key;
+    NSString *_url;
+    NSDictionary *_parameters;
+    NSTimeInterval _timeout;
+    
+    NSURLConnection *_urlConnection;
+    
+    NSMutableData *_responseData;
+    
+    SEL _finishSelector;
+    SEL _failSelector;
+    
+    SEL _agentSeletor;
 }
+
+@property(nonatomic,assign) id<ABHTTPRequestDelegate> delegate;
 
 @property(nonatomic,readonly,copy) NSString *key;
 @property(nonatomic,readonly,copy) NSString *url;
+
+@property(nonatomic,assign) SEL finishSelector;
+@property(nonatomic,assign) SEL failSelector;
+
+@property(nonatomic,assign) id agent;
+@property(nonatomic,assign) SEL agentSelector;
 
 #pragma mark - Class Method
 
@@ -43,6 +54,16 @@
             delegate:(id<ABHTTPRequestDelegate>)delegate 
               finish:(SEL)finishSelector
                 fail:(SEL)failSelector;
+
++ (id)requestWithKey:(NSString *)key 
+                 url:(NSString *)url 
+           parameter:(NSDictionary *)parameter 
+             timeout:(NSTimeInterval)timeout 
+            delegate:(id<ABHTTPRequestDelegate>)delegate 
+              finish:(SEL)finishSelector
+                fail:(SEL)failSelector 
+               agent:(id)agent 
+       agentSelector:(SEL)agentSeletor;
 
 @end
 

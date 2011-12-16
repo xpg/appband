@@ -36,4 +36,14 @@
 
 - (void)showRich:(NSString *)rid;
 
+- (NSDate *)getDateFromString:(NSString *)dateStr;
+
+- (void)getNotificationsEnd:(NSDictionary *)response;
+
+- (void)getPushConfigurationEnd:(NSDictionary *)response;
+
+- (void)setPushConfigurationEnd:(NSDictionary *)response;
+
+- (NSString *)getJsonFromArray:(NSArray *)array;
+
 @end

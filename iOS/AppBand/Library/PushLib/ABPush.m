@@ -130,6 +130,129 @@ SINGLETON_IMPLEMENTATION(ABPush)
     [[ABPush shared] getRichContent:rid target:self.richView finishSelector:@selector(setRichContent:)];
 }
 
+- (NSDate *)getDateFromString:(NSString *)dateStr {
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:AB_APP_NOTIFICATION_SEND_TIME_FORMAT];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    [dateFormatter release];
+    
+    return date;
+}
+
+- (void)getNotificationsEnd:(NSDictionary *)response {
+    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
+    
+    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+    
+    ABNotificationsResponse *r = [[[ABNotificationsResponse alloc] init] autorelease];
+    [r setCode:code];
+    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
+    
+    if (code == ABResponseCodeHTTPSuccess) {
+        if (code == ABHTTPResponseSuccess) {
+            NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
+            
+            //parser response json
+            NSError *error = nil;
+            AB_SBJSON *json = [[AB_SBJSON alloc] init];
+            NSDictionary *dic = [json objectWithString:resp error:&error];
+            [json release];
+            
+            if (dic && !error) {
+                [r setSum:[[dic objectForKey:AB_APP_NOTIFICATION_SUM] intValue]];
+                NSArray *tmp = [dic objectForKey:AB_APP_NOTIFICATION_NOTIFICATIONS];
+                if ([tmp count] > 0) {
+                    NSMutableArray *notifications = [NSMutableArray array];
+                    for (NSDictionary *noti in tmp) {
+                        NSString *notiId = [noti objectForKey:AB_APP_NOTIFICATION_ID];
+                        if (notiId && ![notiId isEqualToString:@""]) {
+                            ABNotification *notification = [[[ABNotification alloc] init] autorelease];
+                            [notification setNotificationId:notiId];
+                            [notification setType:[[noti objectForKey:AB_APP_NOTIFICATION_TYPE] intValue]];
+                            [notification setAlert:[noti objectForKey:AB_APP_NOTIFICATION_ALERT]];
+                            [notification setSendTime:[self getDateFromString:[noti objectForKey:AB_APP_NOTIFICATION_SEND_TIME]]];
+                            [notifications addObject:notification];
+                        }
+                    }
+                    [r setNotificationArray:[NSArray arrayWithArray:notifications]];
+                }
+            } else {
+                [r setCode:ABResponseCodeHTTPError];
+                [r setError:[NSError errorWithDomain:@"AppBand Parser Error" code:ABResponseCodeHTTPError userInfo:nil]];
+            }
+        } 
+        [requester.delegate performSelector:requester.finishSelector withObject:r];
+    } else {
+        [requester.delegate performSelector:requester.failSelector withObject:r];
+    }
+}
+
+- (void)getPushConfigurationEnd:(NSDictionary *)response {
+    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
+    
+    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+    
+    ABPushConfiguration *r = [[[ABPushConfiguration alloc] init] autorelease];
+    [r setCode:code];
+    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
+    
+    if (code == ABResponseCodeHTTPSuccess) {
+        if (code == ABHTTPResponseSuccess) {
+            NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
+            
+            //parser response json
+            NSError *error = nil;
+            AB_SBJSON *json = [[AB_SBJSON alloc] init];
+            NSDictionary *dic = [json objectWithString:resp error:&error];
+            [json release];
+            
+            if (dic && !error) {
+                [r setEnabled:[[dic objectForKey:AB_APP_PUSH_CONFIGURATION_ENABLED] boolValue]];
+                [r setUnavailableIntervals:[dic objectForKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS]];
+            } else {
+                [r setCode:ABResponseCodeHTTPError];
+                [r setError:[NSError errorWithDomain:@"AppBand Parser Error" code:ABResponseCodeHTTPError userInfo:nil]];
+            }
+        } 
+        [requester.delegate performSelector:requester.finishSelector withObject:r];
+    } else {
+        [requester.delegate performSelector:requester.failSelector withObject:r];
+    }
+}
+
+- (void)setPushConfigurationEnd:(NSDictionary *)response {
+    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
+    
+    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+    
+    ABResponse *r = [[[ABResponse alloc] init] autorelease];
+    [r setCode:code];
+    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
+    
+    if (code == ABResponseCodeHTTPSuccess) {
+        [requester.delegate performSelector:requester.finishSelector withObject:r];
+    } else {
+        [requester.delegate performSelector:requester.failSelector withObject:r];
+    }
+}
+
+- (NSString *)getJsonFromArray:(NSArray *)array {
+    if ([array count] < 1) return @"";
+    //parser response json
+    NSError *error = nil;
+    AB_SBJSON *json = [[AB_SBJSON alloc] init];
+    NSString *arrayString = [json stringWithObject:array error:&error];
+    [json release];
+    
+    if (error) {
+        return @"";
+    }
+    
+    return arrayString;
+}
+
 #pragma mark - Public
 
 /*

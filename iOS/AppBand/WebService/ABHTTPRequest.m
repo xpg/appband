@@ -20,8 +20,6 @@ CG_INLINE BOOL hasConnection() {
 
 @interface ABHTTPRequest()
 
-@property(nonatomic,assign) id<ABHTTPRequestDelegate> delegate;
-
 @property(assign) BOOL isCompleted;
 
 @property(nonatomic,readwrite,copy) NSString *key;
@@ -32,9 +30,6 @@ CG_INLINE BOOL hasConnection() {
 @property(nonatomic,retain) NSURLConnection *urlConnection;
 @property(nonatomic,retain) NSMutableData *responseData;
 
-@property (assign) SEL finishSelector;
-@property (assign) SEL failSelector;
-
 - (void)requestTimeOut;
 
 - (void)requestCancelled;
@@ -44,6 +39,7 @@ CG_INLINE BOOL hasConnection() {
 @implementation ABHTTPRequest
 
 @synthesize delegate = _delegate;
+@synthesize agent = _agent;
 @synthesize isCompleted = _isCompleted;
 
 @synthesize key = _key;
@@ -56,17 +52,22 @@ CG_INLINE BOOL hasConnection() {
 
 @synthesize finishSelector = _finishSelector;
 @synthesize failSelector = _failSelector;
+@synthesize agentSelector = _agentSeletor;
 
 #pragma mark - Private
 
 - (void)requestTimeOut {
     NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseTimeout userInfo:nil];
-    if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-        [self.delegate finishedRequest:self.url code:ABHTTPResponseTimeout content:nil error:error];
-    }
-    
-    if ([self.delegate respondsToSelector:self.failSelector]) {
-        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseTimeout], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+    if ([self.agent respondsToSelector:self.agentSelector]) {
+        [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseTimeout], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, self, ABHTTPRequesterObject, nil]];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+            [self.delegate finishedRequest:self.url code:ABHTTPResponseTimeout content:nil error:error];
+        }
+        
+        if ([self.delegate respondsToSelector:self.failSelector]) {
+            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseTimeout], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+        }
     }
     
     self.delegate = nil;
@@ -78,12 +79,16 @@ CG_INLINE BOOL hasConnection() {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(requestTimeOut) object:nil];
     
     NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseCancel userInfo:nil];
-    if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-        [self.delegate finishedRequest:self.url code:ABHTTPResponseCancel content:nil error:error];
-    }
-    
-    if ([self.delegate respondsToSelector:self.failSelector]) {
-        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseCancel], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+    if ([self.agent respondsToSelector:self.agentSelector]) {
+        [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseCancel], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, self, ABHTTPRequesterObject, nil]];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+            [self.delegate finishedRequest:self.url code:ABHTTPResponseCancel content:nil error:error];
+        }
+        
+        if ([self.delegate respondsToSelector:self.failSelector]) {
+            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseCancel], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+        }
     }
     
     self.delegate = nil;
@@ -108,6 +113,31 @@ CG_INLINE BOOL hasConnection() {
     [request setDelegate:delegate];
     [request setFinishSelector:finishSelector];
     [request setFailSelector:failSelector];
+    [request setAgent:nil];
+    [request setAgentSelector:nil];
+    
+    return request;
+}
+
++ (id)requestWithKey:(NSString *)key 
+                 url:(NSString *)url 
+           parameter:(NSDictionary *)parameter 
+             timeout:(NSTimeInterval)timeout 
+            delegate:(id<ABHTTPRequestDelegate>)delegate 
+              finish:(SEL)finishSelector
+                fail:(SEL)failSelector 
+               agent:(id)agent 
+       agentSelector:(SEL)agentSeletor {
+    ABHTTPRequest *request = [[[ABHTTPRequest alloc] init] autorelease];
+    [request setKey:key];
+    [request setUrl:url];
+    [request setParameters:parameter];
+    [request setTimeout:timeout];
+    [request setDelegate:delegate];
+    [request setFinishSelector:finishSelector];
+    [request setFailSelector:failSelector];
+    [request setAgent:agent];
+    [request setAgentSelector:agentSeletor];
     
     return request;
 }
@@ -160,23 +190,31 @@ CG_INLINE BOOL hasConnection() {
             
         } else {
             NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseNoConnection userInfo:nil];
-            if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-                [self.delegate finishedRequest:self.url code:ABHTTPResponseNoConnection content:nil error:error];
-            }
-            
-            if ([self.delegate respondsToSelector:self.failSelector]) {
-                [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseNoConnection], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+            if ([self.agent respondsToSelector:self.agentSelector]) {
+                [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseNoConnection], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, self, ABHTTPRequesterObject, nil]];
+            } else {
+                if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+                    [self.delegate finishedRequest:self.url code:ABHTTPResponseNoConnection content:nil error:error];
+                }
+                
+                if ([self.delegate respondsToSelector:self.failSelector]) {
+                    [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseNoConnection], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+                }
             }
         }
         
     } else {
         NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:ABHTTPResponseInvalidURL userInfo:nil];
-        if ([self.delegate respondsToSelector:@selector(finishedReuqest:code:content:error:)]) {
-            [self.delegate finishedRequest:self.url code:ABHTTPResponseInvalidURL content:nil error:error];
-        }
-        
-        if ([self.delegate respondsToSelector:self.failSelector]) {
-            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseInvalidURL], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+        if ([self.agent respondsToSelector:self.agentSelector]) {
+            [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseInvalidURL], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, self, ABHTTPRequesterObject, nil]];
+        } else {
+            if ([self.delegate respondsToSelector:@selector(finishedReuqest:code:content:error:)]) {
+                [self.delegate finishedRequest:self.url code:ABHTTPResponseInvalidURL content:nil error:error];
+            }
+            
+            if ([self.delegate respondsToSelector:self.failSelector]) {
+                [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseInvalidURL], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+            }
         }
     }
     
@@ -192,7 +230,7 @@ CG_INLINE BOOL hasConnection() {
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
         [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-            
+    
     
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
@@ -200,12 +238,16 @@ CG_INLINE BOOL hasConnection() {
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(requestTimeOut) object:nil];
     
-    if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-        [self.delegate finishedRequest:self.url code:ABHTTPResponseServerError content:nil error:error];
-    }
-    
-    if ([self.delegate respondsToSelector:self.failSelector]) {
-        [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseServerError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+    if ([self.agent respondsToSelector:self.agentSelector]) {
+        [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseServerError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, self, ABHTTPRequesterObject, nil]];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+            [self.delegate finishedRequest:self.url code:ABHTTPResponseServerError content:nil error:error];
+        }
+        
+        if ([self.delegate respondsToSelector:self.failSelector]) {
+            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseServerError], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+        }
     }
     
     self.delegate = nil;
@@ -220,13 +262,16 @@ CG_INLINE BOOL hasConnection() {
     if ((httpResponse.statusCode / 100) != 2) { // is the statuCode is not 2**, then there is error.
         
         NSError *error = [NSError errorWithDomain:ABHTTPRequestErrorDomain code:httpResponse.statusCode userInfo:nil];
-        
-        if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-            [self.delegate finishedRequest:self.url code:httpResponse.statusCode content:nil error:error];
-        }
-        
-        if ([self.delegate respondsToSelector:self.failSelector]) {
-            [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:httpResponse.statusCode], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+        if ([self.agent respondsToSelector:self.agentSelector]) {
+            [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:httpResponse.statusCode], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, self, ABHTTPRequesterObject, nil]];
+        } else {
+            if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+                [self.delegate finishedRequest:self.url code:httpResponse.statusCode content:nil error:error];
+            }
+            
+            if ([self.delegate respondsToSelector:self.failSelector]) {
+                [self.delegate performSelector:self.failSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:httpResponse.statusCode], ABHTTPResponseKeyCode, error, ABHTTPResponseKeyError, nil]];
+            }
         }
         
         self.delegate = nil;
@@ -245,12 +290,17 @@ CG_INLINE BOOL hasConnection() {
         return;
     
     NSString *tempStr = [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
-    if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
-        [self.delegate finishedRequest:self.url code:ABHTTPResponseSuccess content:tempStr error:nil];
-    }
     
-    if ([self.delegate respondsToSelector:self.finishSelector]) {
-        [self.delegate performSelector:self.finishSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseSuccess], ABHTTPResponseKeyCode, tempStr, ABHTTPResponseKeyContent, nil]];
+    if ([self.agent respondsToSelector:self.agentSelector]) {
+        [self.agent performSelector:self.agentSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseSuccess], ABHTTPResponseKeyCode, tempStr, ABHTTPResponseKeyContent, self, ABHTTPRequesterObject, nil]];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(finishedRequest:code:content:error:)]) {
+            [self.delegate finishedRequest:self.url code:ABHTTPResponseSuccess content:tempStr error:nil];
+        }
+        
+        if ([self.delegate respondsToSelector:self.finishSelector]) {
+            [self.delegate performSelector:self.finishSelector withObject:[NSDictionary dictionaryWithObjectsAndKeys:self.url, ABHTTPResponseKeyURL, [NSNumber numberWithInt:ABHTTPResponseSuccess], ABHTTPResponseKeyCode, tempStr, ABHTTPResponseKeyContent, nil]];
+        }
     }
     
     self.delegate = nil;

@@ -60,6 +60,7 @@ typedef enum {
 #define ABHTTPResponseKeyCode @"ABHTTPResponseKeyCode"
 #define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"
 #define ABHTTPResponseKeyError @"ABHTTPResponseKeyError"
+#define ABHTTPRequesterObject @"ABHTTPRequesterObject"
 
 #ifdef DEBUG
 #define DLog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
