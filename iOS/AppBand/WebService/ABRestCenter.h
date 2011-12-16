@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ABGlobal.h"
+#import "ABConstant.h"
 
 @class ABHTTPRequest;
 

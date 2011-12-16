@@ -102,7 +102,7 @@
 #pragma mark - Public
 
 - (void)begin {
-    NSString *urlString = [NSString stringWithFormat:@"%@/client_apps/%@/products/transactions.json?",[[AppBand shared] server],[[AppBand shared] appKey]];
+    NSString *urlString = [NSString stringWithFormat:@"%@/client_apps/%@/products/transactions.json",[[AppBand shared] server],[[AppBand shared] appKey]];
     NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];

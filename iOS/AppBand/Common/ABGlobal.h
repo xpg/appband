@@ -61,69 +61,13 @@ typedef enum {
 #define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"
 #define ABHTTPResponseKeyError @"ABHTTPResponseKeyError"
 
-
-//Singleton Template
-#define SINGLETON_INTERFACE(CLASSNAME)  \
-+ (CLASSNAME*)shared;\
-- (void)forceRelease;
-
-
-#define SINGLETON_IMPLEMENTATION(CLASSNAME)         \
-\
-static CLASSNAME* g_shared##CLASSNAME = nil;        \
-\
-+ (CLASSNAME*)shared                                \
-{                                                   \
-if (g_shared##CLASSNAME != nil) {                   \
-return g_shared##CLASSNAME;                         \
-}                                                   \
-\
-@synchronized(self) {                               \
-if (g_shared##CLASSNAME == nil) {                   \
-g_shared##CLASSNAME = [[self alloc] init];      \
-}                                                   \
-}                                                   \
-\
-return g_shared##CLASSNAME;                         \
-}                                                   \
-\
-+ (id)allocWithZone:(NSZone*)zone                   \
-{                                                   \
-@synchronized(self) {                               \
-if (g_shared##CLASSNAME == nil) {                   \
-g_shared##CLASSNAME = [super allocWithZone:zone];    \
-return g_shared##CLASSNAME;                         \
-}                                                   \
-}                                                   \
-NSAssert(NO, @ "[" #CLASSNAME                       \
-" alloc] explicitly called on singleton class.");   \
-return nil;                                         \
-}                                                   \
-\
-- (id)copyWithZone:(NSZone*)zone                    \
-{                                                   \
-return self;                                        \
-}                                                   \
-\
-- (id)retain                                        \
-{                                                   \
-return self;                                        \
-}                                                   \
-\
-- (oneway void)release                                     \
-{                                                   \
-}                                                   \
-\
-- (void)forceRelease {                              \
-@synchronized(self) {                               \
-if (g_shared##CLASSNAME != nil) {                   \
-g_shared##CLASSNAME = nil;                          \
-}                                                   \
-}                                                   \
-[super release];                                    \
-}                                                   \
-\
-- (id)autorelease                                   \
-{                                                   \
-return self;                                        \
-}
+#ifdef DEBUG
+#define DLog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
+#define ALog(...) [[NSAssertionHandler currentHandler] handleFailureInFunction:[NSString stringWithCString:__PRETTY_FUNCTION__ encoding:NSUTF8StringEncoding] file:[NSString stringWithCString:__FILE__ encoding:NSUTF8StringEncoding] lineNumber:__LINE__ description:__VA_ARGS__]
+#else
+#define DLog(...) do { } while (0)
+#ifndef NS_BLOCK_ASSERTIONS
+#define NS_BLOCK_ASSERTIONS
+#endif
+#define ALog(...) NSLog(@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__])
+#endif

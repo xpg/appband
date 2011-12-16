@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ABGlobal.h"
+#import "ABConstant.h"
+#import "ABNotification.h"
 
 @interface ABPush : NSObject {
 }
@@ -32,6 +33,23 @@ SINGLETON_INTERFACE(ABPush)
               richSelector:(SEL)richSelector;
 
 /*
+ * Inbox Method
+ * 
+ * Paramters:
+ *           type: Notification Type.
+ *          index: begin index.
+ *   pageCapacity: the capacity of per page.
+ *         target: callback invocator.
+ * finishSelector: the SEL will call when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotificationsResponse object
+ *  
+ */
+- (void)getNotificationsByType:(ABNotificationType)type 
+                         index:(NSUInteger)index 
+                  pageCapacity:(NSNumber *)pages 
+                        target:(id)target 
+                finishSelector:(SEL)finishSelector;
+
+/*
  * Get Rich Message Content
  * 
  * Paramters:
@@ -48,6 +66,47 @@ SINGLETON_INTERFACE(ABPush)
  *           rid: Rich notification ID.
  */
 - (void)cancelGetRichContent:(NSString *)rid;
+
+/*
+ * Get Push Configuration
+ * 
+ * Paramters:
+ *         target: callback invocator.
+ * finishSelector: the SEL will call when done
+ */
+- (void)getPushConfigurationWithTarget:(id)target finishSelector:(SEL)finishSelector;
+
+/*
+ * Get UTC Time String From NSDate
+ * 
+ * Paramters:
+ *         date: target Date.
+ * 
+ */
+- (NSString *)getUTCFromeDate:(NSDate *)date;
+
+/*
+ * Get UTC Time String From NSString
+ * 
+ * Paramters:
+ *         timeStr: target string. Note that: the timeStr should be in "HH:mm" format.
+ * 
+ */
+- (NSString *)getUTCFromeString:(NSString *)timeStr;
+
+/*
+ * Set Push Configuration
+ * 
+ * Paramters:
+ *        enabled: YES/NO. YES - Enable Recieve Push. NO - Disable Recieve Push.
+ *      intervals: Push will no be send to in those times interval.
+ *         target: callback invocator.
+ * finishSelector: the SEL will call when done.The selector must only has one paramter, which is ABResponse object
+ */
+- (void)setPushEnabled:(BOOL)enabled 
+  unavailableIntervals:(NSArray *)intervals 
+                target:(id)target 
+        finishSelector:(SEL)finishSelector;
 
 /*
  * Register Remote Notification

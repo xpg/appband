@@ -132,6 +132,16 @@ SINGLETON_IMPLEMENTATION(ABPush)
 
 #pragma mark - Public
 
+/*
+ * Handle Push/Rich Notification
+ * 
+ * Paramters:
+ *  notification: The Dictionary comes from APNs.
+ *         state: Application State.
+ *        target: callback invocator.
+ *  pushSelector: the SEL will call when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotification object
+ *  richSelector: the SEL will call when the notification is Rich Type. Notice That: The selector must only has one paramter, which is ABNotification object
+ */
 - (void)handleNotification:(NSDictionary *)notification
           applicationState:(UIApplicationState)state 
                     target:(id)target
@@ -157,6 +167,51 @@ SINGLETON_IMPLEMENTATION(ABPush)
     }
 }
 
+/*
+ * Inbox Method
+ * 
+ * Paramters:
+ *           type: Notification Type.
+ *          index: begin index.
+ *   pageCapacity: the capacity of per page.
+ *         target: callback invocator.
+ * finishSelector: the SEL will call when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotificationsResponse object
+ *  
+ */
+- (void)getNotificationsByType:(ABNotificationType)type 
+                         index:(NSUInteger)index 
+                  pageCapacity:(NSNumber *)pages 
+                        target:(id)target 
+                finishSelector:(SEL)finishSelector {
+//    NSUInteger pageCa = 0;
+//    if (pages) {
+//        pageCa = [pages unsignedIntValue];
+//    }
+//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+//    NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@?bundleid=%@&token=%@&k=%@&s=%@&index=%i&pages=%imode=%i",
+//                           [[AppBand shared] server], @"/notifications.json", bundleId, token, [[AppBand shared] appKey], [[AppBand shared] appSecret], index,pageCa,type];
+//    
+//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+//                                                       url:urlString 
+//                                                 parameter:nil
+//                                                   timeout:kAppBandRequestTimeout
+//                                                  delegate:target
+//                                                    finish:finishSelector
+//                                                      fail:finishSelector 
+//                                                     agent:self 
+//                                             agentSelector:@selector(getNotificationsEnd:)];
+//    [[ABRestCenter shared] addRequest:request];
+}
+
+/*
+ * Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ *        target: callback invocator.
+ *  finishSelector: the SEL will call when done.
+ */
 - (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector {
     ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,rid]];
     if (handler) {
@@ -170,6 +225,12 @@ SINGLETON_IMPLEMENTATION(ABPush)
     }
 }
 
+/*
+ * Cancel Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ */
 - (void)cancelGetRichContent:(NSString *)rid {
     ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,rid]];
     if (handler) {
@@ -177,10 +238,134 @@ SINGLETON_IMPLEMENTATION(ABPush)
     }
 }
 
+/*
+ * Get Push Configuration
+ * 
+ * Paramters:
+ *         target: callback invocator.
+ * finishSelector: the SEL will call when done..The selector must only has one paramter, which is ABPushConfiguration object
+ */
+- (void)getPushConfigurationWithTarget:(id)target finishSelector:(SEL)finishSelector {
+//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+//    NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@?bundleid=%@&token=%@&k=%@&s=%@",
+//                           [[AppBand shared] server], @"/push_configuration.json", bundleId, token, [[AppBand shared] appKey], [[AppBand shared] appSecret]];
+//    
+//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+//                                                       url:urlString 
+//                                                 parameter:nil
+//                                                   timeout:kAppBandRequestTimeout
+//                                                  delegate:target
+//                                                    finish:finishSelector
+//                                                      fail:finishSelector 
+//                                                     agent:self 
+//                                             agentSelector:@selector(getPushConfigurationEnd:)];
+//    [[ABRestCenter shared] addRequest:request];
+}
+
+/*
+ * Get UTC Time String From NSDate
+ * 
+ * Paramters:
+ *         date: target Date.
+ * 
+ */
+- (NSString *)getUTCFromeDate:(NSDate *)date {
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone1 = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone1];
+    [dateFormatter setDateFormat:@"HH:mm ZZZ"];
+    NSString *utcTime = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
+    
+    return utcTime;
+}
+
+/*
+ * Get UTC Time String From NSString
+ * 
+ * Paramters:
+ *         timeStr: target string. Note that: the timeStr should be in "HH:mm" format.
+ * 
+ */
+- (NSString *)getUTCFromeString:(NSString *)timeStr {
+    if ([timeStr length] != 5) return nil;
+    
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"^([0-2][0-3]:[0-5][0-9])|(0?[0-9]:[0-5][0-9])$" options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSUInteger numberofMatch = [expression numberOfMatchesInString:timeStr 
+                                                           options:NSMatchingReportProgress
+                                                             range:NSMakeRange(0, timeStr.length)];
+    if (numberofMatch < 1) return nil;
+    
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSDate *date = [dateFormatter dateFromString:timeStr];
+    [dateFormatter release];
+    
+    return [self getUTCFromeDate:date];
+}
+
+/*
+ * Set Push Configuration
+ * 
+ * Paramters:
+ *        enabled: YES/NO. YES - Enable Recieve Push. NO - Disable Recieve Push.
+ *      intervals: Push will no be send to in those times interval.
+ *         target: callback invocator.
+ * finishSelector: the SEL will call when done.The selector must only has one paramter, which is ABResponse object
+ */
+- (void)setPushEnabled:(BOOL)enabled 
+  unavailableIntervals:(NSArray *)intervals 
+                target:(id)target 
+        finishSelector:(SEL)finishSelector {
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@",
+//                           [[AppBand shared] server], @"/push_configuration"];
+//    
+//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+//    
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setObject:[[AppBand shared] appKey] forKey:AB_APP_KEY];
+//    [parameters setObject:[[AppBand shared] appSecret] forKey:AB_APP_SECRET];
+//    [parameters setObject:[[AppBand shared] deviceToken] forKey:AB_DEVICE_TOKEN];
+//    [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
+//    [parameters setObject:[NSNumber numberWithBool:enabled] forKey:AB_APP_PUSH_CONFIGURATION_ENABLED];
+//    [parameters setObject:[self getJsonFromArray:intervals] forKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS];
+//    
+//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+//                                                       url:urlString 
+//                                                 parameter:parameters
+//                                                   timeout:kAppBandRequestTimeout
+//                                                  delegate:target
+//                                                    finish:finishSelector
+//                                                      fail:finishSelector 
+//                                                     agent:self 
+//                                             agentSelector:@selector(setPushConfigurationEnd:)];
+//    [[ABRestCenter shared] addRequest:request];
+}
+
+/*
+ * Register Remote Notification
+ *
+ * Paramters:
+ *        types:
+ *
+ */
 - (void)registerRemoteNotificationWithTypes:(UIRemoteNotificationType)types {
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
 }
 
+/*
+ * Set Application Badge Number
+ *
+ * Paramters:
+ *  badgeNumber: the number you want to show on icon.
+ *
+ */
 - (void)setBadgeNumber:(NSInteger)badgeNumber {
     if ([[UIApplication sharedApplication] applicationIconBadgeNumber] == badgeNumber) 
         return;
@@ -188,6 +373,10 @@ SINGLETON_IMPLEMENTATION(ABPush)
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNumber];
 }
 
+/*
+ * set Application Badge Number to 0
+ * 
+ */
 - (void)resetBadge {
     [self setBadgeNumber:0];
 }

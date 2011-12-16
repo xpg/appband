@@ -1,0 +1,272 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96318FB8149AECAA001F27A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318FB7149AECAA001F27A7 /* Foundation.framework */; };
+		96318FCE149AECEB001F27A7 /* ABDeliverHandler+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FC5149AECEB001F27A7 /* ABDeliverHandler+Private.h */; };
+		96318FCF149AECEB001F27A7 /* ABDeliverHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FC6149AECEB001F27A7 /* ABDeliverHandler.h */; };
+		96318FD0149AECEB001F27A7 /* ABDeliverHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318FC7149AECEB001F27A7 /* ABDeliverHandler.m */; };
+		96318FD1149AECEB001F27A7 /* ABProductHandler+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FC8149AECEB001F27A7 /* ABProductHandler+Private.h */; };
+		96318FD2149AECEB001F27A7 /* ABProductHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FC9149AECEB001F27A7 /* ABProductHandler.h */; };
+		96318FD3149AECEB001F27A7 /* ABProductHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318FCA149AECEB001F27A7 /* ABProductHandler.m */; };
+		96318FD4149AECEB001F27A7 /* ABPurchase+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FCB149AECEB001F27A7 /* ABPurchase+Private.h */; };
+		96318FD5149AECEB001F27A7 /* ABPurchase.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FCC149AECEB001F27A7 /* ABPurchase.h */; };
+		96318FD6149AECEB001F27A7 /* ABPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318FCD149AECEB001F27A7 /* ABPurchase.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		96318FB4149AECAA001F27A7 /* libABIAPLib_1.0.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libABIAPLib_1.0.0.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		96318FB7149AECAA001F27A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		96318FBB149AECAA001F27A7 /* ABIAPLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ABIAPLib-Prefix.pch"; sourceTree = "<group>"; };
+		96318FC5149AECEB001F27A7 /* ABDeliverHandler+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABDeliverHandler+Private.h"; sourceTree = "<group>"; };
+		96318FC6149AECEB001F27A7 /* ABDeliverHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDeliverHandler.h; sourceTree = "<group>"; };
+		96318FC7149AECEB001F27A7 /* ABDeliverHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDeliverHandler.m; sourceTree = "<group>"; };
+		96318FC8149AECEB001F27A7 /* ABProductHandler+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABProductHandler+Private.h"; sourceTree = "<group>"; };
+		96318FC9149AECEB001F27A7 /* ABProductHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABProductHandler.h; sourceTree = "<group>"; };
+		96318FCA149AECEB001F27A7 /* ABProductHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABProductHandler.m; sourceTree = "<group>"; };
+		96318FCB149AECEB001F27A7 /* ABPurchase+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPurchase+Private.h"; sourceTree = "<group>"; };
+		96318FCC149AECEB001F27A7 /* ABPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchase.h; sourceTree = "<group>"; };
+		96318FCD149AECEB001F27A7 /* ABPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPurchase.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96318FB1149AECAA001F27A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96318FB8149AECAA001F27A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96318FA9149AECAA001F27A7 = {
+			isa = PBXGroup;
+			children = (
+				96318FB9149AECAA001F27A7 /* ABIAPLib */,
+				96318FB6149AECAA001F27A7 /* Frameworks */,
+				96318FB5149AECAA001F27A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96318FB5149AECAA001F27A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96318FB4149AECAA001F27A7 /* libABIAPLib_1.0.0.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96318FB6149AECAA001F27A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96318FB7149AECAA001F27A7 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		96318FB9149AECAA001F27A7 /* ABIAPLib */ = {
+			isa = PBXGroup;
+			children = (
+				96318FC4149AECEB001F27A7 /* IAPLib */,
+				96318FBA149AECAA001F27A7 /* Supporting Files */,
+			);
+			path = ABIAPLib;
+			sourceTree = "<group>";
+		};
+		96318FBA149AECAA001F27A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96318FBB149AECAA001F27A7 /* ABIAPLib-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96318FC4149AECEB001F27A7 /* IAPLib */ = {
+			isa = PBXGroup;
+			children = (
+				96318FC5149AECEB001F27A7 /* ABDeliverHandler+Private.h */,
+				96318FC6149AECEB001F27A7 /* ABDeliverHandler.h */,
+				96318FC7149AECEB001F27A7 /* ABDeliverHandler.m */,
+				96318FC8149AECEB001F27A7 /* ABProductHandler+Private.h */,
+				96318FC9149AECEB001F27A7 /* ABProductHandler.h */,
+				96318FCA149AECEB001F27A7 /* ABProductHandler.m */,
+				96318FCB149AECEB001F27A7 /* ABPurchase+Private.h */,
+				96318FCC149AECEB001F27A7 /* ABPurchase.h */,
+				96318FCD149AECEB001F27A7 /* ABPurchase.m */,
+			);
+			name = IAPLib;
+			path = ../../AppBand/Library/IAPLib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		96318FB2149AECAA001F27A7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96318FCE149AECEB001F27A7 /* ABDeliverHandler+Private.h in Headers */,
+				96318FCF149AECEB001F27A7 /* ABDeliverHandler.h in Headers */,
+				96318FD1149AECEB001F27A7 /* ABProductHandler+Private.h in Headers */,
+				96318FD2149AECEB001F27A7 /* ABProductHandler.h in Headers */,
+				96318FD4149AECEB001F27A7 /* ABPurchase+Private.h in Headers */,
+				96318FD5149AECEB001F27A7 /* ABPurchase.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		96318FB3149AECAA001F27A7 /* ABIAPLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96318FC1149AECAA001F27A7 /* Build configuration list for PBXNativeTarget "ABIAPLib" */;
+			buildPhases = (
+				96318FB0149AECAA001F27A7 /* Sources */,
+				96318FB1149AECAA001F27A7 /* Frameworks */,
+				96318FB2149AECAA001F27A7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ABIAPLib;
+			productName = ABIAPLib;
+			productReference = 96318FB4149AECAA001F27A7 /* libABIAPLib_1.0.0.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96318FAB149AECAA001F27A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 96318FAE149AECAA001F27A7 /* Build configuration list for PBXProject "ABIAPLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 96318FA9149AECAA001F27A7;
+			productRefGroup = 96318FB5149AECAA001F27A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96318FB3149AECAA001F27A7 /* ABIAPLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96318FB0149AECAA001F27A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96318FD0149AECEB001F27A7 /* ABDeliverHandler.m in Sources */,
+				96318FD3149AECEB001F27A7 /* ABProductHandler.m in Sources */,
+				96318FD6149AECEB001F27A7 /* ABPurchase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		96318FBF149AECAA001F27A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		96318FC0149AECAA001F27A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96318FC2149AECAA001F27A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/ABIAPLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ABIAPLib/ABIAPLib-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../AppBand/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ABIAPLib_1.0.0;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		96318FC3149AECAA001F27A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/ABIAPLib.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ABIAPLib/ABIAPLib-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../AppBand/**";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ABIAPLib_1.0.0;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96318FAE149AECAA001F27A7 /* Build configuration list for PBXProject "ABIAPLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96318FBF149AECAA001F27A7 /* Debug */,
+				96318FC0149AECAA001F27A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96318FC1149AECAA001F27A7 /* Build configuration list for PBXNativeTarget "ABIAPLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96318FC2149AECAA001F27A7 /* Debug */,
+				96318FC3149AECAA001F27A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 96318FAB149AECAA001F27A7 /* Project object */;
+}
