@@ -12,6 +12,8 @@
 #define AB_APP_BUNDLE_IDENTIFIER @"bundleid"
 #define AB_DEVICE_UDID @"udid"
 #define AB_DEVICE_TOKEN @"token"
+#define AB_APP_ALIAS @"alias"
+#define AB_APP_TAGS @"tags"
 
 #define AB_Error @"error"
 

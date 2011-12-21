@@ -6,10 +6,8 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
+// **************** AppBand kickoff Configuration Key ****************
 
-/*
- *  AppBand -kickoff Configuration Key
- */
 #define AppBandKickOfOptionsLaunchOptionsKey @"AppBandKickOfOptionsLaunchOptionsKey"
 #define AppBandKickOfOptionsAppBandConfigKey @"AppBandKickOfOptionsAppBandConfigKey"
 
@@ -25,7 +23,27 @@
 #define AppBandKickOfOptionsAppBandConfigHandlePushAuto @"APPBAND_HANDLE_PUSH_AUTO"
 #define AppBandKickOfOptionsAppBandConfigHandleRichAuto @"APPBAND_HANDLE_RICH_AUTO"
 
-//Singleton Template
+
+
+
+
+
+
+// **************** Tag Prefer Key ****************
+
+#define AppBandTagPreferKeyLocation @"location"
+#define AppBandTagPreferKeyCounty @"county"
+#define AppBandTagPreferKeyDevice @"device_type"
+
+
+
+
+
+
+
+
+// **************** Singleton Template ****************
+
 #define SINGLETON_INTERFACE(CLASSNAME)  \
 + (CLASSNAME*)shared;\
 - (void)forceRelease;

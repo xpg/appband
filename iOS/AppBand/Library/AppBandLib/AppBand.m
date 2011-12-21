@@ -12,7 +12,9 @@
 #define kAppBandProductionServer @"https://api.appmocha.com/v1"
 
 #define kAppBandDeviceUDID @"AppBandDeviceUDID"
-#define kLastDeviceTokenKey @"AppBandTokenChanged"
+#define kLastDeviceTokenKey @"AppBandDeviceTokenKey"
+#define kLastDeviceAliasKey @"AppBandDeviceAliasKey"
+#define kLastDeviceTagsKey @"AppBandDeviceTagsKey"
 
 #import "AppBand.h"
 #import "AppBand+Private.h"
@@ -106,6 +108,27 @@ static AppBand *_appBand;
     }
 }
 
+- (NSString *)getTagsString:(NSDictionary *)tags {
+    NSString *tagsStr = @"";
+    NSArray *tagsKey = [tags allKeys];
+    
+    for (int index = 0; index < [tagsKey count]; index++) {
+        NSString *key = [tagsKey objectAtIndex:index];
+        id value = [tags objectForKey:key];
+        if ([value isKindOfClass:[NSString class]]) {
+            NSString *tmp = nil;
+            if (index < [tagsKey count] - 1) {
+                tmp = [NSString stringWithFormat:@"%@=%@, ", key, value];
+            } else {
+                tmp = [NSString stringWithFormat:@"%@=%@", key, value];
+            }
+            tagsStr = [tagsStr stringByAppendingString:tmp];
+        }
+    }
+    
+    return tagsStr;
+}
+
 #pragma mark - AppBand Mehods
 
 /*
@@ -190,6 +213,44 @@ static AppBand *_appBand;
 }
 
 /*
+ * Set Alias
+ * 
+ * Paramters:
+ *          alias: the Alias of the Device.
+ */
+- (void)setAlias:(NSString *)alias {
+    [[NSUserDefaults standardUserDefaults] setObject:alias forKey:kLastDeviceAliasKey];
+}
+
+/*
+ * Set Tags
+ * 
+ * Paramters:
+ *          tags: tag dictionary.
+ */
+- (void)setTags:(NSDictionary *)tags {
+    [[NSUserDefaults standardUserDefaults] setObject:tags forKey:kLastDeviceTagsKey];
+}
+
+/*
+ * Set Tag
+ * 
+ * Paramters:
+ *           key: The key of the tag.
+ *         value: The value of the tag.
+ */
+- (void)setTag:(NSString *)key value:(NSString *)value {
+    NSDictionary *tags = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey];
+    NSMutableDictionary *tmp = [NSMutableDictionary dictionary];
+    if (tags) {
+        [tmp addEntriesFromDictionary:tags];
+    }
+    
+    [tmp setObject:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithDictionary:tmp] forKey:kLastDeviceAliasKey];
+}
+
+/*
  * Register Device Token
  * 
  * Paramters:
@@ -203,10 +264,24 @@ static AppBand *_appBand;
     self.registerTarget = target;
     self.registerFinishSelector = finishSeletor;
     
+    NSString *alias = @"";
+    NSString *tags = @"";
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceAliasKey]) {
+        alias = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceAliasKey];
+    }
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey] count] > 0) {
+        tags = [self getTagsString:[[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey]];
+    }
+    
+    
     NSMutableDictionary *info = [NSMutableDictionary dictionary];
     [info setValue:self.appKey forKey:AB_APP_KEY];
     [info setValue:self.appSecret forKey:AB_APP_SECRET];
     [info setObject:self.udid forKey:AB_DEVICE_UDID];
+    [info setObject:alias forKey:AB_APP_ALIAS];
+    [info setObject:tags forKey:AB_APP_TAGS];
     
     NSString *bundleVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];

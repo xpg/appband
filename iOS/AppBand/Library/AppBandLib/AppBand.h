@@ -52,6 +52,32 @@
 + (void)end;
 
 /*
+ * Set Alias
+ * 
+ * Paramters:
+ *          alias: the Alias of the Device.
+ */
+- (void)setAlias:(NSString *)alias;
+
+/*
+ * Set Tags
+ * 
+ * Paramters:
+ *          tags: tag dictionary.
+ */
+- (void)setTags:(NSDictionary *)tags;
+
+/*
+ * Set Tag
+ * 
+ * Paramters:
+ *           key: The key of the tag.
+ *         value: The value of the tag.
+ */
+- (void)setTag:(NSString *)key value:(NSString *)value;
+
+
+/*
  * Register Device Token
  * 
  * Paramters:

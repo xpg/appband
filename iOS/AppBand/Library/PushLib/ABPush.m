@@ -306,25 +306,25 @@ SINGLETON_IMPLEMENTATION(ABPush)
                   pageCapacity:(NSNumber *)pages 
                         target:(id)target 
                 finishSelector:(SEL)finishSelector {
-//    NSUInteger pageCa = 0;
-//    if (pages) {
-//        pageCa = [pages unsignedIntValue];
-//    }
-//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-//    NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
-//    NSString *urlString = [NSString stringWithFormat:@"%@%@?bundleid=%@&token=%@&k=%@&s=%@&index=%i&pages=%imode=%i",
-//                           [[AppBand shared] server], @"/notifications.json", bundleId, token, [[AppBand shared] appKey], [[AppBand shared] appSecret], index,pageCa,type];
-//    
-//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
-//                                                       url:urlString 
-//                                                 parameter:nil
-//                                                   timeout:kAppBandRequestTimeout
-//                                                  delegate:target
-//                                                    finish:finishSelector
-//                                                      fail:finishSelector 
-//                                                     agent:self 
-//                                             agentSelector:@selector(getNotificationsEnd:)];
-//    [[ABRestCenter shared] addRequest:request];
+    NSUInteger pageCa = 0;
+    if (pages) {
+        pageCa = [pages unsignedIntValue];
+    }
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?bundleid=%@&token=%@&k=%@&s=%@&index=%i&pages=%imode=%i",
+                           [[AppBand shared] server], @"/notifications.json", bundleId, token, [[AppBand shared] appKey], [[AppBand shared] appSecret], index,pageCa,type];
+    
+    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+                                                       url:urlString 
+                                                 parameter:nil
+                                                   timeout:kAppBandRequestTimeout
+                                                  delegate:target
+                                                    finish:finishSelector
+                                                      fail:finishSelector 
+                                                     agent:self 
+                                             agentSelector:@selector(getNotificationsEnd:)];
+    [[ABRestCenter shared] addRequest:request];
 }
 
 /*
@@ -359,31 +359,6 @@ SINGLETON_IMPLEMENTATION(ABPush)
     if (handler) {
         [handler cancel];
     }
-}
-
-/*
- * Get Push Configuration
- * 
- * Paramters:
- *         target: callback invocator.
- * finishSelector: the SEL will call when done..The selector must only has one paramter, which is ABPushConfiguration object
- */
-- (void)getPushConfigurationWithTarget:(id)target finishSelector:(SEL)finishSelector {
-//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-//    NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
-//    NSString *urlString = [NSString stringWithFormat:@"%@%@?bundleid=%@&token=%@&k=%@&s=%@",
-//                           [[AppBand shared] server], @"/push_configuration.json", bundleId, token, [[AppBand shared] appKey], [[AppBand shared] appSecret]];
-//    
-//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
-//                                                       url:urlString 
-//                                                 parameter:nil
-//                                                   timeout:kAppBandRequestTimeout
-//                                                  delegate:target
-//                                                    finish:finishSelector
-//                                                      fail:finishSelector 
-//                                                     agent:self 
-//                                             agentSelector:@selector(getPushConfigurationEnd:)];
-//    [[ABRestCenter shared] addRequest:request];
 }
 
 /*
@@ -446,29 +421,29 @@ SINGLETON_IMPLEMENTATION(ABPush)
   unavailableIntervals:(NSArray *)intervals 
                 target:(id)target 
         finishSelector:(SEL)finishSelector {
-//    NSString *urlString = [NSString stringWithFormat:@"%@%@",
-//                           [[AppBand shared] server], @"/push_configuration"];
-//    
-//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-//    
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    [parameters setObject:[[AppBand shared] appKey] forKey:AB_APP_KEY];
-//    [parameters setObject:[[AppBand shared] appSecret] forKey:AB_APP_SECRET];
-//    [parameters setObject:[[AppBand shared] deviceToken] forKey:AB_DEVICE_TOKEN];
-//    [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
-//    [parameters setObject:[NSNumber numberWithBool:enabled] forKey:AB_APP_PUSH_CONFIGURATION_ENABLED];
-//    [parameters setObject:[self getJsonFromArray:intervals] forKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS];
-//    
-//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
-//                                                       url:urlString 
-//                                                 parameter:parameters
-//                                                   timeout:kAppBandRequestTimeout
-//                                                  delegate:target
-//                                                    finish:finishSelector
-//                                                      fail:finishSelector 
-//                                                     agent:self 
-//                                             agentSelector:@selector(setPushConfigurationEnd:)];
-//    [[ABRestCenter shared] addRequest:request];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",
+                           [[AppBand shared] server], @"/push_configuration"];
+    
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:[[AppBand shared] appKey] forKey:AB_APP_KEY];
+    [parameters setObject:[[AppBand shared] appSecret] forKey:AB_APP_SECRET];
+    [parameters setObject:[[AppBand shared] deviceToken] forKey:AB_DEVICE_TOKEN];
+    [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
+    [parameters setObject:[NSNumber numberWithBool:enabled] forKey:AB_APP_PUSH_CONFIGURATION_ENABLED];
+    [parameters setObject:[self getJsonFromArray:intervals] forKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS];
+    
+    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+                                                       url:urlString 
+                                                 parameter:parameters
+                                                   timeout:kAppBandRequestTimeout
+                                                  delegate:target
+                                                    finish:finishSelector
+                                                      fail:finishSelector 
+                                                     agent:self 
+                                             agentSelector:@selector(setPushConfigurationEnd:)];
+    [[ABRestCenter shared] addRequest:request];
 }
 
 /*

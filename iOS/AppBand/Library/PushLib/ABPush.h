@@ -68,15 +68,6 @@ SINGLETON_INTERFACE(ABPush)
 - (void)cancelGetRichContent:(NSString *)rid;
 
 /*
- * Get Push Configuration
- * 
- * Paramters:
- *         target: callback invocator.
- * finishSelector: the SEL will call when done
- */
-- (void)getPushConfigurationWithTarget:(id)target finishSelector:(SEL)finishSelector;
-
-/*
  * Get UTC Time String From NSDate
  * 
  * Paramters:

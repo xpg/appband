@@ -50,4 +50,6 @@
 
 - (void)registerDeviceTokenEnd:(NSDictionary *)response;
 
+- (NSString *)getTagsString:(NSDictionary *)tags; 
+
 @end
