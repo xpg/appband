@@ -23,10 +23,12 @@
 #import "AMIPadPushController.h"
 #import "AMIPadPurchaseController.h"
 #import "AMIPadIntroController.h"
+#import "AMIPadSettingController.h"
 
 #import "AMIPhonePushController.h"
 #import "AMIPhonePurchaseController.h"
 #import "AMIPhoneIntroController.h"
+#import "AMIPhoneSettingController.h"
 
 #import "AppBandKit.h"
 #import "xRestKit.h"
@@ -169,6 +171,7 @@
     UIViewController *pushController = nil;
     UIViewController *purchaseController = nil;
     UIViewController *introController = nil;
+    UIViewController *settingController = nil;
     UIImage *logon = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         logon = [UIImage imageNamed:@"AppMocha_Logo"];
@@ -192,9 +195,16 @@
         introController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
         //        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
-        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTitle:@"关于我们" image:[UIImage imageNamed:@"iPad_AM_Tab_Intro"] tag:1];
+        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTitle:@"关于我们" image:[UIImage imageNamed:@"iPad_AM_Tab_Intro"] tag:2];
         [introController setTabBarItem:introBarItem];
         [introBarItem release];
+        
+        settingController = [[AMIPhoneSettingController alloc] initWithNibName:@"AMIPhoneSettingController" bundle:nil];
+        settingController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+
+        UITabBarItem *settingBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:3];
+        [settingController setTabBarItem:settingBarItem];
+        [settingBarItem release];
     } else {
         logon = [UIImage imageNamed:@"AppMocha_Logo@2x.png"];
         pushController = [[AMIPadPushController alloc] initWithNibName:@"AMIPadPushController" bundle:nil];
@@ -216,10 +226,17 @@
         introController = [[AMIPadIntroController alloc] initWithNibName:@"AMIPadIntroController" bundle:nil];
         introController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
         
-//        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
-        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTitle:@"关于我们" image:[UIImage imageNamed:@"iPad_AM_Tab_Intro"] tag:1];
+        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTitle:@"关于我们" image:[UIImage imageNamed:@"iPad_AM_Tab_Intro"] tag:2];
         [introController setTabBarItem:introBarItem];
         [introBarItem release];
+        
+        settingController = [[AMIPadSettingController alloc] initWithNibName:@"AMIPadSettingController" bundle:nil];
+        settingController.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:[[I18NController shareController] getLocalizedString:AM_Demo_Logout comment:@"" locale:nil] style:UIBarButtonItemStylePlain target:self action:@selector(switchToUnLoginController)] autorelease];
+        
+        //        UITabBarItem *introBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:2];
+        UITabBarItem *settingBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:3];
+        [settingController setTabBarItem:settingBarItem];
+        [settingBarItem release];
     }
     
     UINavigationController *naviPushController = [[UINavigationController alloc] initWithRootViewController:pushController];
@@ -234,8 +251,12 @@
     [introController release];
     [naviIntroController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
+    UINavigationController *naviSettingController = [[UINavigationController alloc] initWithRootViewController:settingController];
+    [settingController release];
+    [naviSettingController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
+    
     UITabBarController *barController = [[[UITabBarController alloc] init] autorelease];
-    [barController setViewControllers:[NSArray arrayWithObjects:naviPushController, naviPurchaseController, naviIntroController, nil]];
+    [barController setViewControllers:[NSArray arrayWithObjects:naviPushController, naviPurchaseController, naviIntroController, naviSettingController, nil]];
     
     [naviPushController release];
     [naviPurchaseController release];

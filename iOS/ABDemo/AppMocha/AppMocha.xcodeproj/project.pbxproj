@@ -48,6 +48,26 @@
 		96B21F0B148B4DD500CC544A /* AMIPhoneProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B21F0A148B4DD500CC544A /* AMIPhoneProductCell.xib */; };
 		96B21F0F148B573200CC544A /* AMIPhoneProductShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B21F0D148B572F00CC544A /* AMIPhoneProductShowController.m */; };
 		96B21F10148B573200CC544A /* AMIPhoneProductShowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B21F0E148B573100CC544A /* AMIPhoneProductShowController.xib */; };
+		96D7B4CC14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7B4CA14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.m */; };
+		96D7B4CD14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D7B4CB14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.xib */; };
+		96DAE27614A1D6810022203F /* AMIPhoneSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAE27414A1D6810022203F /* AMIPhoneSettingController.m */; };
+		96DAE27714A1D6810022203F /* AMIPhoneSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DAE27514A1D6810022203F /* AMIPhoneSettingController.xib */; };
+		96DAE27C14A1D69F0022203F /* AMIPadSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DAE27A14A1D69F0022203F /* AMIPadSettingController.m */; };
+		96DAE27D14A1D69F0022203F /* AMIPadSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DAE27B14A1D69F0022203F /* AMIPadSettingController.xib */; };
+		96DB7C4314A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C4214A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.m */; };
+		96DB7C4714A2CC75006DBDD6 /* AMIPadSettingAliasCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C4614A2CC75006DBDD6 /* AMIPadSettingAliasCell.m */; };
+		96DB7C4914A2CC99006DBDD6 /* AMIPhoneSettingAliasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C4814A2CC99006DBDD6 /* AMIPhoneSettingAliasCell.xib */; };
+		96DB7C4B14A2CF42006DBDD6 /* AMIPadSettingAliasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C4A14A2CF42006DBDD6 /* AMIPadSettingAliasCell.xib */; };
+		96DB7C4E14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C4D14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.m */; };
+		96DB7C5014A2DB61006DBDD6 /* AMIPhoneSettingPushEnableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C4F14A2DB61006DBDD6 /* AMIPhoneSettingPushEnableCell.xib */; };
+		96DB7C5314A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C5214A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.m */; };
+		96DB7C5514A2E2BC006DBDD6 /* AMIPadSettingPushEnableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C5414A2E2BC006DBDD6 /* AMIPadSettingPushEnableCell.xib */; };
+		96DB7C5814A310AA006DBDD6 /* AMIPhoneSettingPushIntervalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C5714A310AA006DBDD6 /* AMIPhoneSettingPushIntervalCell.m */; };
+		96DB7C5A14A310BB006DBDD6 /* AMIPhoneSettingPushIntervalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C5914A310BA006DBDD6 /* AMIPhoneSettingPushIntervalCell.xib */; };
+		96DB7C5D14A31340006DBDD6 /* AMIPadSettingPushIntervalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C5C14A3133F006DBDD6 /* AMIPadSettingPushIntervalCell.m */; };
+		96DB7C5F14A31393006DBDD6 /* AMIPadSettingPushIntervalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C5E14A31392006DBDD6 /* AMIPadSettingPushIntervalCell.xib */; };
+		96DB7C6314A31A81006DBDD6 /* AMIPhoneSettingPushIntervalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DB7C6114A31A7E006DBDD6 /* AMIPhoneSettingPushIntervalController.m */; };
+		96DB7C6414A31A81006DBDD6 /* AMIPhoneSettingPushIntervalController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DB7C6214A31A7F006DBDD6 /* AMIPhoneSettingPushIntervalController.xib */; };
 		96E01EC3148A669F00C6E193 /* AMIPadProductShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E01EC1148A669F00C6E193 /* AMIPadProductShowController.m */; };
 		96E01EC4148A669F00C6E193 /* AMIPadProductShowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E01EC2148A669F00C6E193 /* AMIPadProductShowController.xib */; };
 		96E96DC11489D1790044E1A4 /* iPad_AM_Push_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E96DBE1489D1790044E1A4 /* iPad_AM_Push_Icon.png */; };
@@ -181,6 +201,37 @@
 		96B21F0C148B572D00CC544A /* AMIPhoneProductShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPhoneProductShowController.h; sourceTree = "<group>"; };
 		96B21F0D148B572F00CC544A /* AMIPhoneProductShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPhoneProductShowController.m; sourceTree = "<group>"; };
 		96B21F0E148B573100CC544A /* AMIPhoneProductShowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMIPhoneProductShowController.xib; sourceTree = "<group>"; };
+		96D7B4B414A369AE00F6D6C2 /* DateUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtility.h; sourceTree = "<group>"; };
+		96D7B4C914A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMIPadSettingPushIntervalController.h; path = AppMocha/Ipad/AMIPadSettingPushIntervalController.h; sourceTree = SOURCE_ROOT; };
+		96D7B4CA14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMIPadSettingPushIntervalController.m; path = AppMocha/Ipad/AMIPadSettingPushIntervalController.m; sourceTree = SOURCE_ROOT; };
+		96D7B4CB14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMIPadSettingPushIntervalController.xib; path = AppMocha/Ipad/AMIPadSettingPushIntervalController.xib; sourceTree = SOURCE_ROOT; };
+		96DAE27314A1D6810022203F /* AMIPhoneSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPhoneSettingController.h; sourceTree = "<group>"; };
+		96DAE27414A1D6810022203F /* AMIPhoneSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPhoneSettingController.m; sourceTree = "<group>"; };
+		96DAE27514A1D6810022203F /* AMIPhoneSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMIPhoneSettingController.xib; sourceTree = "<group>"; };
+		96DAE27914A1D69F0022203F /* AMIPadSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMIPadSettingController.h; path = AppMocha/Ipad/AMIPadSettingController.h; sourceTree = SOURCE_ROOT; };
+		96DAE27A14A1D69F0022203F /* AMIPadSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMIPadSettingController.m; path = AppMocha/Ipad/AMIPadSettingController.m; sourceTree = SOURCE_ROOT; };
+		96DAE27B14A1D69F0022203F /* AMIPadSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMIPadSettingController.xib; path = AppMocha/Ipad/AMIPadSettingController.xib; sourceTree = SOURCE_ROOT; };
+		96DB7C4114A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPhoneSettingAliasCell.h; sourceTree = "<group>"; };
+		96DB7C4214A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPhoneSettingAliasCell.m; sourceTree = "<group>"; };
+		96DB7C4514A2CC75006DBDD6 /* AMIPadSettingAliasCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMIPadSettingAliasCell.h; path = AppMocha/Ipad/Cells/AMIPadSettingAliasCell.h; sourceTree = SOURCE_ROOT; };
+		96DB7C4614A2CC75006DBDD6 /* AMIPadSettingAliasCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMIPadSettingAliasCell.m; path = AppMocha/Ipad/Cells/AMIPadSettingAliasCell.m; sourceTree = SOURCE_ROOT; };
+		96DB7C4814A2CC99006DBDD6 /* AMIPhoneSettingAliasCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMIPhoneSettingAliasCell.xib; sourceTree = "<group>"; };
+		96DB7C4A14A2CF42006DBDD6 /* AMIPadSettingAliasCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMIPadSettingAliasCell.xib; path = AppMocha/Ipad/Cells/AMIPadSettingAliasCell.xib; sourceTree = SOURCE_ROOT; };
+		96DB7C4C14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPhoneSettingPushEnableCell.h; sourceTree = "<group>"; };
+		96DB7C4D14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPhoneSettingPushEnableCell.m; sourceTree = "<group>"; };
+		96DB7C4F14A2DB61006DBDD6 /* AMIPhoneSettingPushEnableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMIPhoneSettingPushEnableCell.xib; sourceTree = "<group>"; };
+		96DB7C5114A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMIPadSettingPushEnableCell.h; path = AppMocha/Ipad/Cells/AMIPadSettingPushEnableCell.h; sourceTree = SOURCE_ROOT; };
+		96DB7C5214A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMIPadSettingPushEnableCell.m; path = AppMocha/Ipad/Cells/AMIPadSettingPushEnableCell.m; sourceTree = SOURCE_ROOT; };
+		96DB7C5414A2E2BC006DBDD6 /* AMIPadSettingPushEnableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMIPadSettingPushEnableCell.xib; path = AppMocha/Ipad/Cells/AMIPadSettingPushEnableCell.xib; sourceTree = SOURCE_ROOT; };
+		96DB7C5614A310A9006DBDD6 /* AMIPhoneSettingPushIntervalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPhoneSettingPushIntervalCell.h; sourceTree = "<group>"; };
+		96DB7C5714A310AA006DBDD6 /* AMIPhoneSettingPushIntervalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPhoneSettingPushIntervalCell.m; sourceTree = "<group>"; };
+		96DB7C5914A310BA006DBDD6 /* AMIPhoneSettingPushIntervalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMIPhoneSettingPushIntervalCell.xib; sourceTree = "<group>"; };
+		96DB7C5B14A3133E006DBDD6 /* AMIPadSettingPushIntervalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMIPadSettingPushIntervalCell.h; path = AppMocha/Ipad/Cells/AMIPadSettingPushIntervalCell.h; sourceTree = SOURCE_ROOT; };
+		96DB7C5C14A3133F006DBDD6 /* AMIPadSettingPushIntervalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMIPadSettingPushIntervalCell.m; path = AppMocha/Ipad/Cells/AMIPadSettingPushIntervalCell.m; sourceTree = SOURCE_ROOT; };
+		96DB7C5E14A31392006DBDD6 /* AMIPadSettingPushIntervalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMIPadSettingPushIntervalCell.xib; path = AppMocha/Ipad/Cells/AMIPadSettingPushIntervalCell.xib; sourceTree = SOURCE_ROOT; };
+		96DB7C6014A31A7D006DBDD6 /* AMIPhoneSettingPushIntervalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIPhoneSettingPushIntervalController.h; sourceTree = "<group>"; };
+		96DB7C6114A31A7E006DBDD6 /* AMIPhoneSettingPushIntervalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIPhoneSettingPushIntervalController.m; sourceTree = "<group>"; };
+		96DB7C6214A31A7F006DBDD6 /* AMIPhoneSettingPushIntervalController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMIPhoneSettingPushIntervalController.xib; sourceTree = "<group>"; };
 		96E01EC0148A669F00C6E193 /* AMIPadProductShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMIPadProductShowController.h; path = AppMocha/iPad/AMIPadProductShowController.h; sourceTree = SOURCE_ROOT; };
 		96E01EC1148A669F00C6E193 /* AMIPadProductShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMIPadProductShowController.m; path = AppMocha/iPad/AMIPadProductShowController.m; sourceTree = SOURCE_ROOT; };
 		96E01EC2148A669F00C6E193 /* AMIPadProductShowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AMIPadProductShowController.xib; path = AppMocha/iPad/AMIPadProductShowController.xib; sourceTree = SOURCE_ROOT; };
@@ -293,6 +344,12 @@
 				96B21F0C148B572D00CC544A /* AMIPhoneProductShowController.h */,
 				96B21F0D148B572F00CC544A /* AMIPhoneProductShowController.m */,
 				96B21F0E148B573100CC544A /* AMIPhoneProductShowController.xib */,
+				96DAE27314A1D6810022203F /* AMIPhoneSettingController.h */,
+				96DAE27414A1D6810022203F /* AMIPhoneSettingController.m */,
+				96DAE27514A1D6810022203F /* AMIPhoneSettingController.xib */,
+				96DB7C6014A31A7D006DBDD6 /* AMIPhoneSettingPushIntervalController.h */,
+				96DB7C6114A31A7E006DBDD6 /* AMIPhoneSettingPushIntervalController.m */,
+				96DB7C6214A31A7F006DBDD6 /* AMIPhoneSettingPushIntervalController.xib */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -300,6 +357,7 @@
 		9600E71D14872F83006A04D1 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				96D7B4B414A369AE00F6D6C2 /* DateUtility.h */,
 				96FA37C214887501001AE559 /* I18NController.h */,
 				96FA37C314887501001AE559 /* I18NController.m */,
 				9635E41814876245006CF9DD /* CoreDataController.h */,
@@ -410,6 +468,12 @@
 				96FA38281488C65E001AE559 /* AMIPadPurchaseController.h */,
 				96FA38291488C65F001AE559 /* AMIPadPurchaseController.m */,
 				96FA382A1488C65F001AE559 /* AMIPadPurchaseController.xib */,
+				96DAE27914A1D69F0022203F /* AMIPadSettingController.h */,
+				96DAE27A14A1D69F0022203F /* AMIPadSettingController.m */,
+				96DAE27B14A1D69F0022203F /* AMIPadSettingController.xib */,
+				96D7B4C914A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.h */,
+				96D7B4CA14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.m */,
+				96D7B4CB14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.xib */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -423,6 +487,15 @@
 				96B21F05148B4DA700CC544A /* AMIPhoneProductCell.h */,
 				96B21F06148B4DA700CC544A /* AMIPhoneProductCell.m */,
 				96B21F0A148B4DD500CC544A /* AMIPhoneProductCell.xib */,
+				96DB7C4114A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.h */,
+				96DB7C4214A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.m */,
+				96DB7C4814A2CC99006DBDD6 /* AMIPhoneSettingAliasCell.xib */,
+				96DB7C4C14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.h */,
+				96DB7C4D14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.m */,
+				96DB7C4F14A2DB61006DBDD6 /* AMIPhoneSettingPushEnableCell.xib */,
+				96DB7C5614A310A9006DBDD6 /* AMIPhoneSettingPushIntervalCell.h */,
+				96DB7C5714A310AA006DBDD6 /* AMIPhoneSettingPushIntervalCell.m */,
+				96DB7C5914A310BA006DBDD6 /* AMIPhoneSettingPushIntervalCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -472,6 +545,15 @@
 				96E96DD51489ED6D0044E1A4 /* AMProductCell.h */,
 				96E96DD61489ED6D0044E1A4 /* AMProductCell.m */,
 				96E96DD81489ED850044E1A4 /* AMProductCell.xib */,
+				96DB7C4514A2CC75006DBDD6 /* AMIPadSettingAliasCell.h */,
+				96DB7C4614A2CC75006DBDD6 /* AMIPadSettingAliasCell.m */,
+				96DB7C4A14A2CF42006DBDD6 /* AMIPadSettingAliasCell.xib */,
+				96DB7C5114A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.h */,
+				96DB7C5214A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.m */,
+				96DB7C5414A2E2BC006DBDD6 /* AMIPadSettingPushEnableCell.xib */,
+				96DB7C5B14A3133E006DBDD6 /* AMIPadSettingPushIntervalCell.h */,
+				96DB7C5C14A3133F006DBDD6 /* AMIPadSettingPushIntervalCell.m */,
+				96DB7C5E14A31392006DBDD6 /* AMIPadSettingPushIntervalCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -679,6 +761,16 @@
 				96B21F0B148B4DD500CC544A /* AMIPhoneProductCell.xib in Resources */,
 				96B21F10148B573200CC544A /* AMIPhoneProductShowController.xib in Resources */,
 				9663CD29149AFA5E00D3D94B /* AppBand.bundle in Resources */,
+				96DAE27714A1D6810022203F /* AMIPhoneSettingController.xib in Resources */,
+				96DAE27D14A1D69F0022203F /* AMIPadSettingController.xib in Resources */,
+				96DB7C4914A2CC99006DBDD6 /* AMIPhoneSettingAliasCell.xib in Resources */,
+				96DB7C4B14A2CF42006DBDD6 /* AMIPadSettingAliasCell.xib in Resources */,
+				96DB7C5014A2DB61006DBDD6 /* AMIPhoneSettingPushEnableCell.xib in Resources */,
+				96DB7C5514A2E2BC006DBDD6 /* AMIPadSettingPushEnableCell.xib in Resources */,
+				96DB7C5A14A310BB006DBDD6 /* AMIPhoneSettingPushIntervalCell.xib in Resources */,
+				96DB7C5F14A31393006DBDD6 /* AMIPadSettingPushIntervalCell.xib in Resources */,
+				96DB7C6414A31A81006DBDD6 /* AMIPhoneSettingPushIntervalController.xib in Resources */,
+				96D7B4CD14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +815,16 @@
 				96F46E75149AF6C70006C09E /* xRestDownloadOperation.m in Sources */,
 				96F46E76149AF6C70006C09E /* xRestManager.m in Sources */,
 				96F46E77149AF6C70006C09E /* xRestOperation.m in Sources */,
+				96DAE27614A1D6810022203F /* AMIPhoneSettingController.m in Sources */,
+				96DAE27C14A1D69F0022203F /* AMIPadSettingController.m in Sources */,
+				96DB7C4314A2CC54006DBDD6 /* AMIPhoneSettingAliasCell.m in Sources */,
+				96DB7C4714A2CC75006DBDD6 /* AMIPadSettingAliasCell.m in Sources */,
+				96DB7C4E14A2DB52006DBDD6 /* AMIPhoneSettingPushEnableCell.m in Sources */,
+				96DB7C5314A2E23D006DBDD6 /* AMIPadSettingPushEnableCell.m in Sources */,
+				96DB7C5814A310AA006DBDD6 /* AMIPhoneSettingPushIntervalCell.m in Sources */,
+				96DB7C5D14A31340006DBDD6 /* AMIPadSettingPushIntervalCell.m in Sources */,
+				96DB7C6314A31A81006DBDD6 /* AMIPhoneSettingPushIntervalController.m in Sources */,
+				96D7B4CC14A37A4C00F6D6C2 /* AMIPadSettingPushIntervalController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

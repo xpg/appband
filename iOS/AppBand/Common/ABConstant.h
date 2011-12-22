@@ -37,7 +37,10 @@
 
 
 
+// **************** Push DND Interval Key ****************
 
+#define AppBandPushIntervalBeginTimeKey @"begin_time"
+#define AppBandPushIntervalEndTimeKey @"end_time"
 
 
 

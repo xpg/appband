@@ -68,22 +68,17 @@ SINGLETON_INTERFACE(ABPush)
 - (void)cancelGetRichContent:(NSString *)rid;
 
 /*
- * Get UTC Time String From NSDate
- * 
- * Paramters:
- *         date: target Date.
- * 
+ * Get Push Enable
+ *
+ *
  */
-- (NSString *)getUTCFromeDate:(NSDate *)date;
+- (BOOL)getPushEnabled;
 
 /*
- * Get UTC Time String From NSString
- * 
- * Paramters:
- *         timeStr: target string. Note that: the timeStr should be in "HH:mm" format.
- * 
+ * Get Push DND Intervals
+ *
  */
-- (NSString *)getUTCFromeString:(NSString *)timeStr;
+- (NSArray *)getPushDNDIntervals;
 
 /*
  * Set Push Configuration

@@ -240,10 +240,18 @@ SINGLETON_IMPLEMENTATION(ABPush)
 
 - (NSString *)getJsonFromArray:(NSArray *)array {
     if ([array count] < 1) return @"";
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (NSDictionary *interval in array) {
+        NSDate *bTime = [interval  objectForKey:AppBandPushIntervalBeginTimeKey];
+        NSDate *eTime = [interval objectForKey:AppBandPushIntervalEndTimeKey];
+        
+        [tmp addObject:[NSDictionary dictionaryWithObjectsAndKeys:[self getUTCFromeDate:bTime], AppBandPushIntervalBeginTimeKey, [self getUTCFromeDate:eTime], AppBandPushIntervalEndTimeKey, nil]];
+    }
+    
     //parser response json
     NSError *error = nil;
     AB_SBJSON *json = [[AB_SBJSON alloc] init];
-    NSString *arrayString = [json stringWithObject:array error:&error];
+    NSString *arrayString = [json stringWithObject:[NSArray arrayWithArray:tmp] error:&error];
     [json release];
     
     if (error) {
@@ -251,6 +259,22 @@ SINGLETON_IMPLEMENTATION(ABPush)
     }
     
     return arrayString;
+}
+
+/*
+ * Set Push Enable
+ *
+ * Paramters:
+ *  enabled: ON/OFF.
+ *
+ */
+- (void)setPushEnabled:(BOOL)enabled intervals:(NSArray *)intervals {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:enabled] forKey:kLastDevicePushEnableKey];
+    if (!intervals)
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLastDevicePushDNDIntervalsKey];
+    else
+        [[NSUserDefaults standardUserDefaults] setObject:intervals forKey:kLastDevicePushDNDIntervalsKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Public
@@ -409,11 +433,30 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 /*
+ * Get Push Enable
+ *
+ *
+ */
+- (BOOL)getPushEnabled {
+    NSNumber *numVal = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDevicePushEnableKey];
+    if (numVal) {
+        return [numVal boolValue];
+    }
+    return YES;
+}
+
+/*
+ * Get Push DND Intervals
+ *
+ */
+- (NSArray *)getPushDNDIntervals {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kLastDevicePushDNDIntervalsKey];
+}
+
+/*
  * Set Push Configuration
  * 
  * Paramters:
- *        enabled: YES/NO. YES - Enable Recieve Push. NO - Disable Recieve Push.
- *      intervals: Push will no be send to in those times interval.
  *         target: callback invocator.
  * finishSelector: the SEL will call when done.The selector must only has one paramter, which is ABResponse object
  */
@@ -421,8 +464,9 @@ SINGLETON_IMPLEMENTATION(ABPush)
   unavailableIntervals:(NSArray *)intervals 
                 target:(id)target 
         finishSelector:(SEL)finishSelector {
+    
     NSString *urlString = [NSString stringWithFormat:@"%@%@",
-                           [[AppBand shared] server], @"/push_configuration"];
+                           [[AppBand shared] server], @"/client_settings"];
     
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     
@@ -432,6 +476,12 @@ SINGLETON_IMPLEMENTATION(ABPush)
     [parameters setObject:[[AppBand shared] deviceToken] forKey:AB_DEVICE_TOKEN];
     [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
     [parameters setObject:[NSNumber numberWithBool:enabled] forKey:AB_APP_PUSH_CONFIGURATION_ENABLED];
+    
+    if ([intervals count] > 3) {
+        NSLog(@"Warning! The max count of intervals is 3");
+        intervals = [NSArray arrayWithObjects:[intervals objectAtIndex:0], [intervals objectAtIndex:1], [intervals objectAtIndex:2], nil];
+    }
+    
     [parameters setObject:[self getJsonFromArray:intervals] forKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS];
     
     ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
@@ -444,6 +494,8 @@ SINGLETON_IMPLEMENTATION(ABPush)
                                                      agent:self 
                                              agentSelector:@selector(setPushConfigurationEnd:)];
     [[ABRestCenter shared] addRequest:request];
+    
+    [self setPushEnabled:enabled intervals:intervals];
 }
 
 /*

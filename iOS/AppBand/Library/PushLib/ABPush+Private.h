@@ -23,6 +23,9 @@
 
 #import "AB_SBJSON.h"
 
+#define kLastDevicePushEnableKey @"kLastDevicePushEnableKey"
+#define kLastDevicePushDNDIntervalsKey @"kLastDevicePushDNDIntervalsKey"
+
 @interface ABPush() <ABRichViewDelegate>
 
 @property(nonatomic,retain) NSMutableDictionary *richHandleDictionay;
@@ -53,5 +56,24 @@
 - (void)setPushConfigurationEnd:(NSDictionary *)response;
 
 - (NSString *)getJsonFromArray:(NSArray *)array;
+
+/*
+ * Get UTC Time String From NSDate
+ * 
+ * Paramters:
+ *         date: target Date.
+ * 
+ */
+- (NSString *)getUTCFromeDate:(NSDate *)date;
+
+/*
+ * Set Push Enable
+ *
+ * Paramters:
+ *     enabled: ON/OFF.
+ *   intervals: array of intervals.
+ *
+ */
+- (void)setPushEnabled:(BOOL)enabled intervals:(NSArray *)intervals;
 
 @end

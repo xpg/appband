@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
+#define APPBAND_SDK_VERSION @"version 0.0.2"
+
 #define AB_APP_KEY @"k"
 #define AB_APP_SECRET @"s"
 #define AB_APP_BUNDLE_VERSION @"version"
@@ -27,8 +29,8 @@
 
 #define AB_APP_NOTIFICATION_SEND_TIME_FORMAT @"yyyy-mm-dd HH:mm:ss ZZZ"
 
-#define AB_APP_PUSH_CONFIGURATION_ENABLED @"enabled"
-#define AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS @"unavailable_intervals"
+#define AB_APP_PUSH_CONFIGURATION_ENABLED @"push_enabled"
+#define AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS @"dnd_intervals"
 
 #define AB_Rich_Title @"rich_title"
 #define AB_Rich_Content @"rich_content"

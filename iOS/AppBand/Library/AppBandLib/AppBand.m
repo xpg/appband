@@ -45,6 +45,7 @@ static AppBand *_appBand;
             UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
             _udid = [[deviceUDID uniqueDeviceIdentifier] copy];
             [[NSUserDefaults standardUserDefaults] setObject:_udid forKey:kAppBandDeviceUDID];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [deviceUDID release];
         }
     }
@@ -70,6 +71,7 @@ static AppBand *_appBand;
     NSString* oldValue = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTokenKey];
     if(![oldValue isEqualToString:_deviceToken]) {
         [[NSUserDefaults standardUserDefaults] setObject:_deviceToken forKey:kLastDeviceTokenKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
@@ -124,6 +126,10 @@ static AppBand *_appBand;
             }
             tagsStr = [tagsStr stringByAppendingString:tmp];
         }
+    }
+    
+    if ([tagsStr length] > 500) {
+        tagsStr = [tagsStr substringToIndex:499];
     }
     
     return tagsStr;
@@ -213,13 +219,37 @@ static AppBand *_appBand;
 }
 
 /*
+ * Get SDK Version
+ * 
+ */
+- (NSString *)getVersion {
+    return APPBAND_SDK_VERSION;
+}
+
+/*
  * Set Alias
  * 
  * Paramters:
  *          alias: the Alias of the Device.
  */
 - (void)setAlias:(NSString *)alias {
-    [[NSUserDefaults standardUserDefaults] setObject:alias forKey:kLastDeviceAliasKey];
+    if (!alias) return;
+    
+    NSString *tmp = [NSString stringWithString:alias];
+    if ([alias length] > 30) {
+        NSLog(@"Warning! The Alias(%@) length is more than 30, will be cut",alias);
+        tmp = [alias substringToIndex:29];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:tmp forKey:kLastDeviceAliasKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/*
+ * Get Alias
+ * 
+ */
+- (NSString *)getAlias {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceAliasKey];
 }
 
 /*
@@ -229,7 +259,13 @@ static AppBand *_appBand;
  *          tags: tag dictionary.
  */
 - (void)setTags:(NSDictionary *)tags {
+    if (!tags) return;
+    
+    if ([[tags allKeys] count] > 5) {
+        NSLog(@"Warning! The number of tags > 5");
+    }
     [[NSUserDefaults standardUserDefaults] setObject:tags forKey:kLastDeviceTagsKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 /*
@@ -240,14 +276,28 @@ static AppBand *_appBand;
  *         value: The value of the tag.
  */
 - (void)setTag:(NSString *)key value:(NSString *)value {
+    if (!key || !value) return;
+    
     NSDictionary *tags = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey];
     NSMutableDictionary *tmp = [NSMutableDictionary dictionary];
     if (tags) {
+        if ([[tags allKeys] count] >= 5) {
+            NSLog(@"Warning! The number of tags > 5");
+        }
         [tmp addEntriesFromDictionary:tags];
     }
     
     [tmp setObject:value forKey:key];
     [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithDictionary:tmp] forKey:kLastDeviceAliasKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/*
+ * Get Tags
+ * 
+ */
+- (NSDictionary *)getTags {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey];
 }
 
 /*

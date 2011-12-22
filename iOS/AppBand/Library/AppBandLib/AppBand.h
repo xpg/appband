@@ -52,7 +52,13 @@
 + (void)end;
 
 /*
- * Set Alias
+ * Get SDK Version
+ * 
+ */
+- (NSString *)getVersion;
+
+/*
+ * Set Alias (Max Length 30)
  * 
  * Paramters:
  *          alias: the Alias of the Device.
@@ -60,7 +66,13 @@
 - (void)setAlias:(NSString *)alias;
 
 /*
- * Set Tags
+ * Get Alias
+ * 
+ */
+- (NSString *)getAlias;
+
+/*
+ * Set Tags (Max 5 tags)
  * 
  * Paramters:
  *          tags: tag dictionary.
@@ -76,6 +88,11 @@
  */
 - (void)setTag:(NSString *)key value:(NSString *)value;
 
+/*
+ * Get Tags
+ * 
+ */
+- (NSDictionary *)getTags;
 
 /*
  * Register Device Token

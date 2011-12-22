@@ -11,6 +11,7 @@ NSString * const ABHTTPRequestErrorDomain = @"ABHTTPRequestErrorDomain";
 #import "ABHTTPRequest.h"
 
 #import "ABReachability.h"
+#import "AB_SBJSON.h"
 
 //Check whether the web connection is valid.
 CG_INLINE BOOL hasConnection() {
@@ -158,21 +159,25 @@ CG_INLINE BOOL hasConnection() {
             if(self.parameters && [[self.parameters allKeys] count] > 0){
                 [request setHTTPMethod:@"POST"];    //set request method to POST.
                 
-                NSString * postString = @"";
-                NSArray * keys = [self.parameters allKeys];
-                for(NSString * key in keys){
-                    NSString * _data = (NSString *)[self.parameters objectForKey:key];
-                    postString = [postString stringByAppendingFormat:@"&%@=%@",key,_data]; 
-                }
+//                NSString * postString = @"";
+//                NSArray * keys = [self.parameters allKeys];
+//                for(NSString * key in keys){
+//                    NSString * _data = (NSString *)[self.parameters objectForKey:key];
+//                    postString = [postString stringByAppendingFormat:@"&%@=%@",key,_data]; 
+//                }
+                AB_SBJSON *sbJson = [[AB_SBJSON alloc] init];
+                NSString *postString = [sbJson stringWithObject:self.parameters error:nil];
                 
                 NSMutableData *postBody = [NSMutableData data];
                 [postBody appendData:[postString dataUsingEncoding:NSUTF8StringEncoding]];
                 
                 [request setHTTPBody:postBody]; //set http body.
+                [sbJson release];
                 [self performSelector:@selector(requestTimeOut) withObject:nil afterDelay:self.timeout];
             }
             
-            NSString *contentType = [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
+//            NSString *contentType = [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
+            NSString *contentType = [NSString stringWithFormat:@"application/json"];
             [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
             
             self.isCompleted = NO;
