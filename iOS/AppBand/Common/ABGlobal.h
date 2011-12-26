@@ -16,6 +16,11 @@
 #define AB_DEVICE_TOKEN @"token"
 #define AB_APP_ALIAS @"alias"
 #define AB_APP_TAGS @"tags"
+#define AB_APP_SETTING @"setting"
+#define AB_APP_TIMEZONE @"timezone"
+#define AB_APP_LANGUAGE @"language"
+#define AB_APP_OS_VERSION @"os_version"
+#define AB_APP_DEVICE_TYPE @"device_type"
 
 #define AB_Error @"error"
 

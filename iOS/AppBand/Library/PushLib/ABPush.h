@@ -86,13 +86,17 @@ SINGLETON_INTERFACE(ABPush)
  * Paramters:
  *        enabled: YES/NO. YES - Enable Recieve Push. NO - Disable Recieve Push.
  *      intervals: Push will no be send to in those times interval.
- *         target: callback invocator.
- * finishSelector: the SEL will call when done.The selector must only has one paramter, which is ABResponse object
  */
-- (void)setPushEnabled:(BOOL)enabled 
-  unavailableIntervals:(NSArray *)intervals 
-                target:(id)target 
-        finishSelector:(SEL)finishSelector;
+- (void)setPushEnabled:(BOOL)enabled unavailableIntervals:(NSArray *)intervals;
+
+/*
+ * Get UTC Time String From NSDate
+ * 
+ * Paramters:
+ *         date: target Date.
+ * 
+ */
+- (NSString *)getUTCFromeDate:(NSDate *)date;
 
 /*
  * Register Remote Notification

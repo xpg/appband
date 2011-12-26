@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-//#define kAppBandProductionServer @"https://192.168.1.60/v1"
-//#define kAppBandProductionServer @"http://192.168.1.51:3000"
+////#define kAppBandProductionServer @"https://192.168.1.60/v1"
+//#define kAppBandProductionServer @"http://192.168.1.138:3000/v1"
 
 #define kAppBandProductionServer @"https://api.appmocha.com/v1"
 
@@ -81,8 +81,15 @@ static AppBand *_appBand;
     NSString *urlString = [NSString stringWithFormat:@"%@%@",
                            self.server, @"/app_registrations"];
     
+    NSDictionary *settingDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:[[ABPush shared] getPushEnabled]], AB_APP_PUSH_CONFIGURATION_ENABLED, [self getIntervalsArray:[[ABPush shared] getPushDNDIntervals]], AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS, nil];
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:info];
     [parameters setObject:self.deviceToken forKey:AB_DEVICE_TOKEN];
+    [parameters setObject:settingDic forKey:AB_APP_SETTING];
+    [parameters setObject:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:AB_APP_LANGUAGE];
+    [parameters setObject:[[NSTimeZone systemTimeZone] name] forKey:AB_APP_TIMEZONE];
+    [parameters setObject:[UIDevice currentDevice].model forKey:AB_APP_DEVICE_TYPE];
+    [parameters setObject:[UIDevice currentDevice].systemVersion forKey:AB_APP_OS_VERSION];
     
     ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
                                                        url:urlString 
@@ -133,6 +140,20 @@ static AppBand *_appBand;
     }
     
     return tagsStr;
+}
+
+- (NSArray *)getIntervalsArray:(NSArray *)array {
+    if ([array count] < 1) return [NSArray array];
+    
+    NSMutableArray *tmp = [NSMutableArray array];
+    for (NSDictionary *interval in array) {
+        NSDate *bTime = [interval  objectForKey:AppBandPushIntervalBeginTimeKey];
+        NSDate *eTime = [interval objectForKey:AppBandPushIntervalEndTimeKey];
+        
+        [tmp addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[ABPush shared] getUTCFromeDate:bTime], AppBandPushIntervalBeginTimeKey, [[ABPush shared] getUTCFromeDate:eTime], AppBandPushIntervalEndTimeKey, nil]];
+    }
+    
+    return [NSArray arrayWithArray:tmp];
 }
 
 #pragma mark - AppBand Mehods

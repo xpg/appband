@@ -189,77 +189,54 @@ SINGLETON_IMPLEMENTATION(ABPush)
     }
 }
 
-- (void)getPushConfigurationEnd:(NSDictionary *)response {
-    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
-    
-    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
-    
-    ABPushConfiguration *r = [[[ABPushConfiguration alloc] init] autorelease];
-    [r setCode:code];
-    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
-    
-    if (code == ABResponseCodeHTTPSuccess) {
-        if (code == ABHTTPResponseSuccess) {
-            NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
-            
-            //parser response json
-            NSError *error = nil;
-            AB_SBJSON *json = [[AB_SBJSON alloc] init];
-            NSDictionary *dic = [json objectWithString:resp error:&error];
-            [json release];
-            
-            if (dic && !error) {
-                [r setEnabled:[[dic objectForKey:AB_APP_PUSH_CONFIGURATION_ENABLED] boolValue]];
-                [r setUnavailableIntervals:[dic objectForKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS]];
-            } else {
-                [r setCode:ABResponseCodeHTTPError];
-                [r setError:[NSError errorWithDomain:@"AppBand Parser Error" code:ABResponseCodeHTTPError userInfo:nil]];
-            }
-        } 
-        [requester.delegate performSelector:requester.finishSelector withObject:r];
-    } else {
-        [requester.delegate performSelector:requester.failSelector withObject:r];
-    }
-}
+//- (void)getPushConfigurationEnd:(NSDictionary *)response {
+//    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
+//    
+//    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+//    
+//    ABPushConfiguration *r = [[[ABPushConfiguration alloc] init] autorelease];
+//    [r setCode:code];
+//    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
+//    
+//    if (code == ABResponseCodeHTTPSuccess) {
+//        if (code == ABHTTPResponseSuccess) {
+//            NSString *resp = [response objectForKey:ABHTTPResponseKeyContent];
+//            
+//            //parser response json
+//            NSError *error = nil;
+//            AB_SBJSON *json = [[AB_SBJSON alloc] init];
+//            NSDictionary *dic = [json objectWithString:resp error:&error];
+//            [json release];
+//            
+//            if (dic && !error) {
+//                [r setEnabled:[[dic objectForKey:AB_APP_PUSH_CONFIGURATION_ENABLED] boolValue]];
+//                [r setUnavailableIntervals:[dic objectForKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS]];
+//            } else {
+//                [r setCode:ABResponseCodeHTTPError];
+//                [r setError:[NSError errorWithDomain:@"AppBand Parser Error" code:ABResponseCodeHTTPError userInfo:nil]];
+//            }
+//        } 
+//        [requester.delegate performSelector:requester.finishSelector withObject:r];
+//    } else {
+//        [requester.delegate performSelector:requester.failSelector withObject:r];
+//    }
+//}
 
-- (void)setPushConfigurationEnd:(NSDictionary *)response {
-    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
-    
-    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
-    
-    ABResponse *r = [[[ABResponse alloc] init] autorelease];
-    [r setCode:code];
-    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
-    
-    if (code == ABResponseCodeHTTPSuccess) {
-        [requester.delegate performSelector:requester.finishSelector withObject:r];
-    } else {
-        [requester.delegate performSelector:requester.failSelector withObject:r];
-    }
-}
-
-- (NSString *)getJsonFromArray:(NSArray *)array {
-    if ([array count] < 1) return @"";
-    NSMutableArray *tmp = [NSMutableArray array];
-    for (NSDictionary *interval in array) {
-        NSDate *bTime = [interval  objectForKey:AppBandPushIntervalBeginTimeKey];
-        NSDate *eTime = [interval objectForKey:AppBandPushIntervalEndTimeKey];
-        
-        [tmp addObject:[NSDictionary dictionaryWithObjectsAndKeys:[self getUTCFromeDate:bTime], AppBandPushIntervalBeginTimeKey, [self getUTCFromeDate:eTime], AppBandPushIntervalEndTimeKey, nil]];
-    }
-    
-    //parser response json
-    NSError *error = nil;
-    AB_SBJSON *json = [[AB_SBJSON alloc] init];
-    NSString *arrayString = [json stringWithObject:[NSArray arrayWithArray:tmp] error:&error];
-    [json release];
-    
-    if (error) {
-        return @"";
-    }
-    
-    return arrayString;
-}
+//- (void)setPushConfigurationEnd:(NSDictionary *)response {
+//    ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
+//    
+//    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+//    
+//    ABResponse *r = [[[ABResponse alloc] init] autorelease];
+//    [r setCode:code];
+//    [r setError:[response objectForKey:ABHTTPResponseKeyError]];
+//    
+//    if (code == ABResponseCodeHTTPSuccess) {
+//        [requester.delegate performSelector:requester.finishSelector withObject:r];
+//    } else {
+//        [requester.delegate performSelector:requester.failSelector withObject:r];
+//    }
+//}
 
 /*
  * Set Push Enable
@@ -386,26 +363,6 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 /*
- * Get UTC Time String From NSDate
- * 
- * Paramters:
- *         date: target Date.
- * 
- */
-- (NSString *)getUTCFromeDate:(NSDate *)date {
-    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSTimeZone *timeZone1 = [NSTimeZone timeZoneWithName:@"UTC"];
-    [dateFormatter setTimeZone:timeZone1];
-    [dateFormatter setDateFormat:@"HH:mm ZZZ"];
-    NSString *utcTime = [dateFormatter stringFromDate:date];
-    [dateFormatter release];
-    
-    return utcTime;
-}
-
-/*
  * Get UTC Time String From NSString
  * 
  * Paramters:
@@ -460,42 +417,63 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *         target: callback invocator.
  * finishSelector: the SEL will call when done.The selector must only has one paramter, which is ABResponse object
  */
+//- (void)setPushEnabled:(BOOL)enabled 
+//  unavailableIntervals:(NSArray *)intervals 
+//                target:(id)target 
+//        finishSelector:(SEL)finishSelector
 - (void)setPushEnabled:(BOOL)enabled 
-  unavailableIntervals:(NSArray *)intervals 
-                target:(id)target 
-        finishSelector:(SEL)finishSelector {
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",
-                           [[AppBand shared] server], @"/client_settings"];
-    
-    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-    
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:[[AppBand shared] appKey] forKey:AB_APP_KEY];
-    [parameters setObject:[[AppBand shared] appSecret] forKey:AB_APP_SECRET];
-    [parameters setObject:[[AppBand shared] deviceToken] forKey:AB_DEVICE_TOKEN];
-    [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
-    [parameters setObject:[NSNumber numberWithBool:enabled] forKey:AB_APP_PUSH_CONFIGURATION_ENABLED];
-    
-    if ([intervals count] > 3) {
-        NSLog(@"Warning! The max count of intervals is 3");
-        intervals = [NSArray arrayWithObjects:[intervals objectAtIndex:0], [intervals objectAtIndex:1], [intervals objectAtIndex:2], nil];
-    }
-    
-    [parameters setObject:[self getJsonFromArray:intervals] forKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS];
-    
-    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
-                                                       url:urlString 
-                                                 parameter:parameters
-                                                   timeout:kAppBandRequestTimeout
-                                                  delegate:target
-                                                    finish:finishSelector
-                                                      fail:finishSelector 
-                                                     agent:self 
-                                             agentSelector:@selector(setPushConfigurationEnd:)];
-    [[ABRestCenter shared] addRequest:request];
+  unavailableIntervals:(NSArray *)intervals {
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@",
+//                           [[AppBand shared] server], @"/client_settings"];
+//    
+//    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+//    
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setObject:[[AppBand shared] appKey] forKey:AB_APP_KEY];
+//    [parameters setObject:[[AppBand shared] appSecret] forKey:AB_APP_SECRET];
+//    [parameters setObject:[[AppBand shared] deviceToken] forKey:AB_DEVICE_TOKEN];
+//    [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
+//    [parameters setObject:[NSNumber numberWithBool:enabled] forKey:AB_APP_PUSH_CONFIGURATION_ENABLED];
+//    
+//    if ([intervals count] > 3) {
+//        NSLog(@"Warning! The max count of intervals is 3");
+//        intervals = [NSArray arrayWithObjects:[intervals objectAtIndex:0], [intervals objectAtIndex:1], [intervals objectAtIndex:2], nil];
+//    }
+//    
+//    [parameters setObject:[self getJsonFromArray:intervals] forKey:AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS];
+//    
+//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+//                                                       url:urlString 
+//                                                 parameter:parameters
+//                                                   timeout:kAppBandRequestTimeout
+//                                                  delegate:target
+//                                                    finish:finishSelector
+//                                                      fail:finishSelector 
+//                                                     agent:self 
+//                                             agentSelector:@selector(setPushConfigurationEnd:)];
+//    [[ABRestCenter shared] addRequest:request];
     
     [self setPushEnabled:enabled intervals:intervals];
+}
+
+/*
+ * Get UTC Time String From NSDate
+ * 
+ * Paramters:
+ *         date: target Date.
+ * 
+ */
+- (NSString *)getUTCFromeDate:(NSDate *)date {
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone1 = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone1];
+    [dateFormatter setDateFormat:@"HH:mm ZZZ"];
+    NSString *utcTime = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
+    
+    return utcTime;
 }
 
 /*

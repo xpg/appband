@@ -178,7 +178,8 @@ CG_INLINE BOOL hasConnection() {
             
 //            NSString *contentType = [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
             NSString *contentType = [NSString stringWithFormat:@"application/json"];
-            [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+            [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+            [request setValue:contentType forHTTPHeaderField:@"Accept"];
             
             self.isCompleted = NO;
             self.responseData = [NSMutableData data];

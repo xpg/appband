@@ -51,20 +51,9 @@
 
 - (void)getNotificationsEnd:(NSDictionary *)response;
 
-- (void)getPushConfigurationEnd:(NSDictionary *)response;
-
-- (void)setPushConfigurationEnd:(NSDictionary *)response;
-
-- (NSString *)getJsonFromArray:(NSArray *)array;
-
-/*
- * Get UTC Time String From NSDate
- * 
- * Paramters:
- *         date: target Date.
- * 
- */
-- (NSString *)getUTCFromeDate:(NSDate *)date;
+//- (void)getPushConfigurationEnd:(NSDictionary *)response;
+//
+//- (void)setPushConfigurationEnd:(NSDictionary *)response;
 
 /*
  * Set Push Enable

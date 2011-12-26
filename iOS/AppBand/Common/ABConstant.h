@@ -33,7 +33,6 @@
 
 #define AppBandTagPreferKeyLocation @"location"
 #define AppBandTagPreferKeyCounty @"county"
-#define AppBandTagPreferKeyDevice @"device_type"
 
 
 

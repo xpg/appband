@@ -354,6 +354,8 @@
     
     [AppBand kickoff:kickOffOptions];
     
+    [[AppBand shared] setTags:[NSDictionary dictionaryWithObjectsAndKeys:@"zh", AppBandTagPreferKeyCounty, nil]];
+    
     [[ABPush shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     
     if ([self availableString:self.userEmail] && [self availableString:self.userPassword]) {

@@ -20,6 +20,7 @@
 #import "ABProduct.h"
 
 #import "UIDevice+IdentifierAddition.h"
+#import "AB_SBJSON.h"
 
 
 @interface AppBand() <ABHTTPRequestDelegate>
@@ -50,6 +51,8 @@
 
 - (void)registerDeviceTokenEnd:(NSDictionary *)response;
 
-- (NSString *)getTagsString:(NSDictionary *)tags; 
+- (NSString *)getTagsString:(NSDictionary *)tags;
+
+- (NSArray *)getIntervalsArray:(NSArray *)array;
 
 @end

@@ -28,7 +28,9 @@
 - (void)savePushConfiguration {
     [leftBarButton setEnabled:NO];
     
-    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals target:self finishSelector:@selector(savePushConfigurationEnd:)];
+//    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals target:self finishSelector:@selector(savePushConfigurationEnd:)];
+    
+    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals];
 }
 
 #pragma mark - Public
@@ -79,12 +81,13 @@
 
 - (void)deleteIntervalAtIndex:(NSNumber *)index {
     if (index) {
-        NSIndexPath *deletePath = [NSIndexPath indexPathForRow:(1 + [index intValue]) inSection:1];
+        //        NSIndexPath *deletePath = [NSIndexPath indexPathForRow:(1 + [index intValue]) inSection:1];
         NSMutableArray *tmp = [NSMutableArray arrayWithArray:_pushIntervals];
         [tmp removeObjectAtIndex:[index intValue]];
         [_pushIntervals release];
         _pushIntervals = [[NSArray alloc] initWithArray:tmp];
-        [settingView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:deletePath, nil] withRowAnimation:UITableViewRowAnimationBottom];
+        //        [settingView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:deletePath, nil] withRowAnimation:UITableViewRowAnimationBottom];
+        [settingView reloadData];
     }
 }
 
