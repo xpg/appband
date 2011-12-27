@@ -28,9 +28,8 @@
 - (void)savePushConfiguration {
     [leftBarButton setEnabled:NO];
     
-//    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals target:self finishSelector:@selector(savePushConfigurationEnd:)];
-    
     [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals];
+    [[AppBand shared] updateSettingsWithTarget:self finishSelector:@selector(savePushConfigurationEnd:)];
 }
 
 #pragma mark - Public

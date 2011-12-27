@@ -156,13 +156,14 @@
     
     NSString *appKey = [[AppBand shared] appKey];
     NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[AppBand shared] udid];
     NSString *token = [(AMAppDelegate *)[UIApplication sharedApplication].delegate deviceToken];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     NSDictionary *parameters = nil;
     if (!token || [token isEqualToString:@""]) {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.email, AppBand_App_Email, self.password, AppBand_App_Password, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.email, AppBand_App_Email, self.password, AppBand_App_Password, nil];
     } else {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, token, AppBand_App_token, self.email, AppBand_App_Email, self.password, AppBand_App_Password, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, token, AppBand_App_token, self.email, AppBand_App_Email, self.password, AppBand_App_Password, nil];
     }
     
     NSString *url = [NSString stringWithFormat:@"%@/%@", [[AppBand shared] server] ,@"users/sign_in"];

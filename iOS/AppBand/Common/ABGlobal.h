@@ -14,7 +14,7 @@
 #define AB_APP_BUNDLE_IDENTIFIER @"bundleid"
 #define AB_DEVICE_UDID @"udid"
 #define AB_DEVICE_TOKEN @"token"
-#define AB_APP_ALIAS @"alias"
+#define AB_APP_ALIAS @"device_alias"
 #define AB_APP_TAGS @"tags"
 #define AB_APP_SETTING @"setting"
 #define AB_APP_TIMEZONE @"timezone"
@@ -78,6 +78,7 @@ typedef enum {
     ABHTTPResponseServerError = 500,
 } ABHTTPResponseCode;
 
+#define ABHTTPResponseKey @"ABHTTPResponseKey"
 #define ABHTTPResponseKeyURL @"ABHTTPResponseKeyURL"
 #define ABHTTPResponseKeyCode @"ABHTTPResponseKeyCode"
 #define ABHTTPResponseKeyContent @"ABHTTPResponseKeyContent"

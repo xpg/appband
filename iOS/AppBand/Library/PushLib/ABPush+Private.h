@@ -10,6 +10,7 @@
 
 #import "ABConstant.h"
 #import "ABRestCenter.h"
+#import "ABDataStoreCenter.h"
 
 #import "ABNotificationsResponse.h"
 #import "ABRichHandler.h"
@@ -19,12 +20,8 @@
 
 #import "ABHTTPRequest.h"
 #import "ABResponse.h"
-#import "ABPushConfiguration.h"
 
 #import "AB_SBJSON.h"
-
-#define kLastDevicePushEnableKey @"kLastDevicePushEnableKey"
-#define kLastDevicePushDNDIntervalsKey @"kLastDevicePushDNDIntervalsKey"
 
 @interface ABPush() <ABRichViewDelegate>
 
@@ -50,19 +47,5 @@
 - (NSDate *)getDateFromString:(NSString *)dateStr;
 
 - (void)getNotificationsEnd:(NSDictionary *)response;
-
-//- (void)getPushConfigurationEnd:(NSDictionary *)response;
-//
-//- (void)setPushConfigurationEnd:(NSDictionary *)response;
-
-/*
- * Set Push Enable
- *
- * Paramters:
- *     enabled: ON/OFF.
- *   intervals: array of intervals.
- *
- */
-- (void)setPushEnabled:(BOOL)enabled intervals:(NSArray *)intervals;
 
 @end

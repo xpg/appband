@@ -8,13 +8,14 @@
 
 #import "ABHTTPRequest.h"
 
-#import "ABRegisterTokenResponse.h"
+#import "ABResponse.h"
 
 #import "ABGlobal.h"
 #import "ABConstant.h"
 
 #import "ABPush.h"
 #import "ABRestCenter.h"
+#import "ABDataStoreCenter.h"
 
 #import "ABPurchase.h"
 #import "ABProduct.h"
@@ -31,6 +32,8 @@
 @property(nonatomic,readwrite,copy) NSString *deviceToken;
 @property(nonatomic,readwrite,copy) NSString *udid;
 
+@property(nonatomic,copy) NSString *appRegistrationKey;
+
 @property(assign) id registerTarget;
 @property(assign) SEL registerFinishSelector;
 
@@ -44,15 +47,23 @@
 
 - (NSString*)parseDeviceToken:(NSString*)tokenStr;
 
-- (void)registerDeviceTokenWithExtraInfo:(NSDictionary *)info;
-
-- (void)registerDeviceToken:(NSData *)token
-              withExtraInfo:(NSDictionary *)info;
+- (void)appRegisterWithExtraInfo:(NSDictionary *)info;
 
 - (void)registerDeviceTokenEnd:(NSDictionary *)response;
 
 - (NSString *)getTagsString:(NSDictionary *)tags;
 
 - (NSArray *)getIntervalsArray:(NSArray *)array;
+
+/*
+ * Register Device Token
+ * 
+ * Paramters:
+ *         target: the object takes charge of perform finish selector.
+ *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABRegisterTokenResponse object. e.g. - (void)registerDeviceTokenFinished:(ABRegisterTokenResponse *)response
+ */
+- (void)appRegistrationWithTarget:(id)target finishSelector:(SEL)finishSeletor;
+
+- (void)backgroundUpdate;
 
 @end

@@ -26,9 +26,6 @@
 
 
 
-
-
-
 // **************** Tag Prefer Key ****************
 
 #define AppBandTagPreferKeyLocation @"location"
@@ -42,6 +39,55 @@
 #define AppBandPushIntervalEndTimeKey @"end_time"
 
 
+
+// **************** Utilty Mehod ****************
+
+/*
+ * Get UTC Time String From NSDate
+ * 
+ * Paramters:
+ *         date: target Date.
+ * 
+ */
+static inline NSString * getUTCFromeDate(NSDate *date) {
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSTimeZone *timeZone1 = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone1];
+    [dateFormatter setDateFormat:@"HH:mm ZZZ"];
+    NSString *utcTime = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
+    
+    return utcTime;
+}
+
+/*
+ * Get UTC Time String From NSString
+ * 
+ * Paramters:
+ *         timeStr: target string. Note that: the timeStr should be in "HH:mm" format.
+ * 
+ */
+static inline NSString * getUTCFromeString(NSString *timeStr) {
+    if ([timeStr length] != 5) return nil;
+    
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"^([0-2][0-3]:[0-5][0-9])|(0?[0-9]:[0-5][0-9])$" options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSUInteger numberofMatch = [expression numberOfMatchesInString:timeStr 
+                                                           options:NSMatchingReportProgress
+                                                             range:NSMakeRange(0, timeStr.length)];
+    if (numberofMatch < 1) return nil;
+    
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSDate *date = [dateFormatter dateFromString:timeStr];
+    [dateFormatter release];
+    
+    return getUTCFromeDate(date);
+}
 
 
 // **************** Singleton Template ****************

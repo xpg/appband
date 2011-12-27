@@ -58,6 +58,14 @@
 - (NSString *)getVersion;
 
 /*
+ * Set Device Token
+ * 
+ * Paramters:
+ *          token: the token of the Device.
+ */
+- (void)setPushToken:(NSData *)token;
+
+/*
  * Set Alias (Max Length 30)
  * 
  * Paramters:
@@ -95,15 +103,12 @@
 - (NSDictionary *)getTags;
 
 /*
- * Register Device Token
+ * Update Settings
  * 
  * Paramters:
- *          token: The token receive from APNs.
  *         target: the object takes charge of perform finish selector.
- *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABRegisterTokenResponse object. e.g. - (void)registerDeviceTokenFinished:(ABRegisterTokenResponse *)response
+ *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABResponse object.
  */
-- (void)registerDeviceToken:(NSData *)token
-                     target:(id)target
-             finishSelector:(SEL)finishSeletor;
+- (void)updateSettingsWithTarget:(id)target finishSelector:(SEL)finishSeletor;
 
 @end

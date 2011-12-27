@@ -90,15 +90,6 @@ SINGLETON_INTERFACE(ABPush)
 - (void)setPushEnabled:(BOOL)enabled unavailableIntervals:(NSArray *)intervals;
 
 /*
- * Get UTC Time String From NSDate
- * 
- * Paramters:
- *         date: target Date.
- * 
- */
-- (NSString *)getUTCFromeDate:(NSDate *)date;
-
-/*
  * Register Remote Notification
  *
  * Paramters:

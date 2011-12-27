@@ -6,15 +6,10 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-////#define kAppBandProductionServer @"https://192.168.1.60/v1"
+#define kAppBandProductionServer @"https://api.apphub.com/v1"
 //#define kAppBandProductionServer @"http://192.168.1.138:3000/v1"
 
-#define kAppBandProductionServer @"https://api.appmocha.com/v1"
-
-#define kAppBandDeviceUDID @"AppBandDeviceUDID"
-#define kLastDeviceTokenKey @"AppBandDeviceTokenKey"
-#define kLastDeviceAliasKey @"AppBandDeviceAliasKey"
-#define kLastDeviceTagsKey @"AppBandDeviceTagsKey"
+//#define kAppBandProductionServer @"https://api.appmocha.com/v1"
 
 #import "AppBand.h"
 #import "AppBand+Private.h"
@@ -29,6 +24,8 @@ static AppBand *_appBand;
 @synthesize deviceToken = _deviceToken;
 @synthesize udid = _udid;
 
+@synthesize appRegistrationKey = _appRegistrationKey;
+
 @synthesize registerTarget = _registerTarget;
 @synthesize registerFinishSelector = _registerFinishSelector;
 
@@ -40,12 +37,11 @@ static AppBand *_appBand;
 
 - (NSString *)udid {
     if (!_udid) {
-        _udid = [[NSUserDefaults standardUserDefaults] objectForKey:kAppBandDeviceUDID];
+        _udid = [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceUDID];
         if (!_udid) {
             UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
             _udid = [[deviceUDID uniqueDeviceIdentifier] copy];
-            [[NSUserDefaults standardUserDefaults] setObject:_udid forKey:kAppBandDeviceUDID];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [[ABDataStoreCenter shared] setValue:_udid forKey:kAppBandDeviceUDID];
             [deviceUDID release];
         }
     }
@@ -54,7 +50,9 @@ static AppBand *_appBand;
 }
 
 - (void)updateDeviceToken:(NSData*)tokenData {
-    self.deviceToken = [self parseDeviceToken:[tokenData description]];
+    NSString *token = [self parseDeviceToken:[tokenData description]];
+    if (![self.deviceToken isEqualToString:token])
+        self.deviceToken = token;
 }
 
 - (NSString*)parseDeviceToken:(NSString*)tokenStr {
@@ -67,31 +65,27 @@ static AppBand *_appBand;
     [_deviceToken release]; 
     _deviceToken = [tokenStr copy];
     
-    // Check to see if the device token has changed
-    NSString* oldValue = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTokenKey];
-    if(![oldValue isEqualToString:_deviceToken]) {
-        [[NSUserDefaults standardUserDefaults] setObject:_deviceToken forKey:kLastDeviceTokenKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
+    [[ABDataStoreCenter shared] setValue:_deviceToken forKey:kAppBandDeviceToken];
 }
 
-- (void)registerDeviceTokenWithExtraInfo:(NSDictionary *)info {
-    if (!self.deviceToken) return;
-    
+- (void)appRegisterWithExtraInfo:(NSDictionary *)info {
     NSString *urlString = [NSString stringWithFormat:@"%@%@",
                            self.server, @"/app_registrations"];
     
-    NSDictionary *settingDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:[[ABPush shared] getPushEnabled]], AB_APP_PUSH_CONFIGURATION_ENABLED, [self getIntervalsArray:[[ABPush shared] getPushDNDIntervals]], AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS, nil];
+    NSString *token = self.deviceToken ? self.deviceToken : @"";
+    
+    NSNumber *enableNum = [NSNumber numberWithBool:[[ABPush shared] getPushEnabled]];
+    NSDictionary *settingDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:[enableNum intValue]], AB_APP_PUSH_CONFIGURATION_ENABLED, [self getIntervalsArray:[[ABPush shared] getPushDNDIntervals]], AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS, nil];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:info];
-    [parameters setObject:self.deviceToken forKey:AB_DEVICE_TOKEN];
+    [parameters setObject:token forKey:AB_DEVICE_TOKEN];
     [parameters setObject:settingDic forKey:AB_APP_SETTING];
     [parameters setObject:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:AB_APP_LANGUAGE];
     [parameters setObject:[[NSTimeZone systemTimeZone] name] forKey:AB_APP_TIMEZONE];
     [parameters setObject:[UIDevice currentDevice].model forKey:AB_APP_DEVICE_TYPE];
     [parameters setObject:[UIDevice currentDevice].systemVersion forKey:AB_APP_OS_VERSION];
     
-    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.appRegistrationKey
                                                        url:urlString 
                                                  parameter:parameters
                                                    timeout:kAppBandRequestTimeout
@@ -101,16 +95,15 @@ static AppBand *_appBand;
     [[ABRestCenter shared] addRequest:request];
 }
 
-- (void)registerDeviceToken:(NSData *)token
-              withExtraInfo:(NSDictionary *)info {
-    [[AppBand shared] updateDeviceToken:token];
-    [[AppBand shared] registerDeviceTokenWithExtraInfo:info];
-}
-
 - (void)registerDeviceTokenEnd:(NSDictionary *)response {
-    if ([self.registerTarget respondsToSelector:self.registerFinishSelector]) {
-        ABRegisterTokenResponse *r = [[[ABRegisterTokenResponse alloc] init] autorelease];
-        [r setCode:[[response objectForKey:ABHTTPResponseKeyCode] intValue]];
+    ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
+    if (code == ABResponseCodeHTTPSuccess) 
+        [[ABDataStoreCenter shared] synchronizedWithServer];
+    
+    NSString *requestKey = [response objectForKey:ABHTTPResponseKey];
+    if ([self.appRegistrationKey isEqualToString:requestKey] && [self.registerTarget respondsToSelector:self.registerFinishSelector]) {
+        ABResponse *r = [[[ABResponse alloc] init] autorelease];
+        [r setCode:code];
         [r setError:[response objectForKey:ABHTTPResponseKeyError]];
         
         [self.registerTarget performSelector:self.registerFinishSelector withObject:r];
@@ -150,10 +143,64 @@ static AppBand *_appBand;
         NSDate *bTime = [interval  objectForKey:AppBandPushIntervalBeginTimeKey];
         NSDate *eTime = [interval objectForKey:AppBandPushIntervalEndTimeKey];
         
-        [tmp addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[ABPush shared] getUTCFromeDate:bTime], AppBandPushIntervalBeginTimeKey, [[ABPush shared] getUTCFromeDate:eTime], AppBandPushIntervalEndTimeKey, nil]];
+        [tmp addObject:[NSDictionary dictionaryWithObjectsAndKeys:getUTCFromeDate(bTime), AppBandPushIntervalBeginTimeKey, getUTCFromeDate(eTime), AppBandPushIntervalEndTimeKey, nil]];
     }
     
     return [NSArray arrayWithArray:tmp];
+}
+
+/*
+ * Application Register
+ * 
+ * Paramters:
+ *         target: the object takes charge of perform finish selector.
+ *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABRegisterTokenResponse object. e.g. - (void)registerDeviceTokenFinished:(ABRegisterTokenResponse *)response
+ */
+- (void)appRegistrationWithTarget:(id)target finishSelector:(SEL)finishSeletor {
+    if ([[ABDataStoreCenter shared] isDuty]) {
+        self.registerTarget = target;
+        self.registerFinishSelector = finishSeletor;
+        self.appRegistrationKey = [[NSDate date] description];
+        
+        NSString *alias = [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceAlias] ? [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceAlias] : @"";
+        NSString *tags = [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceAlias] ? [self getTagsString:[[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceTags]] : @"";
+        
+        
+        NSMutableDictionary *info = [NSMutableDictionary dictionary];
+        [info setValue:self.appKey forKey:AB_APP_KEY];
+        [info setValue:self.appSecret forKey:AB_APP_SECRET];
+        [info setObject:self.udid forKey:AB_DEVICE_UDID];
+        [info setObject:alias forKey:AB_APP_ALIAS];
+        [info setObject:tags forKey:AB_APP_TAGS];
+        
+        NSString *bundleVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
+        NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+        
+        
+        if (bundleVersion) {
+            [info setObject:bundleVersion forKey:AB_APP_BUNDLE_VERSION];
+        }
+        
+        if (bundleId) {
+            [info setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
+        }
+        
+        [[AppBand shared] appRegisterWithExtraInfo:info];
+    } else {
+        if ([self.registerTarget respondsToSelector:self.registerFinishSelector]) {
+            ABResponse *r = [[[ABResponse alloc] init] autorelease];
+            [r setCode:ABResponseCodeHTTPSuccess];
+            [r setError:nil];
+            
+            [self.registerTarget performSelector:self.registerFinishSelector withObject:r];
+        }
+    }
+}
+
+- (void)backgroundUpdate {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    [_appBand appRegistrationWithTarget:nil finishSelector:nil];
+    [pool drain];
 }
 
 #pragma mark - AppBand Mehods
@@ -219,7 +266,10 @@ static AppBand *_appBand;
     
     if (!_appBand) {
         DLog(@"AppBand initialize fail, check AppBandConfig.plist configuration!");
-    }
+        exit(-1);
+    } 
+    
+    [_appBand performSelectorInBackground:@selector(backgroundUpdate) withObject:nil];
 }
 
 /*
@@ -248,6 +298,16 @@ static AppBand *_appBand;
 }
 
 /*
+ * Set Device Token
+ * 
+ * Paramters:
+ *          token: the token of the Device.
+ */
+- (void)setPushToken:(NSData *)token {
+    [[AppBand shared] updateDeviceToken:token];
+}
+
+/*
  * Set Alias
  * 
  * Paramters:
@@ -261,8 +321,8 @@ static AppBand *_appBand;
         NSLog(@"Warning! The Alias(%@) length is more than 30, will be cut",alias);
         tmp = [alias substringToIndex:29];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:tmp forKey:kLastDeviceAliasKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[ABDataStoreCenter shared] setValue:tmp forKey:kAppBandDeviceAlias];
 }
 
 /*
@@ -270,7 +330,7 @@ static AppBand *_appBand;
  * 
  */
 - (NSString *)getAlias {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceAliasKey];
+    return [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceAlias];
 }
 
 /*
@@ -285,8 +345,7 @@ static AppBand *_appBand;
     if ([[tags allKeys] count] > 5) {
         NSLog(@"Warning! The number of tags > 5");
     }
-    [[NSUserDefaults standardUserDefaults] setObject:tags forKey:kLastDeviceTagsKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[ABDataStoreCenter shared] setValue:tags forKey:kAppBandDeviceTags];
 }
 
 /*
@@ -297,9 +356,10 @@ static AppBand *_appBand;
  *         value: The value of the tag.
  */
 - (void)setTag:(NSString *)key value:(NSString *)value {
-    if (!key || !value) return;
+    if (!key) return;
     
-    NSDictionary *tags = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey];
+    NSDictionary *tags = [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceTags];
+    
     NSMutableDictionary *tmp = [NSMutableDictionary dictionary];
     if (tags) {
         if ([[tags allKeys] count] >= 5) {
@@ -308,9 +368,13 @@ static AppBand *_appBand;
         [tmp addEntriesFromDictionary:tags];
     }
     
-    [tmp setObject:value forKey:key];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithDictionary:tmp] forKey:kLastDeviceAliasKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (!value) {
+        [tmp removeObjectForKey:key];
+    } else {
+        [tmp setObject:value forKey:key];
+    }
+    
+    [[ABDataStoreCenter shared] setValue:[NSDictionary dictionaryWithDictionary:tmp] forKey:kAppBandDeviceTags];
 }
 
 /*
@@ -318,59 +382,18 @@ static AppBand *_appBand;
  * 
  */
 - (NSDictionary *)getTags {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey];
+    return [[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceTags];
 }
 
 /*
- * Register Device Token
+ * Update Settings
  * 
  * Paramters:
- *          token: The token receive from APNs.
  *         target: the object takes charge of perform finish selector.
- *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABRegisterTokenResponse object. e.g. - (void)registerDeviceTokenFinished:(ABRegisterTokenResponse *)response
+ *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABResponse object.
  */
-- (void)registerDeviceToken:(NSData *)token
-                     target:(id)target
-             finishSelector:(SEL)finishSeletor {
-    self.registerTarget = target;
-    self.registerFinishSelector = finishSeletor;
-    
-    NSString *alias = @"";
-    NSString *tags = @"";
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceAliasKey]) {
-        alias = [[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceAliasKey];
-    }
-    
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey] count] > 0) {
-        tags = [self getTagsString:[[NSUserDefaults standardUserDefaults] objectForKey:kLastDeviceTagsKey]];
-    }
-    
-    
-    NSMutableDictionary *info = [NSMutableDictionary dictionary];
-    [info setValue:self.appKey forKey:AB_APP_KEY];
-    [info setValue:self.appSecret forKey:AB_APP_SECRET];
-    [info setObject:self.udid forKey:AB_DEVICE_UDID];
-    [info setObject:alias forKey:AB_APP_ALIAS];
-    [info setObject:tags forKey:AB_APP_TAGS];
-    
-    NSString *bundleVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
-    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-    
-    
-    if (bundleVersion) {
-        [info setObject:bundleVersion forKey:AB_APP_BUNDLE_VERSION];
-    }
-    
-    if (bundleId) {
-        [info setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
-    }
-    
-    if (token) {
-        [[AppBand shared] registerDeviceToken:token withExtraInfo:info];
-    } else {
-        [[AppBand shared] registerDeviceTokenWithExtraInfo:info];
-    }
+- (void)updateSettingsWithTarget:(id)target finishSelector:(SEL)finishSeletor {
+    [self appRegistrationWithTarget:target finishSelector:finishSeletor];
 }
 
 #pragma mark - singleton
@@ -380,12 +403,15 @@ static AppBand *_appBand;
     if (self) {
         self.appKey = key;
         self.appSecret = secret;
+        
+        _deviceToken = [[[ABDataStoreCenter shared] getValueOfKey:kAppBandDeviceToken] copy];
     }
     
     return self;
 }
 
 - (void)dealloc {
+    [self setAppRegistrationKey:nil];
     [self setServer:nil];
     [self setDeviceToken:nil];
     [self setAppKey:nil];

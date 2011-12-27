@@ -152,13 +152,14 @@
 - (void)autoLogin {
     NSString *appKey = [[AppBand shared] appKey];
     NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[AppBand shared] udid];
     NSString *token = [(AMAppDelegate *)[UIApplication sharedApplication].delegate deviceToken];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     NSDictionary *parameters = nil;
     if (!token || [token isEqualToString:@""]) {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.userEmail, AppBand_App_Email, self.userPassword, AppBand_App_Password, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.userEmail, AppBand_App_Email, self.userPassword, AppBand_App_Password, nil];
     } else {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.token, AppBand_App_token, self.userEmail, AppBand_App_Email, self.userPassword, AppBand_App_Password, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.token, AppBand_App_token, self.userEmail, AppBand_App_Email, self.userPassword, AppBand_App_Password, nil];
     }
     
     NSString *url = [NSString stringWithFormat:@"%@/%@",[[AppBand shared] server] ,@"users/sign_in"];
@@ -319,7 +320,8 @@
 // one of these will be called after calling -registerForRemoteNotifications
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [self setDeviceToken:deviceToken];
-    [[AppBand shared] registerDeviceToken:deviceToken target:nil finishSelector:nil];
+    [[AppBand shared] setPushToken:deviceToken];
+    [[AppBand shared] updateSettingsWithTarget:nil finishSelector:nil];
 }
 
 #pragma mark - UIApplication lifecycle
@@ -354,7 +356,8 @@
     
     [AppBand kickoff:kickOffOptions];
     
-    [[AppBand shared] setTags:[NSDictionary dictionaryWithObjectsAndKeys:@"zh", AppBandTagPreferKeyCounty, nil]];
+    if (![[AppBand shared] getTags]) 
+        [[AppBand shared] setTags:[NSDictionary dictionaryWithObjectsAndKeys:@"zh", AppBandTagPreferKeyCounty, nil]];
     
     [[ABPush shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     
