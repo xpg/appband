@@ -3,7 +3,7 @@
 //  AppBandLib
 //
 //  Created by Jason Wang on 12/26/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 #import "ABDataStoreCenter.h"
@@ -33,6 +33,21 @@ SINGLETON_IMPLEMENTATION(ABDataStoreCenter)
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
+    if (!key) 
+        return;
+    
+    if (!value) {
+        id originValue = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        if (originValue) {
+            self.needRefresh = YES;
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kAppBandDeviceDuty];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            return;
+        }
+    }
+        
     if (![self isSameToOriginValue:value forKey:key]) {
         self.needRefresh = YES;
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:kAppBandDeviceDuty];

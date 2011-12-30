@@ -28,7 +28,8 @@
 - (void)savePushConfiguration {
     [leftBarButton setEnabled:NO];
     
-    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals];
+//    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:_pushIntervals];
+    [[ABPush shared] setPushEnabled:_pushEnable unavailableIntervals:nil];
     [[AppBand shared] updateSettingsWithTarget:self finishSelector:@selector(savePushConfigurationEnd:)];
 }
 
@@ -140,9 +141,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 1: {
-            NSInteger rowsNum = 1 + [_pushIntervals count];
-            rowsNum = rowsNum > 3 ? rowsNum : rowsNum + 1;
-            return rowsNum;
+//            NSInteger rowsNum = 1 + [_pushIntervals count];
+//            rowsNum = rowsNum > 3 ? rowsNum : rowsNum + 1;
+//            return rowsNum;
+            return 1;
             break;
         }
         default: 

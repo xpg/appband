@@ -19,9 +19,6 @@
 
 #pragma mark - Private
 
-- (void)registerDeviceTokenFinish:(ABRegisterTokenResponse *)response {
-}
-
 - (void)handleRich:(ABNotification *)notification {
 }
 
@@ -37,7 +34,8 @@
 
 // one of these will be called after calling -registerForRemoteNotifications
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [[AppBand shared] registerDeviceToken:deviceToken target:self finishSelector:@selector(registerDeviceTokenFinish:)];
+    [[AppBand shared] setPushToken:deviceToken];
+    [[AppBand shared] updateSettingsWithTarget:nil finishSelector:nil];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

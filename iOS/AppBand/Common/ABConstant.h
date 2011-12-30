@@ -29,7 +29,7 @@
 // **************** Tag Prefer Key ****************
 
 #define AppBandTagPreferKeyLocation @"location"
-#define AppBandTagPreferKeyCounty @"county"
+#define AppBandTagPreferKeyCountry @"country"
 
 
 

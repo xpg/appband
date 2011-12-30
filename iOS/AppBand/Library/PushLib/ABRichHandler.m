@@ -73,7 +73,13 @@
         NSString *urlString = [NSString stringWithFormat:@"%@%@",
                                [[AppBand shared] server], @"/impressions"];
         
-        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:[[AppBand shared] appKey], AB_APP_KEY, [[AppBand shared] appSecret], AB_APP_SECRET, [[AppBand shared] deviceToken], AB_DEVICE_TOKEN, self.rid, AppBandRichNotificationId, nil];
+        NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
+        NSString *appKey = [[AppBand shared] appKey];
+        NSString *appSecret = [[AppBand shared] appSecret];
+        NSString *udid = [[AppBand shared] udid];
+        NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+        
+        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, self.rid, AppBandRichNotificationId, nil];
         
         ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.impressionKey 
                                                            url:urlString 
@@ -101,8 +107,14 @@
 #pragma mark - Public
 
 - (void)begin {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@?token=%@&k=%@&s=%@",
-                           [[AppBand shared] server], @"/rich_contents/",self.rid,[[AppBand shared] deviceToken],[[AppBand shared] appKey],[[AppBand shared] appSecret]];
+    NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[AppBand shared] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@",
+                           [[AppBand shared] server], @"/rich_contents/",self.rid,udid,bundleId,token,appKey,appSecret];
     
     ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.fetchKey 
                                                        url:urlString 

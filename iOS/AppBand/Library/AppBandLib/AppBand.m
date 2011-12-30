@@ -6,10 +6,10 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-#define kAppBandProductionServer @"https://api.apphub.com/v1"
+//#define kAppBandProductionServer @"https://api.apphub.com/v1"
 //#define kAppBandProductionServer @"http://192.168.1.138:3000/v1"
 
-//#define kAppBandProductionServer @"https://api.appmocha.com/v1"
+#define kAppBandProductionServer @"https://api.appmocha.com/v1"
 
 #import "AppBand.h"
 #import "AppBand+Private.h"
@@ -340,8 +340,6 @@ static AppBand *_appBand;
  *          tags: tag dictionary.
  */
 - (void)setTags:(NSDictionary *)tags {
-    if (!tags) return;
-    
     if ([[tags allKeys] count] > 5) {
         NSLog(@"Warning! The number of tags > 5");
     }

@@ -155,6 +155,8 @@
     NSString *udid = [[AppBand shared] udid];
     NSString *token = [(AMAppDelegate *)[UIApplication sharedApplication].delegate deviceToken];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    
     NSDictionary *parameters = nil;
     if (!token || [token isEqualToString:@""]) {
         parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.userEmail, AppBand_App_Email, self.userPassword, AppBand_App_Password, nil];
@@ -357,7 +359,7 @@
     [AppBand kickoff:kickOffOptions];
     
     if (![[AppBand shared] getTags]) 
-        [[AppBand shared] setTags:[NSDictionary dictionaryWithObjectsAndKeys:@"zh", AppBandTagPreferKeyCounty, nil]];
+        [[AppBand shared] setTags:[NSDictionary dictionaryWithObjectsAndKeys:@"zh", AppBandTagPreferKeyCountry, nil]];
     
     [[ABPush shared] registerRemoteNotificationWithTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
     

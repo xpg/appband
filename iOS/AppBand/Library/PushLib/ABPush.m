@@ -246,10 +246,15 @@ SINGLETON_IMPLEMENTATION(ABPush)
     if (pages) {
         pageCa = [pages unsignedIntValue];
     }
-    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
     NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?bundleid=%@&token=%@&k=%@&s=%@&index=%i&pages=%imode=%i",
-                           [[AppBand shared] server], @"/notifications.json", bundleId, token, [[AppBand shared] appKey], [[AppBand shared] appSecret], index,pageCa,type];
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[AppBand shared] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@&index=%i&pages=%imode=%i",
+                           [[AppBand shared] server], @"/notifications.json", udid, bundleId, token, appKey, appSecret, index,pageCa,type];
     
     ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
                                                        url:urlString 
@@ -327,6 +332,9 @@ SINGLETON_IMPLEMENTATION(ABPush)
  */
 - (void)setPushEnabled:(BOOL)enabled 
   unavailableIntervals:(NSArray *)intervals {
+    if (!intervals) {
+        intervals = [NSArray array];
+    }
     [[ABDataStoreCenter shared] setValuesAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:enabled], kAppBandDevicePushEnableKey, intervals, kAppBandDevicePushDNDIntervalsKey, nil]];
 }
 

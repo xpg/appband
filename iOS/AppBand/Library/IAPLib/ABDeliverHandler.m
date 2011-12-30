@@ -3,7 +3,7 @@
 //  AppBand
 //
 //  Created by Jason Wang on 11/24/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 XPG. All rights reserved.
 //
 
 #import "ABDeliverHandler.h"
@@ -103,15 +103,18 @@
 
 - (void)begin {
     NSString *urlString = [NSString stringWithFormat:@"%@/client_apps/%@/products/transactions.json",[[AppBand shared] server],[[AppBand shared] appKey]];
+    
     NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[AppBand shared] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:[[AppBand shared] appSecret] forKey:AB_APP_SECRET];
-    [parameters setObject:[[AppBand shared] udid] forKey:AB_DEVICE_UDID];
-    [parameters setObject:[[NSBundle bundleForClass:[self class]] bundleIdentifier] forKey:AB_APP_BUNDLE_IDENTIFIER];
+    [parameters setObject:appSecret forKey:AB_APP_SECRET];
+    [parameters setObject:udid forKey:AB_DEVICE_UDID];
+    [parameters setObject:bundleId forKey:AB_APP_BUNDLE_IDENTIFIER];
     [parameters setObject:token forKey:AB_DEVICE_TOKEN];
     [parameters setObject:[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:AB_APP_BUNDLE_VERSION];
-    [parameters setObject:token forKey:AB_DEVICE_TOKEN];
     
     if (self.product.transaction) {
         [parameters setObject:self.product.transaction.payment.productIdentifier forKey:AB_Product_ID];

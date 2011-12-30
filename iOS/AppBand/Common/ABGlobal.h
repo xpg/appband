@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-#define APPBAND_SDK_VERSION @"version 0.0.2"
+#define APPBAND_SDK_VERSION @"version 0.1.0"
 
 #define AB_APP_KEY @"k"
 #define AB_APP_SECRET @"s"

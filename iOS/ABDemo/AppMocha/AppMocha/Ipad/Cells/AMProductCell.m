@@ -76,6 +76,14 @@
                     [self performSelectorOnMainThread:@selector(downloadSuccess:) withObject:response.filePath waitUntilDone:YES];
                     break;
                 }
+                case ABPurchaseStatusPaymentUnknown: {
+                    NSString *title = @"购买失败";
+                    NSString *message = @"无法连接到iTune Store";
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alertView show];
+                    [alertView release];
+                    break;
+                }
                 default:
                     break;
             }

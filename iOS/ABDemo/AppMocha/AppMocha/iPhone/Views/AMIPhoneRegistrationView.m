@@ -245,7 +245,7 @@
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     NSDictionary *parameters = nil;
     if (!token || [token isEqualToString:@""]) {
-        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, self.email, AppBand_App_Email, self.password, AppBand_App_Password, self.code, AppBand_App_Invite, nil];
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, @"", AppBand_App_token, self.email, AppBand_App_Email, self.password, AppBand_App_Password, self.code, AppBand_App_Invite, nil];
     } else {
         parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AppBand_App_UDID, appKey, AppBand_App_Key, appSecret, AppBand_App_Secret, bundleId, AppBand_App_BundleId, token, AppBand_App_token, self.email, AppBand_App_Email, self.password, AppBand_App_Password,self.code, AppBand_App_Invite, nil];
     }

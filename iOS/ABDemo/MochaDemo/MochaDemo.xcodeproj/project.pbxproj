@@ -46,8 +46,6 @@
 		9663CD5D149AFE7500D3D94B /* ABPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchase.h; sourceTree = "<group>"; };
 		9663CD5E149AFE7500D3D94B /* ABPurchaseResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchaseResponse.h; sourceTree = "<group>"; };
 		9663CD5F149AFE7500D3D94B /* ABPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPush.h; sourceTree = "<group>"; };
-		9663CD60149AFE7500D3D94B /* ABPushConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPushConfiguration.h; sourceTree = "<group>"; };
-		9663CD61149AFE7500D3D94B /* ABRegisterTokenResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRegisterTokenResponse.h; sourceTree = "<group>"; };
 		9663CD62149AFE7500D3D94B /* ABResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABResponse.h; sourceTree = "<group>"; };
 		9663CD63149AFE7500D3D94B /* ABRichResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichResponse.h; sourceTree = "<group>"; };
 		9663CD64149AFE7500D3D94B /* AppBand.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppBand.bundle; sourceTree = "<group>"; };
@@ -151,8 +149,6 @@
 				9663CD5D149AFE7500D3D94B /* ABPurchase.h */,
 				9663CD5E149AFE7500D3D94B /* ABPurchaseResponse.h */,
 				9663CD5F149AFE7500D3D94B /* ABPush.h */,
-				9663CD60149AFE7500D3D94B /* ABPushConfiguration.h */,
-				9663CD61149AFE7500D3D94B /* ABRegisterTokenResponse.h */,
 				9663CD62149AFE7500D3D94B /* ABResponse.h */,
 				9663CD63149AFE7500D3D94B /* ABRichResponse.h */,
 				9663CD64149AFE7500D3D94B /* AppBand.bundle */,
