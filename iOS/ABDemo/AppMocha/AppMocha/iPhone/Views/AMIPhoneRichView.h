@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AMModelConstant.h"
+#import "AMDemoNotification.h"
 
 @protocol AMIPhoneRichViewDelegate;
 
@@ -18,9 +18,9 @@
 }
 
 @property(nonatomic,assign) IBOutlet id<AMIPhoneRichViewDelegate> delegate;
-@property(nonatomic,retain) AMNotification *notification;
+@property(nonatomic,retain) AMDemoNotification *notification;
 
-- (void)setTarget:(AMNotification *)notification;
+- (void)setTarget:(AMDemoNotification *)notification;
 
 - (IBAction)close:(id)sender;
 

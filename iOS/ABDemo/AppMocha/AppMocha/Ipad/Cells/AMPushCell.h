@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "AMModelConstant.h"
+#import "AMDemoNotification.h"
 
 @interface AMPushCell : UITableViewCell {
     IBOutlet UIImageView *iconView;
@@ -20,6 +20,6 @@
 @property(nonatomic,retain) IBOutlet UILabel *messageLabel;
 @property(nonatomic,retain) IBOutlet UILabel *timeLabel;
 
-- (void)setNotification:(AMNotification *)notification;
+- (void)setNotification:(AMDemoNotification *)notification;
 
 @end

@@ -9,8 +9,6 @@
 #import "AMIPadRichView.h"
 
 #import "AMAppDelegate.h"
-#import "CoreDataManager.h"
-#import "AppBandKit.h"
 
 @interface AMIPadRichView()
 
@@ -41,17 +39,14 @@
         
         self.notification.title = response.richTitle;
         self.notification.content = response.richContent;
-        CoreDataController *dataController = [[CoreDataManager defaultManager] fetchCDController:DEMO_STORE_NAME];
         
-        [dataController saveContext:nil];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"%@%@",AppBand_App_Rich_Push_Read_Prefix,self.notification.abri] object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"%@%@",AppBand_App_Rich_Push_Read_Prefix,self.notification.notification.notificationId] object:nil];
     }
 }
 
 #pragma mark - Public
 
-- (void)setTarget:(AMNotification *)notification {
+- (void)setTarget:(AMDemoNotification *)notification {
     self.notification = notification;
     [titleLabel setText:nil];
     [webView loadHTMLString:nil baseURL:nil];
@@ -69,14 +64,14 @@
         [webView setHidden:NO]; 
         [indicatorView startAnimating];
         [indicatorView setHidden:NO];
-        [[ABPush shared] getRichContent:self.notification.abri target:self finishSelector:@selector(finishGetRich:)];
+        [[ABPush shared] getRichContent:self.notification.notification target:self finishSelector:@selector(finishGetRich:)];
     }
 }
 
 - (IBAction)close:(id)sender {
     [titleLabel setText:nil];
     [webView loadHTMLString:nil baseURL:nil];
-    [[ABPush shared] cancelGetRichContent:self.notification.abri];
+    [[ABPush shared] cancelGetRichContent:self.notification.notification.notificationId];
     [self setTarget:nil];
     [self.delegate richViewClosed:self];
 }

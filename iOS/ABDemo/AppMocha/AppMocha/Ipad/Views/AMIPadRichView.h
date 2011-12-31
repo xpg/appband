@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "AMModelConstant.h"
+#import "AppBandKit.h"
+#import "AMDemoNotification.h"
 
 @protocol AMIPadRichViewDelegate;
 
@@ -20,9 +21,9 @@
 }
 
 @property(nonatomic,assign) IBOutlet id<AMIPadRichViewDelegate> delegate;
-@property(nonatomic,retain) AMNotification *notification;
+@property(nonatomic,retain) AMDemoNotification *notification;
 
-- (void)setTarget:(AMNotification *)notification;
+- (void)setTarget:(AMDemoNotification *)notification;
 
 - (IBAction)close:(id)sender;
 

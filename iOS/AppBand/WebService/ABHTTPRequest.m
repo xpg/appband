@@ -325,7 +325,7 @@ CG_INLINE BOOL hasConnection() {
 }
 
 - (void)dealloc {
-    DLog(@"ABHTTPRequest dealloc - url: %@",self.url);
+//    DLog(@"ABHTTPRequest dealloc - url: %@",self.url);
     self.key = nil;
     self.url = nil;
     self.parameters = nil;

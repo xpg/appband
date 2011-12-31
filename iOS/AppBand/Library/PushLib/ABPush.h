@@ -38,13 +38,15 @@ SINGLETON_INTERFACE(ABPush)
  * Paramters:
  *           type: Notification Type.
  *          index: begin index.
+ *         status: 0: unread, 1:read, 2:all
  *   pageCapacity: the capacity of per page.
  *         target: callback invocator.
  * finishSelector: the SEL will call when the notification is Push Type. Notice That: The selector must only has one paramter, which is ABNotificationsResponse object
  *  
  */
 - (void)getNotificationsByType:(ABNotificationType)type 
-                         index:(NSUInteger)index 
+                       startAt:(NSString *)notificationId 
+                        status:(ABNotificationStatusType)status 
                   pageCapacity:(NSNumber *)pages 
                         target:(id)target 
                 finishSelector:(SEL)finishSelector;
@@ -57,7 +59,7 @@ SINGLETON_INTERFACE(ABPush)
  *        target: callback invocator.
  *  finishSelector: the SEL will call when done.
  */
-- (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector;
+- (void)getRichContent:(ABNotification *)notification target:(id)target finishSelector:(SEL)finishSelector;
 
 /*
  * Cancel Get Rich Message Content

@@ -17,6 +17,7 @@
 @synthesize sound;
 @synthesize notificationId;
 @synthesize sendTime;
+@synthesize isRead;
 
 - (void)dealloc {
     [self setAlert:nil];

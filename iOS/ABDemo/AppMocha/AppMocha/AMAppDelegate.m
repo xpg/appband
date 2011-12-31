@@ -36,7 +36,6 @@
 #import "SFHFKeychainUtils.h"
 
 #import "CoreDataManager.h"
-#import "AMModelConstant.h"
 
 #import "I18NController.h"
 
@@ -57,8 +56,6 @@
 - (UIViewController *)getFunctionController;
 
 - (UIViewController *)getUnLoginController;
-
-- (NSDictionary *)getDictionaryFromABNotification:(ABNotification *)notification;
 
 - (void)cleanAll;
 
@@ -139,13 +136,7 @@
 
 - (void)didReceiveNotification:(ABNotification *)notification {
     if ([self availableString:notification.notificationId]) {
-        CoreDataController *dataController = [[CoreDataManager defaultManager] fetchCDController:DEMO_STORE_NAME];
-        
-        AMNotification *noti = [dataController saveModelObject:AMNotification_Class content:[self getDictionaryFromABNotification:notification] identification:[NSPredicate predicateWithFormat:@"abri = %@",notification.notificationId]];
-        
-        if (noti) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:AppMocha_Demo_Notificaion_Receive_Key object:noti userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:notification.state], AppBand_App_Push_State, nil]];
-        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:AppMocha_Demo_Notificaion_Receive_Key object:notification userInfo:nil];
     }
 }
 
@@ -283,19 +274,6 @@
     [naviController.navigationBar.topItem setTitleView:[[UIImageView alloc] initWithImage:logon]];
     
     return naviController;
-}
-
-- (NSDictionary *)getDictionaryFromABNotification:(ABNotification *)notification {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:notification.notificationId forKey:AMNotification_Set_ID];
-    [dic setObject:[NSNumber numberWithInt:notification.type] forKey:AMNotification_Set_Type];
-    [dic setObject:[NSDate date] forKey:AMNotification_Set_Date];
-    
-    if (notification.alert) {
-        [dic setObject:notification.alert forKey:AMNotification_Set_Message];
-    }
-    
-    return [NSDictionary dictionaryWithDictionary:dic];
 }
 
 - (void)cleanAll {

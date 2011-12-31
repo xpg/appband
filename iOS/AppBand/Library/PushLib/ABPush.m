@@ -13,6 +13,7 @@
 
 @synthesize richHandleDictionay = _richHandleDictionay;
 @synthesize richView = _richView;
+@synthesize inboxKey = _inboxKey;
 
 SINGLETON_IMPLEMENTATION(ABPush)
 
@@ -59,6 +60,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
                 [abNotification setBadge:[aps objectForKey:AppBandNotificationBadge]];
                 [abNotification setSound:[aps objectForKey:AppBandNotificationSound]];
                 [abNotification setNotificationId:notificationId];
+                [abNotification setIsRead:YES];
                 [target performSelector:pushSelector withObject:abNotification];
             }
         }
@@ -71,21 +73,21 @@ SINGLETON_IMPLEMENTATION(ABPush)
                 richSelector:(SEL)richSelector 
               notificationId:(NSString *)notificationId {
     NSDictionary *aps = [notification objectForKey:AppBandNotificationAPS];
-    NSString *rid = [notification objectForKey:AppBandRichNotificationId];
-    if (aps && rid) {
+    NSString *nid = [notification objectForKey:AppBandNotificationId];
+    if (aps && nid) {
+        ABNotification *abNotification = [[[ABNotification alloc] init] autorelease];
+        [abNotification setState:state];
+        [abNotification setType:ABNotificationTypeRich];
+        [abNotification setAlert:[aps objectForKey:AppBandNotificationAlert]];
+        [abNotification setBadge:[aps objectForKey:AppBandNotificationBadge]];
+        [abNotification setSound:[aps objectForKey:AppBandNotificationSound]];
+        [abNotification setNotificationId:nid];
+        [abNotification setIsRead:NO];
         if ([[AppBand shared] handleRichAuto]) {
             //call showRich: afterDelay 0.2 seconds,because calling it immediatly will crash when launching.
-            [[ABPush shared] performSelector:@selector(showRich:) withObject:rid afterDelay:.2];
+            [[ABPush shared] performSelector:@selector(showRich:) withObject:abNotification afterDelay:.2];
         } else {
             if ([target respondsToSelector:richSelector]) {
-                ABNotification *abNotification = [[[ABNotification alloc] init] autorelease];
-                [abNotification setState:state];
-                [abNotification setType:ABNotificationTypeRich];
-                [abNotification setAlert:[aps objectForKey:AppBandNotificationAlert]];
-                [abNotification setBadge:[aps objectForKey:AppBandNotificationBadge]];
-                [abNotification setSound:[aps objectForKey:AppBandNotificationSound]];
-                [abNotification setNotificationId:rid];
-                
                 [target performSelector:richSelector withObject:abNotification];
             }
         }
@@ -96,7 +98,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
     [self.richHandleDictionay removeObjectForKey:handler.impressionKey];
 }
 
-- (void)showRich:(NSString *)rid {
+- (void)showRich:(ABNotification *)notification {
     if (!self.richView) {
         ABRichView *richView = nil;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -126,8 +128,8 @@ SINGLETON_IMPLEMENTATION(ABPush)
         self.richView = richView;
     }
     
-    [self.richView setRid:rid];
-    [[ABPush shared] getRichContent:rid target:self.richView finishSelector:@selector(setRichContent:)];
+    [self.richView setRid:notification.notificationId];
+    [[ABPush shared] getRichContent:notification target:self.richView finishSelector:@selector(setRichContent:)];
 }
 
 - (NSDate *)getDateFromString:(NSString *)dateStr {
@@ -143,6 +145,11 @@ SINGLETON_IMPLEMENTATION(ABPush)
 
 - (void)getNotificationsEnd:(NSDictionary *)response {
     ABHTTPRequest *requester = [response objectForKey:ABHTTPRequesterObject];
+    
+    NSString *requestKey = [response objectForKey:ABHTTPResponseKey];
+    
+    if (![requestKey isEqualToString:self.inboxKey]) 
+        return;
     
     ABResponseCode code = [[response objectForKey:ABHTTPResponseKeyCode] intValue];
     
@@ -173,6 +180,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
                             [notification setType:[[noti objectForKey:AB_APP_NOTIFICATION_TYPE] intValue]];
                             [notification setAlert:[noti objectForKey:AB_APP_NOTIFICATION_ALERT]];
                             [notification setSendTime:[self getDateFromString:[noti objectForKey:AB_APP_NOTIFICATION_SEND_TIME]]];
+                            [notification setIsRead:[[noti objectForKey:AB_APP_NOTIFICATION_ISREAD] boolValue]];
                             [notifications addObject:notification];
                         }
                     }
@@ -210,17 +218,17 @@ SINGLETON_IMPLEMENTATION(ABPush)
         return;
     
     int type = [notification objectForKey:AppBandPushNotificationType] ? [[notification objectForKey:AppBandPushNotificationType] intValue] : 0;
-    NSString *notificationId = [notification objectForKey:AppBandRichNotificationId];
+    NSString *nid = [notification objectForKey:AppBandNotificationId];
     
     switch (type) {
         case 1: {
-            if (!notificationId || [notificationId isEqualToString:@""]) return;
+            if (!nid || [nid isEqualToString:@""]) return;
             
-            [[ABPush shared] callbackRichSelector:notification applicationState:state target:target richSelector:richSelector notificationId:notificationId];
+            [[ABPush shared] callbackRichSelector:notification applicationState:state target:target richSelector:richSelector notificationId:nid];
             break;
         }
         default: {
-            [[ABPush shared] callbackPushSelector:notification applicationState:state target:target pushSelector:pushSelector notificationId:notificationId];
+            [[ABPush shared] callbackPushSelector:notification applicationState:state target:target pushSelector:pushSelector notificationId:nid];
             break;
         }
     }
@@ -238,11 +246,12 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *  
  */
 - (void)getNotificationsByType:(ABNotificationType)type 
-                         index:(NSUInteger)index 
+                       startAt:(NSString *)notificationId 
+                        status:(ABNotificationStatusType)status 
                   pageCapacity:(NSNumber *)pages 
                         target:(id)target 
                 finishSelector:(SEL)finishSelector {
-    NSUInteger pageCa = 0;
+    NSUInteger pageCa = 20;
     if (pages) {
         pageCa = [pages unsignedIntValue];
     }
@@ -253,10 +262,14 @@ SINGLETON_IMPLEMENTATION(ABPush)
     NSString *udid = [[AppBand shared] udid];
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@&index=%i&pages=%imode=%i",
-                           [[AppBand shared] server], @"/notifications.json", udid, bundleId, token, appKey, appSecret, index,pageCa,type];
+    notificationId = notificationId ? notificationId : @"";
     
-    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:urlString
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@&abni=%@&pages=%i&mode=%i&status=%i",
+                           [[AppBand shared] server], @"/notifications.json", udid, bundleId, token, appKey, appSecret, notificationId,pageCa,type, status];
+    
+    self.inboxKey = [[NSDate date] description];
+    
+    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.inboxKey
                                                        url:urlString 
                                                  parameter:nil
                                                    timeout:kAppBandRequestTimeout
@@ -276,13 +289,15 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *        target: callback invocator.
  *  finishSelector: the SEL will call when done.
  */
-- (void)getRichContent:(NSString *)rid target:(id)target finishSelector:(SEL)finishSelector {
-    ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,rid]];
+- (void)getRichContent:(ABNotification *)notification target:(id)target finishSelector:(SEL)finishSelector {
+    if (!notification.notificationId) 
+        return;
+    ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,notification.notificationId]];
     if (handler) {
         [handler setFetchTarget:target];
         [handler setFetchSelector:finishSelector];
     } else {
-        handler = [ABRichHandler handlerWithRichID:rid fetchTarget:target fetchSelector:finishSelector impressionTarget:self impressionSelector:@selector(impressionRichEnd:)];
+        handler = [ABRichHandler handlerWithRichID:notification.notificationId fetchTarget:target fetchSelector:finishSelector impressionTarget:self impressionSelector:@selector(impressionRichEnd:)];
         [self.richHandleDictionay setObject:handler forKey:handler.impressionKey];
         
         [handler begin];
@@ -383,6 +398,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 - (void)dealloc {
+    [self setInboxKey:nil];
     [self setRichHandleDictionay:nil];
     [self setRichView:nil];
     [super dealloc];

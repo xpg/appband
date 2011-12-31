@@ -13,9 +13,11 @@
 @interface ABRichResponse : ABResponse {
     NSString *richTitle;
     NSString *richContent;
+    NSString *notificationId;
 }
 
 @property(nonatomic,copy) NSString *richTitle;
 @property(nonatomic,copy) NSString *richContent;
+@property(nonatomic,copy) NSString *notificationId;
 
 @end

@@ -27,6 +27,7 @@
 
 @property(nonatomic,retain) NSMutableDictionary *richHandleDictionay;
 @property(nonatomic,retain) ABRichView *richView;
+@property(nonatomic,copy) NSString *inboxKey;
 
 - (void)callbackPushSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 
@@ -42,7 +43,7 @@
 
 - (void)impressionRichEnd:(ABRichHandler *)handler;
 
-- (void)showRich:(NSString *)rid;
+- (void)showRich:(ABNotification *)notification;
 
 - (NSDate *)getDateFromString:(NSString *)dateStr;
 

@@ -14,7 +14,7 @@
 		96318F1D149AE88D001F27A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F0B149AE88D001F27A7 /* Foundation.framework */; };
 		96318F20149AE88D001F27A7 /* libAppBand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96318F08149AE88D001F27A7 /* libAppBand.a */; };
 		96318F26149AE88D001F27A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96318F24149AE88D001F27A7 /* InfoPlist.strings */; };
-		96318F29149AE88D001F27A7 /* AppBandLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318F28149AE88D001F27A7 /* AppBandLibTests.m */; };
+		96318F29149AE88D001F27A7 /* AppBandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318F28149AE88D001F27A7 /* AppBandTests.m */; };
 		96318FDF149AED90001F27A7 /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FDC149AED90001F27A7 /* AppBand+Private.h */; };
 		96318FE0149AED90001F27A7 /* AppBand.h in Headers */ = {isa = PBXBuildFile; fileRef = 96318FDD149AED90001F27A7 /* AppBand.h */; };
 		96318FE1149AED90001F27A7 /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 96318FDE149AED90001F27A7 /* AppBand.m */; };
@@ -64,6 +64,10 @@
 		9663CD2B149AFA9700D3D94B /* libABPushLib_1.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9631904E149AEDCF001F27A7 /* libABPushLib_1.0.0.a */; };
 		96F46E4E149AF4DB0006C09E /* ABNotificationsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F46E4A149AF4DB0006C09E /* ABNotificationsResponse.h */; };
 		96F46E4F149AF4DB0006C09E /* ABNotificationsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F46E4B149AF4DB0006C09E /* ABNotificationsResponse.m */; };
+		96FAF88C14AD90C30034F99F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9631904F149AEDF3001F27A7 /* UIKit.framework */; };
+		96FAF88E14AD90DF0034F99F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FAF88D14AD90DF0034F99F /* SystemConfiguration.framework */; };
+		96FAF89014AD91370034F99F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FAF88F14AD91370034F99F /* CoreGraphics.framework */; };
+		96FAF89714ADA5750034F99F /* ABPushTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FAF89614ADA5750034F99F /* ABPushTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,8 +104,7 @@
 		96318F19149AE88D001F27A7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		96318F23149AE88D001F27A7 /* AppBandLibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppBandLibTests-Info.plist"; sourceTree = "<group>"; };
 		96318F25149AE88D001F27A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		96318F27149AE88D001F27A7 /* AppBandLibTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppBandLibTests.h; sourceTree = "<group>"; };
-		96318F28149AE88D001F27A7 /* AppBandLibTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBandLibTests.m; sourceTree = "<group>"; };
+		96318F28149AE88D001F27A7 /* AppBandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppBandTests.m; sourceTree = "<group>"; };
 		96318FDC149AED90001F27A7 /* AppBand+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBand+Private.h"; sourceTree = "<group>"; };
 		96318FDD149AED90001F27A7 /* AppBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppBand.h; sourceTree = "<group>"; };
 		96318FDE149AED90001F27A7 /* AppBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppBand.m; sourceTree = "<group>"; };
@@ -151,6 +154,9 @@
 		9631904F149AEDF3001F27A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96F46E4A149AF4DB0006C09E /* ABNotificationsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotificationsResponse.h; sourceTree = "<group>"; };
 		96F46E4B149AF4DB0006C09E /* ABNotificationsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotificationsResponse.m; sourceTree = "<group>"; };
+		96FAF88D14AD90DF0034F99F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		96FAF88F14AD91370034F99F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		96FAF89614ADA5750034F99F /* ABPushTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPushTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FAF89014AD91370034F99F /* CoreGraphics.framework in Frameworks */,
+				96FAF88E14AD90DF0034F99F /* SystemConfiguration.framework in Frameworks */,
+				96FAF88C14AD90C30034F99F /* UIKit.framework in Frameworks */,
 				96318F1A149AE88D001F27A7 /* SenTestingKit.framework in Frameworks */,
 				96318F1D149AE88D001F27A7 /* Foundation.framework in Frameworks */,
 				96318F20149AE88D001F27A7 /* libAppBand.a in Frameworks */,
@@ -202,6 +211,8 @@
 		96318F0A149AE88D001F27A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96FAF88F14AD91370034F99F /* CoreGraphics.framework */,
+				96FAF88D14AD90DF0034F99F /* SystemConfiguration.framework */,
 				9631904F149AEDF3001F27A7 /* UIKit.framework */,
 				96318F0B149AE88D001F27A7 /* Foundation.framework */,
 				96318F19149AE88D001F27A7 /* SenTestingKit.framework */,
@@ -234,8 +245,8 @@
 		96318F21149AE88D001F27A7 /* AppBandLibTests */ = {
 			isa = PBXGroup;
 			children = (
-				96318F27149AE88D001F27A7 /* AppBandLibTests.h */,
-				96318F28149AE88D001F27A7 /* AppBandLibTests.m */,
+				96318F28149AE88D001F27A7 /* AppBandTests.m */,
+				96FAF89614ADA5750034F99F /* ABPushTests.m */,
 				96318F22149AE88D001F27A7 /* Supporting Files */,
 			);
 			path = AppBandLibTests;
@@ -565,7 +576,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96318F29149AE88D001F27A7 /* AppBandLibTests.m in Sources */,
+				96318F29149AE88D001F27A7 /* AppBandTests.m in Sources */,
+				96FAF89714ADA5750034F99F /* ABPushTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +698,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBandLib/AppBandLib-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../AppBand/**";
 				INFOPLIST_FILE = "AppBandLibTests/AppBandLibTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -701,6 +714,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppBandLib/AppBandLib-Prefix.pch";
+				HEADER_SEARCH_PATHS = "../AppBand/**";
 				INFOPLIST_FILE = "AppBandLibTests/AppBandLibTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

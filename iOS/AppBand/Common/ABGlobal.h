@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 XPG. All rights reserved.
 //
 
-#define APPBAND_SDK_VERSION @"version 0.1.0"
+#define APPBAND_SDK_VERSION @"version 0.2.0"
 
 #define AB_APP_KEY @"k"
 #define AB_APP_SECRET @"s"
@@ -27,12 +27,13 @@
 #define AB_APP_NOTIFICATION_SUM @"sum"
 #define AB_APP_NOTIFICATION_NOTIFICATIONS @"notifications"
 
-#define AB_APP_NOTIFICATION_ID @"id"
+#define AB_APP_NOTIFICATION_ID @"abni"
 #define AB_APP_NOTIFICATION_ALERT @"alert"
 #define AB_APP_NOTIFICATION_TYPE @"is_rich"
 #define AB_APP_NOTIFICATION_SEND_TIME @"send_time"
+#define AB_APP_NOTIFICATION_ISREAD @"is_read"
 
-#define AB_APP_NOTIFICATION_SEND_TIME_FORMAT @"yyyy-mm-dd HH:mm:ss ZZZ"
+#define AB_APP_NOTIFICATION_SEND_TIME_FORMAT @"yyyy-MM-dd HH:mm:ss ZZZ"
 
 #define AB_APP_PUSH_CONFIGURATION_ENABLED @"push_enabled"
 #define AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS @"dnd_intervals"
@@ -61,8 +62,8 @@
 #define AppBandNotificationAlert @"alert"
 #define AppBandNotificationBadge @"badge"
 #define AppBandNotificationSound @"sound"
+#define AppBandNotificationId @"abni"
 #define AppBandPushNotificationType @"abpt"
-#define AppBandRichNotificationId @"abri"
 
 //Webservice 
 #define kAppBandRequestTimeout 30.

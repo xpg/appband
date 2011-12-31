@@ -12,6 +12,7 @@
 
 @synthesize richTitle;
 @synthesize richContent;
+@synthesize notificationId;
 
 - (void)dealloc {
     [self setRichTitle:nil];

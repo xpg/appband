@@ -12,6 +12,12 @@ typedef enum {
     ABNotificationTypeAll,
 } ABNotificationType;
 
+typedef enum {
+    ABNotificationStatusUnread,
+    ABNotificationStatusRead,
+    ABNotificationStatusAll,
+} ABNotificationStatusType;
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -23,6 +29,7 @@ typedef enum {
     NSString *sound;
     NSString *notificationId;
     NSDate *sendTime;
+    BOOL isRead;
 }
 
 @property(nonatomic,assign) UIApplicationState state;
@@ -32,6 +39,7 @@ typedef enum {
 @property(nonatomic,copy) NSString *sound;
 @property(nonatomic,copy) NSString *notificationId;
 @property(nonatomic,copy) NSDate *sendTime;
+@property(nonatomic,assign) BOOL isRead;
 
 @end
 

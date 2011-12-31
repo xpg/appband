@@ -21,6 +21,22 @@
     IBOutlet AMPushCell *pushCell;
     
     IBOutlet AMIPadRichView *richView;
+    
+    NSString *reloadStr;
+    NSString *pullStr;
+    NSString *loadingStr;
+    
+    BOOL isDragging;
+    BOOL dragToReload;
+    
+    BOOL hasNextPage;
+    BOOL isLoading;
+    
+    UIView *refreshHeaderView;
+    UILabel *refreshLabel;
+    UIActivityIndicatorView *refreshSpinner;
+    
+    NSInteger sum;
 }
 
 @property(nonatomic,retain) IBOutlet UITableView *pushTableView;

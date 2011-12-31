@@ -76,8 +76,8 @@
     
     NSMutableDictionary *configOptions = [NSMutableDictionary dictionary];
     [configOptions setValue:[NSNumber numberWithBool:NO] forKey:AppBandKickOfOptionsAppBandConfigRunEnvironment];
-    [configOptions setValue:$yourAppKey forKey:AppBandKickOfOptionsAppBandConfigSandboxKey];
-    [configOptions setValue:$yourAppSecret forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret];
+    [configOptions setValue:@"" forKey:AppBandKickOfOptionsAppBandConfigSandboxKey]; //$yourAppKey
+    [configOptions setValue:@"" forKey:AppBandKickOfOptionsAppBandConfigSandboxSecret]; //$yourAppSecret
     
     NSMutableDictionary *kickOffOptions = [NSMutableDictionary dictionary];
     [kickOffOptions setValue:launchOptions forKey:AppBandKickOfOptionsLaunchOptionsKey];

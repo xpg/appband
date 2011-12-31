@@ -63,6 +63,7 @@
         if (richDic && !error) {
             [r setRichTitle:[richDic objectForKey:AB_Rich_Title]];
             [r setRichContent:[richDic objectForKey:AB_Rich_Content]];
+            [r setNotificationId:self.rid];
         }
         [json release];
         
@@ -70,8 +71,8 @@
     }
     
     if (code == ABHTTPResponseSuccess) {
-        NSString *urlString = [NSString stringWithFormat:@"%@%@",
-                               [[AppBand shared] server], @"/impressions"];
+        NSString *urlString = [NSString stringWithFormat:@"%@/notifications/%@/confirm",
+                               [[AppBand shared] server], self.rid];
         
         NSString *token = [[AppBand shared] deviceToken] ? [[AppBand shared] deviceToken] : @"";
         NSString *appKey = [[AppBand shared] appKey];
@@ -79,7 +80,7 @@
         NSString *udid = [[AppBand shared] udid];
         NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
         
-        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, self.rid, AppBandRichNotificationId, nil];
+        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, nil];
         
         ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.impressionKey 
                                                            url:urlString 
