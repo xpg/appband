@@ -7,32 +7,60 @@
 //
 
 #import "ABSpecEnvironment.h"
-#import "AppBand.h"
+#import "ABProvisioning.h"
+#import "ABProvisioning+Private.h"
 
-@interface ABProvisioningSpec : ABSpec
+@interface ABProvisioningSpec : ABSpec {
+    ABProvisioning *provisionService;
+    
+    id httpRequestMock;
+}
+
 @end
 
 @implementation ABProvisioningSpec
 
-- (void)testShouldCallProvisioningService {
-    ABProvisioning *provisionService = [[[ABProvisioning alloc] init] autorelease];
-    id mock = [OCMockObject partialMockForObject:provisionService];
-    BOOL value = YES;
-    [[[mock stub] andReturnValue:OCMOCK_VALUE(value)] firstTime];
-    [[[mock stub] andCall:@selector(callMocked) onObject:self] call];
+- (void)setUp {
+    provisionService = [[ABProvisioning alloc] init];
+    id provisionMock = [OCMockObject partialMockForObject:provisionService];
+    ABHttpRequest *request = [ABHttpRequest requestWithTarget:provisionService];
+    httpRequestMock = [OCMockObject partialMockForObject:request];
+    [[[provisionMock stub] andReturn:httpRequestMock] initializeRequest];
+    [super setUp];
+}
+
+- (void)tearDown {
+    [provisionService release];
+    provisionService = nil;
+    httpRequestMock = nil;
+    [super tearDown];
+}
+
+- (void)testShouldCallProvisioningSuccess {
+    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceSuccess) onObject:self] start];
     [provisionService start];
+    STAssertTrue([@"http://api.appmocha.com" isEqualToString:provisionService.serverEndpoint], @"Should be true");
 }
 
-- (void)testShouldWaitForProvisioningServiceForFirstTimeUse {
-    
+- (void)testShouldCallProvisioningFail {
+    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceFail) onObject:self] start];
+    [provisionService start];
+    STAssertNil(provisionService.serverEndpoint, @"Should be nil");
 }
 
-- (void)testShouldProceedEvenWithoutProvisioningServiceAfterTheFirstTimeUse {
-    
+- (void)testShouldNotChangeServerEndpointIfProvisioningFail {
+    provisionService.serverEndpoint = @"http://us.appmocha.com";
+    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceFail) onObject:self] start];
+    [provisionService start];
+    STAssertTrue([@"http://us.appmocha.com" isEqualToString:provisionService.serverEndpoint], @"Should be true");
 }
 
-- (void)callMocked {
-    ABLogInfo(@"Mocked method called");
+- (void)callProvisiongServiceSuccess {
+    [httpRequestMock finishLoadingWithContent:@"http://api.appmocha.com" error:nil];
+}
+
+- (void)callProvisiongServiceFail {
+    [httpRequestMock finishLoadingWithContent:@"http://api.appmocha.com" error:[NSError errorWithDomain:@"" code:404 userInfo:nil]];
 }
 
 @end

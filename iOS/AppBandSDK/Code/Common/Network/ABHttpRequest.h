@@ -8,6 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ABHttpRequest : NSObject
+@protocol ABHttpRequestDelegate;
+
+@interface ABHttpRequest : NSObject {
+    id<ABHttpRequestDelegate> delegate;
+}
+
+@property(nonatomic,assign) id<ABHttpRequestDelegate> delegate;
+
++ (id)requestWithTarget:(id<ABHttpRequestDelegate>)del;
+
+- (void)start;
+
+- (void)finishLoadingWithContent:(NSString *)content error:(NSError *)error;
+
+@end
+
+@protocol ABHttpRequestDelegate <NSObject>
+
+- (void)httpRequest:(ABHttpRequest *)httpRequest didFinishLoading:(NSString *)content error:(NSError *)error;
 
 @end

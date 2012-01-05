@@ -6,14 +6,10 @@
 //  Copyright (c) 2012 Xtreme Programming Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@interface ABProvisioning : NSObject 
 
-@interface ABProvisioning : NSObject
+@property(nonatomic,readonly,copy) NSString *serverEndpoint;
 
 - (void)start;
-
-- (BOOL)firstTime;
-
-- (void)call;
 
 @end

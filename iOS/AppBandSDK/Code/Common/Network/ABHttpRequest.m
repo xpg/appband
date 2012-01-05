@@ -10,4 +10,29 @@
 
 @implementation ABHttpRequest
 
+@synthesize delegate;
+
+#pragma mark - Public
+
+- (void)start {
+    //TODO
+    // initalize NSURLConnect 
+}
+
+- (void)finishLoadingWithContent:(NSString *)content error:(NSError *)error {
+    [self.delegate httpRequest:self didFinishLoading:content error:error];
+}
+
+#pragma mark - lifecycle
+
++ (id)requestWithTarget:(id<ABHttpRequestDelegate>)del {
+    ABHttpRequest *request = [[[ABHttpRequest alloc] init] autorelease];
+    [request setDelegate:del];
+    return request;
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+
 @end

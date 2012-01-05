@@ -7,9 +7,38 @@
 //
 
 #import "ABProvisioning.h"
+#import "ABProvisioning+Private.h"
 #import "ABLog.h"
 
 @implementation ABProvisioning
+
+@synthesize serverEndpoint = _serverEndpoint;
+
+#pragma mark - ABHttpRequestDelegate
+
+- (void)httpRequest:(ABHttpRequest *)httpRequest didFinishLoading:(NSString *)content error:(NSError *)error {
+    if (!error) {
+        self.serverEndpoint = content;
+    }
+}
+
+#pragma mark - Private
+
+- (ABHttpRequest *)initializeRequest {
+    return [ABHttpRequest requestWithTarget:self];
+}
+
+#pragma mark - Public
+
+- (void)start {
+    ABLogInfo(@"Starting provisioning service");
+    ABHttpRequest *request = [self initializeRequest];
+    [request start];
+}
+
+
+
+#pragma mark - lifecycle
 
 - (id)init {
     self = [super init];
@@ -19,19 +48,9 @@
     return self;
 }
 
-- (void)start {
-    ABLogInfo(@"Starting provisioning service");
-    if ([self firstTime]) {
-        [self call];
-    }
-}
-
-- (BOOL)firstTime {
-    return FALSE;
-}
-
-- (void)call {
-    
+- (void)dealloc {
+    [self setServerEndpoint:nil];
+    [super dealloc];
 }
 
 @end

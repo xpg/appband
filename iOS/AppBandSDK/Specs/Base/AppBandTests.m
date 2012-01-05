@@ -19,8 +19,6 @@
 }
 
 - (void)testKickOffShouldSendAnalyticsRequest {
-    NSDictionary *options = [[[NSDictionary alloc] init] autorelease];
-//    [AppBand kickOff:options];
     
 }
 

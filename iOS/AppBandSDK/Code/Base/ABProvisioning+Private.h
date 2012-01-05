@@ -6,8 +6,12 @@
 //  Copyright (c) 2012 Xtreme Programming Group. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ABHttpRequest.h"
 
-@protocol ABProvisioning_Private <NSObject>
+@interface ABProvisioning () <ABHttpRequestDelegate>
+
+@property(nonatomic,readwrite,copy) NSString *serverEndpoint;
+
+- (ABHttpRequest *)initializeRequest;
 
 @end
