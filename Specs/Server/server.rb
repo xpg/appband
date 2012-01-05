@@ -11,6 +11,9 @@ Debugger.start
 # Import the Spec Server
 $: << File.join(File.expand_path(File.dirname(__FILE__)), 'lib')
 
+module AppBand
+end
+
 class AppBand::SpecServer < Sinatra::Base
   self.app_file = __FILE__
   
@@ -25,4 +28,7 @@ class AppBand::SpecServer < Sinatra::Base
     content_type 'application/json'
     {'status' => 'ok'}.to_json
   end
+  
+  # start the server if ruby file executed directly
+  run! if app_file == $0
 end
