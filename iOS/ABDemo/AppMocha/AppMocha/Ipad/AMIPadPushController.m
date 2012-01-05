@@ -337,7 +337,7 @@
     
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controllerDidReceiveNotification:) name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controllerPadDidReceiveNotification:) name:AppMocha_Demo_Notificaion_Receive_Key object:nil];
     
     [self startLoading:nil number:40];
 }
