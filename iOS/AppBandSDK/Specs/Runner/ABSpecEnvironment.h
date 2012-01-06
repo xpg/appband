@@ -9,6 +9,7 @@
 #import <OCMock/OCMock.h>
 #import <SenTestingKit/SenTestingKit.h>
 
+#import <OCHamcrestIOS/OCHamcrestIOS.h>
 #import "AppBand.h"
 
 // Base class for specs. Allows UISpec to run the specs and use of Hamcrest matchers...

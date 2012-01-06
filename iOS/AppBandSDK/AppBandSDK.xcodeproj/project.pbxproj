@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		963F97AA14B68C4E00AD9950 /* ABHttpRequest+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 963F97A914B68C4E00AD9950 /* ABHttpRequest+Private.h */; };
+		963F97AF14B68F3700AD9950 /* ABHttpRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 963F97AD14B68F3700AD9950 /* ABHttpRequestSpec.m */; };
+		967ED2AD14B5B3EB0034A0A5 /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */; };
+		967ED2AE14B5B3EB0034A0A5 /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */; };
+		967ED2B114B5B45D0034A0A5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */; };
 		96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
 		96E8BB3314B58354009556FB /* ABProvisioning+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABProvisioning+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -101,6 +106,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		963F97A914B68C4E00AD9950 /* ABHttpRequest+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABHttpRequest+Private.h"; sourceTree = "<group>"; };
+		963F97AD14B68F3700AD9950 /* ABHttpRequestSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequestSpec.m; sourceTree = "<group>"; };
+		967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABReachability.h; sourceTree = "<group>"; };
+		967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABReachability.m; sourceTree = "<group>"; };
+		967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		96E8BB2914B57B46009556FB /* ABProvisioning+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABProvisioning+Private.h"; sourceTree = "<group>"; };
 		96E8BB2F14B581DC009556FB /* ABHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHttpRequest.h; sourceTree = "<group>"; };
 		96E8BB3014B581DC009556FB /* ABHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequest.m; sourceTree = "<group>"; };
@@ -201,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				967ED2B114B5B45D0034A0A5 /* SystemConfiguration.framework in Frameworks */,
 				FC2E473F14B40AFD00BE0677 /* Foundation.framework in Frameworks */,
 				FC2E474214B40AFD00BE0677 /* libAppBandBase.a in Frameworks */,
 				FC2E476914B4331800BE0677 /* SenTestingKit.framework in Frameworks */,
@@ -224,6 +235,9 @@
 		96E8BB2E14B581A0009556FB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */,
+				967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */,
+				963F97A914B68C4E00AD9950 /* ABHttpRequest+Private.h */,
 				96E8BB2F14B581DC009556FB /* ABHttpRequest.h */,
 				96E8BB3014B581DC009556FB /* ABHttpRequest.m */,
 			);
@@ -253,6 +267,7 @@
 		FC2E472C14B40AFC00BE0677 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */,
 				FC2E476714B432F700BE0677 /* SenTestingKit.framework */,
 				FC2E476514B432EF00BE0677 /* UIKit.framework */,
 				FC2E472D14B40AFC00BE0677 /* Foundation.framework */,
@@ -303,6 +318,7 @@
 				FC2E475F14B40E0C00BE0677 /* AppBandTests.m */,
 				FC2E476014B40E0C00BE0677 /* InfoPlist.strings */,
 				FC2E478A14B446B800BE0677 /* ABProvisioningSpec.m */,
+				963F97AD14B68F3700AD9950 /* ABHttpRequestSpec.m */,
 			);
 			name = Base;
 			path = Specs/Base;
@@ -468,6 +484,8 @@
 				FCFA887D14B4C72400C7D85E /* lcl_config_components.h in Headers */,
 				96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */,
 				96E8BB3314B58354009556FB /* ABProvisioning+Private.h in Headers */,
+				967ED2AD14B5B3EB0034A0A5 /* ABReachability.h in Headers */,
+				963F97AA14B68C4E00AD9950 /* ABHttpRequest+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +629,7 @@
 				FC2E483814B4C06200BE0677 /* LCLNSLog.m in Sources */,
 				FC2E483D14B4C0B800BE0677 /* ABLog.m in Sources */,
 				96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */,
+				967ED2AE14B5B3EB0034A0A5 /* ABReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +661,7 @@
 				FC2E47EA14B4A59F00BE0677 /* OCPartialMockObject.m in Sources */,
 				FC2E47EB14B4A59F00BE0677 /* OCPartialMockRecorder.m in Sources */,
 				FC2E47EC14B4A59F00BE0677 /* OCProtocolMockObject.m in Sources */,
+				963F97AF14B68F3700AD9950 /* ABHttpRequestSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
