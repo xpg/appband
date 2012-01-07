@@ -88,10 +88,24 @@
 		FCFA887814B4C68F00C7D85E /* lcl_config_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887714B4C68F00C7D85E /* lcl_config_logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCFA887B14B4C6ED00C7D85E /* lcl_config_extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887A14B4C6ED00C7D85E /* lcl_config_extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCFA887D14B4C72400C7D85E /* lcl_config_components.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887C14B4C72400C7D85E /* lcl_config_components.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FCFA889414B5A89000C7D85E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476714B432F700BE0677 /* SenTestingKit.framework */; };
+		FCFA889514B5A89000C7D85E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
+		FCFA889614B5A89000C7D85E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472D14B40AFC00BE0677 /* Foundation.framework */; };
+		FCFA88AC14B5AA2600C7D85E /* AppBandTesting-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCFA88AA14B5AA2600C7D85E /* AppBandTesting-Info.plist */; };
+		FCFA88AF14B5AA3300C7D85E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFA88AD14B5AA3300C7D85E /* InfoPlist.strings */; };
+		FCFA88B014B5AAF200C7D85E /* libAppBandBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */; };
+		FCFA88B414B5ABBA00C7D85E /* ABProvisioningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFA88B314B5ABB900C7D85E /* ABProvisioningTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		FC2E474014B40AFD00BE0677 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FC2E471F14B408EE00BE0677 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FC2E472914B40AFC00BE0677;
+			remoteInfo = AppBandBase;
+		};
+		FCFA88A514B5A8FC00C7D85E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FC2E471F14B408EE00BE0677 /* Project object */;
 			proxyType = 1;
@@ -186,6 +200,11 @@
 		FCFA887714B4C68F00C7D85E /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = Code/Support/lcl_config_logger.h; sourceTree = "<group>"; };
 		FCFA887A14B4C6ED00C7D85E /* lcl_config_extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_extensions.h; path = Code/Support/lcl_config_extensions.h; sourceTree = "<group>"; };
 		FCFA887C14B4C72400C7D85E /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = Code/Support/lcl_config_components.h; sourceTree = "<group>"; };
+		FCFA889314B5A89000C7D85E /* AppBandTesting.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppBandTesting.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCFA88AA14B5AA2600C7D85E /* AppBandTesting-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppBandTesting-Info.plist"; path = "IntegrationTests/AppBandTesting-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FCFA88AB14B5AA2600C7D85E /* AppBandTesting-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppBandTesting-Prefix.pch"; path = "IntegrationTests/AppBandTesting-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		FCFA88AE14B5AA3300C7D85E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = IntegrationTests/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		FCFA88B314B5ABB900C7D85E /* ABProvisioningTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABProvisioningTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +225,17 @@
 				FC2E476914B4331800BE0677 /* SenTestingKit.framework in Frameworks */,
 				FC2E476A14B4331800BE0677 /* UIKit.framework in Frameworks */,
 				FC2E47D514B4A59F00BE0677 /* OCHamcrestIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCFA888F14B5A89000C7D85E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCFA88B014B5AAF200C7D85E /* libAppBandBase.a in Frameworks */,
+				FCFA889414B5A89000C7D85E /* SenTestingKit.framework in Frameworks */,
+				FCFA889514B5A89000C7D85E /* UIKit.framework in Frameworks */,
+				FCFA889614B5A89000C7D85E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +265,7 @@
 			children = (
 				FC2E475914B40DC700BE0677 /* Code */,
 				FC2E475A14B40DD300BE0677 /* Specs */,
+				FCFA889714B5A89000C7D85E /* Inegration Tests */,
 				FC2E479214B4525F00BE0677 /* Vendor */,
 				FC2E472C14B40AFC00BE0677 /* Frameworks */,
 				FC2E472B14B40AFC00BE0677 /* Products */,
@@ -246,6 +277,7 @@
 			children = (
 				FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */,
 				FC2E473A14B40AFD00BE0677 /* AppBandBaseTests.octest */,
+				FCFA889314B5A89000C7D85E /* AppBandTesting.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -445,6 +477,35 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
+		FCFA889714B5A89000C7D85E /* Inegration Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FCFA88B114B5AB8600C7D85E /* Base */,
+				FCFA889814B5A89000C7D85E /* Supporting Files */,
+			);
+			name = "Inegration Tests";
+			path = AppBandTesting;
+			sourceTree = "<group>";
+		};
+		FCFA889814B5A89000C7D85E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FCFA88AD14B5AA3300C7D85E /* InfoPlist.strings */,
+				FCFA88AA14B5AA2600C7D85E /* AppBandTesting-Info.plist */,
+				FCFA88AB14B5AA2600C7D85E /* AppBandTesting-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCFA88B114B5AB8600C7D85E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				FCFA88B314B5ABB900C7D85E /* ABProvisioningTests.m */,
+			);
+			name = Base;
+			path = IntegrationTests/Base;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -542,6 +603,25 @@
 			productReference = FC2E473A14B40AFD00BE0677 /* AppBandBaseTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		FCFA889214B5A89000C7D85E /* AppBandTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCFA88A314B5A89000C7D85E /* Build configuration list for PBXNativeTarget "AppBandTesting" */;
+			buildPhases = (
+				FCFA888E14B5A89000C7D85E /* Sources */,
+				FCFA888F14B5A89000C7D85E /* Frameworks */,
+				FCFA889014B5A89000C7D85E /* Resources */,
+				FCFA889114B5A89000C7D85E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FCFA88A614B5A8FC00C7D85E /* PBXTargetDependency */,
+			);
+			name = AppBandTesting;
+			productName = AppBandTesting;
+			productReference = FCFA889314B5A89000C7D85E /* AppBandTesting.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -565,6 +645,7 @@
 			targets = (
 				FC2E472914B40AFC00BE0677 /* AppBandBase */,
 				FC2E473914B40AFD00BE0677 /* AppBandBaseTests */,
+				FCFA889214B5A89000C7D85E /* AppBandTesting */,
 			);
 		};
 /* End PBXProject section */
@@ -581,10 +662,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FCFA889014B5A89000C7D85E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCFA88AC14B5AA2600C7D85E /* AppBandTesting-Info.plist in Resources */,
+				FCFA88AF14B5AA3300C7D85E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		FC2E473814B40AFD00BE0677 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		FCFA889114B5A89000C7D85E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -645,6 +748,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FCFA888E14B5A89000C7D85E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCFA88B414B5ABBA00C7D85E /* ABProvisioningTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -652,6 +763,11 @@
 			isa = PBXTargetDependency;
 			target = FC2E472914B40AFC00BE0677 /* AppBandBase */;
 			targetProxy = FC2E474014B40AFD00BE0677 /* PBXContainerItemProxy */;
+		};
+		FCFA88A614B5A8FC00C7D85E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FC2E472914B40AFC00BE0677 /* AppBandBase */;
+			targetProxy = FCFA88A514B5A8FC00C7D85E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -668,6 +784,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				FC2E47A614B4A59E00BE0677 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FCFA88AD14B5AA3300C7D85E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCFA88AE14B5AA3300C7D85E /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -807,6 +931,64 @@
 			};
 			name = Release;
 		};
+		FCFA88A114B5A89000C7D85E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IntegrationTests/AppBandTesting-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "IntegrationTests/AppBandTesting-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		FCFA88A214B5A89000C7D85E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IntegrationTests/AppBandTesting-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "IntegrationTests/AppBandTesting-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -836,6 +1018,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FCFA88A314B5A89000C7D85E /* Build configuration list for PBXNativeTarget "AppBandTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCFA88A114B5A89000C7D85E /* Debug */,
+				FCFA88A214B5A89000C7D85E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
