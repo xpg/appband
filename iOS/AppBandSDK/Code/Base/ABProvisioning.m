@@ -25,7 +25,7 @@
 #pragma mark - Private
 
 - (ABHttpRequest *)initializeRequest {
-    return [ABHttpRequest requestWithTarget:self];
+    return [ABHttpRequest requestWithBaseURL:@"" delegate:self];
 }
 
 #pragma mark - Public
@@ -33,7 +33,7 @@
 - (void)start {
     ABLogInfo(@"Starting provisioning service");
     ABHttpRequest *request = [self initializeRequest];
-    [request start];
+    [request main];
 }
 
 
