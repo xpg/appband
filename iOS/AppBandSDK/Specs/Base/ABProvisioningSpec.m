@@ -23,13 +23,8 @@
 
 - (void)setUp {
     provisionService = [[ABProvisioning alloc] init];
-<<<<<<< HEAD
-    provisionMock = [OCMockObject partialMockForObject:provisionService];
-    ABHttpRequest *request = [ABHttpRequest requestWithTarget:provisionService];
-=======
     id provisionMock = [OCMockObject partialMockForObject:provisionService];
     ABHttpRequest *request = [ABHttpRequest requestWithKey:nil url:@"" parameter:nil timeout:5. delegate:provisionService];
->>>>>>> 94a9bafcf7fb397eaf93f8f60313ed9cce68f4de
     httpRequestMock = [OCMockObject partialMockForObject:request];
     [[[provisionMock stub] andReturn:httpRequestMock] initializeRequest];
     [super setUp];
@@ -43,24 +38,11 @@
     [super tearDown];
 }
 
-<<<<<<< HEAD
 - (void)testShouldSetServerEndPointWhenProvisionIsSuccess {
     [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceSuccess) onObject:self] start];
     [provisionService start];
     STAssertTrue([@"http://api.appmocha.com" isEqualToString:provisionService.serverEndpoint],
                  @"Should set the server endpoint properly when provisioning call was successful");
-=======
-- (void)testShouldCallProvisioningSuccess {
-    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceSuccess) onObject:self] main];
-    [provisionService start];
-    STAssertTrue([@"http://api.appmocha.com" isEqualToString:provisionService.serverEndpoint], @"Should be true");
-}
-
-- (void)testShouldCallProvisioningFail {
-    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceFail) onObject:self] main];
-    [provisionService start];
-    STAssertNil(provisionService.serverEndpoint, @"Should be nil");
->>>>>>> 94a9bafcf7fb397eaf93f8f60313ed9cce68f4de
 }
 
 - (void)testShouldNotChangeServerEndpointIfProvisioningFail {
