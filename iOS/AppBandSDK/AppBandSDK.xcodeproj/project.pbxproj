@@ -103,6 +103,8 @@
 		FC2E483814B4C06200BE0677 /* LCLNSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E482F14B4C06200BE0677 /* LCLNSLog.m */; };
 		FC2E483C14B4C0B800BE0677 /* ABLog.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E483A14B4C0B700BE0677 /* ABLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC2E483D14B4C0B800BE0677 /* ABLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E483B14B4C0B700BE0677 /* ABLog.m */; };
+		FC4E150714BB5115008EC213 /* ABConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4E150514BB5115008EC213 /* ABConfigurationSpec.m */; };
+		FC4E151314BB5961008EC213 /* ABAppUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4E151114BB5961008EC213 /* ABAppUserSpec.m */; };
 		FCFA887814B4C68F00C7D85E /* lcl_config_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887714B4C68F00C7D85E /* lcl_config_logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCFA887B14B4C6ED00C7D85E /* lcl_config_extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887A14B4C6ED00C7D85E /* lcl_config_extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCFA887D14B4C72400C7D85E /* lcl_config_components.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887C14B4C72400C7D85E /* lcl_config_components.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -232,6 +234,8 @@
 		FC2E483014B4C06200BE0677 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		FC2E483A14B4C0B700BE0677 /* ABLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABLog.h; path = Code/Support/ABLog.h; sourceTree = "<group>"; };
 		FC2E483B14B4C0B700BE0677 /* ABLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABLog.m; path = Code/Support/ABLog.m; sourceTree = "<group>"; };
+		FC4E150514BB5115008EC213 /* ABConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABConfigurationSpec.m; sourceTree = "<group>"; };
+		FC4E151114BB5961008EC213 /* ABAppUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAppUserSpec.m; sourceTree = "<group>"; };
 		FCFA887714B4C68F00C7D85E /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = Code/Support/lcl_config_logger.h; sourceTree = "<group>"; };
 		FCFA887A14B4C6ED00C7D85E /* lcl_config_extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_extensions.h; path = Code/Support/lcl_config_extensions.h; sourceTree = "<group>"; };
 		FCFA887C14B4C72400C7D85E /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = Code/Support/lcl_config_components.h; sourceTree = "<group>"; };
@@ -396,6 +400,8 @@
 				FC2E478A14B446B800BE0677 /* ABProvisioningSpec.m */,
 				963F97AD14B68F3700AD9950 /* ABHttpRequestSpec.m */,
 				96DA672E14BABF3E00D80D29 /* ABUtiltySpec.m */,
+				FC4E150514BB5115008EC213 /* ABConfigurationSpec.m */,
+				FC4E151114BB5961008EC213 /* ABAppUserSpec.m */,
 			);
 			name = Base;
 			path = Specs/Base;
@@ -823,6 +829,8 @@
 				FC2E47EC14B4A59F00BE0677 /* OCProtocolMockObject.m in Sources */,
 				963F97AF14B68F3700AD9950 /* ABHttpRequestSpec.m in Sources */,
 				96DA673014BABF3E00D80D29 /* ABUtiltySpec.m in Sources */,
+				FC4E150714BB5115008EC213 /* ABConfigurationSpec.m in Sources */,
+				FC4E151314BB5961008EC213 /* ABAppUserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
