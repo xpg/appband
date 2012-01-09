@@ -13,7 +13,6 @@
 
 @interface ABProvisioningSpec : ABSpec {
     ABProvisioning *provisionService;
-    id provisionMock;
     id httpRequestMock;
 }
 
@@ -33,13 +32,12 @@
 - (void)tearDown {
     [provisionService release];
     provisionService = nil;
-    provisionMock = nil;
     httpRequestMock = nil;
     [super tearDown];
 }
 
 - (void)testShouldSetServerEndPointWhenProvisionIsSuccess {
-    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceSuccess) onObject:self] start];
+    [[[httpRequestMock stub] andCall:@selector(callProvisiongServiceSuccess) onObject:self] main];
     [provisionService start];
     STAssertTrue([@"http://api.appmocha.com" isEqualToString:provisionService.serverEndpoint],
                  @"Should set the server endpoint properly when provisioning call was successful");
@@ -54,12 +52,13 @@
 }
 
 - (void)callProvisiongServiceSuccess {
-//    NSData *data = [@"http://api.appmocha.com" dataUsingEncoding:NSUTF8StringEncoding];
-//    [httpRequestMock finishLoadingWithContent:@"http://api.appmocha.com" error:nil];
+    NSData *data = [@"http://api.appmocha.com" dataUsingEncoding:NSUTF8StringEncoding];
+    [httpRequestMock setResponseData:[NSMutableData dataWithData:data]];
+    [httpRequestMock finishLoadingWithError:nil];
 }
 
 - (void)callProvisiongServiceFail {
-//    [httpRequestMock finishLoadingWithContent:@"http://api.appmocha.com" error:[NSError errorWithDomain:@"" code:404 userInfo:nil]];
+    [httpRequestMock finishLoadingWithError:[NSError errorWithDomain:@"" code:404 userInfo:nil]];
 }
 
 @end

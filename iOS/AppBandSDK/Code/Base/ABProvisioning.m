@@ -8,7 +8,6 @@
 
 #import "ABProvisioning.h"
 #import "ABProvisioning+Private.h"
-#import "ABLog.h"
 
 @implementation ABProvisioning
 
@@ -25,7 +24,20 @@
 #pragma mark - Private
 
 - (ABHttpRequest *)initializeRequest {
-    return [ABHttpRequest requestWithBaseURL:@"" delegate:self];
+    NSString *url = [NSString stringWithFormat:@"%@/app_provisions", [[AppBand shared] server], [[AppBand shared] appKey]];
+    
+    NSString *token = [[AppBand shared] token] ? [[AppBand shared] token] : @"";
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[AppBand shared] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, nil];
+    
+    ABHttpRequest *request = [ABHttpRequest requestWithKey:nil url:url parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout delegate:self];
+    [request setContentType:@"application/json"];
+    
+    return request;
 }
 
 #pragma mark - Public
@@ -35,8 +47,6 @@
     ABHttpRequest *request = [self initializeRequest];
     [request main];
 }
-
-
 
 #pragma mark - lifecycle
 

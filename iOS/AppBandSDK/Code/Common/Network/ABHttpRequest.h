@@ -15,7 +15,9 @@ typedef enum {
     ABHttpRequestStatusError,
     ABHttpRequestStatusSuccess,
     ABHttpRequestStatusAuthorError = 403,
-    ABHttpRequestStatusResourceNotFound = 404,
+    ABHttpRequestStatusResourceNotFoundError = 404,
+    ABHttpRequestStatusPostMethodError = 405,
+    ABHttpRequestStatusContentTypeError = 406,
     ABHttpRequestStatusServerError = 500,
 } ABHttpRequestStatus;
 
