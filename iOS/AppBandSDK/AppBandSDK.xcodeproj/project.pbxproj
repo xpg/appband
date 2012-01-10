@@ -12,6 +12,7 @@
 		967ED2AD14B5B3EB0034A0A5 /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */; };
 		967ED2AE14B5B3EB0034A0A5 /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */; };
 		967ED2B114B5B45D0034A0A5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */; };
+		96D4AB1214BC1DD400C6767B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
 		96DA670C14BAA22E00D80D29 /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA670B14BAA22D00D80D29 /* AppBand+Private.h */; };
 		96DA671314BABA0F00D80D29 /* ABUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671214BABA0F00D80D29 /* ABUtilty.h */; };
 		96DA672114BABAB600D80D29 /* AB_SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671914BABAB600D80D29 /* AB_SBJSON.h */; };
@@ -25,9 +26,14 @@
 		96DA673014BABF3E00D80D29 /* ABUtiltySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA672E14BABF3E00D80D29 /* ABUtiltySpec.m */; };
 		96DA673414BAC10E00D80D29 /* ABConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA673314BAC10E00D80D29 /* ABConstants.h */; };
 		96DA675014BAECB100D80D29 /* ABPrivateConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA674F14BAECB000D80D29 /* ABPrivateConstants.h */; };
+		96DF3CFE14BBEB7500BFD622 /* ABNetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3CFC14BBEB7500BFD622 /* ABNetworkQueue.h */; };
+		96DF3CFF14BBEB7500BFD622 /* ABNetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DF3CFD14BBEB7500BFD622 /* ABNetworkQueue.m */; };
+		96DF3D0214BBF2B000BFD622 /* ABAppUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3D0014BBF2AF00BFD622 /* ABAppUser.h */; };
+		96DF3D0314BBF2B000BFD622 /* ABAppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DF3D0114BBF2AF00BFD622 /* ABAppUser.m */; };
+		96DF3D0514BBF2D000BFD622 /* ABAppUser+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3D0414BBF2CF00BFD622 /* ABAppUser+Private.h */; };
 		96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
-		96E8BB3314B58354009556FB /* ABProvisioning+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABProvisioning+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		96E8BB3314B58354009556FB /* ABConfiguration+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		FC2E472E14B40AFC00BE0677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472D14B40AFC00BE0677 /* Foundation.framework */; };
 		FC2E473F14B40AFD00BE0677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472D14B40AFC00BE0677 /* Foundation.framework */; };
 		FC2E474214B40AFD00BE0677 /* libAppBandBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */; };
@@ -41,9 +47,8 @@
 		FC2E476A14B4331800BE0677 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
 		FC2E478214B442DF00BE0677 /* ABAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478014B442DF00BE0677 /* ABAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC2E478314B442DF00BE0677 /* ABAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478114B442DF00BE0677 /* ABAnalytics.m */; };
-		FC2E478614B445CE00BE0677 /* ABProvisioning.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478414B445CD00BE0677 /* ABProvisioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC2E478714B445CE00BE0677 /* ABProvisioning.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478514B445CD00BE0677 /* ABProvisioning.m */; };
-		FC2E478B14B446B900BE0677 /* ABProvisioningSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478A14B446B800BE0677 /* ABProvisioningSpec.m */; };
+		FC2E478614B445CE00BE0677 /* ABConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478414B445CD00BE0677 /* ABConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC2E478714B445CE00BE0677 /* ABConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478514B445CD00BE0677 /* ABConfiguration.m */; };
 		FC2E478E14B446E900BE0677 /* ABSpecEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478D14B446E900BE0677 /* ABSpecEnvironment.m */; };
 		FC2E47D514B4A59F00BE0677 /* OCHamcrestIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E47A214B4A59E00BE0677 /* OCHamcrestIOS.framework */; };
 		FC2E47D614B4A59F00BE0677 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC2E47A514B4A59E00BE0677 /* InfoPlist.strings */; };
@@ -153,7 +158,12 @@
 		96DA672E14BABF3E00D80D29 /* ABUtiltySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABUtiltySpec.m; sourceTree = "<group>"; };
 		96DA673314BAC10E00D80D29 /* ABConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConstants.h; sourceTree = "<group>"; };
 		96DA674F14BAECB000D80D29 /* ABPrivateConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPrivateConstants.h; sourceTree = "<group>"; };
-		96E8BB2914B57B46009556FB /* ABProvisioning+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABProvisioning+Private.h"; sourceTree = "<group>"; };
+		96DF3CFC14BBEB7500BFD622 /* ABNetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNetworkQueue.h; sourceTree = "<group>"; };
+		96DF3CFD14BBEB7500BFD622 /* ABNetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNetworkQueue.m; sourceTree = "<group>"; };
+		96DF3D0014BBF2AF00BFD622 /* ABAppUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAppUser.h; sourceTree = "<group>"; };
+		96DF3D0114BBF2AF00BFD622 /* ABAppUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAppUser.m; sourceTree = "<group>"; };
+		96DF3D0414BBF2CF00BFD622 /* ABAppUser+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABAppUser+Private.h"; sourceTree = "<group>"; };
+		96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABConfiguration+Private.h"; sourceTree = "<group>"; };
 		96E8BB2F14B581DC009556FB /* ABHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHttpRequest.h; sourceTree = "<group>"; };
 		96E8BB3014B581DC009556FB /* ABHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequest.m; sourceTree = "<group>"; };
 		FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBandBase.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,9 +179,8 @@
 		FC2E476714B432F700BE0677 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		FC2E478014B442DF00BE0677 /* ABAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAnalytics.h; sourceTree = "<group>"; };
 		FC2E478114B442DF00BE0677 /* ABAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAnalytics.m; sourceTree = "<group>"; };
-		FC2E478414B445CD00BE0677 /* ABProvisioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABProvisioning.h; sourceTree = "<group>"; };
-		FC2E478514B445CD00BE0677 /* ABProvisioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABProvisioning.m; sourceTree = "<group>"; };
-		FC2E478A14B446B800BE0677 /* ABProvisioningSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABProvisioningSpec.m; sourceTree = "<group>"; };
+		FC2E478414B445CD00BE0677 /* ABConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConfiguration.h; sourceTree = "<group>"; };
+		FC2E478514B445CD00BE0677 /* ABConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABConfiguration.m; sourceTree = "<group>"; };
 		FC2E478C14B446E900BE0677 /* ABSpecEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABSpecEnvironment.h; path = Specs/Runner/ABSpecEnvironment.h; sourceTree = "<group>"; };
 		FC2E478D14B446E900BE0677 /* ABSpecEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABSpecEnvironment.m; path = Specs/Runner/ABSpecEnvironment.m; sourceTree = "<group>"; };
 		FC2E47A114B4A59E00BE0677 /* OCHamcrest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCHamcrest.framework; sourceTree = "<group>"; };
@@ -251,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D4AB1214BC1DD400C6767B /* UIKit.framework in Frameworks */,
 				FC2E472E14B40AFC00BE0677 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,14 +369,19 @@
 			isa = PBXGroup;
 			children = (
 				FC2E475314B40DA900BE0677 /* AppBandBase-Prefix.pch */,
+				96DF3CFC14BBEB7500BFD622 /* ABNetworkQueue.h */,
+				96DF3CFD14BBEB7500BFD622 /* ABNetworkQueue.m */,
 				96DA670B14BAA22D00D80D29 /* AppBand+Private.h */,
 				FC2E475414B40DA900BE0677 /* AppBand.h */,
 				FC2E475514B40DA900BE0677 /* AppBand.m */,
 				FC2E478014B442DF00BE0677 /* ABAnalytics.h */,
 				FC2E478114B442DF00BE0677 /* ABAnalytics.m */,
-				96E8BB2914B57B46009556FB /* ABProvisioning+Private.h */,
-				FC2E478414B445CD00BE0677 /* ABProvisioning.h */,
-				FC2E478514B445CD00BE0677 /* ABProvisioning.m */,
+				96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */,
+				FC2E478414B445CD00BE0677 /* ABConfiguration.h */,
+				FC2E478514B445CD00BE0677 /* ABConfiguration.m */,
+				96DF3D0414BBF2CF00BFD622 /* ABAppUser+Private.h */,
+				96DF3D0014BBF2AF00BFD622 /* ABAppUser.h */,
+				96DF3D0114BBF2AF00BFD622 /* ABAppUser.m */,
 			);
 			name = Base;
 			path = Code/Base;
@@ -397,7 +412,6 @@
 				FC2E475D14B40E0C00BE0677 /* AppBandBaseTests-Info.plist */,
 				FC2E476014B40E0C00BE0677 /* InfoPlist.strings */,
 				FC2E475F14B40E0C00BE0677 /* AppBandSpec.m */,
-				FC2E478A14B446B800BE0677 /* ABProvisioningSpec.m */,
 				963F97AD14B68F3700AD9950 /* ABHttpRequestSpec.m */,
 				96DA672E14BABF3E00D80D29 /* ABUtiltySpec.m */,
 				FC4E150514BB5115008EC213 /* ABConfigurationSpec.m */,
@@ -583,7 +597,7 @@
 				FC2E475614B40DA900BE0677 /* AppBandBase-Prefix.pch in Headers */,
 				FC2E475714B40DA900BE0677 /* AppBand.h in Headers */,
 				FC2E478214B442DF00BE0677 /* ABAnalytics.h in Headers */,
-				FC2E478614B445CE00BE0677 /* ABProvisioning.h in Headers */,
+				FC2E478614B445CE00BE0677 /* ABConfiguration.h in Headers */,
 				FC2E483114B4C06200BE0677 /* lcl.h in Headers */,
 				FC2E483314B4C06200BE0677 /* lcl_config_components.template.h in Headers */,
 				FC2E483414B4C06200BE0677 /* lcl_config_extensions.template.h in Headers */,
@@ -595,7 +609,7 @@
 				FCFA887B14B4C6ED00C7D85E /* lcl_config_extensions.h in Headers */,
 				FCFA887D14B4C72400C7D85E /* lcl_config_components.h in Headers */,
 				96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */,
-				96E8BB3314B58354009556FB /* ABProvisioning+Private.h in Headers */,
+				96E8BB3314B58354009556FB /* ABConfiguration+Private.h in Headers */,
 				967ED2AD14B5B3EB0034A0A5 /* ABReachability.h in Headers */,
 				963F97AA14B68C4E00AD9950 /* ABHttpRequest+Private.h in Headers */,
 				96DA670C14BAA22E00D80D29 /* AppBand+Private.h in Headers */,
@@ -606,6 +620,9 @@
 				96DA672714BABAB600D80D29 /* AB_SBJsonWriter.h in Headers */,
 				96DA673414BAC10E00D80D29 /* ABConstants.h in Headers */,
 				96DA675014BAECB100D80D29 /* ABPrivateConstants.h in Headers */,
+				96DF3CFE14BBEB7500BFD622 /* ABNetworkQueue.h in Headers */,
+				96DF3D0214BBF2B000BFD622 /* ABAppUser.h in Headers */,
+				96DF3D0514BBF2D000BFD622 /* ABAppUser+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,7 +803,7 @@
 			files = (
 				FC2E475814B40DA900BE0677 /* AppBand.m in Sources */,
 				FC2E478314B442DF00BE0677 /* ABAnalytics.m in Sources */,
-				FC2E478714B445CE00BE0677 /* ABProvisioning.m in Sources */,
+				FC2E478714B445CE00BE0677 /* ABConfiguration.m in Sources */,
 				FC2E483214B4C06200BE0677 /* lcl.m in Sources */,
 				FC2E483814B4C06200BE0677 /* LCLNSLog.m in Sources */,
 				FC2E483D14B4C0B800BE0677 /* ABLog.m in Sources */,
@@ -796,6 +813,8 @@
 				96DA672414BABAB600D80D29 /* AB_SBJsonBase.m in Sources */,
 				96DA672614BABAB600D80D29 /* AB_SBJsonParser.m in Sources */,
 				96DA672814BABAB600D80D29 /* AB_SBJsonWriter.m in Sources */,
+				96DF3CFF14BBEB7500BFD622 /* ABNetworkQueue.m in Sources */,
+				96DF3D0314BBF2B000BFD622 /* ABAppUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,7 +823,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC2E476314B40E0C00BE0677 /* AppBandSpec.m in Sources */,
-				FC2E478B14B446B900BE0677 /* ABProvisioningSpec.m in Sources */,
 				FC2E478E14B446E900BE0677 /* ABSpecEnvironment.m in Sources */,
 				FC2E47D714B4A59F00BE0677 /* NSInvocation+OCMAdditions.m in Sources */,
 				FC2E47D814B4A59F00BE0677 /* NSMethodSignature+OCMAdditions.m in Sources */,

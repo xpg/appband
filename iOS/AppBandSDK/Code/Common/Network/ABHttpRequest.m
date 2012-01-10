@@ -101,23 +101,21 @@ NSString * const ABHttpRequestErrorDomain = @"ABHttpRequestErrorDomain";
 }
 
 - (void)finishLoadingWithError:(NSError *)error {
-    NSString *response = @"";
     NSDictionary *responseDic = nil;
     if (!error) {
         self.status = ABHttpRequestStatusSuccess;
-        response = [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
-        responseDic = [NSDictionary dictionaryWithObjectsAndKeys:response, ABHTTPRequestResponse, self, ABHTTPRequestObject,nil];
+        responseDic = [NSDictionary dictionaryWithObjectsAndKeys:self, ABHTTPRequestObject,nil];
     } else {
         self.status = error.code;
-        responseDic = [NSDictionary dictionaryWithObjectsAndKeys:response, ABHTTPRequestResponse, error, ABHTTPRequestError, self, ABHTTPRequestObject,nil];
+        responseDic = [NSDictionary dictionaryWithObjectsAndKeys:error, ABHTTPRequestError, self, ABHTTPRequestObject,nil];
     }
     
     if ([self.target respondsToSelector:self.finishSelector]) {
         [self.target performSelector:self.finishSelector withObject:responseDic];
     } 
     
-    if ([self.delegate respondsToSelector:@selector(httpRequest:didFinishLoading:error:)]) {
-        [self.delegate httpRequest:self didFinishLoading:response error:error];
+    if ([self.delegate respondsToSelector:@selector(httpRequest:didFinishLoadingWithError:)]) {
+        [self.delegate httpRequest:self didFinishLoadingWithError:error];
     }
 }
 

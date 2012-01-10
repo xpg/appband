@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Xtreme Programming Group. All rights reserved.
 //
 
-#import "ABProvisioning.h"
 #import "ABLog.h"
 
 ///**
@@ -21,20 +20,11 @@
 
 @interface AppBand : NSObject
 
-//The Server Address
-@property(readonly,copy) NSString *server;
-
 //The Application Key
 @property(readonly,copy) NSString *appKey;
 
 //The Application Secret
 @property(readonly,copy) NSString *appSecret;
-
-//The Device Token
-@property(readonly,copy) NSString *token;
-
-//The Device UDID
-@property(readonly,copy) NSString *udid;
 
 /*
  * initialize AppBand and Set Configuration. 
@@ -49,5 +39,11 @@
  * 
  */
 + (id)shared;
+
+/*
+ * Release
+ * 
+ */
++ (void)end;
 
 @end

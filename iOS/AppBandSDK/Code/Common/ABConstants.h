@@ -25,8 +25,6 @@
 #define AppBandKickOfOptionsAppBandConfigSandboxKey @"SANDBOX_APP_KEY"
 #define AppBandKickOfOptionsAppBandConfigSandboxSecret @"SANDBOX_APP_SECRET"
 
-#define AppBandKickOfOptionsAppBandConfigServer @"APPBAND_SERVER"
-
 #define AppBandKickOfOptionsAppBandConfigHandlePushAuto @"APPBAND_HANDLE_PUSH_AUTO"
 #define AppBandKickOfOptionsAppBandConfigHandleRichAuto @"APPBAND_HANDLE_RICH_AUTO"
 

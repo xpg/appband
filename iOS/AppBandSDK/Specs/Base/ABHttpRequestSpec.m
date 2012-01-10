@@ -94,7 +94,7 @@
     id urlConnectionDelegate = [OCMockObject mockForProtocol:@protocol(ABHttpRequestDelegate)];
     ABHttpRequest *request = [ABHttpRequest requestWithBaseURL:validURL delegate:urlConnectionDelegate];
     
-    [[urlConnectionDelegate expect] httpRequest:request didFinishLoading:returnedContent error:nil];
+    [[urlConnectionDelegate expect] httpRequest:request didFinishLoadingWithError:nil];
     
     id mock = [OCMockObject partialMockForObject:request];
     [[[mock stub] andCall:@selector(httpRequestServiceSuccess:) onObject:self] initializeConnection:[OCMArg any]];
@@ -110,7 +110,7 @@
     id urlConnectionDelegate = [OCMockObject mockForProtocol:@protocol(ABHttpRequestDelegate)];
     ABHttpRequest *request = [ABHttpRequest requestWithBaseURL:validURL delegate:urlConnectionDelegate];
     
-    [[urlConnectionDelegate expect] httpRequest:request didFinishLoading:[OCMArg any] error:[OCMArg isNotNil]];
+    [[urlConnectionDelegate expect] httpRequest:request didFinishLoadingWithError:[OCMArg isNotNil]];
     
     id mock = [OCMockObject partialMockForObject:request];
     [[[mock stub] andCall:@selector(httpRequestServiceFail:) onObject:self] initializeConnection:[OCMArg any]];

@@ -8,8 +8,9 @@
 
 #import "ABSpecEnvironment.h"
 
+#import "ABAppUser+Private.h"
+
 @interface ABAppUserSpec :ABSpec {
-    ABAppUser *appUser;
 }
 @end
 
@@ -17,31 +18,44 @@
 
 - (void)setUp {
     [super setUp];
-    appUser = [[ABAppUser alloc] init];
 }
 
 - (void)tearDown {
-    [appUser release];
-    appUser = nil;
     [super tearDown];
 }
 
 - (void)testShouldSetDirtyFlagWhenBeingUpdated {
-    assertThat(appUser.dirty, is(equalToBool(FALSE)));
-    appUser.setDeviceToken(@"device-token-here");
-    assertThat(appUser.dirty, is(equalToBool(TRUE)));
+    id settingsMock = [OCMockObject niceMockForClass:[ABAppUserSettings class]];
+    id value = nil;
+    [[[settingsMock stub] andReturnValue:OCMOCK_VALUE(value)] getValueOfKey:[OCMArg any]];
+    ABAppUser *appUser = [[[ABAppUser alloc] initWithSettings:settingsMock] autorelease];
+    id mock = [OCMockObject partialMockForObject:appUser];
+    [[mock expect] addToBaseNetworkQueue:[OCMArg isNotNil]];
+    [appUser syncDataToServer];
+    
+    [mock verify];
 }
 
 - (void)testSyncLocalDataToServerSuccessfully {
     // Set a property so dirty flag is true
-    appUser.setDeviceToken(@"device-token-here");
-    appUser.syncDataToServer();
-    assertThat(appUser.dirty, is(equalToBool(FALSE)));
+//    appUser.setDeviceToken(@"device-token-here");
+//    appUser.syncDataToServer();
+//    assertThat(appUser.dirty, is(equalToBool(FALSE)));
 }
 
 - (void)testShouldNotSyncWhenDirtyFlagIsNotSet {
-    appUser.syncDataToServer();
-    // Assert that no network call happened here
+//    id settingsMock = [OCMockObject niceMockForClass:[ABAppUserSettings class]];
+//    [[[settingsMock stub] andCall:@selector(returnNoWhenItsDutyKey:) onObject:self] getValueOfKey:[OCMArg any]];
+    
+    ABAppUserSettings *settings = [[[ABAppUserSettings alloc] init] autorelease];
+    [settings setValue:[NSNumber numberWithBool:NO] forKey:kAppBandDeviceDirty];
+    
+    ABAppUser *appUser = [[[ABAppUser alloc] initWithSettings:settings] autorelease];
+    
+    
+    STAssertTrue(appUser.isDirty == NO, @"ABAppUser isDirty should be NO");
+    [settings setValue:nil forKey:kAppBandDeviceDirty];
+    [settings synchronized];
 }
 
 @end

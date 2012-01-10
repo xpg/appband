@@ -12,14 +12,12 @@ static AppBand *_appBand;
 
 @implementation AppBand
 
-@synthesize server = _server;
 @synthesize appKey = _appKey;
 @synthesize appSecret = _appSecret;
-@synthesize token = _token;
-@synthesize udid = _udid;
 
-@synthesize handlePushAuto = _handlePushAuto;
-@synthesize handleRichAuto = _handleRichAuto;
+@synthesize configuration = _configuration;
+@synthesize appUser = _appUser;
+@synthesize networkQueue = _networkQueue;
 
 #pragma mark - Public
 
@@ -68,28 +66,18 @@ static AppBand *_appBand;
         configAppKey = [configAppKey stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         configAppSecret = [configAppSecret stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         
-        //Check for a custom AppBand server value
-        NSString *airshipServer = [config objectForKey:AppBandKickOfOptionsAppBandConfigServer];
-        if (airshipServer == nil) {
-            airshipServer = kAppBandProductionServer;
-        }
-        
         if (configAppKey && configAppSecret) {
-            [AppBand shared];
-            [[AppBand shared] setAppKey:configAppKey];
-            [[AppBand shared] setAppSecret:configAppSecret];
-            [[AppBand shared] setServer:airshipServer];
-            [[AppBand shared] setHandlePushAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] boolValue] : YES];
-            [[AppBand shared] setHandleRichAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES];
+            _appBand = [[AppBand alloc] initWithKey:configAppKey secret:configAppSecret];
+            [_appBand initializeEnvironment:config];
         }
     } 
     
-    if (![AppBand shared]) {
+    if (!_appBand) {
         ABLogInfo(@"AppBand initialize fail, check AppBandConfig.plist configuration!");
         exit(-1);
     }
     
-    [[AppBand shared] doProvisioningWhenKickoff];
+    [_appBand doProvisioningWhenKickoff];
 }
 
 /*
@@ -97,24 +85,52 @@ static AppBand *_appBand;
  * 
  */
 + (id)shared {
-    if (!_appBand) 
-        _appBand = [[AppBand alloc] init];
-    
     return _appBand;
+}
+
+/*
+ * Release
+ * 
+ */
++ (void)end {
+    [_appBand.networkQueue cancelAllOperations];
+    [_appBand setNetworkQueue:nil];
+    [_appBand setConfiguration:nil];
+    [_appBand setAppUser:nil];
+    [_appBand release];
+    _appBand = nil;
 }
 
 #pragma mark - Private
 
+- (void)initializeEnvironment:(NSDictionary *)config {
+    [_appBand setNetworkQueue:[ABNetworkQueue networkQueue]];
+    [self initializeConfiguration:config];
+    [self initializeAppUser];
+}
+
+- (void)initializeConfiguration:(NSDictionary *)config {
+    self.configuration = [[[ABConfiguration alloc] init] autorelease];
+    [self.configuration setHandlePushAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] boolValue] : YES];
+    [self.configuration setHandleRichAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES];
+}
+
+- (void)initializeAppUser {
+    self.appUser = [[[ABAppUser alloc] initWithSettings:[[[ABAppUserSettings alloc] init] autorelease]] autorelease];
+}
+
 - (void)doProvisioningWhenKickoff {
-    
+    [self.configuration provisioning];
 }
 
 #pragma mark - lifecycle
 
-- (id)init {
+- (id)initWithKey:(NSString *)appKey secret:(NSString *)secret {
     self = [super init];
     if (self) {
-        
+        [self setAppKey:appKey];
+        [self setAppSecret:secret];
+
     }
     
     return self;
@@ -123,10 +139,6 @@ static AppBand *_appBand;
 - (void)dealloc {
     [self setAppKey:nil];
     [self setAppSecret:nil];
-    [self setServer:nil];
-    [self setToken:nil];
-    [self setUdid:nil];
-    
     [super dealloc];
 }
 

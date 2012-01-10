@@ -14,7 +14,7 @@ static id appbandMock = nil;
 
 @implementation AppBand (UnitTests)
 
-+ (id)shared {
+- (id)initWithKey:(NSString *)appKey secret:(NSString *)secret {
     if (!appbandMock) {
         appbandMock = [OCMockObject niceMockForClass:[AppBand class]];
     }

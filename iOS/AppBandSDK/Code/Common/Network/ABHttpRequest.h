@@ -21,7 +21,6 @@ typedef enum {
     ABHttpRequestStatusServerError = 500,
 } ABHttpRequestStatus;
 
-#define ABHTTPRequestResponse @"ABHTTPRequestResponse"
 #define ABHTTPRequestError @"ABHTTPRequestError"
 #define ABHTTPRequestObject @"ABHTTPRequestObject"
 
@@ -53,8 +52,11 @@ typedef enum {
 @property(nonatomic,readonly,copy) NSString *url;
 @property(nonatomic,readonly,copy) NSData *parameter;
 @property(nonatomic,readonly,assign) NSTimeInterval timeout;
+
 @property(nonatomic,copy) NSString *contentType;
 @property(nonatomic,copy) NSString *acceptType;
+
+@property(nonatomic,readonly,retain) NSMutableData *responseData;
 
 @property(nonatomic,readonly,assign) ABHttpRequestStatus status;
 
@@ -88,6 +90,6 @@ typedef enum {
 
 @optional
 
-- (void)httpRequest:(ABHttpRequest *)httpRequest didFinishLoading:(NSString *)content error:(NSError *)error;
+- (void)httpRequest:(ABHttpRequest *)httpRequest didFinishLoadingWithError:(NSError *)error;
 
 @end

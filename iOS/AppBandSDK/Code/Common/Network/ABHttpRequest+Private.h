@@ -19,7 +19,7 @@
 @property(assign) BOOL isCompleted;
 
 @property(nonatomic,retain) NSURLConnection *connection;
-@property(nonatomic,retain) NSMutableData *responseData;
+@property(nonatomic,readwrite,retain) NSMutableData *responseData;
 
 - (void)initializeConnection:(ABHttpRequest *)request;
 

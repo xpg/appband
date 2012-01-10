@@ -15,16 +15,26 @@
 
 #import "ABConstants.h"
 
+#import "ABConfiguration.h"
+#import "ABAppUser.h"
+#import "ABNetworkQueue.h"
+
 @interface AppBand()
 
-@property(readwrite,copy) NSString *server;
 @property(readwrite,copy) NSString *appKey;
 @property(readwrite,copy) NSString *appSecret;
-@property(readwrite,copy) NSString *token;
-@property(readwrite,copy) NSString *udid;
 
-@property(assign) BOOL handlePushAuto;
-@property(assign) BOOL handleRichAuto;
+@property(nonatomic,retain) ABConfiguration *configuration;
+@property(nonatomic,retain) ABAppUser *appUser;
+@property(nonatomic,retain) ABNetworkQueue *networkQueue;
+
+- (id)initWithKey:(NSString *)appKey secret:(NSString *)secret;
+
+- (void)initializeEnvironment:(NSDictionary *)config;
+
+- (void)initializeConfiguration:(NSDictionary *)config;
+
+- (void)initializeAppUser;
 
 - (void)doProvisioningWhenKickoff;
 
