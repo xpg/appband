@@ -27,12 +27,6 @@
     [super tearDown];
 }
 
-- (void)testShouldSetDirtyFlagWhenBeingUpdated {
-    assertThat(conf.dirty, is(equalToBool(FALSE)));
-    conf.setDeviceToken(@"device-token-here");
-    assertThat(conf.dirty, is(equalToBool(TRUE)));
-}
-
 - (void)testShouldSupportProvisioningFromServer {
     conf.setServerAddress(@"https://us.appmocha.com");
     conf.provision();
@@ -43,18 +37,6 @@
     conf.setServerAddress(@"https://us.appmocha.com");
     conf.provision();
     assertThat(conf.getServerAddress, is(equalTo(@"https://us.appmocha.com");
-}
-
-- (void)testSyncLocalDataToServerSuccessfully {
-    // Set a property so dirty flag is true
-    conf.setDeviceToken(@"device-token-here");
-    conf.syncDataToServer();
-    assertThat(conf.dirty, is(equalToBool(FALSE)));
-}
-
-- (void)testShouldNotSyncWhenDirtyFlagIsNotSet {
-    conf.syncDataToServer();
-    // Assert that no network call happened here
 }
 
 @end
