@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Xtreme Programming Group. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "ABSpecEnvironment.h"
 
 #import "ABUtilty.h"
 
-@interface ABUtiltySpec : SenTestCase
+@interface ABUtiltySpec : ABSpec
 
 @end
 

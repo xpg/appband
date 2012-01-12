@@ -32,10 +32,12 @@
 
 - (void)initializeEnvironment:(NSDictionary *)config;
 
-- (void)initializeConfiguration:(NSDictionary *)config;
+- (ABConfiguration *)initializeConfiguration:(NSDictionary *)config;
 
-- (void)initializeAppUser;
+- (ABAppUser *)initializeAppUser:(ABAppUserSettings *)setting;
 
 - (void)doProvisioningWhenKickoff;
+
+- (NSString*)parseDeviceToken:(NSString*)tokenStr;
 
 @end

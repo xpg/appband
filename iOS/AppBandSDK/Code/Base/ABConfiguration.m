@@ -26,7 +26,7 @@
 #pragma mark - Private
 
 - (ABHttpRequest *)initializeRequest {
-    NSString *url = [NSString stringWithFormat:@"%@/app_provisions", [[AppBand shared] server]];
+    NSString *url = [NSString stringWithFormat:@"%@/app_provisions", self.server];
     
     NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
     NSString *appKey = [[AppBand shared] appKey];

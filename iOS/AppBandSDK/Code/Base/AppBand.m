@@ -78,6 +78,7 @@ static AppBand *_appBand;
     }
     
     [_appBand doProvisioningWhenKickoff];
+    [_appBand updateSettingsWithTarget:nil];
 }
 
 /*
@@ -101,26 +102,91 @@ static AppBand *_appBand;
     _appBand = nil;
 }
 
+/*
+ * Update Settings
+ * 
+ * Paramters:
+ *         target: the object takes charge of perform finish selector.
+ *  finishSeletor: callback when registration finished. Notice that : The selector must only has one paramter, which is ABResponse object.
+ */
+- (void)updateSettingsWithTarget:(id<ABUpdateSettingsProtocol>)target {
+    [self.appUser syncDataToServerWithTarget:target];
+}
+
+/*
+ * Set Device Token
+ * 
+ * Paramters:
+ *          token: the token of the Device.
+ */
+- (void)setPushToken:(NSData *)token {
+    [self.appUser setToken:[self parseDeviceToken:[token description]]];
+}
+
+/*
+ * Set Alias (Max Length 30)
+ * 
+ * Paramters:
+ *          alias: the Alias of the Device.
+ */
+- (void)setAlias:(NSString *)alias {
+    [self.appUser setAlias:alias];
+}
+
+/*
+ * Get Alias
+ * 
+ */
+- (NSString *)getAlias {
+    return self.appUser.alias;
+}
+
+/*
+ * Set Tags (Max 5 tags)
+ * 
+ * Paramters:
+ *          tags: tag dictionary.
+ */
+- (void)setTags:(NSString *)tags {
+    [self.appUser setTags:tags];
+}
+
+/*
+ * Get Tags
+ * 
+ */
+- (NSString *)getTags {
+    return self.appUser.tags;
+}
+
 #pragma mark - Private
 
 - (void)initializeEnvironment:(NSDictionary *)config {
     [_appBand setNetworkQueue:[ABNetworkQueue networkQueue]];
-    [self initializeConfiguration:config];
-    [self initializeAppUser];
+    self.configuration = [self initializeConfiguration:config];
+    self.appUser = [self initializeAppUser:[[[ABAppUserSettings alloc] init] autorelease]];
 }
 
-- (void)initializeConfiguration:(NSDictionary *)config {
-    self.configuration = [[[ABConfiguration alloc] init] autorelease];
-    [self.configuration setHandlePushAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] boolValue] : YES];
-    [self.configuration setHandleRichAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES];
+- (ABConfiguration *)initializeConfiguration:(NSDictionary *)config {
+    ABConfiguration *configuration = [[[ABConfiguration alloc] init] autorelease];
+    [configuration setHandlePushAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] boolValue] : YES];
+    [configuration setHandleRichAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES];
+    
+    return configuration;
 }
 
-- (void)initializeAppUser {
-    self.appUser = [[[ABAppUser alloc] initWithSettings:[[[ABAppUserSettings alloc] init] autorelease]] autorelease];
+- (ABAppUser *)initializeAppUser:(ABAppUserSettings *)setting {
+    return [[[ABAppUser alloc] initWithSettings:setting] autorelease];
 }
 
 - (void)doProvisioningWhenKickoff {
     [self.configuration provisioning];
+}
+
+- (NSString*)parseDeviceToken:(NSString*)tokenStr {
+    return [[[tokenStr stringByReplacingOccurrencesOfString:@"<" withString:@""]
+             stringByReplacingOccurrencesOfString:@">" withString:@""]
+            stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
 #pragma mark - lifecycle

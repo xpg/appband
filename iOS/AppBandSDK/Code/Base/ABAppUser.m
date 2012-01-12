@@ -17,15 +17,21 @@
 @synthesize pushEnable = _pushEnable;
 @synthesize pushIntervals = _pushIntervals;
 
-@synthesize isDirty = _isDirty;
+//@synthesize isDirty = _isDirty;
 
 @synthesize settings = _settings;
+@synthesize target = _target;
+
+@synthesize requestKey = _requestKey;
 
 - (void)setToken:(NSString *)token {
     if (![token isEqualToString:self.token]) {
         [_token release];
         _token = [token copy];
-        _isDirty = YES;
+        
+        [self.settings setValue:_token forKey:kAppBandDeviceToken];
+        [self.settings synchronized];
+//        _isDirty = YES;
     }
 }
 
@@ -33,7 +39,10 @@
     if (![alias isEqualToString:self.alias]) {
         [_alias release];
         _alias = [alias copy];
-        _isDirty = YES;
+        
+        [self.settings setValue:_alias forKey:kAppBandDeviceAlias];
+        [self.settings synchronized];
+//        _isDirty = YES;
     }
 }
 
@@ -45,14 +54,20 @@
     if (![tags isEqualToString:self.tags]) {
         [_tags release];
         _tags = [tags copy];
-        _isDirty = YES;
+        
+        [self.settings setValue:_tags forKey:kAppBandDeviceTags];
+        [self.settings synchronized];
+//        _isDirty = YES;
     }
 }
 
 - (void)setPushEnable:(BOOL)pushEnable {
     if (self.pushEnable != pushEnable) {
         _pushEnable = pushEnable;
-        _isDirty = YES;
+        
+        [self.settings setValue:[NSNumber numberWithBool:_pushEnable] forKey:kAppBandDevicePushEnableKey];
+        [self.settings synchronized];
+//        _isDirty = YES;
     }
 }
 
@@ -60,14 +75,30 @@
     if (![pushIntervals isEqualToString:self.pushIntervals]) {
         [_pushIntervals release];
         _pushIntervals = [pushIntervals copy];
-        _isDirty = YES;
+        
+        [self.settings setValue:_pushIntervals forKey:kAppBandDevicePushDNDIntervalsKey];
+        [self.settings synchronized];
+//        _isDirty = YES;
+    }
+}
+
+#pragma mark - ABHttpRequestDelegate
+
+- (void)httpRequest:(ABHttpRequest *)httpRequest didFinishLoadingWithError:(NSError *)error {
+    if ([self.requestKey isEqualToString:httpRequest.key]) {
+        if ([self.target respondsToSelector:@selector(finishUpdateSettings:)]) {
+            ABResponse *response = [[[ABResponse alloc] init] autorelease];
+            [response setCode:(ABResponseCode)httpRequest.status];
+            [response setError:error];
+            [self.target finishUpdateSettings:response];
+        }
     }
 }
 
 #pragma mark - Private
 
 - (ABHttpRequest *)initializeRequest {
-    NSString *url = [NSString stringWithFormat:@"%@/app_registrations", [[AppBand shared] server]];
+    NSString *url = [NSString stringWithFormat:@"%@/app_registrations", [[[AppBand shared] configuration] server]];
     
     NSString *token = self.token ? self.token : @"";
     NSString *appKey = [[AppBand shared] appKey];
@@ -79,7 +110,7 @@
     
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, alias, AB_APP_ALIAS, tagsStr, AB_APP_TAGS, [[NSLocale preferredLanguages] objectAtIndex:0], AB_APP_LANGUAGE, [[NSTimeZone systemTimeZone] name], AB_APP_TIMEZONE, [UIDevice currentDevice].model, AB_APP_DEVICE_TYPE, [UIDevice currentDevice].systemVersion, AB_APP_OS_VERSION, nil];
     
-    ABHttpRequest *request = [ABHttpRequest requestWithKey:nil url:url parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout delegate:self];
+    ABHttpRequest *request = [ABHttpRequest requestWithKey:self.requestKey url:url parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout delegate:self];
     [request setContentType:@"application/json"];
     
     return request;
@@ -95,12 +126,16 @@
  * Synchronize Device Data to Server. 
  * 
  */
-- (void)syncDataToServer {
-    if (self.isDirty) {
+- (void)syncDataToServerWithTarget:(id)target {
+//    if (self.isDirty) {
         ABLogInfo(@"Starting registration service");
+        
+        self.target = target;
+
+        self.requestKey = [[NSDate date] description];
         ABHttpRequest *request = [self initializeRequest];
         [self addToBaseNetworkQueue:request];
-    }
+//    }
 }
 
 #pragma mark - lifecycle
@@ -110,13 +145,20 @@
     if (self) {
         self.settings = settings;
         
-        _isDirty = [settings getValueOfKey:kAppBandDeviceDirty] ? [[settings getValueOfKey:kAppBandDeviceDirty] boolValue] : YES;
-        _token = [settings getValueOfKey:kAppBandDeviceToken];
-        _udid = [settings getValueOfKey:kAppBandDeviceUDID] ? [settings getValueOfKey:kAppBandDeviceUDID] : @"";
-        _alias = [settings getValueOfKey:kAppBandDeviceAlias];
-        _tags = [settings getValueOfKey:kAppBandDeviceTags];
+//        _isDirty = [settings getValueOfKey:kAppBandDeviceDirty] ? [[settings getValueOfKey:kAppBandDeviceDirty] boolValue] : YES;
+        _token = [[settings getValueOfKey:kAppBandDeviceToken] copy];
+        _alias = [[settings getValueOfKey:kAppBandDeviceAlias] copy];
+        _tags = [[settings getValueOfKey:kAppBandDeviceTags] copy];
         _pushEnable = [settings getValueOfKey:kAppBandDevicePushEnableKey] ? [[settings getValueOfKey:kAppBandDevicePushEnableKey] boolValue] : YES;
-        _pushIntervals = [settings getValueOfKey:kAppBandDevicePushDNDIntervalsKey];
+        _pushIntervals = [[settings getValueOfKey:kAppBandDevicePushDNDIntervalsKey] copy];
+        
+        _udid = [[settings getValueOfKey:kAppBandDeviceUDID] copy];
+        if (!_udid || [_udid isEqualToString:@""]) {
+            UIDeviceUDID *deviceUDID = [[UIDeviceUDID alloc] init];
+            _udid = [[deviceUDID uniqueDeviceIdentifier] copy];
+            [deviceUDID release];
+        }
+        
     }
     
     return self;
@@ -129,6 +171,7 @@
     [_tags release];
     [_pushIntervals release];
     [self setSettings:nil];
+    [self setRequestKey:nil];
     [super dealloc];
 }
 

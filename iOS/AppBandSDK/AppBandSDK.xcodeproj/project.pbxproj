@@ -31,6 +31,16 @@
 		96DF3D0214BBF2B000BFD622 /* ABAppUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3D0014BBF2AF00BFD622 /* ABAppUser.h */; };
 		96DF3D0314BBF2B000BFD622 /* ABAppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DF3D0114BBF2AF00BFD622 /* ABAppUser.m */; };
 		96DF3D0514BBF2D000BFD622 /* ABAppUser+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3D0414BBF2CF00BFD622 /* ABAppUser+Private.h */; };
+		96E365C114BE786500FA8250 /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365BF14BE786500FA8250 /* UIDevice+IdentifierAddition.h */; };
+		96E365C214BE786500FA8250 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365C014BE786500FA8250 /* UIDevice+IdentifierAddition.m */; };
+		96E365C714BEBBFF00FA8250 /* ABResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365C514BEBBFF00FA8250 /* ABResponse.h */; };
+		96E365C814BEBBFF00FA8250 /* ABResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365C614BEBBFF00FA8250 /* ABResponse.m */; };
+		96E365CC14BED66D00FA8250 /* ABPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365CA14BED66D00FA8250 /* ABPush.h */; };
+		96E365CD14BED66D00FA8250 /* ABPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365CB14BED66D00FA8250 /* ABPush.m */; };
+		96E365CF14BED68000FA8250 /* ABPush+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365CE14BED68000FA8250 /* ABPush+Private.h */; };
+		96E365D214BED90600FA8250 /* ABNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365D014BED90600FA8250 /* ABNotification.h */; };
+		96E365D314BED90600FA8250 /* ABNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365D114BED90600FA8250 /* ABNotification.m */; };
+		96E365D714BEDAD900FA8250 /* ABPushSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365D514BEDAD900FA8250 /* ABPushSpec.m */; };
 		96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
 		96E8BB3314B58354009556FB /* ABConfiguration+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -163,6 +173,16 @@
 		96DF3D0014BBF2AF00BFD622 /* ABAppUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAppUser.h; sourceTree = "<group>"; };
 		96DF3D0114BBF2AF00BFD622 /* ABAppUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAppUser.m; sourceTree = "<group>"; };
 		96DF3D0414BBF2CF00BFD622 /* ABAppUser+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABAppUser+Private.h"; sourceTree = "<group>"; };
+		96E365BF14BE786500FA8250 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		96E365C014BE786500FA8250 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		96E365C514BEBBFF00FA8250 /* ABResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABResponse.h; sourceTree = "<group>"; };
+		96E365C614BEBBFF00FA8250 /* ABResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABResponse.m; sourceTree = "<group>"; };
+		96E365CA14BED66D00FA8250 /* ABPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPush.h; sourceTree = "<group>"; };
+		96E365CB14BED66D00FA8250 /* ABPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPush.m; sourceTree = "<group>"; };
+		96E365CE14BED68000FA8250 /* ABPush+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPush+Private.h"; sourceTree = "<group>"; };
+		96E365D014BED90600FA8250 /* ABNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotification.h; sourceTree = "<group>"; };
+		96E365D114BED90600FA8250 /* ABNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotification.m; sourceTree = "<group>"; };
+		96E365D514BEDAD900FA8250 /* ABPushSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPushSpec.m; sourceTree = "<group>"; };
 		96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABConfiguration+Private.h"; sourceTree = "<group>"; };
 		96E8BB2F14B581DC009556FB /* ABHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHttpRequest.h; sourceTree = "<group>"; };
 		96E8BB3014B581DC009556FB /* ABHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequest.m; sourceTree = "<group>"; };
@@ -307,14 +327,39 @@
 			path = Json;
 			sourceTree = "<group>";
 		};
+		96E365C414BEBBE800FA8250 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				96E365C514BEBBFF00FA8250 /* ABResponse.h */,
+				96E365C614BEBBFF00FA8250 /* ABResponse.m */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		96E365C914BED62500FA8250 /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				96E365D014BED90600FA8250 /* ABNotification.h */,
+				96E365D114BED90600FA8250 /* ABNotification.m */,
+				96E365CE14BED68000FA8250 /* ABPush+Private.h */,
+				96E365CA14BED66D00FA8250 /* ABPush.h */,
+				96E365CB14BED66D00FA8250 /* ABPush.m */,
+			);
+			name = Push;
+			path = Code/Push;
+			sourceTree = "<group>";
+		};
 		96E8BB2D14B581A0009556FB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				96E365C414BEBBE800FA8250 /* Responses */,
 				96DA671814BABAB600D80D29 /* Json */,
 				96E8BB2E14B581A0009556FB /* Network */,
 				96DA671214BABA0F00D80D29 /* ABUtilty.h */,
 				96DA673314BAC10E00D80D29 /* ABConstants.h */,
 				96DA674F14BAECB000D80D29 /* ABPrivateConstants.h */,
+				96E365BF14BE786500FA8250 /* UIDevice+IdentifierAddition.h */,
+				96E365C014BE786500FA8250 /* UIDevice+IdentifierAddition.m */,
 			);
 			name = Common;
 			path = Code/Common;
@@ -390,6 +435,7 @@
 		FC2E475914B40DC700BE0677 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				96E365C914BED62500FA8250 /* Push */,
 				96E8BB2D14B581A0009556FB /* Common */,
 				FC2E475214B40DA900BE0677 /* Base */,
 				FC2E483914B4C07E00BE0677 /* Support */,
@@ -416,6 +462,7 @@
 				96DA672E14BABF3E00D80D29 /* ABUtiltySpec.m */,
 				FC4E150514BB5115008EC213 /* ABConfigurationSpec.m */,
 				FC4E151114BB5961008EC213 /* ABAppUserSpec.m */,
+				96E365D514BEDAD900FA8250 /* ABPushSpec.m */,
 			);
 			name = Base;
 			path = Specs/Base;
@@ -623,6 +670,11 @@
 				96DF3CFE14BBEB7500BFD622 /* ABNetworkQueue.h in Headers */,
 				96DF3D0214BBF2B000BFD622 /* ABAppUser.h in Headers */,
 				96DF3D0514BBF2D000BFD622 /* ABAppUser+Private.h in Headers */,
+				96E365C114BE786500FA8250 /* UIDevice+IdentifierAddition.h in Headers */,
+				96E365C714BEBBFF00FA8250 /* ABResponse.h in Headers */,
+				96E365CC14BED66D00FA8250 /* ABPush.h in Headers */,
+				96E365CF14BED68000FA8250 /* ABPush+Private.h in Headers */,
+				96E365D214BED90600FA8250 /* ABNotification.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +867,10 @@
 				96DA672814BABAB600D80D29 /* AB_SBJsonWriter.m in Sources */,
 				96DF3CFF14BBEB7500BFD622 /* ABNetworkQueue.m in Sources */,
 				96DF3D0314BBF2B000BFD622 /* ABAppUser.m in Sources */,
+				96E365C214BE786500FA8250 /* UIDevice+IdentifierAddition.m in Sources */,
+				96E365C814BEBBFF00FA8250 /* ABResponse.m in Sources */,
+				96E365CD14BED66D00FA8250 /* ABPush.m in Sources */,
+				96E365D314BED90600FA8250 /* ABNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,6 +905,7 @@
 				96DA673014BABF3E00D80D29 /* ABUtiltySpec.m in Sources */,
 				FC4E150714BB5115008EC213 /* ABConfigurationSpec.m in Sources */,
 				FC4E151314BB5961008EC213 /* ABAppUserSpec.m in Sources */,
+				96E365D714BEDAD900FA8250 /* ABPushSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

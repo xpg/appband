@@ -46,6 +46,6 @@
  * Synchronize Device Data to Server. 
  * 
  */
-- (void)syncDataToServer;
+- (void)syncDataToServerWithTarget:(id)target;
 
 @end

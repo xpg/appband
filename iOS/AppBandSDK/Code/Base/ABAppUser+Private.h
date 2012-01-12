@@ -21,6 +21,7 @@
 #import "ABHttpRequest.h"
 #import "AppBand+Private.h"
 #import "ABUtilty.h"
+#import "UIDevice+IdentifierAddition.h"
 
 #import "ABPrivateConstants.h"
 
@@ -28,7 +29,11 @@
 
 @property(nonatomic,retain) ABAppUserSettings *settings;
 
-@property(assign) BOOL isDirty;
+@property(nonatomic,assign) id<ABUpdateSettingsProtocol> target;
+
+@property(nonatomic,copy) NSString *requestKey;
+
+//@property(assign) BOOL isDirty;
 
 - (ABHttpRequest *)initializeRequest;
 
