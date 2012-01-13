@@ -16,8 +16,17 @@
 
 #import "ABPush.h"
 #import "AppBand+Private.h"
+#import "ABRichHandler.h"
+#import "ABPrivateConstants.h"
 
-@interface ABPush()
+#import "ABRichView.h"
+#import "ABIPhoneRichView.h"
+#import "ABIPadRichView.h"
+
+@interface ABPush() <ABRichViewDelegate,ABRichHandlerDelegate>
+
+@property(nonatomic,retain) NSMutableDictionary *richHandleDictionay;
+@property(nonatomic,retain) ABRichView *richView;
 
 - (void)callbackPushSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 
@@ -26,5 +35,11 @@
 - (void)callbackRichSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state
               notificationId:(NSString *)notificationId;
+
+- (BOOL)handlePushAuto;
+
+- (BOOL)handleRichAuto;
+
+- (void)showRich:(ABNotification *)notification;
 
 @end

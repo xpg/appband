@@ -8,6 +8,8 @@
 
 #import "ABHttpRequest.h"
 
+#import "ABPrivateConstants.h"
+
 @interface ABHttpRequest()
 
 @property(nonatomic,readwrite,copy) NSString *key;

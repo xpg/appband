@@ -48,9 +48,13 @@
 // All code under test must be linked into the Unit Test bundle
 - (void)testHandleNotificationRich {
     NSDictionary *noti = [NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello", AppBandNotificationAlert, [NSNumber numberWithInt:1], AppBandNotificationBadge, nil], AppBandNotificationAPS, @"123", AppBandNotificationId, [NSNumber numberWithInt:1], AppBandPushNotificationType, nil];
-    [[pushMoch expect] callbackRichSelector:[OCMArg any] applicationState:UIApplicationStateActive notificationId:[OCMArg isNotNil]];
+    BOOL value = YES;
+    [[[pushMoch stub] andReturnValue:OCMOCK_VALUE(value)] handleRichAuto];
+    [[pushMoch expect] showRich:[OCMArg isNotNil]];
     
     [pushMoch handleNotification:noti applicationState:UIApplicationStateActive];
+    
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:.5]];
     
     [pushMoch verify];
     

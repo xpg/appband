@@ -21,3 +21,11 @@
 #define AB_APP_LANGUAGE @"language"
 #define AB_APP_OS_VERSION @"os_version"
 #define AB_APP_DEVICE_TYPE @"device_type"
+
+#define AB_Rich_Title @"rich_title"
+#define AB_Rich_Content @"rich_content"
+
+#define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
+#define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"
+
+NSString * const ABHttpRequestErrorDomain = @"ABHttpRequestErrorDomain";

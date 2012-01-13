@@ -10,6 +10,9 @@
 
 @implementation ABPush
 
+@synthesize richHandleDictionay = _richHandleDictionay;
+@synthesize richView = _richView;
+
 @synthesize pushDelegate = _pushDelegate;
 
 SINGLETON_IMPLEMENTATION(ABPush)
@@ -33,7 +36,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
             [self.pushDelegate didRecieveNotification:abNotification];
         }
         
-        if ([[[AppBand shared] configuration] handlePushAuto]) {
+        if ([[ABPush shared] handlePushAuto]) {
             if (state == UIApplicationStateActive) {
                 UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] message:[aps objectForKey:AppBandNotificationAlert] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
                 [alertView show];
@@ -62,11 +65,65 @@ SINGLETON_IMPLEMENTATION(ABPush)
         }
         
         
-        if ([[AppBand shared] handleRichAuto]) {
+        if ([[ABPush shared] handleRichAuto]) {
             //call showRich: afterDelay 0.2 seconds,because calling it immediatly will crash when launching.
             [[ABPush shared] performSelector:@selector(showRich:) withObject:abNotification afterDelay:.2];
         }
     }
+}
+
+- (BOOL)handlePushAuto {
+    return [[[AppBand shared] configuration] handlePushAuto];
+}
+
+- (BOOL)handleRichAuto {
+    return [[[AppBand shared] configuration] handleRichAuto];
+}
+
+- (void)showRich:(ABNotification *)notification {
+    if (!self.richView) {
+        ABRichView *richView = nil;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            richView = [[[ABIPhoneRichView alloc] initWithFrame:CGRectMake(0, 0, 281, 380)] autorelease];
+        } else {
+            richView = [[[ABIPadRichView alloc] initWithFrame:CGRectMake(0, 0, 641, 865)] autorelease];
+        }
+        
+        [richView setDelegate:self];
+        [richView setCenter:[UIApplication sharedApplication].keyWindow.center];
+        [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:richView];
+        
+        [UIView animateWithDuration:.2 animations:^{
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.15 animations:^{
+                [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .9, .9)];
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.15 animations:^{
+                    [richView setTransform:CGAffineTransformIdentity];
+                }];
+            }];
+        }];
+        
+        self.richView = richView;
+    }
+    
+    [self.richView setRid:notification.notificationId];
+    [[ABPush shared] getRichContent:notification delegate:self.richView];
+}
+
+#pragma mark - ABRichHandlerDelegate
+
+- (void)getRichEnd:(ABRichHandler *)richHandler {
+    [self.richHandleDictionay removeObjectForKey:richHandler.impressionKey];
+}
+
+#pragma mark - ABRichViewDelegate
+
+- (void)cancelRichView:(ABRichView *)richView {
+
 }
 
 #pragma mark - Public
@@ -100,9 +157,53 @@ SINGLETON_IMPLEMENTATION(ABPush)
     }
 }
 
+/*
+ * Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ *  richDelegate:
+ */
+- (void)getRichContent:(ABNotification *)notification delegate:(id<ABRichDelegate>)richDelegate {
+    if (!notification.notificationId) 
+        return;
+    
+    ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,notification.notificationId]];
+    
+    if (handler) {
+        [handler setRichDelegate:richDelegate];
+    } else {
+        handler = [ABRichHandler handlerWithRichID:notification.notificationId richDelegate:richDelegate handlerDelegate:self];
+        [self.richHandleDictionay setObject:handler forKey:handler.impressionKey];
+        
+        [handler begin];
+    }
+}
+
+/*
+ * Cancel Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ */
+- (void)cancelGetRichContent:(NSString *)rid {
+
+}
+
 #pragma mark - lifecycle
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        _richHandleDictionay = [[NSMutableDictionary alloc] init];
+    }
+    
+    return self;
+}
+
 - (void)dealloc {
+    [self setRichHandleDictionay:nil];
+    [self setRichView:nil];
     [super dealloc];
 }
 

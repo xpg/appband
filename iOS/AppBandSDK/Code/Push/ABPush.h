@@ -9,8 +9,10 @@
 #import "ABConstants.h"
 
 #import "ABNotification.h"
+#import "ABRichResponse.h"
 
 @protocol ABPushDelegate;
+@protocol ABRichDelegate;
 
 @interface ABPush : NSObject {
     id<ABPushDelegate> pushDelegate;
@@ -30,6 +32,23 @@ SINGLETON_INTERFACE(ABPush)
 - (void)handleNotification:(NSDictionary *)notification
           applicationState:(UIApplicationState)state;
 
+/*
+ * Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ *  richDelegate: ABRichDelegate
+ */
+- (void)getRichContent:(ABNotification *)notification delegate:(id<ABRichDelegate>)richDelegate;
+
+/*
+ * Cancel Get Rich Message Content
+ * 
+ * Paramters:
+ *           rid: Rich notification ID.
+ */
+- (void)cancelGetRichContent:(NSString *)rid;
+
 @end
 
 
@@ -38,5 +57,11 @@ SINGLETON_INTERFACE(ABPush)
 @optional
 
 - (void)didRecieveNotification:(ABNotification *)notification;
+
+@end
+
+@protocol ABRichDelegate <NSObject>
+
+- (void)didRecieveRichContent:(ABRichResponse *)response;
 
 @end

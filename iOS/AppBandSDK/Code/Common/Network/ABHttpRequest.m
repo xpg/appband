@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Xtreme Programming Group. All rights reserved.
 //
 
-NSString * const ABHttpRequestErrorDomain = @"ABHttpRequestErrorDomain";
-
 #import "ABHttpRequest+Private.h"
 
 @implementation ABHttpRequest

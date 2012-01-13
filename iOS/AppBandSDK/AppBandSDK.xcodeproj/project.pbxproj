@@ -44,6 +44,19 @@
 		96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
 		96E8BB3314B58354009556FB /* ABConfiguration+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		96FC761D14BFDDBC00620BD9 /* ABIPadRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */; };
+		96FC761E14BFDDBC00620BD9 /* ABIPadRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */; };
+		96FC761F14BFDDBC00620BD9 /* ABIPhoneRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761914BFDDBC00620BD9 /* ABIPhoneRichView.h */; };
+		96FC762014BFDDBC00620BD9 /* ABIPhoneRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761A14BFDDBC00620BD9 /* ABIPhoneRichView.m */; };
+		96FC762114BFDDBC00620BD9 /* ABRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761B14BFDDBC00620BD9 /* ABRichView.h */; };
+		96FC762214BFDDBC00620BD9 /* ABRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761C14BFDDBC00620BD9 /* ABRichView.m */; };
+		96FC762514BFDE9C00620BD9 /* ABRichResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC762314BFDE9C00620BD9 /* ABRichResponse.h */; };
+		96FC762614BFDE9C00620BD9 /* ABRichResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC762414BFDE9C00620BD9 /* ABRichResponse.m */; };
+		96FC762714BFF14500620BD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
+		96FC762914BFF1B700620BD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FC762814BFF1B600620BD9 /* CoreGraphics.framework */; };
+		96FC762A14BFF1C600620BD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FC762814BFF1B600620BD9 /* CoreGraphics.framework */; };
+		96FC762D14BFFF4500620BD9 /* ABRichHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC762B14BFFF4400620BD9 /* ABRichHandler.h */; };
+		96FC762E14BFFF4500620BD9 /* ABRichHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC762C14BFFF4400620BD9 /* ABRichHandler.m */; };
 		FC2E472E14B40AFC00BE0677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472D14B40AFC00BE0677 /* Foundation.framework */; };
 		FC2E473F14B40AFD00BE0677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472D14B40AFC00BE0677 /* Foundation.framework */; };
 		FC2E474214B40AFD00BE0677 /* libAppBandBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */; };
@@ -54,7 +67,6 @@
 		FC2E476314B40E0C00BE0677 /* AppBandSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E475F14B40E0C00BE0677 /* AppBandSpec.m */; };
 		FC2E476414B40E0C00BE0677 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC2E476014B40E0C00BE0677 /* InfoPlist.strings */; };
 		FC2E476914B4331800BE0677 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476714B432F700BE0677 /* SenTestingKit.framework */; };
-		FC2E476A14B4331800BE0677 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
 		FC2E478214B442DF00BE0677 /* ABAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478014B442DF00BE0677 /* ABAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC2E478314B442DF00BE0677 /* ABAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478114B442DF00BE0677 /* ABAnalytics.m */; };
 		FC2E478614B445CE00BE0677 /* ABConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478414B445CD00BE0677 /* ABConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -186,6 +198,17 @@
 		96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABConfiguration+Private.h"; sourceTree = "<group>"; };
 		96E8BB2F14B581DC009556FB /* ABHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHttpRequest.h; sourceTree = "<group>"; };
 		96E8BB3014B581DC009556FB /* ABHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequest.m; sourceTree = "<group>"; };
+		96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPadRichView.h; sourceTree = "<group>"; };
+		96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIPadRichView.m; sourceTree = "<group>"; };
+		96FC761914BFDDBC00620BD9 /* ABIPhoneRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPhoneRichView.h; sourceTree = "<group>"; };
+		96FC761A14BFDDBC00620BD9 /* ABIPhoneRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIPhoneRichView.m; sourceTree = "<group>"; };
+		96FC761B14BFDDBC00620BD9 /* ABRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichView.h; sourceTree = "<group>"; };
+		96FC761C14BFDDBC00620BD9 /* ABRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichView.m; sourceTree = "<group>"; };
+		96FC762314BFDE9C00620BD9 /* ABRichResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichResponse.h; sourceTree = "<group>"; };
+		96FC762414BFDE9C00620BD9 /* ABRichResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichResponse.m; sourceTree = "<group>"; };
+		96FC762814BFF1B600620BD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		96FC762B14BFFF4400620BD9 /* ABRichHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABRichHandler.h; sourceTree = "<group>"; };
+		96FC762C14BFFF4400620BD9 /* ABRichHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABRichHandler.m; sourceTree = "<group>"; };
 		FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBandBase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2E472D14B40AFC00BE0677 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FC2E473A14B40AFD00BE0677 /* AppBandBaseTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppBandBaseTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FC762914BFF1B700620BD9 /* CoreGraphics.framework in Frameworks */,
 				96D4AB1214BC1DD400C6767B /* UIKit.framework in Frameworks */,
 				FC2E472E14B40AFC00BE0677 /* Foundation.framework in Frameworks */,
 			);
@@ -289,11 +313,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FC762A14BFF1C600620BD9 /* CoreGraphics.framework in Frameworks */,
+				96FC762714BFF14500620BD9 /* UIKit.framework in Frameworks */,
 				967ED2B114B5B45D0034A0A5 /* SystemConfiguration.framework in Frameworks */,
 				FC2E473F14B40AFD00BE0677 /* Foundation.framework in Frameworks */,
 				FC2E474214B40AFD00BE0677 /* libAppBandBase.a in Frameworks */,
 				FC2E476914B4331800BE0677 /* SenTestingKit.framework in Frameworks */,
-				FC2E476A14B4331800BE0677 /* UIKit.framework in Frameworks */,
 				FC2E47D514B4A59F00BE0677 /* OCHamcrestIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +364,10 @@
 		96E365C914BED62500FA8250 /* Push */ = {
 			isa = PBXGroup;
 			children = (
+				96FC762B14BFFF4400620BD9 /* ABRichHandler.h */,
+				96FC762C14BFFF4400620BD9 /* ABRichHandler.m */,
+				96FC762314BFDE9C00620BD9 /* ABRichResponse.h */,
+				96FC762414BFDE9C00620BD9 /* ABRichResponse.m */,
 				96E365D014BED90600FA8250 /* ABNotification.h */,
 				96E365D114BED90600FA8250 /* ABNotification.m */,
 				96E365CE14BED68000FA8250 /* ABPush+Private.h */,
@@ -377,6 +406,20 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		96FC761514BFDDAA00620BD9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */,
+				96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */,
+				96FC761914BFDDBC00620BD9 /* ABIPhoneRichView.h */,
+				96FC761A14BFDDBC00620BD9 /* ABIPhoneRichView.m */,
+				96FC761B14BFDDBC00620BD9 /* ABRichView.h */,
+				96FC761C14BFDDBC00620BD9 /* ABRichView.m */,
+			);
+			name = UI;
+			path = Code/UI;
+			sourceTree = "<group>";
+		};
 		FC2E471D14B408EE00BE0677 = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +445,7 @@
 		FC2E472C14B40AFC00BE0677 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96FC762814BFF1B600620BD9 /* CoreGraphics.framework */,
 				967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */,
 				FC2E476714B432F700BE0677 /* SenTestingKit.framework */,
 				FC2E476514B432EF00BE0677 /* UIKit.framework */,
@@ -435,6 +479,7 @@
 		FC2E475914B40DC700BE0677 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				96FC761514BFDDAA00620BD9 /* UI */,
 				96E365C914BED62500FA8250 /* Push */,
 				96E8BB2D14B581A0009556FB /* Common */,
 				FC2E475214B40DA900BE0677 /* Base */,
@@ -675,6 +720,11 @@
 				96E365CC14BED66D00FA8250 /* ABPush.h in Headers */,
 				96E365CF14BED68000FA8250 /* ABPush+Private.h in Headers */,
 				96E365D214BED90600FA8250 /* ABNotification.h in Headers */,
+				96FC761D14BFDDBC00620BD9 /* ABIPadRichView.h in Headers */,
+				96FC761F14BFDDBC00620BD9 /* ABIPhoneRichView.h in Headers */,
+				96FC762114BFDDBC00620BD9 /* ABRichView.h in Headers */,
+				96FC762514BFDE9C00620BD9 /* ABRichResponse.h in Headers */,
+				96FC762D14BFFF4500620BD9 /* ABRichHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,6 +921,11 @@
 				96E365C814BEBBFF00FA8250 /* ABResponse.m in Sources */,
 				96E365CD14BED66D00FA8250 /* ABPush.m in Sources */,
 				96E365D314BED90600FA8250 /* ABNotification.m in Sources */,
+				96FC761E14BFDDBC00620BD9 /* ABIPadRichView.m in Sources */,
+				96FC762014BFDDBC00620BD9 /* ABIPhoneRichView.m in Sources */,
+				96FC762214BFDDBC00620BD9 /* ABRichView.m in Sources */,
+				96FC762614BFDE9C00620BD9 /* ABRichResponse.m in Sources */,
+				96FC762E14BFFF4500620BD9 /* ABRichHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
