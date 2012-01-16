@@ -55,7 +55,7 @@
 }
 
 - (void)callProvisiongServiceSuccess {
-    NSData *data = [@"http://api.appmocha.com" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [@"{\"server_address\":\"http://api.appmocha.com\"}" dataUsingEncoding:NSUTF8StringEncoding];
     [httpRequestMock setResponseData:[NSMutableData dataWithData:data]];
     [httpRequestMock finishLoadingWithError:nil];
 }

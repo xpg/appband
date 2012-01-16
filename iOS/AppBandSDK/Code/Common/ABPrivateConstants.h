@@ -25,6 +25,8 @@
 #define AB_Rich_Title @"rich_title"
 #define AB_Rich_Content @"rich_content"
 
+#define AB_Best_Server_Address @"server_address"
+
 #define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
 #define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"
 

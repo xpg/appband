@@ -19,7 +19,14 @@
 
 - (void)httpRequest:(ABHttpRequest *)httpRequest didFinishLoadingWithError:(NSError *)error {
     if (!error) {
-        self.server = [[[NSString alloc] initWithData:httpRequest.responseData encoding:NSUTF8StringEncoding] autorelease];;
+        NSString *responseStr = [[[NSString alloc] initWithData:httpRequest.responseData encoding:NSUTF8StringEncoding] autorelease];
+        
+        AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
+        NSError *error = nil;
+        NSDictionary *responseDic = [json objectWithString:responseStr error:&error];
+        if (!error && responseDic) {
+            self.server = [responseDic objectForKey:AB_Best_Server_Address];
+        }
     }
 }
 
