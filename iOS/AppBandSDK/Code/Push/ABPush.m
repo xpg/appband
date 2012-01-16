@@ -12,12 +12,35 @@
 
 @synthesize richHandleDictionay = _richHandleDictionay;
 @synthesize richView = _richView;
+@synthesize pushQueue = _pushQueue;
 
 @synthesize pushDelegate = _pushDelegate;
 
 SINGLETON_IMPLEMENTATION(ABPush)
 
 #pragma mark - Private
+
+- (ABHttpRequest *)initImpressionHttpRequest:(NSString *)notificationId {
+    NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[[AppBand shared] appUser] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@",
+                           [[AppBand shared] server], @"/rich_contents/",notificationId,udid,bundleId,token,appKey,appSecret];
+    
+    return [ABHttpRequest requestWithKey:nil url:urlString parameter:nil timeout:AppBandSettingsTimeout delegate:nil];
+}
+
+- (void)addImpressionRequestToQueue:(ABHttpRequest *)request {
+    [[ABPush shared].pushQueue addOperation:request];
+}
+
+- (void)sendImpression:(NSString *)notificationId {
+    ABHttpRequest *request = [self initImpressionHttpRequest:notificationId];
+    [[ABPush shared] addImpressionRequestToQueue:request];
+}
 
 - (void)callbackPushSelector:(NSDictionary *)notification 
             applicationState:(UIApplicationState)state 
@@ -35,6 +58,8 @@ SINGLETON_IMPLEMENTATION(ABPush)
             [abNotification setIsRead:YES];
             [self.pushDelegate didRecieveNotification:abNotification];
         }
+        
+        [[ABPush shared] sendImpression:notificationId];
         
         if ([[ABPush shared] handlePushAuto]) {
             if (state == UIApplicationStateActive) {
@@ -114,6 +139,15 @@ SINGLETON_IMPLEMENTATION(ABPush)
     [[ABPush shared] getRichContent:notification delegate:self.richView];
 }
 
+- (ABRichHandler *)createRichHandler:(NSString *)notificationId delegate:(id<ABRichDelegate>)richDelegate {
+    return [ABRichHandler handlerWithRichID:notificationId richDelegate:richDelegate handlerDelegate:self];
+    
+}
+
+- (ABRichHandler *)getRichHandlerFromDictionary:(NSString *)notificationId {
+    return [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,notificationId]];
+}
+
 #pragma mark - ABRichHandlerDelegate
 
 - (void)getRichEnd:(ABRichHandler *)richHandler {
@@ -123,7 +157,21 @@ SINGLETON_IMPLEMENTATION(ABPush)
 #pragma mark - ABRichViewDelegate
 
 - (void)cancelRichView:(ABRichView *)richView {
-
+    [UIView animateWithDuration:.2 animations:^{
+        [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.15 animations:^{
+            [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.15 animations:^{
+                [richView setTransform:CGAffineTransformScale(CGAffineTransformIdentity, .000001, .000001)];
+            } completion:^(BOOL finished) {
+                [richView removeFromSuperview];
+            }];
+        }];
+    }];
+    
+    self.richView = nil;
 }
 
 #pragma mark - Public
@@ -168,14 +216,13 @@ SINGLETON_IMPLEMENTATION(ABPush)
     if (!notification.notificationId) 
         return;
     
-    ABRichHandler *handler = [self.richHandleDictionay objectForKey:[NSString stringWithFormat:@"%@%@",Impression_Rich_ID_Prefix,notification.notificationId]];
+    ABRichHandler *handler = [[ABPush shared] getRichHandlerFromDictionary:notification.notificationId];
     
     if (handler) {
         [handler setRichDelegate:richDelegate];
     } else {
-        handler = [ABRichHandler handlerWithRichID:notification.notificationId richDelegate:richDelegate handlerDelegate:self];
+        handler = [[ABPush shared] createRichHandler:notification.notificationId delegate:richDelegate];
         [self.richHandleDictionay setObject:handler forKey:handler.impressionKey];
-        
         [handler begin];
     }
 }
@@ -187,7 +234,87 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *           rid: Rich notification ID.
  */
 - (void)cancelGetRichContent:(NSString *)rid {
+    ABRichHandler *handler = [self getRichHandlerFromDictionary:rid];
+    if (handler) {
+        [handler cancel];
+    }
+}
 
+/*
+ * Get Push Enable
+ *
+ *
+ */
+- (BOOL)getPushEnabled {
+    return [[AppBand shared] appUser].pushEnable;
+}
+
+/*
+ * Get Push DND Intervals
+ *
+ */
+- (NSArray *)getPushDNDIntervals {
+    NSString *intervalsStr = [[AppBand shared] appUser].pushIntervals;
+    if (!intervalsStr) 
+        return nil;
+    
+    AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
+    return [json objectWithString:intervalsStr error:nil];
+}
+
+/*
+ * Set Push Enable
+ * 
+ * Paramters:
+ *        enabled: YES/NO. YES - Enable Recieve Push. NO - Disable Recieve Push.
+ */
+- (void)setPushEnabled:(BOOL)enabled {
+    [[[AppBand shared] appUser] setPushEnable:enabled];
+}
+
+/*
+ * Set Push DND Intervals
+ * 
+ * Paramters:
+ *      intervals: Push will no be send to in those times interval.
+ */
+- (void)setPushDNDIntervals:(NSArray *)intervals {
+    AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
+    NSString *intervalsStr = [json stringWithObject:intervals error:nil];
+    [[[AppBand shared] appUser] setPushIntervals:intervalsStr];
+}
+
+/*
+ * Register Remote Notification
+ *
+ * Paramters:
+ *        types:
+ *
+ */
+- (void)registerRemoteNotificationWithTypes:(UIRemoteNotificationType)types {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+}
+
+/*
+ * Set Application Badge Number
+ *
+ * Paramters:
+ *  badgeNumber: the number you want to show on icon.
+ *
+ */
+- (void)setBadgeNumber:(NSInteger)badgeNumber {
+    if ([[UIApplication sharedApplication] applicationIconBadgeNumber] == badgeNumber) 
+        return;
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeNumber];
+}
+
+/*
+ * set Application Badge Number to 0
+ * 
+ */
+- (void)resetBadge {
+    [self setBadgeNumber:0];
 }
 
 #pragma mark - lifecycle
@@ -196,12 +323,15 @@ SINGLETON_IMPLEMENTATION(ABPush)
     self = [super init];
     if (self) {
         _richHandleDictionay = [[NSMutableDictionary alloc] init];
+        self.pushQueue = [ABNetworkQueue networkQueue];
     }
     
     return self;
 }
 
 - (void)dealloc {
+    [self.pushQueue cancelAllOperations];
+    [self setPushQueue:nil];
     [self setRichHandleDictionay:nil];
     [self setRichView:nil];
     [super dealloc];

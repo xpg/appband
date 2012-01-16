@@ -20,7 +20,7 @@
 - (id)init {
 	self = [super init];
     if (self) {
-        [self setMaxConcurrentOperationCount:4];
+        [self setMaxConcurrentOperationCount:5];
     }
 	
 	return self;

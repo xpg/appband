@@ -7,26 +7,7 @@
 //
 
 
-#import "ABRichHandler.h"
-
-#import "AppBand+Private.h"
-#import "ABRichResponse.h"
-#import "ABHttpRequest.h"
-#import "ABUtilty.h"
-#import "ABPrivateConstants.h"
-
-#import "AB_SBJSON.h"
-
-@interface ABRichHandler() <ABHttpRequestDelegate>
-
-@property(nonatomic,assign) id<ABRichHandlerDelegate> handlerDelegate;
-
-@property(nonatomic,readwrite,copy) NSString *fetchKey;
-@property(nonatomic,readwrite,copy) NSString *impressionKey;
-
-- (void)impressionEnd:(NSDictionary *)response;
-
-@end
+#import "ABRichHandler+Private.h"
 
 @implementation ABRichHandler
 
@@ -38,6 +19,43 @@
 @synthesize impressionKey = _impressionKey;
 
 #pragma mark - Private
+
+- (ABHttpRequest *)initializeHttpRequest {
+    NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[[AppBand shared] appUser] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@",
+                           [[AppBand shared] server], @"/rich_contents/",self.rid,udid,bundleId,token,appKey,appSecret];
+    
+    return [ABHttpRequest requestWithKey:self.fetchKey url:urlString parameter:nil timeout:AppBandSettingsTimeout delegate:self];
+}
+
+- (ABHttpRequest *)initializeImpressionRequest {
+    NSString *urlString = [NSString stringWithFormat:@"%@/notifications/%@/confirm",
+                           [[[AppBand shared] configuration] server], self.rid];
+    
+    NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[[AppBand shared] appUser] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, nil];
+    
+    return [ABHttpRequest requestWithKey:self.impressionKey url:urlString parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout target:self finishSelector:@selector(impressionEnd:)];
+}
+
+- (void)addRequestToQueue:(ABHttpRequest *)request {
+    [[ABPush shared].pushQueue addOperation:request];
+}
+
+- (void)sendImpression {
+    ABHttpRequest *request = [self initializeImpressionRequest];
+    [self addRequestToQueue:request];
+}
 
 - (void)impressionEnd:(NSDictionary *)response {
     if ([self.handlerDelegate respondsToSelector:@selector(getRichEnd:)]) {
@@ -76,20 +94,7 @@
     }
     
     if (response.code == ABResponseCodeSuccess) {
-        NSString *urlString = [NSString stringWithFormat:@"%@/notifications/%@/confirm",
-                               [[[AppBand shared] configuration] server], self.rid];
-        
-        NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
-        NSString *appKey = [[AppBand shared] appKey];
-        NSString *appSecret = [[AppBand shared] appSecret];
-        NSString *udid = [[[AppBand shared] appUser] udid];
-        NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
-        
-        NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, nil];
-        
-        ABHttpRequest *request = [ABHttpRequest requestWithKey:self.impressionKey url:urlString parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout target:self finishSelector:@selector(impressionEnd:)];
-        
-        //ToDo add request to operation queue
+        [self sendImpression];
     } else {
         if ([self.handlerDelegate respondsToSelector:@selector(getRichEnd:)]) {
             [self.handlerDelegate getRichEnd:self];
@@ -101,37 +106,19 @@
 #pragma mark - Public
 
 - (void)begin {
-    NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
-    NSString *appKey = [[AppBand shared] appKey];
-    NSString *appSecret = [[AppBand shared] appSecret];
-    NSString *udid = [[[AppBand shared] appUser] udid];
-    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    ABHttpRequest *request = [self initializeHttpRequest];
+    [self addRequestToQueue:request];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@",
-                           [[AppBand shared] server], @"/rich_contents/",self.rid,udid,bundleId,token,appKey,appSecret];
-    
-//    ABHTTPRequest *request = [ABHTTPRequest requestWithKey:self.fetchKey 
-//                                                       url:urlString 
-//                                                 parameter:nil
-//                                                   timeout:kAppBandRequestTimeout
-//                                                  delegate:self
-//                                                    finish:@selector(getRichEnd:)
-//                                                      fail:@selector(getRichEnd:)];
-//    [[ABRestCenter shared] addRequest:request];
-    
-    ABHttpRequest *request = [ABHttpRequest requestWithKey:self.fetchKey url:urlString parameter:nil timeout:AppBandSettingsTimeout delegate:self];
-    
-    //ToDo add request to operation queue
 }
 
 - (void)cancel {
-//    NSEnumerator *enumerator = [[[[ABRestCenter shared] queue] operations] objectEnumerator];
-//    ABHTTPRequest *request = nil;
-//    while (request = [enumerator nextObject]) {
-//        if ([request.key isEqualToString:self.fetchKey] || [request.key isEqualToString:self.impressionKey]) {
-//            [request cancel];
-//        }
-//    }
+    NSEnumerator *enumerator = [[[ABPush shared].pushQueue operations] objectEnumerator];
+    ABHttpRequest *request = nil;
+    while (request = [enumerator nextObject]) {
+        if ([request.key isEqualToString:self.fetchKey] || [request.key isEqualToString:self.impressionKey]) {
+            [request cancel];
+        }
+    }
 }
 
 #pragma mark - livecycle

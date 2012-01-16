@@ -49,6 +49,59 @@ SINGLETON_INTERFACE(ABPush)
  */
 - (void)cancelGetRichContent:(NSString *)rid;
 
+/*
+ * Get Push Enable
+ *
+ *
+ */
+- (BOOL)getPushEnabled;
+
+/*
+ * Get Push DND Intervals
+ *
+ */
+- (NSArray *)getPushDNDIntervals;
+
+/*
+ * Set Push Enable
+ * 
+ * Paramters:
+ *        enabled: YES/NO. YES - Enable Recieve Push. NO - Disable Recieve Push.
+ */
+- (void)setPushEnabled:(BOOL)enabled;
+
+/*
+ * Set Push DND Intervals
+ * 
+ * Paramters:
+ *      intervals: Push will no be send to in those times interval.
+ */
+- (void)setPushDNDIntervals:(NSArray *)intervals;
+
+/*
+ * Register Remote Notification
+ *
+ * Paramters:
+ *        types:
+ *
+ */
+- (void)registerRemoteNotificationWithTypes:(UIRemoteNotificationType)types;
+
+/*
+ * Set Application Badge Number
+ *
+ * Paramters:
+ *  badgeNumber: the number you want to show on icon.
+ *
+ */
+- (void)setBadgeNumber:(NSInteger)badgeNumber;
+
+/*
+ * set Application Badge Number to 0
+ * 
+ */
+- (void)resetBadge;
+
 @end
 
 

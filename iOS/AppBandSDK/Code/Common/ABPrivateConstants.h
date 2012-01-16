@@ -28,4 +28,4 @@
 #define Fetch_Rich_ID_Prefix @"Fetch_Rich_ID_Prefix_"
 #define Impression_Rich_ID_Prefix @"Impression_Rich_ID_Prefix_"
 
-NSString * const ABHttpRequestErrorDomain = @"ABHttpRequestErrorDomain";
+#define ABHttpRequestErrorDomain @"ABHttpRequestErrorDomain"
