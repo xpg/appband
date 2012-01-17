@@ -75,7 +75,11 @@ static id appbandMock = nil;
     [[appbandMock expect] updateSettingsWithTarget:nil];
     [AppBand kickoff:kickOffOptions];
     [appbandMock verify];
+}
 
+- (void)testEnd {
+    [AppBand end];
+    STAssertNil([AppBand shared], @"Should release AppBand");
 }
 
 - (void)testUpdateSettingsWithTarget {

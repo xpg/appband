@@ -46,6 +46,72 @@
 		96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
 		96E8BB3314B58354009556FB /* ABConfiguration+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		96F5FF1014C54D2A00B14AAB /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E475514B40DA900BE0677 /* AppBand.m */; };
+		96F5FF1114C54D2A00B14AAB /* ABAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478114B442DF00BE0677 /* ABAnalytics.m */; };
+		96F5FF1214C54D2A00B14AAB /* ABConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478514B445CD00BE0677 /* ABConfiguration.m */; };
+		96F5FF1314C54D2A00B14AAB /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E482714B4C06200BE0677 /* lcl.m */; };
+		96F5FF1414C54D2A00B14AAB /* LCLNSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E482F14B4C06200BE0677 /* LCLNSLog.m */; };
+		96F5FF1514C54D2A00B14AAB /* ABLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E483B14B4C0B700BE0677 /* ABLog.m */; };
+		96F5FF1614C54D2A00B14AAB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
+		96F5FF1714C54D2A00B14AAB /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */; };
+		96F5FF1814C54D2A00B14AAB /* AB_SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA671A14BABAB600D80D29 /* AB_SBJSON.m */; };
+		96F5FF1914C54D2A00B14AAB /* AB_SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA671C14BABAB600D80D29 /* AB_SBJsonBase.m */; };
+		96F5FF1A14C54D2A00B14AAB /* AB_SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA671E14BABAB600D80D29 /* AB_SBJsonParser.m */; };
+		96F5FF1B14C54D2A00B14AAB /* AB_SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DA672014BABAB600D80D29 /* AB_SBJsonWriter.m */; };
+		96F5FF1C14C54D2A00B14AAB /* ABAppUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DF3D0114BBF2AF00BFD622 /* ABAppUser.m */; };
+		96F5FF1D14C54D2A00B14AAB /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365C014BE786500FA8250 /* UIDevice+IdentifierAddition.m */; };
+		96F5FF1E14C54D2A00B14AAB /* ABResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365C614BEBBFF00FA8250 /* ABResponse.m */; };
+		96F5FF1F14C54D2A00B14AAB /* ABPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365CB14BED66D00FA8250 /* ABPush.m */; };
+		96F5FF2014C54D2A00B14AAB /* ABNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E365D114BED90600FA8250 /* ABNotification.m */; };
+		96F5FF2114C54D2A00B14AAB /* ABIPadRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */; };
+		96F5FF2214C54D2A00B14AAB /* ABIPhoneRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761A14BFDDBC00620BD9 /* ABIPhoneRichView.m */; };
+		96F5FF2314C54D2A00B14AAB /* ABRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761C14BFDDBC00620BD9 /* ABRichView.m */; };
+		96F5FF2414C54D2A00B14AAB /* ABRichResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC762414BFDE9C00620BD9 /* ABRichResponse.m */; };
+		96F5FF2514C54D2A00B14AAB /* ABRichHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC762C14BFFF4400620BD9 /* ABRichHandler.m */; };
+		96F5FF2614C54D2A00B14AAB /* ABNetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E36EAB14C3D25600EB469A /* ABNetworkQueue.m */; };
+		96F5FF2814C54D2A00B14AAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FC762814BFF1B600620BD9 /* CoreGraphics.framework */; };
+		96F5FF2914C54D2A00B14AAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
+		96F5FF2A14C54D2A00B14AAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E472D14B40AFC00BE0677 /* Foundation.framework */; };
+		96F5FF2C14C54D2A00B14AAB /* AppBandBase-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FC2E475314B40DA900BE0677 /* AppBandBase-Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF2D14C54D2A00B14AAB /* AppBand.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E475414B40DA900BE0677 /* AppBand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF2E14C54D2A00B14AAB /* ABAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478014B442DF00BE0677 /* ABAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF2F14C54D2A00B14AAB /* ABConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478414B445CD00BE0677 /* ABConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3014C54D2A00B14AAB /* lcl.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E482614B4C06200BE0677 /* lcl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3114C54D2A00B14AAB /* lcl_config_components.template.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E482814B4C06200BE0677 /* lcl_config_components.template.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3214C54D2A00B14AAB /* lcl_config_extensions.template.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E482914B4C06200BE0677 /* lcl_config_extensions.template.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3314C54D2A00B14AAB /* lcl_config_logger.template.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E482A14B4C06200BE0677 /* lcl_config_logger.template.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3414C54D2A00B14AAB /* lcl_config_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E482D14B4C06200BE0677 /* lcl_config_logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3514C54D2A00B14AAB /* LCLNSLog.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E482E14B4C06200BE0677 /* LCLNSLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3614C54D2A00B14AAB /* ABLog.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E483A14B4C0B700BE0677 /* ABLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3714C54D2A00B14AAB /* lcl_config_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887714B4C68F00C7D85E /* lcl_config_logger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3814C54D2A00B14AAB /* lcl_config_extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887A14B4C6ED00C7D85E /* lcl_config_extensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3914C54D2A00B14AAB /* lcl_config_components.h in Headers */ = {isa = PBXBuildFile; fileRef = FCFA887C14B4C72400C7D85E /* lcl_config_components.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96F5FF3A14C54D2A00B14AAB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		96F5FF3B14C54D2A00B14AAB /* ABConfiguration+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		96F5FF3C14C54D2A00B14AAB /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */; };
+		96F5FF3D14C54D2A00B14AAB /* ABHttpRequest+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 963F97A914B68C4E00AD9950 /* ABHttpRequest+Private.h */; };
+		96F5FF3E14C54D2A00B14AAB /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA670B14BAA22D00D80D29 /* AppBand+Private.h */; };
+		96F5FF3F14C54D2A00B14AAB /* ABUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671214BABA0F00D80D29 /* ABUtilty.h */; };
+		96F5FF4014C54D2A00B14AAB /* AB_SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671914BABAB600D80D29 /* AB_SBJSON.h */; };
+		96F5FF4114C54D2A00B14AAB /* AB_SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671B14BABAB600D80D29 /* AB_SBJsonBase.h */; };
+		96F5FF4214C54D2A00B14AAB /* AB_SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671D14BABAB600D80D29 /* AB_SBJsonParser.h */; };
+		96F5FF4314C54D2A00B14AAB /* AB_SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671F14BABAB600D80D29 /* AB_SBJsonWriter.h */; };
+		96F5FF4414C54D2A00B14AAB /* ABConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA673314BAC10E00D80D29 /* ABConstants.h */; };
+		96F5FF4514C54D2A00B14AAB /* ABPrivateConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA674F14BAECB000D80D29 /* ABPrivateConstants.h */; };
+		96F5FF4614C54D2A00B14AAB /* ABAppUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3D0014BBF2AF00BFD622 /* ABAppUser.h */; };
+		96F5FF4714C54D2A00B14AAB /* ABAppUser+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DF3D0414BBF2CF00BFD622 /* ABAppUser+Private.h */; };
+		96F5FF4814C54D2A00B14AAB /* UIDevice+IdentifierAddition.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365BF14BE786500FA8250 /* UIDevice+IdentifierAddition.h */; };
+		96F5FF4914C54D2A00B14AAB /* ABResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365C514BEBBFF00FA8250 /* ABResponse.h */; };
+		96F5FF4A14C54D2A00B14AAB /* ABPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365CA14BED66D00FA8250 /* ABPush.h */; };
+		96F5FF4B14C54D2A00B14AAB /* ABPush+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365CE14BED68000FA8250 /* ABPush+Private.h */; };
+		96F5FF4C14C54D2A00B14AAB /* ABNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E365D014BED90600FA8250 /* ABNotification.h */; };
+		96F5FF4D14C54D2A00B14AAB /* ABIPadRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */; };
+		96F5FF4E14C54D2A00B14AAB /* ABIPhoneRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761914BFDDBC00620BD9 /* ABIPhoneRichView.h */; };
+		96F5FF4F14C54D2A00B14AAB /* ABRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761B14BFDDBC00620BD9 /* ABRichView.h */; };
+		96F5FF5014C54D2A00B14AAB /* ABRichResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC762314BFDE9C00620BD9 /* ABRichResponse.h */; };
+		96F5FF5114C54D2A00B14AAB /* ABRichHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC762B14BFFF4400620BD9 /* ABRichHandler.h */; };
+		96F5FF5214C54D2A00B14AAB /* ABRichHandler+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E36EA714C3C1BF00EB469A /* ABRichHandler+Private.h */; };
+		96F5FF5314C54D2A00B14AAB /* ABNetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E36EAA14C3D25600EB469A /* ABNetworkQueue.h */; };
 		96FC761D14BFDDBC00620BD9 /* ABIPadRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */; };
 		96FC761E14BFDDBC00620BD9 /* ABIPadRichView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */; };
 		96FC761F14BFDDBC00620BD9 /* ABIPhoneRichView.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FC761914BFDDBC00620BD9 /* ABIPhoneRichView.h */; };
@@ -202,6 +268,7 @@
 		96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABConfiguration+Private.h"; sourceTree = "<group>"; };
 		96E8BB2F14B581DC009556FB /* ABHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHttpRequest.h; sourceTree = "<group>"; };
 		96E8BB3014B581DC009556FB /* ABHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequest.m; sourceTree = "<group>"; };
+		96F5FF5714C54D2A00B14AAB /* libAppBandBaseProduction.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBandBaseProduction.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPadRichView.h; sourceTree = "<group>"; };
 		96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIPadRichView.m; sourceTree = "<group>"; };
 		96FC761914BFDDBC00620BD9 /* ABIPhoneRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPhoneRichView.h; sourceTree = "<group>"; };
@@ -303,6 +370,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		96F5FF2714C54D2A00B14AAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96F5FF2814C54D2A00B14AAB /* CoreGraphics.framework in Frameworks */,
+				96F5FF2914C54D2A00B14AAB /* UIKit.framework in Frameworks */,
+				96F5FF2A14C54D2A00B14AAB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC2E472714B40AFC00BE0677 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,6 +522,7 @@
 				FC2E472A14B40AFC00BE0677 /* libAppBandBase.a */,
 				FC2E473A14B40AFD00BE0677 /* AppBandBaseTests.octest */,
 				FCFA889314B5A89000C7D85E /* AppBandTesting.octest */,
+				96F5FF5714C54D2A00B14AAB /* libAppBandBaseProduction.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -688,6 +766,53 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		96F5FF2B14C54D2A00B14AAB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96F5FF2C14C54D2A00B14AAB /* AppBandBase-Prefix.pch in Headers */,
+				96F5FF2D14C54D2A00B14AAB /* AppBand.h in Headers */,
+				96F5FF2E14C54D2A00B14AAB /* ABAnalytics.h in Headers */,
+				96F5FF2F14C54D2A00B14AAB /* ABConfiguration.h in Headers */,
+				96F5FF3014C54D2A00B14AAB /* lcl.h in Headers */,
+				96F5FF3114C54D2A00B14AAB /* lcl_config_components.template.h in Headers */,
+				96F5FF3214C54D2A00B14AAB /* lcl_config_extensions.template.h in Headers */,
+				96F5FF3314C54D2A00B14AAB /* lcl_config_logger.template.h in Headers */,
+				96F5FF3414C54D2A00B14AAB /* lcl_config_logger.h in Headers */,
+				96F5FF3514C54D2A00B14AAB /* LCLNSLog.h in Headers */,
+				96F5FF3614C54D2A00B14AAB /* ABLog.h in Headers */,
+				96F5FF3714C54D2A00B14AAB /* lcl_config_logger.h in Headers */,
+				96F5FF3814C54D2A00B14AAB /* lcl_config_extensions.h in Headers */,
+				96F5FF3914C54D2A00B14AAB /* lcl_config_components.h in Headers */,
+				96F5FF3A14C54D2A00B14AAB /* ABHttpRequest.h in Headers */,
+				96F5FF3B14C54D2A00B14AAB /* ABConfiguration+Private.h in Headers */,
+				96F5FF3C14C54D2A00B14AAB /* ABReachability.h in Headers */,
+				96F5FF3D14C54D2A00B14AAB /* ABHttpRequest+Private.h in Headers */,
+				96F5FF3E14C54D2A00B14AAB /* AppBand+Private.h in Headers */,
+				96F5FF3F14C54D2A00B14AAB /* ABUtilty.h in Headers */,
+				96F5FF4014C54D2A00B14AAB /* AB_SBJSON.h in Headers */,
+				96F5FF4114C54D2A00B14AAB /* AB_SBJsonBase.h in Headers */,
+				96F5FF4214C54D2A00B14AAB /* AB_SBJsonParser.h in Headers */,
+				96F5FF4314C54D2A00B14AAB /* AB_SBJsonWriter.h in Headers */,
+				96F5FF4414C54D2A00B14AAB /* ABConstants.h in Headers */,
+				96F5FF4514C54D2A00B14AAB /* ABPrivateConstants.h in Headers */,
+				96F5FF4614C54D2A00B14AAB /* ABAppUser.h in Headers */,
+				96F5FF4714C54D2A00B14AAB /* ABAppUser+Private.h in Headers */,
+				96F5FF4814C54D2A00B14AAB /* UIDevice+IdentifierAddition.h in Headers */,
+				96F5FF4914C54D2A00B14AAB /* ABResponse.h in Headers */,
+				96F5FF4A14C54D2A00B14AAB /* ABPush.h in Headers */,
+				96F5FF4B14C54D2A00B14AAB /* ABPush+Private.h in Headers */,
+				96F5FF4C14C54D2A00B14AAB /* ABNotification.h in Headers */,
+				96F5FF4D14C54D2A00B14AAB /* ABIPadRichView.h in Headers */,
+				96F5FF4E14C54D2A00B14AAB /* ABIPhoneRichView.h in Headers */,
+				96F5FF4F14C54D2A00B14AAB /* ABRichView.h in Headers */,
+				96F5FF5014C54D2A00B14AAB /* ABRichResponse.h in Headers */,
+				96F5FF5114C54D2A00B14AAB /* ABRichHandler.h in Headers */,
+				96F5FF5214C54D2A00B14AAB /* ABRichHandler+Private.h in Headers */,
+				96F5FF5314C54D2A00B14AAB /* ABNetworkQueue.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC2E472814B40AFC00BE0677 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -769,6 +894,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		96F5FF0E14C54D2A00B14AAB /* AppBandBaseProduction */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96F5FF5414C54D2A00B14AAB /* Build configuration list for PBXNativeTarget "AppBandBaseProduction" */;
+			buildPhases = (
+				96F5FF0F14C54D2A00B14AAB /* Sources */,
+				96F5FF2714C54D2A00B14AAB /* Frameworks */,
+				96F5FF2B14C54D2A00B14AAB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppBandBaseProduction;
+			productName = AppBandBase;
+			productReference = 96F5FF5714C54D2A00B14AAB /* libAppBandBaseProduction.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		FC2E472914B40AFC00BE0677 /* AppBandBase */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC2E474C14B40AFD00BE0677 /* Build configuration list for PBXNativeTarget "AppBandBase" */;
@@ -847,6 +989,7 @@
 			projectRoot = "";
 			targets = (
 				FC2E472914B40AFC00BE0677 /* AppBandBase */,
+				96F5FF0E14C54D2A00B14AAB /* AppBandBaseProduction */,
 				FC2E473914B40AFD00BE0677 /* AppBandBaseTests */,
 				FCFA889214B5A89000C7D85E /* AppBandTesting */,
 			);
@@ -906,6 +1049,36 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		96F5FF0F14C54D2A00B14AAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96F5FF1014C54D2A00B14AAB /* AppBand.m in Sources */,
+				96F5FF1114C54D2A00B14AAB /* ABAnalytics.m in Sources */,
+				96F5FF1214C54D2A00B14AAB /* ABConfiguration.m in Sources */,
+				96F5FF1314C54D2A00B14AAB /* lcl.m in Sources */,
+				96F5FF1414C54D2A00B14AAB /* LCLNSLog.m in Sources */,
+				96F5FF1514C54D2A00B14AAB /* ABLog.m in Sources */,
+				96F5FF1614C54D2A00B14AAB /* ABHttpRequest.m in Sources */,
+				96F5FF1714C54D2A00B14AAB /* ABReachability.m in Sources */,
+				96F5FF1814C54D2A00B14AAB /* AB_SBJSON.m in Sources */,
+				96F5FF1914C54D2A00B14AAB /* AB_SBJsonBase.m in Sources */,
+				96F5FF1A14C54D2A00B14AAB /* AB_SBJsonParser.m in Sources */,
+				96F5FF1B14C54D2A00B14AAB /* AB_SBJsonWriter.m in Sources */,
+				96F5FF1C14C54D2A00B14AAB /* ABAppUser.m in Sources */,
+				96F5FF1D14C54D2A00B14AAB /* UIDevice+IdentifierAddition.m in Sources */,
+				96F5FF1E14C54D2A00B14AAB /* ABResponse.m in Sources */,
+				96F5FF1F14C54D2A00B14AAB /* ABPush.m in Sources */,
+				96F5FF2014C54D2A00B14AAB /* ABNotification.m in Sources */,
+				96F5FF2114C54D2A00B14AAB /* ABIPadRichView.m in Sources */,
+				96F5FF2214C54D2A00B14AAB /* ABIPhoneRichView.m in Sources */,
+				96F5FF2314C54D2A00B14AAB /* ABRichView.m in Sources */,
+				96F5FF2414C54D2A00B14AAB /* ABRichResponse.m in Sources */,
+				96F5FF2514C54D2A00B14AAB /* ABRichHandler.m in Sources */,
+				96F5FF2614C54D2A00B14AAB /* ABNetworkQueue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC2E472614B40AFC00BE0677 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1023,15 +1196,69 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		96F5FF5514C54D2A00B14AAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/AppBandBase.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Code/Base/AppBandBase-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = Production;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = AppBandBaseProduction;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		96F5FF5614C54D2A00B14AAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/AppBandBase.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Code/Base/AppBandBase-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = Production;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = AppBandBaseProduction;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		FC2E472414B408EE00BE0677 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
 		FC2E472514B408EE00BE0677 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -1048,16 +1275,13 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Base/AppBandBase-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1076,11 +1300,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Base/AppBandBase-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1107,10 +1332,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Base/AppBandBase-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = SANDBOX;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1141,6 +1363,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Base/AppBandBase-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = SANDBOX;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1170,10 +1393,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntegrationTests/AppBandTesting-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1200,6 +1420,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntegrationTests/AppBandTesting-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1216,6 +1437,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		96F5FF5414C54D2A00B14AAB /* Build configuration list for PBXNativeTarget "AppBandBaseProduction" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96F5FF5514C54D2A00B14AAB /* Debug */,
+				96F5FF5614C54D2A00B14AAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FC2E472214B408EE00BE0677 /* Build configuration list for PBXProject "AppBandSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

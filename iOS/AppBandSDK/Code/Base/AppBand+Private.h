@@ -6,10 +6,12 @@
 //  Copyright (c) 2012 Xtreme Programming Group. All rights reserved.
 //
 
-//#define kAppBandProductionServer @"https://api.apphub.com/v1"
-//#define kAppBandProductionServer @"http://192.168.1.138:3000/v1"
+#if Production
+    #define kAppBandProductionServer @"https://api.appmocha.com/v1"
+#else
+    #define kAppBandProductionServer @"https://api.apphub.com/v1"
+#endif
 
-#define kAppBandProductionServer @"https://api.appmocha.com/v1"
 
 #import "AppBand.h"
 

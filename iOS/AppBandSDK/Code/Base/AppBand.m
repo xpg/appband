@@ -169,6 +169,7 @@ static AppBand *_appBand;
 
 - (ABConfiguration *)initializeConfiguration:(NSDictionary *)config {
     ABConfiguration *configuration = [[[ABConfiguration alloc] init] autorelease];
+    [configuration setServer:kAppBandProductionServer];
     [configuration setHandlePushAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandlePushAuto] boolValue] : YES];
     [configuration setHandleRichAuto:[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] ? [[config objectForKey:AppBandKickOfOptionsAppBandConfigHandleRichAuto] boolValue] : YES];
     
