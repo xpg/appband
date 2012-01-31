@@ -22,6 +22,15 @@
 #define AB_APP_OS_VERSION @"os_version"
 #define AB_APP_DEVICE_TYPE @"device_type"
 
+#define AB_APP_NOTIFICATION_SUM @"sum"
+#define AB_APP_NOTIFICATION_NOTIFICATIONS @"notifications"
+
+#define AB_APP_NOTIFICATION_ID @"abni"
+#define AB_APP_NOTIFICATION_ALERT @"alert"
+#define AB_APP_NOTIFICATION_TYPE @"is_rich"
+#define AB_APP_NOTIFICATION_SEND_TIME @"send_time"
+#define AB_APP_NOTIFICATION_ISREAD @"is_read"
+
 #define AB_Rich_Title @"rich_title"
 #define AB_Rich_Content @"rich_content"
 

@@ -33,6 +33,23 @@ SINGLETON_INTERFACE(ABPush)
           applicationState:(UIApplicationState)state;
 
 /*
+ * Inbox Method
+ * 
+ * Paramters:
+ *           type: Notification Type.
+ *          index: begin index.
+ *         status: 0: unread, 1:read, 2:all
+ *   pageCapacity: the capacity of per page.
+ *  
+ */
+- (void)getNotificationsByType:(ABNotificationType)type 
+                       startAt:(NSString *)notificationId 
+                        status:(ABNotificationStatusType)status 
+                  pageCapacity:(NSNumber *)pages 
+                        target:(id)target 
+                finishSelector:(SEL)finishSelector;
+
+/*
  * Get Rich Message Content
  * 
  * Paramters:

@@ -66,7 +66,7 @@
 
 - (void)testSendImpression {
     NSDictionary *noti = [NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello", AppBandNotificationAlert, [NSNumber numberWithInt:1], AppBandNotificationBadge, nil], AppBandNotificationAPS, @"123", AppBandNotificationId, [NSNumber numberWithInt:0], AppBandPushNotificationType, nil];
-    [[pushMock expect] addImpressionRequestToQueue:[OCMArg isNotNil]];
+    [[pushMock expect] addRequestToQueue:[OCMArg isNotNil]];
     
     [pushMock handleNotification:noti applicationState:UIApplicationStateActive];
     

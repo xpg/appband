@@ -12,6 +12,9 @@
 		967ED2AD14B5B3EB0034A0A5 /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */; };
 		967ED2AE14B5B3EB0034A0A5 /* ABReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */; };
 		967ED2B114B5B45D0034A0A5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */; };
+		96A2355A14D78B43003D43B9 /* ABInboxResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A2355814D78B43003D43B9 /* ABInboxResponse.h */; };
+		96A2355B14D78B43003D43B9 /* ABInboxResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A2355914D78B43003D43B9 /* ABInboxResponse.m */; };
+		96BF5FAD14C55A30002FADEE /* ABSpecEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = FC2E478C14B446E900BE0677 /* ABSpecEnvironment.h */; };
 		96D4AB1214BC1DD400C6767B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2E476514B432EF00BE0677 /* UIKit.framework */; };
 		96DA670C14BAA22E00D80D29 /* AppBand+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA670B14BAA22D00D80D29 /* AppBand+Private.h */; };
 		96DA671314BABA0F00D80D29 /* ABUtilty.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA671214BABA0F00D80D29 /* ABUtilty.h */; };
@@ -46,6 +49,11 @@
 		96E8BB3114B581DC009556FB /* ABHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2F14B581DC009556FB /* ABHttpRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		96E8BB3214B581DC009556FB /* ABHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8BB3014B581DC009556FB /* ABHttpRequest.m */; };
 		96E8BB3314B58354009556FB /* ABConfiguration+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		96F1AE0514C900E8000819C2 /* ABPurchase.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F1AE0314C900E8000819C2 /* ABPurchase.h */; };
+		96F1AE0614C900E8000819C2 /* ABPurchase.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F1AE0414C900E8000819C2 /* ABPurchase.m */; };
+		96F1AE0D14C90175000819C2 /* ABPurchase+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F1AE0C14C90175000819C2 /* ABPurchase+Private.h */; };
+		96F1AE1E14C9133F000819C2 /* ABProductsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F1AE1C14C9133F000819C2 /* ABProductsResponse.h */; };
+		96F1AE1F14C9133F000819C2 /* ABProductsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F1AE1D14C9133F000819C2 /* ABProductsResponse.m */; };
 		96F5FF1014C54D2A00B14AAB /* AppBand.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E475514B40DA900BE0677 /* AppBand.m */; };
 		96F5FF1114C54D2A00B14AAB /* ABAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478114B442DF00BE0677 /* ABAnalytics.m */; };
 		96F5FF1214C54D2A00B14AAB /* ABConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2E478514B445CD00BE0677 /* ABConfiguration.m */; };
@@ -235,6 +243,8 @@
 		967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABReachability.h; sourceTree = "<group>"; };
 		967ED2AC14B5B3EB0034A0A5 /* ABReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABReachability.m; sourceTree = "<group>"; };
 		967ED2B014B5B45D0034A0A5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		96A2355814D78B43003D43B9 /* ABInboxResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABInboxResponse.h; sourceTree = "<group>"; };
+		96A2355914D78B43003D43B9 /* ABInboxResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABInboxResponse.m; sourceTree = "<group>"; };
 		96DA670B14BAA22D00D80D29 /* AppBand+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppBand+Private.h"; sourceTree = "<group>"; };
 		96DA671214BABA0F00D80D29 /* ABUtilty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABUtilty.h; sourceTree = "<group>"; };
 		96DA671914BABAB600D80D29 /* AB_SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AB_SBJSON.h; sourceTree = "<group>"; };
@@ -268,6 +278,11 @@
 		96E8BB2914B57B46009556FB /* ABConfiguration+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABConfiguration+Private.h"; sourceTree = "<group>"; };
 		96E8BB2F14B581DC009556FB /* ABHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABHttpRequest.h; sourceTree = "<group>"; };
 		96E8BB3014B581DC009556FB /* ABHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABHttpRequest.m; sourceTree = "<group>"; };
+		96F1AE0314C900E8000819C2 /* ABPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPurchase.h; sourceTree = "<group>"; };
+		96F1AE0414C900E8000819C2 /* ABPurchase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPurchase.m; sourceTree = "<group>"; };
+		96F1AE0C14C90175000819C2 /* ABPurchase+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPurchase+Private.h"; sourceTree = "<group>"; };
+		96F1AE1C14C9133F000819C2 /* ABProductsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABProductsResponse.h; sourceTree = "<group>"; };
+		96F1AE1D14C9133F000819C2 /* ABProductsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABProductsResponse.m; sourceTree = "<group>"; };
 		96F5FF5714C54D2A00B14AAB /* libAppBandBaseProduction.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppBandBaseProduction.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FC761714BFDDBC00620BD9 /* ABIPadRichView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIPadRichView.h; sourceTree = "<group>"; };
 		96FC761814BFDDBC00620BD9 /* ABIPadRichView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIPadRichView.m; sourceTree = "<group>"; };
@@ -448,6 +463,8 @@
 				96E36EA714C3C1BF00EB469A /* ABRichHandler+Private.h */,
 				96FC762B14BFFF4400620BD9 /* ABRichHandler.h */,
 				96FC762C14BFFF4400620BD9 /* ABRichHandler.m */,
+				96A2355814D78B43003D43B9 /* ABInboxResponse.h */,
+				96A2355914D78B43003D43B9 /* ABInboxResponse.m */,
 				96FC762314BFDE9C00620BD9 /* ABRichResponse.h */,
 				96FC762414BFDE9C00620BD9 /* ABRichResponse.m */,
 				96E365D014BED90600FA8250 /* ABNotification.h */,
@@ -488,6 +505,19 @@
 				96E8BB3014B581DC009556FB /* ABHttpRequest.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		96F1AE0114C90004000819C2 /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				96F1AE1C14C9133F000819C2 /* ABProductsResponse.h */,
+				96F1AE1D14C9133F000819C2 /* ABProductsResponse.m */,
+				96F1AE0C14C90175000819C2 /* ABPurchase+Private.h */,
+				96F1AE0314C900E8000819C2 /* ABPurchase.h */,
+				96F1AE0414C900E8000819C2 /* ABPurchase.m */,
+			);
+			name = IAP;
+			path = Code/IAP;
 			sourceTree = "<group>";
 		};
 		96FC761514BFDDAA00620BD9 /* UI */ = {
@@ -562,6 +592,7 @@
 		FC2E475914B40DC700BE0677 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				96F1AE0114C90004000819C2 /* IAP */,
 				96FC761514BFDDAA00620BD9 /* UI */,
 				96E365C914BED62500FA8250 /* Push */,
 				96E8BB2D14B581A0009556FB /* Common */,
@@ -857,6 +888,10 @@
 				96FC762D14BFFF4500620BD9 /* ABRichHandler.h in Headers */,
 				96E36EA814C3C1BF00EB469A /* ABRichHandler+Private.h in Headers */,
 				96E36EAC14C3D25600EB469A /* ABNetworkQueue.h in Headers */,
+				96F1AE0514C900E8000819C2 /* ABPurchase.h in Headers */,
+				96F1AE0D14C90175000819C2 /* ABPurchase+Private.h in Headers */,
+				96F1AE1E14C9133F000819C2 /* ABProductsResponse.h in Headers */,
+				96A2355A14D78B43003D43B9 /* ABInboxResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +923,7 @@
 				FC2E481814B4A6DD00BE0677 /* OCPartialMockObject.h in Headers */,
 				FC2E481A14B4A6DD00BE0677 /* OCPartialMockRecorder.h in Headers */,
 				FC2E481C14B4A6DD00BE0677 /* OCProtocolMockObject.h in Headers */,
+				96BF5FAD14C55A30002FADEE /* ABSpecEnvironment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,6 +1142,9 @@
 				96FC762614BFDE9C00620BD9 /* ABRichResponse.m in Sources */,
 				96FC762E14BFFF4500620BD9 /* ABRichHandler.m in Sources */,
 				96E36EAD14C3D25600EB469A /* ABNetworkQueue.m in Sources */,
+				96F1AE0614C900E8000819C2 /* ABPurchase.m in Sources */,
+				96F1AE1F14C9133F000819C2 /* ABProductsResponse.m in Sources */,
+				96A2355B14D78B43003D43B9 /* ABInboxResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

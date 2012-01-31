@@ -17,6 +17,7 @@
 #import "ABPush.h"
 #import "AppBand+Private.h"
 #import "ABRichHandler.h"
+#import "ABInboxResponse.h"
 
 #import "ABHttpRequest.h"
 #import "ABPrivateConstants.h"
@@ -33,10 +34,15 @@
 @property(nonatomic,retain) ABRichView *richView;
 
 @property(nonatomic,retain) ABNetworkQueue *pushQueue;
+@property(nonatomic,copy) NSString *inboxKey;
+@property(nonatomic,assign) id inboxTarget;
+@property(nonatomic,assign) SEL inboxSEL;
 
 - (ABHttpRequest *)initImpressionHttpRequest:(NSString *)notificationId;
 
-- (void)addImpressionRequestToQueue:(ABHttpRequest *)request;
+- (ABHttpRequest *)initInboxHttpRequest:(NSUInteger)pageCa type:(ABNotificationType)type start:(NSString *)notificationId status:(ABNotificationStatusType)status;
+
+- (void)addRequestToQueue:(ABHttpRequest *)request;
 
 - (void)sendImpression:(NSString *)notificationId;
 
@@ -53,6 +59,10 @@
 - (BOOL)handleRichAuto;
 
 - (void)showRich:(ABNotification *)notification;
+
+- (NSDate *)getDateFromString:(NSString *)dateStr;
+
+- (void)getNotificationsEnd:(NSDictionary *)response;
 
 - (ABRichHandler *)createRichHandler:(NSString *)notificationId delegate:(id<ABRichDelegate>)richDelegate;
 

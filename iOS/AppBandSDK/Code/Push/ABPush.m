@@ -13,6 +13,9 @@
 @synthesize richHandleDictionay = _richHandleDictionay;
 @synthesize richView = _richView;
 @synthesize pushQueue = _pushQueue;
+@synthesize inboxKey = _inboxKey;
+@synthesize inboxTarget = _inboxTarget;
+@synthesize inboxSEL = _inboxSEL;
 
 @synthesize pushDelegate = _pushDelegate;
 
@@ -28,18 +31,34 @@ SINGLETON_IMPLEMENTATION(ABPush)
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@",
-                           [[AppBand shared] server], @"/rich_contents/",notificationId,udid,bundleId,token,appKey,appSecret];
+                           [[[AppBand shared] configuration] server], @"/rich_contents/",notificationId,udid,bundleId,token,appKey,appSecret];
     
     return [ABHttpRequest requestWithKey:nil url:urlString parameter:nil timeout:AppBandSettingsTimeout delegate:nil];
 }
 
-- (void)addImpressionRequestToQueue:(ABHttpRequest *)request {
+- (ABHttpRequest *)initInboxHttpRequest:(NSUInteger)pageCa type:(ABNotificationType)type start:(NSString *)notificationId status:(ABNotificationStatusType)status {
+    NSString *token = [[[AppBand shared] appUser] token] ? [[[AppBand shared] appUser] token] : @"";
+    NSString *appKey = [[AppBand shared] appKey];
+    NSString *appSecret = [[AppBand shared] appSecret];
+    NSString *udid = [[[AppBand shared] appUser] udid];
+    NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
+    
+    notificationId = notificationId ? notificationId : @"";
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@&abni=%@&pages=%i&mode=%i&status=%i",[[[AppBand shared] configuration] server], @"/notifications.json", udid, bundleId, token, appKey, appSecret, notificationId,pageCa,type, status];
+    
+    [ABPush shared].inboxKey = [[NSDate date] description];
+    
+    return [ABHttpRequest requestWithKey:self.inboxKey url:urlString parameter:nil timeout:AppBandSettingsTimeout target:self finishSelector:@selector(getNotificationsEnd:)];
+}
+
+- (void)addRequestToQueue:(ABHttpRequest *)request {
     [[ABPush shared].pushQueue addOperation:request];
 }
 
 - (void)sendImpression:(NSString *)notificationId {
     ABHttpRequest *request = [self initImpressionHttpRequest:notificationId];
-    [[ABPush shared] addImpressionRequestToQueue:request];
+    [[ABPush shared] addRequestToQueue:request];
 }
 
 - (void)callbackPushSelector:(NSDictionary *)notification 
@@ -139,6 +158,68 @@ SINGLETON_IMPLEMENTATION(ABPush)
     [[ABPush shared] getRichContent:notification delegate:self.richView];
 }
 
+- (NSDate *)getDateFromString:(NSString *)dateStr {
+    [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    [dateFormatter release];
+    
+    return date;
+}
+            
+- (void)getNotificationsEnd:(NSDictionary *)response {
+    ABHttpRequest *httpRequest = [response objectForKey:ABHTTPRequestObject];
+    
+    if (![httpRequest.key isEqualToString:[ABPush shared].inboxKey])
+        return;
+    
+    [ABPush shared].inboxKey = nil;
+    
+    ABResponseCode code = (int)httpRequest.status;
+    
+    ABInboxResponse *inboxResponse = [[[ABInboxResponse alloc] init] autorelease];
+    [inboxResponse setCode:code];
+    [inboxResponse setError:[response objectForKey:ABHTTPRequestError]];
+    
+    if (code == ABResponseCodeSuccess) {
+        NSString *resp = [[NSString alloc] initWithData:httpRequest.responseData encoding:NSUTF8StringEncoding];
+        
+        //parser response json
+        NSError *error = nil;
+        AB_SBJSON *json = [[AB_SBJSON alloc] init];
+        NSDictionary *dic = [json objectWithString:resp error:&error];
+        [json release];
+        
+        if (dic && !error) {
+            [inboxResponse setSum:[[dic objectForKey:AB_APP_NOTIFICATION_SUM] intValue]];
+            NSArray *tmp = [dic objectForKey:AB_APP_NOTIFICATION_NOTIFICATIONS];
+            if ([tmp count] > 0) {
+                NSMutableArray *notifications = [NSMutableArray array];
+                for (NSDictionary *noti in tmp) {
+                    NSString *notiId = [noti objectForKey:AB_APP_NOTIFICATION_ID];
+                    if (notiId && ![notiId isEqualToString:@""]) {
+                        ABNotification *notification = [[[ABNotification alloc] init] autorelease];
+                        [notification setNotificationId:notiId];
+                        [notification setType:[[noti objectForKey:AB_APP_NOTIFICATION_TYPE] intValue]];
+                        [notification setAlert:[noti objectForKey:AB_APP_NOTIFICATION_ALERT]];
+                        [notification setSendTime:[[ABPush shared] getDateFromString:[noti objectForKey:AB_APP_NOTIFICATION_SEND_TIME]]];
+                        [notification setIsRead:[[noti objectForKey:AB_APP_NOTIFICATION_ISREAD] boolValue]];
+                        [notifications addObject:notification];
+                    }
+                }
+                [inboxResponse setNotificationsArray:[NSArray arrayWithArray:notifications]];
+            }
+        } else {
+            [inboxResponse setCode:ABResponseCodeError];
+            [inboxResponse setError:[NSError errorWithDomain:@"AppBand Parser Error" code:ABResponseCodeError userInfo:nil]];
+        }
+    }
+    
+    [[ABPush shared].inboxTarget performSelector:[ABPush shared].inboxSEL withObject:inboxResponse];
+}
+
 - (ABRichHandler *)createRichHandler:(NSString *)notificationId delegate:(id<ABRichDelegate>)richDelegate {
     return [ABRichHandler handlerWithRichID:notificationId richDelegate:richDelegate handlerDelegate:self];
     
@@ -206,6 +287,34 @@ SINGLETON_IMPLEMENTATION(ABPush)
 }
 
 /*
+ * Inbox Method
+ * 
+ * Paramters:
+ *           type: Notification Type.
+ *          index: begin index.
+ *         status: 0: unread, 1:read, 2:all
+ *   pageCapacity: the capacity of per page.
+ *  
+ */
+- (void)getNotificationsByType:(ABNotificationType)type 
+                       startAt:(NSString *)notificationId 
+                        status:(ABNotificationStatusType)status 
+                  pageCapacity:(NSNumber *)pages 
+                        target:(id)target 
+                finishSelector:(SEL)finishSelector {
+    [ABPush shared].inboxTarget = target;
+    [ABPush shared].inboxSEL = finishSelector;
+    
+    NSUInteger pageCa = 20;
+    if (pages) {
+        pageCa = [pages unsignedIntValue];
+    }
+                  
+    ABHttpRequest *request = [[ABPush shared] initInboxHttpRequest:pageCa type:type start:notificationId status:status];
+    [[ABPush shared] addRequestToQueue:request];
+}
+
+/*
  * Get Rich Message Content
  * 
  * Paramters:
@@ -222,7 +331,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
         [handler setRichDelegate:richDelegate];
     } else {
         handler = [[ABPush shared] createRichHandler:notification.notificationId delegate:richDelegate];
-        [self.richHandleDictionay setObject:handler forKey:handler.impressionKey];
+        [[ABPush shared].richHandleDictionay setObject:handler forKey:handler.impressionKey];
         [handler begin];
     }
 }
@@ -234,7 +343,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *           rid: Rich notification ID.
  */
 - (void)cancelGetRichContent:(NSString *)rid {
-    ABRichHandler *handler = [self getRichHandlerFromDictionary:rid];
+    ABRichHandler *handler = [[ABPush shared] getRichHandlerFromDictionary:rid];
     if (handler) {
         [handler cancel];
     }
@@ -331,6 +440,7 @@ SINGLETON_IMPLEMENTATION(ABPush)
 
 - (void)dealloc {
     [self.pushQueue cancelAllOperations];
+    [self setInboxKey:nil];
     [self setPushQueue:nil];
     [self setRichHandleDictionay:nil];
     [self setRichView:nil];
