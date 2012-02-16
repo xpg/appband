@@ -363,12 +363,14 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *
  */
 - (NSArray *)getPushDNDIntervals {
-    NSString *intervalsStr = [[AppBand shared] appUser].pushIntervals;
-    if (!intervalsStr) 
-        return nil;
+//    NSArray *intervalsStr = [[AppBand shared] appUser].pushIntervals;
+//    if (!intervalsStr) 
+//        return nil;
+//    
+//    AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
+//    return [json objectWithString:intervalsStr error:nil];
     
-    AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
-    return [json objectWithString:intervalsStr error:nil];
+    return [[AppBand shared] appUser].pushIntervals;
 }
 
 /*
@@ -388,9 +390,9 @@ SINGLETON_IMPLEMENTATION(ABPush)
  *      intervals: Push will no be send to in those times interval.
  */
 - (void)setPushDNDIntervals:(NSArray *)intervals {
-    AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
-    NSString *intervalsStr = [json stringWithObject:intervals error:nil];
-    [[[AppBand shared] appUser] setPushIntervals:intervalsStr];
+//    AB_SBJSON *json = [[[AB_SBJSON alloc] init] autorelease];
+//    NSString *intervalsStr = [json stringWithObject:intervals error:nil];
+    [[[AppBand shared] appUser] setPushIntervals:intervals];
 }
 
 /*

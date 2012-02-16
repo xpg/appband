@@ -84,7 +84,21 @@
  * Paramters:
  *          tags: tag dictionary.
  */
-- (void)setTags:(NSString *)tags;
+//- (void)setTags:(NSString *)tags;
+- (void)setTagsWithK1:(NSString *)k1 k2:(NSString *)k2 k3:(NSString *)k3 k4:(NSString *)k4 k5:(NSString *)k5;
+
+/*
+ * Set GEO
+ * 
+ * Paramters:
+ *          latitude: latitude.
+ *          longitude: longitude.
+ *          country: country.
+ *          state: state.
+ *          city: city.
+ *          street: street.
+ */
+- (void)setGeoLatitude:(double)latitude longitude:(double)longitude country:(NSString *)country countryCode:(NSString *)countryCode state:(NSString *)state city:(NSString *)city district:(NSString *)district street:(NSString *)street zipCode:(NSString *)zipCode;
 
 /*
  * Get Tags

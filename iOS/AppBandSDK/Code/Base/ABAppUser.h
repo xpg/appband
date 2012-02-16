@@ -32,9 +32,11 @@
 //The Tags
 @property(nonatomic,copy) NSString *tags;
 
+@property(nonatomic,copy) NSDictionary *geo;
+
 @property(nonatomic,assign) BOOL pushEnable;
 
-@property(nonatomic,copy) NSString *pushIntervals;
+@property(nonatomic,copy) NSArray *pushIntervals;
 
 /*
  * Synchronize Device Data to Server. 

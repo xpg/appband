@@ -147,8 +147,65 @@ static AppBand *_appBand;
  * Paramters:
  *          tags: tag dictionary.
  */
-- (void)setTags:(NSString *)tags {
-    [self.appUser setTags:tags];
+//- (void)setTags:(NSString *)tags {
+//    [self.appUser setTags:tags];
+//}
+- (void)setTagsWithK1:(NSString *)k1 k2:(NSString *)k2 k3:(NSString *)k3 k4:(NSString *)k4 k5:(NSString *)k5 {
+    k1 = k1 ? k1 : @"";
+    k2 = k2 ? k2 : @"";
+    k3 = k3 ? k3 : @"";
+    k4 = k4 ? k4 : @"";
+    k5 = k5 ? k5 : @"";
+    [self.appUser setTags:[NSString stringWithFormat:@"k1=%@,k2=%@,k3=%@,k4=%@,k5=%@",k1,k2,k3,k4,k5]];
+}
+
+/*
+ * Set GEO
+ * 
+ * Paramters:
+ *          latitude: latitude.
+ *          longitude: longitude.
+ *          country: country.
+ *          state: state.
+ *          city: city.
+ *          street: street.
+ */
+//- (void)setTags:(NSString *)tags;
+- (void)setGeoLatitude:(double)latitude longitude:(double)longitude country:(NSString *)country countryCode:(NSString *)countryCode state:(NSString *)state city:(NSString *)city district:(NSString *)district street:(NSString *)street zipCode:(NSString *)zipCode {
+    NSMutableDictionary *geoDic = [NSMutableDictionary dictionary];
+    [geoDic setObject:[NSNumber numberWithDouble:latitude] forKey:AB_APP_GEO_Latitude];
+    [geoDic setObject:[NSNumber numberWithDouble:longitude] forKey:AB_APP_GEO_Longitude];
+    
+    if (country && ![country isEqualToString:@""]) {
+        [geoDic setObject:country forKey:AB_APP_GEO_CountryName];
+    }
+    
+    if (countryCode && ![countryCode isEqualToString:@""]) {
+        [geoDic setObject:countryCode forKey:AB_APP_GEO_CountryCode];
+    }
+    
+    if (state && ![state isEqualToString:@""]) {
+        [geoDic setObject:state forKey:AB_APP_GEO_State];
+    }
+    
+    if (city && ![city isEqualToString:@""]) {
+        [geoDic setObject:city forKey:AB_APP_GEO_City];
+    }
+    
+    if (district && ![district isEqualToString:@""]) {
+        [geoDic setObject:district forKey:AB_APP_GEO_District];
+    }
+    
+    if (street && ![street isEqualToString:@""]) {
+        [geoDic setObject:street forKey:AB_APP_GEO_Street];
+    }
+    
+    if (zipCode && ![zipCode isEqualToString:@""]) {
+        [geoDic setObject:zipCode forKey:AB_APP_GEO_ZipCode];
+    }
+    
+    [self.appUser setGeo:[NSDictionary dictionaryWithDictionary:geoDic]];
+    [self.appUser syncDataToServerWithTarget:nil];
 }
 
 /*

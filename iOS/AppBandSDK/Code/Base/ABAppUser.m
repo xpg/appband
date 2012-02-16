@@ -17,6 +17,8 @@
 @synthesize pushEnable = _pushEnable;
 @synthesize pushIntervals = _pushIntervals;
 
+@synthesize geo = _geo;
+
 //@synthesize isDirty = _isDirty;
 
 @synthesize settings = _settings;
@@ -71,15 +73,12 @@
     }
 }
 
-- (void)setPushIntervals:(NSString *)pushIntervals {
-    if (![pushIntervals isEqualToString:self.pushIntervals]) {
-        [_pushIntervals release];
-        _pushIntervals = [pushIntervals copy];
-        
-        [self.settings setValue:_pushIntervals forKey:kAppBandDevicePushDNDIntervalsKey];
-        [self.settings synchronized];
-//        _isDirty = YES;
-    }
+- (void)setPushIntervals:(NSArray *)pushIntervals {
+    [_pushIntervals release];
+    _pushIntervals = [pushIntervals copy];
+    
+    [self.settings setValue:_pushIntervals forKey:kAppBandDevicePushDNDIntervalsKey];
+    [self.settings synchronized];
 }
 
 #pragma mark - ABHttpRequestDelegate
@@ -108,7 +107,20 @@
     NSString *alias = self.alias ? self.alias : @"";
     NSString *tagsStr = self.tags ? self.tags : @"";
     
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, alias, AB_APP_ALIAS, tagsStr, AB_APP_TAGS, [[NSLocale preferredLanguages] objectAtIndex:0], AB_APP_LANGUAGE, [[NSTimeZone systemTimeZone] name], AB_APP_TIMEZONE, [UIDevice currentDevice].model, AB_APP_DEVICE_TYPE, [UIDevice currentDevice].systemVersion, AB_APP_OS_VERSION, nil];
+    NSDictionary *settingDic = nil;
+    
+    if (self.pushIntervals) {
+        settingDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:self.pushEnable], AB_APP_PUSH_CONFIGURATION_ENABLED, self.pushIntervals, AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS, nil];
+    } else {
+        settingDic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:self.pushEnable], AB_APP_PUSH_CONFIGURATION_ENABLED, nil];
+    }
+    
+    NSDictionary *parameters;
+    if (self.geo) {
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, alias, AB_APP_ALIAS, tagsStr, AB_APP_TAGS, settingDic, AB_APP_SETTING, [[NSLocale preferredLanguages] objectAtIndex:0], AB_APP_LANGUAGE, [[NSTimeZone systemTimeZone] name], AB_APP_TIMEZONE, [UIDevice currentDevice].model, AB_APP_DEVICE_TYPE, [UIDevice currentDevice].systemVersion, AB_APP_OS_VERSION, self.geo, AB_APP_GEO, nil];
+    } else {
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, alias, AB_APP_ALIAS, tagsStr, AB_APP_TAGS, settingDic, AB_APP_SETTING, [[NSLocale preferredLanguages] objectAtIndex:0], AB_APP_LANGUAGE, [[NSTimeZone systemTimeZone] name], AB_APP_TIMEZONE, [UIDevice currentDevice].model, AB_APP_DEVICE_TYPE, [UIDevice currentDevice].systemVersion, AB_APP_OS_VERSION, nil];
+    }
     
     ABHttpRequest *request = [ABHttpRequest requestWithKey:self.requestKey url:url parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout delegate:self];
     [request setContentType:@"application/json"];
@@ -170,6 +182,7 @@
     [_alias release];
     [_tags release];
     [_pushIntervals release];
+    [_geo release];
     [self setSettings:nil];
     [self setRequestKey:nil];
     [super dealloc];

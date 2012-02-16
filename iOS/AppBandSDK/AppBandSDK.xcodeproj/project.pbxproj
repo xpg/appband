@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		962FA90114DB7CF6008E9F33 /* ABInboxResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A2355914D78B43003D43B9 /* ABInboxResponse.m */; };
+		962FA90314DB7CFA008E9F33 /* ABInboxResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A2355814D78B43003D43B9 /* ABInboxResponse.h */; };
 		963F97AA14B68C4E00AD9950 /* ABHttpRequest+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 963F97A914B68C4E00AD9950 /* ABHttpRequest+Private.h */; };
 		963F97AF14B68F3700AD9950 /* ABHttpRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 963F97AD14B68F3700AD9950 /* ABHttpRequestSpec.m */; };
 		967ED2AD14B5B3EB0034A0A5 /* ABReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 967ED2AB14B5B3EB0034A0A5 /* ABReachability.h */; };
@@ -841,6 +843,7 @@
 				96F5FF5114C54D2A00B14AAB /* ABRichHandler.h in Headers */,
 				96F5FF5214C54D2A00B14AAB /* ABRichHandler+Private.h in Headers */,
 				96F5FF5314C54D2A00B14AAB /* ABNetworkQueue.h in Headers */,
+				962FA90314DB7CFA008E9F33 /* ABInboxResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1115,7 @@
 				96F5FF2414C54D2A00B14AAB /* ABRichResponse.m in Sources */,
 				96F5FF2514C54D2A00B14AAB /* ABRichHandler.m in Sources */,
 				96F5FF2614C54D2A00B14AAB /* ABNetworkQueue.m in Sources */,
+				962FA90114DB7CF6008E9F33 /* ABInboxResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

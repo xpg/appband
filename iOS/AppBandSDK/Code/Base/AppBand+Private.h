@@ -9,7 +9,7 @@
 #if Production
     #define kAppBandProductionServer @"https://api.appmocha.com/v1"
 #else
-    #define kAppBandProductionServer @"https://api.apphub.com/v1"
+    #define kAppBandProductionServer @"https://api.apphub.com/v1" //@"http://192.168.1.138:3000/v1"
 #endif
 
 
@@ -18,7 +18,7 @@
 #import "ABConstants.h"
 
 #import "ABConfiguration.h"
-#import "ABAppUser.h"
+#import "ABAppUser+Private.h"
 #import "ABNetworkQueue.h"
 
 @interface AppBand()

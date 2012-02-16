@@ -21,6 +21,20 @@
 #define AB_APP_LANGUAGE @"language"
 #define AB_APP_OS_VERSION @"os_version"
 #define AB_APP_DEVICE_TYPE @"device_type"
+#define AB_APP_GEO @"geo"
+
+#define AB_APP_GEO_Latitude @"latitude"
+#define AB_APP_GEO_Longitude @"longitude"
+#define AB_APP_GEO_CountryName @"country_name"
+#define AB_APP_GEO_CountryCode @"country_code"
+#define AB_APP_GEO_State @"province_name"
+#define AB_APP_GEO_City @"city_name"
+#define AB_APP_GEO_District @"district_name"
+#define AB_APP_GEO_Street @"street"
+#define AB_APP_GEO_ZipCode @"zip_code"
+
+#define AB_APP_PUSH_CONFIGURATION_ENABLED @"push_enabled"
+#define AB_APP_PUSH_CONFIGURATION_UNAVAILABLE_INTERVALS @"dnd_intervals"
 
 #define AB_APP_NOTIFICATION_SUM @"sum"
 #define AB_APP_NOTIFICATION_NOTIFICATIONS @"notifications"
