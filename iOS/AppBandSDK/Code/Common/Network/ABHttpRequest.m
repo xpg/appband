@@ -232,7 +232,7 @@
         
         self.responseData = [NSMutableData data];
         
-        self.contentType = @"application/x-www-form-urlencoded";
+        self.contentType = @"application/json";
     }
     
     return self;

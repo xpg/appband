@@ -28,7 +28,7 @@
     NSString *bundleId = [[NSBundle bundleForClass:[self class]] bundleIdentifier];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@?udid=%@&bundleid=%@&token=%@&k=%@&s=%@",
-                           [[AppBand shared] server], @"/rich_contents/",self.rid,udid,bundleId,token,appKey,appSecret];
+                           [[[AppBand shared] configuration] server], @"/rich_contents/",self.rid,udid,bundleId,token,appKey,appSecret];
     
     return [ABHttpRequest requestWithKey:self.fetchKey url:urlString parameter:nil timeout:AppBandSettingsTimeout delegate:self];
 }
