@@ -21,6 +21,7 @@
 #define AB_APP_LANGUAGE @"language"
 #define AB_APP_OS_VERSION @"os_version"
 #define AB_APP_DEVICE_TYPE @"device_type"
+#define AB_APP_TOKEN_FALSE @"token_failed"
 #define AB_APP_GEO @"geo"
 
 #define AB_APP_GEO_Latitude @"latitude"

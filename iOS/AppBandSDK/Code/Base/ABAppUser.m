@@ -16,6 +16,7 @@
 @synthesize tags = _tags;
 @synthesize pushEnable = _pushEnable;
 @synthesize pushIntervals = _pushIntervals;
+@synthesize tokenDisable = _tokenDisable;
 
 @synthesize geo = _geo;
 
@@ -122,6 +123,12 @@
         parameters = [NSDictionary dictionaryWithObjectsAndKeys:udid, AB_DEVICE_UDID, bundleId, AB_APP_BUNDLE_IDENTIFIER, appKey, AB_APP_KEY, appSecret, AB_APP_SECRET, token, AB_DEVICE_TOKEN, alias, AB_APP_ALIAS, tagsStr, AB_APP_TAGS, settingDic, AB_APP_SETTING, [[NSLocale preferredLanguages] objectAtIndex:0], AB_APP_LANGUAGE, [[NSTimeZone systemTimeZone] name], AB_APP_TIMEZONE, [UIDevice currentDevice].model, AB_APP_DEVICE_TYPE, [UIDevice currentDevice].systemVersion, AB_APP_OS_VERSION, nil];
     }
     
+    if (self.tokenDisable) {
+        NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithDictionary:parameters];
+        [tmp setObject:[NSNumber numberWithBool:self.tokenDisable] forKey:AB_APP_TOKEN_FALSE];
+        parameters = [NSDictionary dictionaryWithDictionary:tmp];
+    }
+    
     ABHttpRequest *request = [ABHttpRequest requestWithKey:self.requestKey url:url parameter:getParameterData(parameters) timeout:AppBandSettingsTimeout delegate:self];
     [request setContentType:@"application/json"];
     
@@ -156,6 +163,7 @@
     self = [self init];
     if (self) {
         self.settings = settings;
+        _tokenDisable = NO;
         
 //        _isDirty = [settings getValueOfKey:kAppBandDeviceDirty] ? [[settings getValueOfKey:kAppBandDeviceDirty] boolValue] : YES;
         _token = [[settings getValueOfKey:kAppBandDeviceToken] copy];

@@ -38,6 +38,8 @@
 
 @property(nonatomic,copy) NSArray *pushIntervals;
 
+@property(nonatomic,assign) BOOL tokenDisable;
+
 /*
  * Synchronize Device Data to Server. 
  * 

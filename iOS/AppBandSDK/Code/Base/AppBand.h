@@ -64,6 +64,12 @@
 - (void)setPushToken:(NSData *)token;
 
 /*
+ * Fetch Device Token Failed
+ * 
+ */
+- (void)fetchPushTokenFailed;
+
+/*
  * Set Alias (Max Length 30)
  * 
  * Paramters:

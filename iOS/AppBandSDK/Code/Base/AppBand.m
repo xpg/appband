@@ -120,7 +120,16 @@ static AppBand *_appBand;
  *          token: the token of the Device.
  */
 - (void)setPushToken:(NSData *)token {
+    [self.appUser setTokenDisable:NO];
     [self.appUser setToken:[self parseDeviceToken:[token description]]];
+}
+
+/*
+ * Fetch Device Token Failed
+ * 
+ */
+- (void)fetchPushTokenFailed {
+    [self.appUser setTokenDisable:YES];
 }
 
 /*
