@@ -15,6 +15,7 @@
 
 - (void)dealloc {
     [self setNotificationsArray:nil];
+    [super dealloc];
 }
 
 @end
